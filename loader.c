@@ -4,8 +4,8 @@
 #include <string.h>
 
 int load_matrix(const char* filename, int rows, int cols, int xoffset, int yoffset, float** out) {
-  FILE *file = fopen(filename, "r"); 
-	char *buffer;
+    FILE *file = fopen(filename, "r");
+    char *buffer;
 	int ret, row = 0;
 
 	char delims[] = " \t";
@@ -44,10 +44,10 @@ int load_matrix(const char* filename, int rows, int cols, int xoffset, int yoffs
 
 	fclose(file);
 	for(int i = 0; i < rows; i++) {
-		for(int j = 0; j < cols; j++) {
-			printf("%f%s", matrix[i][j], j < cols-1 ? "\t" : "\n");
-		}
-    free(matrix[i]);
+//		for(int j = 0; j < cols; j++) {
+//			printf("%f%s", matrix[i][j], j < cols-1 ? "\t" : "\n");
+//		}
+        free(matrix[i]);
 	}
 	free(matrix);
 	return 0;

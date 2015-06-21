@@ -8,7 +8,7 @@ set(SOURCE_FILES
     loader.h
     main.c)
 
-add_executable(projekt ${SOURCE_FILES})
+add_executable(projekt ${SOURCE_FILES} deadlock.h deadlock.c cannon.h cannon.c)
 
 find_package(MPI REQUIRED)
 set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
