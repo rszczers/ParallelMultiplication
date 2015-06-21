@@ -6,7 +6,6 @@
 #include "loader.h"
 
 int matrix_load(const char* filename, int rows, int cols, int xoffset, int yoffset, float** out) {
-
   FILE *file = fopen(filename, "r"); 
 	char *buffer;
 	int ret, row = 0;
