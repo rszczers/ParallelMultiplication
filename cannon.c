@@ -2,17 +2,15 @@
 // Created by rszczers on 21.06.15.
 //
 
-#include "cannon.h"
 #include <mpich/mpi.h>
 #include <cblas.h>
 #include <stdio.h>
-#include <math.h>
 #include <malloc.h>
 
 int main(int argc, char *argv[]) {
     int myid, myid2d, numprocs, i, j, ndims, newid1, newid2; double tim;
     MPI_Status stat;
-    MPI_Comm cartcom, splitcom, splitcom2;
+    MPI_Comm cartcom, splitcom1, splitcom2;
     MPI_Request reqs[4];
 
     int dims[2];
@@ -28,7 +26,6 @@ int main(int argc, char *argv[]) {
 
     int up, down, left, right, shiftsource, shiftdest;
 
-    char TRANSA = 'N', TRANSB = 'N';
     double ALPHA = 1.0, BETA = 1.0;
 
     MPI_Init(&argc, &argv);
@@ -36,7 +33,7 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
     if(myid==0) {
-        scanf("%d", &n);
+        int k = scanf("%d", &n);
     }
 
     MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
@@ -62,15 +59,15 @@ int main(int argc, char *argv[]) {
     //tablice
 
     q = n/p;
-    a = malloc(q*q*sizeof(a));
-    b = malloc(q*q*sizeof(b));
-    c = malloc(q*q*sizeof(c));
+    a = (double *)malloc(q*q*sizeof(a));
+    b = (double *)malloc(q*q*sizeof(b));
+    c = (double *)malloc(q*q*sizeof(c));
 
     a_buff[0] = a;
-    a_buff[1] = malloc(q*q*sizeof(a));
+    a_buff[1] = (double *)malloc(q*q*sizeof(a));
 
     b_buff[0] = b;
-    b_buff[1] = malloc(q*q*sizeof(b));
+    b_buff[1] = (double *)malloc(q*q*sizeof(b));
 
     for (i = 0; i < q; ++i) {
         for (j = 0; j < q; ++j) {
@@ -99,7 +96,7 @@ int main(int argc, char *argv[]) {
         MPI_Isend(a_buff[i%2], q*q, MPI_DOUBLE, left, 1, cartcom, &reqs[2]);
         MPI_Isend(b_buff[i%2], q*q, MPI_DOUBLE, left, 1, cartcom, &reqs[3]);
 
-        cblas_dgemm(101, &TRANSA, &TRANSB, &q, &q, &q, ALPHA, a, &q, b, &q, BETA, c, &q);
+        cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, q, q, q, ALPHA, a, q, b, q, BETA, c, q);
 
         for(j = 0; j < 4; j++) {
             MPI_Wait(&reqs[j], &stat);
@@ -117,7 +114,7 @@ int main(int argc, char *argv[]) {
     if(myid2d == 0) {
         tim = MPI_Wtime() - tim;
         printf("Czas = %lf\n", tim);
-        printf("Mflops = %lf\n", ( 2.0*n )*n*(n/1.0e + 6.0)/tim);
+     //   printf("Mflops = %lf\n", ( 2.0*n )*n*(n/1.0e + 6.0)/tim);
     }
 
     MPI_Comm_free(&cartcom);
