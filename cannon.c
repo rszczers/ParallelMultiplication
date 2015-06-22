@@ -2,8 +2,10 @@
 // Created by rszczers on 21.06.15.
 //
 
+
+#include "cblas.h"
+#include "cblas_f77.h"
 #include <mpich/mpi.h>
-#include <cblas.h>
 #include <stdio.h>
 #include <malloc.h>
 
@@ -96,8 +98,7 @@ int main(int argc, char *argv[]) {
         MPI_Isend(a_buff[i%2], q*q, MPI_DOUBLE, left, 1, cartcom, &reqs[2]);
         MPI_Isend(b_buff[i%2], q*q, MPI_DOUBLE, left, 1, cartcom, &reqs[3]);
 
-        cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, q, q, q, ALPHA, a, q, b, q, BETA, c, q);
-
+        cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, q, q, q, ALPHA, a, q, b, q, BETA, c, q);
         for(j = 0; j < 4; j++) {
             MPI_Wait(&reqs[j], &stat);
         }
