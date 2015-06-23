@@ -1,4 +1,6 @@
 #define min(x,y) (((x) < (y)) ? (x) : (y))
+
+#include "lib/loader.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include "mkl.h"
