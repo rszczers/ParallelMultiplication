@@ -2,6 +2,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
+#include "bar.h"
 
 int load_matrix(const char *filename, double *out, int *m, int *n) {
 	FILE *file = fopen(filename, "r");
@@ -24,7 +25,7 @@ int load_matrix(const char *filename, double *out, int *m, int *n) {
 	int fg;
 	int i = 0;
 	char *token;
-
+	printf("Wszytywanie danych, proszę poczekać...\n");	
 	while(i < length && !feof(file)) {
 		buffer = (char *)malloc(sizeof(char) * 4096);
 		memset(buffer, 0, 4096);
@@ -33,8 +34,9 @@ int load_matrix(const char *filename, double *out, int *m, int *n) {
 			token = strtok(buffer, sep);			
 			while(token != NULL && i < length) {
 				out[i] = atof(token);				
-				token = strtok(NULL, sep);			
-				printf("%d, %lf\n", i, out[i]);
+				token = strtok(NULL, sep);					
+				progres_bar(i, length);				
+				// printf("%d, %lf\n", i, out[i]);
 				i++;	
 			}	
 			i++;
@@ -43,6 +45,6 @@ int load_matrix(const char *filename, double *out, int *m, int *n) {
 	}
 
 	fclose(file);
-
+	printf("\nDane wczytano poprawnie.\n");
 	return 0;
 }
