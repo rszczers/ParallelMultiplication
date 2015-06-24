@@ -35,12 +35,12 @@ int load_matrix(const char *filename, double *out, int *m, int *n) {
 			while(token != NULL && i < length) {
 				out[i] = atof(token);				
 				token = strtok(NULL, sep);					
-				progres_bar(i, length);				
 				// printf("%d, %lf\n", i, out[i]);
 				i++;	
 			}	
 			i++;
 		}		
+		progres_bar(i, length);				
 		free(buffer);	
 	}
 
