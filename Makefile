@@ -1,7 +1,7 @@
 CC=gcc
 OPTIONS=-std=c99
 LIBS=
-SRC=bar.c counter.c main.c
+SRC=./src/bar.c ./src/load_matrix.c ./src/main.c
 OUT=./build/test.o
 
 test:
@@ -11,8 +11,7 @@ data:
 	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat
 
 run:
-	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; ./$(OUT)
+	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
 
 clean:
 	$(RM) ./build/*.o ./resources/*.dat ./build/*.out ./src/*.swp
-
