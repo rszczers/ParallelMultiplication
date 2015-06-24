@@ -1,16 +1,17 @@
 CC=gcc
-LIBS=-std=c99
+OPTIONS=-std=c99
+LIBS=
 SRC=bar.c counter.c main.c
-OUT=test.o
+OUT=./build/test.o
 
 test:
-	$(CC) $(SRC) $(LIBS) -o $(OUT)
+	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
 data:
-	bash generate.sh > a.dat; bash generate.sh > b.dat
+	bash generate.sh > ./resources/a.dat; bash generate.sh > ./resources/b.dat
 
 run:
-	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; bash generate.sh > a.dat; bash generate.sh > b.dat; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(SRC) $(LIBS) -o $(OUT); clear; ./$(OUT)
+	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; ./$(OUT)
 
 clean:
 	$(RM) *.o *.dat *.out *.swp
