@@ -8,7 +8,7 @@ test:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
 data:
-	bash generate.sh > ./resources/a.dat; bash generate.sh > ./resources/b.dat
+	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat
 
 run:
 	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; ./$(OUT)
