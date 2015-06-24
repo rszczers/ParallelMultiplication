@@ -14,5 +14,5 @@ run:
 	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; ./$(OUT)
 
 clean:
-	$(RM) *.o *.dat *.out *.swp
+	$(RM) ./build/*.o ./resources/*.dat ./build/*.out ./src/*.swp
 
