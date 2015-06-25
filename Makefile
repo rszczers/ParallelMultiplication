@@ -1,3 +1,4 @@
+PROJECT=test
 CC=gcc
 OPTIONS=-std=c99
 LIBS=
