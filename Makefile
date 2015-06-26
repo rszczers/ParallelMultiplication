@@ -2,7 +2,7 @@ PROJECT=test
 CC=gcc
 OPTIONS=-std=c99
 LIBS=
-SRC=./src/bar.c ./src/load_matrix.c ./src/main.c
+SRC=./src/bar.c ./src/load_matrix.c ./src/save_matrix.c ./src/main.c
 OUT=./build/test.o
 
 test:
