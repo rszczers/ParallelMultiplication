@@ -102,8 +102,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathC = NULL;
             break;
         case ARGP_KEY_END:
-            if(state->arg_num < 5)
-                 argp_usage(state);
+            // if(state->arg_num < 5)
+                 // argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
@@ -144,20 +144,19 @@ int main(int argc, char *argv[]) {
     }
 
     switch(arguments.mode) {
-        case QUIET:
-        {            
-            if (arguments.pathC != NULL)
-            {
-                save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
-            }
-
-        }
         case VERBOSE:
         {
             for (int i = 0; i <= arguments.m; ++i)            
                 for (int j = 0; j <= arguments.n; ++j)
                     printf("%lf ", C[i*(j+1)]);
                 printf("\n");
+        }
+        case QUIET:
+        {            
+            if (arguments.pathC != NULL)
+            {
+                save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
+            }
             break;
         }
     }
