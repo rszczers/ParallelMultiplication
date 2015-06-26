@@ -6,6 +6,8 @@
 #include "load_matrix.h"
 #include "save_matrix.h"
 
+#include "sequential.h"
+
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
 static char doc[] = "Parallel matrix multiplication with Intel Math Kernel Library";
@@ -112,18 +114,53 @@ static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
 
 int main(int argc, char *argv[]) {
     struct arguments arguments;
+    argp_parse(&argp, argc, argv, 0, 0, &arguments); 
 
-
-    argp_parse(&argp, argc, argv, 0, 0, &arguments);        
     double *A = (double *)malloc(arguments.m * arguments.k * sizeof(double));
     double *B = (double *)malloc(arguments.k * arguments.n * sizeof(double));
     double *C = (double *)malloc(arguments.m * arguments.n * sizeof(double));
     load_matrix(arguments.pathA, A, arguments.m, arguments.k);
-    //load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+    load_matrix(arguments.pathB, B, arguments.k, arguments.n);
     //load_matrix(arguments.pathC, C, arguments.m, arguments.n);
-    save_matrix("test.dat", A, arguments.m * arguments.k);
+
+    switch(arguments.method) {
+        case SEQUENTIAL:
+        {   
+            printf("Sequential choosen\n");
+            sequential_product(double *A, double *B, double *C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
+            break;
+        }
+        case NAIVE:
+        {
+            break;
+        }
+        case STRASSEN:
+        {
+            break;
+        }
+        case CANNON:
+        {
+            break;
+        }
+    }
+
+    switch(arguments.mode) {
+        case VERBOSE:
+        {
+            
+        }
+        case QUIET:
+        {
+            break;
+            if (arguments.pathC != NULL)
+            {
+                save_matrix("test.dat", A, arguments.m * arguments.k);            
+            }
+        }
+    }
+  
     free(A);
     free(B);
     free(C);
-  return 0;
+    return 0;
 }
