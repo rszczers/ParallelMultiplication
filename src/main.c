@@ -45,7 +45,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         {           
             char *name = (char *)malloc(10 * sizeof(char));
 
-            for (int i = 0; i<9 ; arg++, i++)
+            for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
             if(strcmp("strassen", name) == 0)
@@ -102,8 +102,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathC = NULL;
             break;
         case ARGP_KEY_END:
-            //if(state->arg_num < 5)
-              //  argp_usage(state);
+            if(state->arg_num < 5)
+                 argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
@@ -125,8 +125,7 @@ int main(int argc, char *argv[]) {
 
     switch(arguments.method) {
         case SEQUENTIAL:
-        {   
-            printf("Sequential choosen\n");
+        {               
             sequential_product(double *A, double *B, double *C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
             break;
         }
@@ -145,17 +144,21 @@ int main(int argc, char *argv[]) {
     }
 
     switch(arguments.mode) {
-        case VERBOSE:
-        {
-            
-        }
         case QUIET:
-        {
-            break;
+        {            
             if (arguments.pathC != NULL)
             {
-                save_matrix("test.dat", A, arguments.m * arguments.k);            
+                save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
             }
+
+        }
+        case VERBOSE:
+        {
+            for (int i = 0; i <= arguments.m; ++i)            
+                for (int j = 0; j <= arguments.n; ++j)
+                    printf("%lf ", C[i*(j+1)]);
+                printf("\n");
+            break;
         }
     }
   
