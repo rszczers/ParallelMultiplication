@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
-            sequential_product(double *A, double *B, double *C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
+            sequential_product(A, B, C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
             break;
         }
         case NAIVE:
