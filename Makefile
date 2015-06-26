@@ -1,5 +1,5 @@
 PROJECT=test
-CC=mpicc
+CC=mpiicc
 OPTIONS=-std=c99
 LIBS=-mkl
 SRC=./src/bar.c ./src/load_matrix.c ./src/save_matrix.c ./src/sequential.c ./src/main.c
