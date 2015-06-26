@@ -8,13 +8,14 @@
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
 static char doc[] = "Parallel matrix multiplication with Intel Math Kernel Library";
-static char args_doc[] = "[FILENAME]";
+static char args_doc[] = "-A matrixA_path -B matrixB_path";
 
 static struct argp_option options[] = {
     { "method", 'a', "METHOD", 0, "Algorithm used."},
     { "inputA", 'A', "FILE", 0, "Path to input FILE containing matrix A data."},
     { "inputB", 'B', "FILE", 0, "Path to input FILE containing matrix B data."},
     { "output", 'o', "FILE", OPTION_ARG_OPTIONAL, "Path to output FILE containing matrix C data."},
+    { 0 , 'C', "FILE", OPTION_ALIAS, 0},
     { 0, 'm', "NUM", 0, "m."},
     { 0, 'k', "NUM", 0, "k."},
     { 0, 'n', "NUM", 0, "n."},
@@ -50,8 +51,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 			else if(strcmp("sequential", name) == 0)
                 arguments->method = SEQUENTIAL;
             // NAIVE is set as default
-            printf("%d\n", arguments->method);
-            
+
             free(name);         
             break;
         }
@@ -59,31 +59,36 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathA = arg;
             break;
         }
-        CASE 'B': {
+        case 'B': {
             arguments->pathB = arg;
             break;
         }
-        case 'l': {
+        case 'C':
+        case 'o':
+            arguments->pathC = arg;
+            break;
+        case 'l':
+        {
             printf("Available methods:\n");
             char *availableMethods[] = {"sequential", "naive", "strassen", "cannon"};
             for (int i = 0; i <= CANNON; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
         }
-        case 'o':
-            arguments->pathC = arg;
-            break;
         case 'm':
-            arguments->m = arg;
+            arguments->m = atoi(arg);
             break;
         case 'n':
-            arguments->n = arg;
+            arguments->n = atoi(arg);
             break;
         case 'k':
-            arguments->k = arg;
+            arguments->k = atoi(arg);
             break;
         case ARGP_KEY_ARG:
-            break;  
+            break;
+        case ARGP_KEY_END:
+            if(state->arg_num < 2)
+                argp_usage(state);
         default: return ARGP_ERR_UNKNOWN;
     }   
     return 0;
@@ -94,15 +99,17 @@ static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
 int main(int argc, char *argv[]) {
     struct arguments arguments;
     arguments.method = NAIVE;
-    arguments.mode = VERBOSE;
+    arguments.mode = QUIET;
 
-    argp_parse(&argp, argc, argv, 0, 0, &arguments);
-        
-    //int m = 256;
-    //int n = 256;      
-
-    //double *out = (double *)malloc(256 * 256 * sizeof(double));
-    //load_matrix("./resources/a.dat"", out, &m, &n);
-    //free(out);
+    argp_parse(&argp, argc, argv, 0, 0, &arguments);        
+    double *A = (double *)malloc(arguments.m * arguments.k * sizeof(double));
+    double *B = (double *)malloc(arguments.k * arguments.n * sizeof(double));
+    double *C = (double *)malloc(arguments.m * arguments.n * sizeof(double));
+    //load_matrix(arguments.pathA, A, arguments.m, arguments.k);
+    //load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+    //load_matrix(arguments.pathC, C, arguments.m, arguments.n);
+    free(A);
+    free(B);
+    free(C);
   return 0;
 }

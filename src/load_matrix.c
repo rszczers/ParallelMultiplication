@@ -4,11 +4,11 @@
 #include <string.h>
 #include "bar.h"
 
-int load_matrix(const char *filename, double *out, int *m, int *n) {
+int load_matrix(const char *filename, double *out, int m, int n) {
 	FILE *file = fopen(filename, "r");
 
 	char *buffer;
-	int length = (*m) * (*n);
+	int length = m * n;
 	int progress;
 
 	char sep[] = " ";
