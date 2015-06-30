@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <argp.h>
 #include <string.h>
 
@@ -7,6 +8,7 @@
 #include "save_matrix.h"
 
 //#include "sequential.h"
+#include "naive.h"
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
@@ -119,18 +121,19 @@ int main(int argc, char *argv[]) {
     double *A = (double *)malloc(arguments.m * arguments.k * sizeof(double));
     double *B = (double *)malloc(arguments.k * arguments.n * sizeof(double));
     double *C = (double *)malloc(arguments.m * arguments.n * sizeof(double));
-    load_matrix(arguments.pathA, A, arguments.m, arguments.k);
-    load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+    //load_matrix(arguments.pathA, A, arguments.m, arguments.k);
+    //load_matrix(arguments.pathB, B, arguments.k, arguments.n);
     //load_matrix(arguments.pathC, C, arguments.m, arguments.n);
 
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
-//            sequential_product(A, B, C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
+//            sequential_product(A, B, C, arguments.m, arguments.k, arguments.n, 1.0, 0.0);
             break;
         }
         case NAIVE:
         {
+						naive(A, B, C, arguments.m, arguments.k, arguments.n, &argc, &argv);
             break;
         }
         case STRASSEN:
@@ -155,7 +158,7 @@ int main(int argc, char *argv[]) {
         {            
             if (arguments.pathC != NULL)
             {
-                save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
+                //save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
             }
             break;
         }
@@ -164,5 +167,5 @@ int main(int argc, char *argv[]) {
     free(A);
     free(B);
     free(C);
-    return EXIT_SUCCESS;
+    return 0;
 }
