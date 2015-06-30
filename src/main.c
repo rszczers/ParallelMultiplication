@@ -6,7 +6,7 @@
 #include "load_matrix.h"
 #include "save_matrix.h"
 
-#include "sequential.h"
+//#include "sequential.h"
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
-            sequential_product(A, B, C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
+//            sequential_product(A, B, C, arguments.m, arguments.k, arguments.m, 1.0, 0.0);
             break;
         }
         case NAIVE:
@@ -164,5 +164,5 @@ int main(int argc, char *argv[]) {
     free(A);
     free(B);
     free(C);
-    return 0;
+    return EXIT_SUCCESS;
 }
