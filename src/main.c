@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdbool.h>
 #include <argp.h>
 #include <string.h>
 #include <mpi.h>
@@ -120,6 +121,10 @@ static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
 int main(int argc, char *argv[]) {
 	struct arguments arguments;
 	argp_parse(&argp, argc, argv, 0, 0, &arguments);
+	
+	int m = arguments.m;
+	int k = arguments.k;
+	int n = arguments.n;
 
 	int pid;
 	int numprocs;
@@ -130,9 +135,10 @@ int main(int argc, char *argv[]) {
 	int period[2];
 	int coord[2];
 		
+
 	MPI_Init(NULL, NULL);
 	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-//	MPI_Comm_rank(MPI_COMM_WORLD, &pid);
+	MPI_Comm_rank(MPI_COMM_WORLD, &pid);
 
 	dims[0] = 0;
 	dims[1] = 0;
@@ -144,33 +150,47 @@ int main(int argc, char *argv[]) {
 	MPI_Cart_coords(cartcom, pid, 2, coord);
 	MPI_Comm_rank(cartcom, &pid);
 
-	double *pA = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double));
-	double *pB = (double* )mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double));
-//	double *pC;
+	bool m_odd = (~arguments.m || (arguments.m & (arguments.m - 1)));
+	bool k_odd = (~arguments.k || (arguments.k & (arguments.k - 1)));
+	bool n_odd = (~arguments.n || (arguments.n & (arguments.n - 1)));
+		
+	if (m_odd)
+		m = 32 - __builtin_clz(arguments.m);
+
+	if (k_odd)
+		k = 32 - __builtin_clz(arguments.k);
+
+	if (n_odd)
+		n = 32 - __builtin_clz(arguments.n);
+
+
+	printf("%d\n", m_odd);
+//	double *pA = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double), 64);
+//	double *pB = (double* )mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
+//	double *pC = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
+	
+//	MPI_Datatype ;
+		
 
 	//broadcasting
 	if (pid == 0) {
-		double *A = (double *)mkl_malloc(arguments.m * arguments.k * sizeof(double), 64);
-		double *B = (double *)mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
-		double *C = (double *)mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
 
-		load_matrix(arguments.pathA, A, arguments.m, arguments.k);
-		load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+	//	double *A = (double *)mkl_malloc(arguments.m * arguments.k * sizeof(double), 64);
+	//	double *B = (double *)mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
+	//	double *C = (double *)mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
+
+	//	load_matrix(arguments.pathA, A, arguments.m, arguments.k);
+	//	load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+
+	//	double *tmpA = (double *)mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double), 64);
+	//	double *tmpB = (double *)mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
+
 		
-		int m_rem = arguments.m % dims[0];
-		int k_rem = arguments.k % dims[1];
 
-		int m_sz =  arguments.m / dims[0];
-		int k_sz =	arguments.k / dims[1];
-		
-//		MPI_Scatter(A, arguments.m * arguments.k, MPI_INT, )
-		//load_matrix(arguments.pathC, C, arguments.m, arguments.n);
-
-		printf("%d, %d\n", dims[0], dims[1] );
+		printf("%d\n", m);
 	} else {
 
 	}
-	printf("RankL %d, (%d, %d)\n", pid, coord[0], coord[1]);
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
