@@ -8,8 +8,8 @@ OUT=./build/test.o
 test:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
-make mrun
-	mpirun -np 4 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 256 -n 256 -k 256 --method=naive
+make mrun:
+	mpirun -np 6 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 4 -n 4 -k 4 --method=naive
 
 data:
 	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat

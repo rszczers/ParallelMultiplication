@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <math.h>
 
-int naive(double *A, double *B, double *C, int m, int k, int n, int *argc, char *(*argv[])) {
+int naive(double *A, double *B, double *C, int m, int k, int n) {
 	int pid;
 	int numprocs;
 	MPI_Status stat;
@@ -13,7 +13,7 @@ int naive(double *A, double *B, double *C, int m, int k, int n, int *argc, char 
 	int period[2];
 	int coord[2];
 
-	MPI_Init(argc, argv);
+	MPI_Init(NULL, NULL);
 
 	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 	MPI_Comm_rank(MPI_COMM_WORLD, &pid);

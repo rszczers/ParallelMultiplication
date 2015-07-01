@@ -3,12 +3,15 @@
 #include <stddef.h>
 #include <argp.h>
 #include <string.h>
+#include <mpi.h>
+
+#include "mkl.h"
 
 #include "load_matrix.h"
 #include "save_matrix.h"
 
 //#include "sequential.h"
-#include "naive.h"
+//#include "naive.h"
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
@@ -104,7 +107,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathC = NULL;
             break;
         case ARGP_KEY_END:
-            // if(state->arg_num < 5)
+            // if(state->arg_num > 0)
                  // argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
@@ -115,16 +118,59 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
 
 int main(int argc, char *argv[]) {
-    struct arguments arguments;
-    argp_parse(&argp, argc, argv, 0, 0, &arguments); 
+	struct arguments arguments;
+	argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
-    double *A = (double *)malloc(arguments.m * arguments.k * sizeof(double));
-    double *B = (double *)malloc(arguments.k * arguments.n * sizeof(double));
-    double *C = (double *)malloc(arguments.m * arguments.n * sizeof(double));
-    //load_matrix(arguments.pathA, A, arguments.m, arguments.k);
-    //load_matrix(arguments.pathB, B, arguments.k, arguments.n);
-    //load_matrix(arguments.pathC, C, arguments.m, arguments.n);
+	int pid;
+	int numprocs;
+	MPI_Status status;
+	MPI_Comm cartcom;
 
+	int dims[2];
+	int period[2];
+	int coord[2];
+		
+	MPI_Init(NULL, NULL);
+	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+//	MPI_Comm_rank(MPI_COMM_WORLD, &pid);
+
+	dims[0] = 0;
+	dims[1] = 0;
+	period[0] = 1;
+	period[1] = 1;
+		
+	MPI_Dims_create(numprocs, 2, dims);	
+	MPI_Cart_create(MPI_COMM_WORLD, 2, dims, period, 1, &cartcom);
+	MPI_Cart_coords(cartcom, pid, 2, coord);
+	MPI_Comm_rank(cartcom, &pid);
+
+	double *pA = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double));
+	double *pB = (double* )mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double));
+//	double *pC;
+
+	//broadcasting
+	if (pid == 0) {
+		double *A = (double *)mkl_malloc(arguments.m * arguments.k * sizeof(double), 64);
+		double *B = (double *)mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
+		double *C = (double *)mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
+
+		load_matrix(arguments.pathA, A, arguments.m, arguments.k);
+		load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+		
+		int m_rem = arguments.m % dims[0];
+		int k_rem = arguments.k % dims[1];
+
+		int m_sz =  arguments.m / dims[0];
+		int k_sz =	arguments.k / dims[1];
+		
+//		MPI_Scatter(A, arguments.m * arguments.k, MPI_INT, )
+		//load_matrix(arguments.pathC, C, arguments.m, arguments.n);
+
+		printf("%d, %d\n", dims[0], dims[1] );
+	} else {
+
+	}
+	printf("RankL %d, (%d, %d)\n", pid, coord[0], coord[1]);
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
@@ -133,11 +179,11 @@ int main(int argc, char *argv[]) {
         }
         case NAIVE:
         {
-						naive(A, B, C, arguments.m, arguments.k, arguments.n, &argc, &argv);
+//			naive(A, B, C, arguments.m, arguments.k, arguments.n);
             break;
         }
         case STRASSEN:
-        {
+    {
             break;
         }
         case CANNON:
@@ -146,26 +192,30 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    switch(arguments.mode) {
-        case VERBOSE:
-        {
-            for (int i = 0; i <= arguments.m; ++i)            
-                for (int j = 0; j <= arguments.n; ++j)
-                    printf("%lf ", C[i*(j+1)]);
-                printf("\n");
-        }
-        case QUIET:
-        {            
-            if (arguments.pathC != NULL)
-            {
+	if(pid == 0) {
+	    switch(arguments.mode) {
+			case VERBOSE:
+	        {
+			    for (int i = 0; i <= arguments.m; ++i)            
+			        for (int j = 0; j <= arguments.n; ++j)
+//			            printf("%lf ", C[i*(j+1)]);
+					printf("\n");
+	        }
+	        case QUIET:
+	        {            
+				if (arguments.pathC != NULL) {
                 //save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
-            }
-            break;
-        }
-    }
+				}
+				break;
+			}
+	    }
+		
   
-    free(A);
-    free(B);
-    free(C);
-    return 0;
+//		mkl_free(pA);
+//		mkl_free(pB);
+//		mkl_free(pC);
+	}
+
+	MPI_Finalize();
+    return EXIT_SUCCESS;
 }
