@@ -135,7 +135,6 @@ int main(int argc, char *argv[]) {
 	int period[2];
 	int coord[2];
 		
-
 	MPI_Init(NULL, NULL);
 	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 	MPI_Comm_rank(MPI_COMM_WORLD, &pid);
@@ -163,34 +162,34 @@ int main(int argc, char *argv[]) {
 	if (n_odd)
 		n = 32 - __builtin_clz(arguments.n);
 
-
-	printf("%d\n", m_odd);
-//	double *pA = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double), 64);
-//	double *pB = (double* )mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
-//	double *pC = (double* )mkl_malloc((arguments.m/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
+	double *pA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64);
+	double *pB = (double *)mkl_malloc((k * n)/(dims[0] * dims[1]) * sizeof(double), 64);
+	double *pC = (double *)mkl_malloc((m * n)/(dims[0] * dims[1]) * sizeof(double), 64);
 	
 //	MPI_Datatype ;
 		
 
 	//broadcasting
 	if (pid == 0) {
+		double *A = (double *)mkl_malloc(m * k * sizeof(double), 64);
+		double *B = (double *)mkl_malloc(k * n * sizeof(double), 64);
 
-	//	double *A = (double *)mkl_malloc(arguments.m * arguments.k * sizeof(double), 64);
-	//	double *B = (double *)mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
-	//	double *C = (double *)mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
+
+	//	double *C = (double *)mkl_malloc(m * n * sizeof(double), 64);
 
 	//	load_matrix(arguments.pathA, A, arguments.m, arguments.k);
 	//	load_matrix(arguments.pathB, B, arguments.k, arguments.n);
 
-	//	double *tmpA = (double *)mkl_malloc((arguments.m/coord[0]) * (arguments.k/coord[1]) * sizeof(double), 64);
-	//	double *tmpB = (double *)mkl_malloc((arguments.k/coord[0]) * (arguments.n/coord[1]) * sizeof(double), 64);
-
-		
+		double *tmpA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64)
 
 		printf("%d\n", m);
 	} else {
 
 	}
+
+
+
+
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
@@ -231,11 +230,13 @@ int main(int argc, char *argv[]) {
 	    }
 		
   
-//		mkl_free(pA);
-//		mkl_free(pB);
-//		mkl_free(pC);
 	}
 
+	mkl_free(pA);
+	mkl_free(pB);
+	mkl_free(pC);
+
+	MPI_Comm_free(&cartcom);
 	MPI_Finalize();
     return EXIT_SUCCESS;
 }
