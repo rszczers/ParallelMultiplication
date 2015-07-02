@@ -30,46 +30,53 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 	char *token;
 	printf("Wszytywanie danych, proszę poczekać...\n");	
 	while((i < length) && !feof(file)) {
-		buffer = (char *)malloc(sizeof(char) * 4096);
-		memset(buffer, 0, 4096);
-		fg = fscanf(file, "%4095c", buffer);			
-		if(fg != EOF) {
-			token = strtok(buffer, sep);			
-			while(token != NULL && i < length) {
-				out[i] = atof(token);
-				printf("%d, %lf\n", i, out[i]);
-				token = strtok(NULL, sep);
-				i++;
-				j++;
-				if(j >= n) {
-					for(int l = 0; l < (max - n); l++) {
-						out[i] = 0;
-						printf("%d, %lf\n", i, out[i]);
-						i++;						
-					}
-					j = 0;
-					f++;
-				}
-			}
+			buffer = (char *)malloc(sizeof(char) * 4096);
+			memset(buffer, 0, 4096);
+			fg = fscanf(file, "%4095c", buffer);
 
-			if(f < max) {
-				for(int l = 0; l < (max - m); l++) {
-					for(int h = 0; h < max; h++) {
-						out[i] = 0;
-						i++;
-						printf("%d, %lf\n", i, out[i]);
+			if(fg != EOF) {
+				token = strtok(buffer, sep);			
+				while(token != NULL && i < length) {
+					out[i] = atof(token);
+					printf("%d, %lf\n", i, out[i]);
+					token = strtok(NULL, sep);
+					i++;
+					j++;
+					if(j >= n) {
+						for(; j < max; j++) {
+							out[i] = 0;
+//							printf("%d, %lf\n", i, out[i]);
+							i++;						
+						}
+						j = 0;
+						f++;
 					}
 				}
 			}
-
-		}
-
-		progres_bar(i, length);				
-		free(buffer);	
+			progres_bar(i, length);				
+			free(buffer);	
 	}
 
+	if(j % n > 0) {
+		while(j < max) {
+			out[i] = 0;
+//			printf("%d, j=%d, %lf uuu \n", i, j,  out[i]);
+			j++;
+			i++;
+		}
+		f++;
+	}
 
-
+//	printf("f=%d\n", f);
+	while(f < max) {
+		for(int h = 0; h < max; h++) {
+			out[i] = 0;
+			i++;
+//			printf("%d, %lf fff\n", i, out[i]);
+		}
+		f++;
+	}
+		
 
 	fclose(file);
 	printf("\nDane wczytano poprawnie.\n");
