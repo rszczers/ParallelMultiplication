@@ -7,6 +7,7 @@
 #include <mpi.h>
 
 #include "mkl.h"
+#include <math.h>
 
 #include "load_matrix.h"
 #include "save_matrix.h"
@@ -149,40 +150,45 @@ int main(int argc, char *argv[]) {
 	MPI_Cart_coords(cartcom, pid, 2, coord);
 	MPI_Comm_rank(cartcom, &pid);
 
-	bool m_odd = (~arguments.m || (arguments.m & (arguments.m - 1)));
-	bool k_odd = (~arguments.k || (arguments.k & (arguments.k - 1)));
-	bool n_odd = (~arguments.n || (arguments.n & (arguments.n - 1)));
+	bool m_odd = !arguments.m || (arguments.m & (arguments.m - 1));
+	bool k_odd = !arguments.k || (arguments.k & (arguments.k - 1));
+	bool n_odd = !arguments.n || (arguments.n & (arguments.n - 1));
 		
 	if (m_odd)
-		m = 32 - __builtin_clz(arguments.m);
+		m = pow(2, 32 - __builtin_clz(arguments.m)); // 32 - n-pierwszych zer
 
 	if (k_odd)
-		k = 32 - __builtin_clz(arguments.k);
+		k = pow(2, 32 - __builtin_clz(arguments.k));
 
 	if (n_odd)
-		n = 32 - __builtin_clz(arguments.n);
+		n = pow(2, 32 - __builtin_clz(arguments.n));
 
-	double *pA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64);
-	double *pB = (double *)mkl_malloc((k * n)/(dims[0] * dims[1]) * sizeof(double), 64);
-	double *pC = (double *)mkl_malloc((m * n)/(dims[0] * dims[1]) * sizeof(double), 64);
+	// maximum of m, k, n
+    int max = m;
+    (max < k) && (max = k); 
+    (max < n) && (max = n);
+
+	double *pA = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
+	double *pB = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
+	double *pC = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
 	
 //	MPI_Datatype ;
 		
 
 	//broadcasting
 	if (pid == 0) {
-		double *A = (double *)mkl_malloc(m * k * sizeof(double), 64);
-		double *B = (double *)mkl_malloc(k * n * sizeof(double), 64);
+		double *A = (double *)mkl_malloc(max * max * sizeof(double), 64);
+		double *B = (double *)mkl_malloc(max * max * sizeof(double), 64);
 
 
 	//	double *C = (double *)mkl_malloc(m * n * sizeof(double), 64);
 
-	//	load_matrix(arguments.pathA, A, arguments.m, arguments.k);
+		load_matrix(arguments.pathA, A, arguments.m, arguments.k, max);
 	//	load_matrix(arguments.pathB, B, arguments.k, arguments.n);
 
-		double *tmpA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64)
+		double *tmpA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64);
 
-		printf("%d\n", m);
+//		printf("%d\n", m);
 	} else {
 
 	}
