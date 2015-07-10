@@ -4,13 +4,15 @@
 #include <stdbool.h>
 #include <argp.h>
 #include <string.h>
-#include <mpi.h>
 
-#include "mkl.h"
+#include <mkl.h>
 #include <math.h>
+
+#include <mpi.h>
 
 #include "load_matrix.h"
 #include "save_matrix.h"
+
 
 //#include "sequential.h"
 //#include "naive.h"
@@ -168,27 +170,49 @@ int main(int argc, char *argv[]) {
     (max < k) && (max = k); 
     (max < n) && (max = n);
 
-	double *pA = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
+	int xSz = max/dims[1];  // długość bloku
+	int ySz = max/dims[0]; // wysokość bloku
+
+	double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *pB = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
 	double *pC = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
 	
-//	MPI_Datatype ;
-		
-
+	
 	//broadcasting
 	if (pid == 0) {
 		double *A = (double *)mkl_malloc(max * max * sizeof(double), 64);
 		double *B = (double *)mkl_malloc(max * max * sizeof(double), 64);
-
-
-	//	double *C = (double *)mkl_malloc(m * n * sizeof(double), 64);
+		double *C = (double *)mkl_malloc(max * max * sizeof(double), 64);
 
 		load_matrix(arguments.pathA, A, arguments.m, arguments.k, max);
-	//	load_matrix(arguments.pathB, B, arguments.k, arguments.n);
+		load_matrix(arguments.pathB, B, arguments.k, arguments.n, max);
 
-		double *tmpA = (double *)mkl_malloc((m * k)/(dims[0] * dims[1]) * sizeof(double), 64);
+		double *tmpA = (double *)mkl_malloc((max * max)/(dims[0] * dims[1]) * sizeof(double), 64);
+		if(dims[0] >= max) {
+		//wysyłać po jednym elemencie
+		} else {
+			int count = ySz;
 
-//		printf("%d\n", m);
+			int blocklength = xSz;
+			int displacements[ySz];
+
+			for(int proc = 0; proc < numprocs; proc++) {
+				int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+				displacements[0] = start;
+				for(int k = 1; k < ySz; k++) {				
+					displacements[k] =  displacements[k-1] + xSz * dims[1];
+				}
+					int k = 0;
+					for(int i = 0; i < ySz; i++) {
+						for(int j = 0; j < blocklength; j++) {
+							pA[k] = A[displacements[i] + j];
+							printf("k = %d, i = %d, j = %d, pA[k] = %lf\n", k, i, j, pA[k]);
+							k++;
+						}
+					}
+			}
+		}
+
 	} else {
 
 	}

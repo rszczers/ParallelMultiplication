@@ -5,7 +5,6 @@
 #include "bar.h"
 
 int load_matrix(const char *filename, double *out, int m, int n, int max) {
-	printf("%d, %d, %d", m, n, max);
 	FILE *file = fopen(filename, "r");
 
 	char *buffer;
@@ -38,45 +37,32 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 				token = strtok(buffer, sep);			
 				while(token != NULL && i < length) {
 					out[i] = atof(token);
-					printf("%d, %lf\n", i, out[i]);
 					token = strtok(NULL, sep);
 					i++;
 					j++;
 					if(j >= n) {
 						for(; j < max; j++) {
 							out[i] = 0;
-//							printf("%d, %lf\n", i, out[i]);
 							i++;						
 						}
 						j = 0;
 						f++;
 					}
 				}
-			}
+				if(token == NULL) {
+					i--;
+				}
+			}			
 			progres_bar(i, length);				
 			free(buffer);	
 	}
 
-	if(j % n > 0) {
-		while(j < max) {
-			out[i] = 0;
-//			printf("%d, j=%d, %lf uuu \n", i, j,  out[i]);
-			j++;
-			i++;
-		}
-		f++;
+	while(i < length) {
+		out[i] = 0;
+		i++;
+		progres_bar(i, length);				
 	}
 
-//	printf("f=%d\n", f);
-	while(f < max) {
-		for(int h = 0; h < max; h++) {
-			out[i] = 0;
-			i++;
-//			printf("%d, %lf fff\n", i, out[i]);
-		}
-		f++;
-	}
-		
 
 	fclose(file);
 	printf("\nDane wczytano poprawnie.\n");
