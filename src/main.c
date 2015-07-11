@@ -1,5 +1,6 @@
 #define ROOT 0
 #define DISTRIBUTION 1337
+#define COLLECTING 42
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -234,7 +235,7 @@ int main(int argc, char *argv[]) {
 				k = 0;
 				for(int i = 0; i < xSz; i++) {
 					for(int j = 0; j < blocklength; j++) {
-						pB[k] = A[displacements[i] + j];
+						pB[k] = B[displacements[i] + j];
 						k++;
 					}
 				}
@@ -245,7 +246,8 @@ int main(int argc, char *argv[]) {
 				}
 				//po ostatnim refrenie w pA jest zawartośc dla procesu 0
 				
-
+				// tutej można zrównoleglić, żeby na drugim procesorze
+				// robiły się podmacierze B, ale to później.
 			}
 		}
 		
@@ -253,9 +255,6 @@ int main(int argc, char *argv[]) {
 		if(dims[0] < max) {
 			MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 			MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
-		}
-		for(int i = 0; i < xSz * ySz; i++) {
-			printf("pid = %d, pB[%d] = %lf\n", pid, i, pB[i]);
 		}
 	}
 
@@ -265,16 +264,39 @@ int main(int argc, char *argv[]) {
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
-//            sequential_product(A, B, C, arguments.m, arguments.k, arguments.n, 1.0, 0.0);
             break;
         }
         case NAIVE:
         {
-//			naive(A, B, C, arguments.m, arguments.k, arguments.n);
+		    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0, pA, k, pB, n, 0.0, pC, n);
+
+			if(pid != ROOT) {
+				MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);		
+			}
+
+			if(pid == ROOT) {
+				int displacements[ySz];
+
+				int k = 0;
+				for(int i = 0; i < xSz * ySz; i++) {
+					if(i%xSz == 0) {
+						k++;
+					}
+					C[(i % xSz) + (k * xSz * dims[1])] = pC[i];
+				}
+
+
+				for(int proc = 1; proc < numprocs; proc++) {
+					MPI_Recv(pA, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
+					int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+					
+				}
+
+			}
             break;
         }
         case STRASSEN:
-    {
+	    {
             break;
         }
         case CANNON:
@@ -283,14 +305,19 @@ int main(int argc, char *argv[]) {
         }
     }
 
+	// collecting data
+	
+	
+
+
 	if(pid == 0) {
+
+
 	    switch(arguments.mode) {
 			case VERBOSE:
 	        {
-			    for (int i = 0; i <= arguments.m; ++i)            
-			        for (int j = 0; j <= arguments.n; ++j)
-//			            printf("%lf ", C[i*(j+1)]);
-					printf("\n");
+			        for (int j = 0; j < xSz * ySz; ++j)
+			            printf("%d, %lf\n", pid, pC[j]);
 	        }
 	        case QUIET:
 	        {            
@@ -304,9 +331,10 @@ int main(int argc, char *argv[]) {
   
 	}
 
-	mkl_free(pA);
-	mkl_free(pB);
-	mkl_free(pC);
+	MPI_Barrier(cartcom);
+//	mkl_free(pA);
+//	mkl_free(pB);
+//	mkl_free(pC);
 
 	MPI_Comm_free(&cartcom);
 	MPI_Finalize();

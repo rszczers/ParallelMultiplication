@@ -9,7 +9,7 @@ test:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
 make mrun:
-	mpirun -np 4 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 2 -n 2 -k 2 --method=naive
+	mpirun -np 4 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 4 -n 4 -k 4 --method=naive -v
 
 data:
 	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat
