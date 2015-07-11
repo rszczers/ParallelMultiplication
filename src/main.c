@@ -1,4 +1,5 @@
 #define ROOT 0
+#define DISTRIBUTION 1337
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -226,11 +227,11 @@ int main(int argc, char *argv[]) {
 				//B matrix
 				blocklength = ySz;
 				start = (proc % dims[0]) * dims[0] + (proc / dims[0]) * (dims[0] * xSz * ySz);
-				displecments[0] = start;
-				for(int k = 1; k < xS; k++) {
+				displacements[0] = start;
+				for(int k = 1; k < xSz; k++) {
 					displacements[k] = displacements[k-1] + ySz * dims[0];
 				}
-				int k = 0;
+				k = 0;
 				for(int i = 0; i < xSz; i++) {
 					for(int j = 0; j < blocklength; j++) {
 						pB[k] = A[displacements[i] + j];
@@ -239,8 +240,8 @@ int main(int argc, char *argv[]) {
 				}
 
 				if(proc != ROOT) {
-					MPI_Send(pA, 1, MPI_SUBMATRIX, proc, 1337, cartcom);
-					MPI_Send(pB, 1, MPI_SUBMATRIX, proc, 1337, cartcom);
+					MPI_Send(pA, 1, MPI_SUBMATRIX, proc, DISTRIBUTION, cartcom);
+					MPI_Send(pB, 1, MPI_SUBMATRIX, proc, DISTRIBUTION, cartcom);
 				}
 				//po ostatnim refrenie w pA jest zawartośc dla procesu 0
 				
@@ -250,11 +251,11 @@ int main(int argc, char *argv[]) {
 		
 	} else {
 		if(dims[0] < max) {
-			MPI_Recv(pA, 1, MPI_SUBMATRIX, 0, 1337, cartcom, &status);
-			MPI_Recv(pB, 1, MPI_SUBMATRIX, 0, 1337, cartcom, &status);
+			MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
+			MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 		}
 		for(int i = 0; i < xSz * ySz; i++) {
-			printf("pid = %d, pA[%d] = %lf\n", pid, i, pA[i]);
+			printf("pid = %d, pB[%d] = %lf\n", pid, i, pB[i]);
 		}
 	}
 
