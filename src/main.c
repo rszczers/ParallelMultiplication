@@ -286,10 +286,7 @@ int main(int argc, char *argv[]) {
 			for(int i = 0; i < dims[0]; i++) {
 				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 				MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
-				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);				
-			}
-			for(int i = 0; i < 2; i++) {
-				printf("pid = %d, c = %lf\n", pid, pC[i]);
+				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, SKEW, bottom, SKEW, cartcom, &status);				
 			}
             break;
         }
