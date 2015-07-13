@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in `seq 1 16`
+for i in `seq 1 1024`
 do	
 	A+="$RANDOM "
 done

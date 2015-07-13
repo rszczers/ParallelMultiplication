@@ -177,6 +177,8 @@ int main(int argc, char *argv[]) {
 
 	double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+	double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+
 
 	MPI_Datatype MPI_SUBMATRIX;
 	MPI_Type_contiguous(xSz * ySz, MPI_DOUBLE, &MPI_SUBMATRIX);
@@ -219,15 +221,30 @@ int main(int argc, char *argv[]) {
 					int displacements[ySz];
 
 					//initial shift
-					int procl[numprocs];
+					int proclA[numprocs];
 					for(int i = 0; i < dims[0]; i++) {
 						for(int j = 0; j < dims[1]; j++) {
 							if(j < i) {
-								procl[i * dims[1] + j] = (dims[1] - i) + j + i * dims[1];				
+								proclA[i * dims[1] + j] = (dims[1] - i) + j + i * dims[1];				
 							} else {
-								procl[i * dims[1] + j] = i * dims[1] + j;
+								proclA[i * dims[1] + j] = i * dims[1] + j - i;
 							}
 						}
+					}
+
+					int proclB[numprocs];
+					for(int i = 0; i < dims[1]; i++) {
+						for(int j = 0; j < dims[0]; j++) {
+							if(j < i) {
+								proclB[i * dims[0] + j] = (dims[0] - i) + j + i * dims[0];				
+							} else {
+								proclB[i * dims[0] + j] = i * dims[0] + j - i;
+							}
+						}
+					}
+
+					for(int i = 0; i < numprocs; i++) {
+						printf("%d, %d\n", i, proclB[i]);
 					}
 
 					for(int proc = numprocs - 1; proc >= 0; proc--) {
@@ -248,13 +265,10 @@ int main(int argc, char *argv[]) {
 						}
 
 						if(proc != ROOT) {
-							MPI_Send(pA, 1, MPI_SUBMATRIX, procl[proc], DISTRIBUTION, cartcom);
-							MPI_Send(pB, 1, MPI_SUBMATRIX, procl[proc], DISTRIBUTION, cartcom);
+							MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION, cartcom);
+							MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION, cartcom);
 						}
 						//po ostatnim refrenie w pA jest zawartośc dla procesu 0
-						
-						// tutej można zrównoleglić, żeby na drugim procesorze
-						// robiły się podmacierze B, ale to później.
 					}
 				}
 		
@@ -262,13 +276,23 @@ int main(int argc, char *argv[]) {
 				if(dims[0] < max) {
 					MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 					MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
-
+				}
 			}
+
 			//scewing
 			int pdest;
 			int psrc;
+			int up, down, left, right;
 
+			MPI_Cart_shift(cartcom, 1, -1, &pdest, &psrc);
+//			printf("%d, %d, %d\n", pid, pdest, psrc);
 
+//			for(int i = 0; i < dims[0]; i++) {
+//				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0, pA, k, pB, n, 0.0, pC, n);
+				
+//			}
+
+		
 
 
             break;
@@ -284,8 +308,8 @@ int main(int argc, char *argv[]) {
 	    switch(arguments.mode) {
 			case VERBOSE:
 	        {
-			        for (int j = 0; j < xSz * ySz; ++j)
-			            printf("%d, %lf\n", pid, pC[j]);
+			//        for (int j = 0; j < xSz * ySz; ++j)
+			            //printf("%d, %lf\n", pid, pC[j]);
 	        }
 	        case QUIET:
 	        {            
