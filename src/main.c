@@ -1,5 +1,6 @@
 #define ROOT 0
 #define DISTRIBUTION 1337
+#define SKEW 23
 #define COLLECTING 42
 
 #include <stdio.h>
@@ -239,16 +240,11 @@ int main(int argc, char *argv[]) {
 								proclB[i * dims[1] + j] = (i + j) * dims[0] + j;			
 							} else {
 								proclB[i * dims[1] + j] = (i - dims[0] + j) * dims[1] + j;
-							 }
+							}
 						}
 					}
 
-
-					
-					for(int i = 0; i < numprocs; i++) {
-						printf("%d, %d\n", i, proclB[i]);
-					}
-
+				
 					for(int proc = numprocs - 1; proc >= 0; proc--) {
 
 						//A matrix
@@ -280,23 +276,21 @@ int main(int argc, char *argv[]) {
 					MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 				}
 			}
-
+			MPI_Barrier(cartcom);
 			//scewing
-			int pdest;
-			int psrc;
-			int up, down, left, right;
+			int top, bottom, left, right;
 
-			MPI_Cart_shift(cartcom, 1, -1, &pdest, &psrc);
-//			printf("%d, %d, %d\n", pid, pdest, psrc);
+			MPI_Cart_shift(cartcom, 1, 1, &left, &right);
+			MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
 
-//			for(int i = 0; i < dims[0]; i++) {
-//				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0, pA, k, pB, n, 0.0, pC, n);
-				
-//			}
-
-		
-
-
+			for(int i = 0; i < dims[0]; i++) {
+				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
+				MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
+				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);				
+			}
+			for(int i = 0; i < 2; i++) {
+				printf("pid = %d, c = %lf\n", pid, pC[i]);
+			}
             break;
         }
     }

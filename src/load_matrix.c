@@ -60,7 +60,7 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 	while(i < length) {
 		out[i] = 0;
 		i++;
-		progres_bar(i, length);				
+//		progres_bar(i, length);				
 	}
 
 
