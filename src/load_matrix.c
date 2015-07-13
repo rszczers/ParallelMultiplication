@@ -27,7 +27,7 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 	int j = 0; 
 	int f = 0; // number of columns read
 	char *token;
-	printf("Wszytywanie danych, proszę poczekać...\n");	
+//	printf("Loading data, please wait...\n");	
 	while((i < length) && !feof(file)) {
 			buffer = (char *)malloc(sizeof(char) * 4096);
 			memset(buffer, 0, 4096);
@@ -53,7 +53,7 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 					i--;
 				}
 			}			
-			progres_bar(i, length);				
+//			progres_bar(i, length);				
 			free(buffer);	
 	}
 
@@ -65,6 +65,6 @@ int load_matrix(const char *filename, double *out, int m, int n, int max) {
 
 
 	fclose(file);
-	printf("\nDane wczytano poprawnie.\n");
+//	printf("\nDane wczytano poprawnie.\n");
 	return 0;
 }

@@ -43,7 +43,7 @@ static struct argp_option options[] = {
 };
 
 struct arguments {
-    enum {SEQUENTIAL, NAIVE, STRASSEN, CANNON} method;
+    enum {SEQUENTIAL, STRASSEN, CANNON} method;
     enum {QUIET, VERBOSE} mode;
     int m, k, n;
     char *pathA;
@@ -63,11 +63,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 
             if(strcmp("strassen", name) == 0)
                 arguments->method = STRASSEN;
-            else if(strcmp("cannon", name) == 0)
-                arguments->method = CANNON;
             else if(strcmp("sequential", name) == 0)
                 arguments->method = SEQUENTIAL;
-            // NAIVE is set as default
+            // cannon is set as default
 
             free(name);         
             break;
@@ -87,7 +85,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'l':
         {
             printf("Available methods:\n");
-            char *availableMethods[] = {"sequential", "naive", "strassen", "cannon"};
+            char *availableMethods[] = {"sequential", "strassen", "cannon"};
             for (int i = 0; i <= CANNON; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
@@ -110,13 +108,13 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case ARGP_KEY_ARG:
             break;
         case ARGP_KEY_INIT:
-            arguments->method = NAIVE;
+            arguments->method = CANNON;
             arguments->mode = QUIET;
             arguments->pathC = NULL;
             break;
         case ARGP_KEY_END:
-            // if(state->arg_num > 0)
-                 // argp_usage(state);
+            if(state->arg_num > 0)
+				argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
@@ -179,7 +177,6 @@ int main(int argc, char *argv[]) {
 
 	double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-	double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 
 	MPI_Datatype MPI_SUBMATRIX;
 	MPI_Type_contiguous(xSz * ySz, MPI_DOUBLE, &MPI_SUBMATRIX);
@@ -188,8 +185,8 @@ int main(int argc, char *argv[]) {
 	double *A;
 	double *B;
 	double *C;
-
-	//broadcasting
+	
+	// loading matrices
 	if (pid == ROOT) { 
 		A = (double *)mkl_malloc(max * max * sizeof(double), 64);
 		B = (double *)mkl_malloc(max * max * sizeof(double), 64);
@@ -199,100 +196,9 @@ int main(int argc, char *argv[]) {
 		load_matrix(arguments.pathB, B, arguments.k, arguments.n, max);
 	}
 
-	if(dims[0] >= max) {
-		MPI_Scatter(A, 1, MPI_DOUBLE, pA, 1, MPI_DOUBLE, ROOT, cartcom);
-		MPI_Scatter(B, 1, MPI_DOUBLE, pB, 1, MPI_DOUBLE, ROOT, cartcom);
-	}
-
-	if(pid == ROOT) {
-		if(dims[0] < max) {
-			int blocklength = xSz;
-			int displacements[ySz];
-
-			for(int proc = numprocs - 1; proc >= 0; proc--) {
-
-				//A matrix
-				int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
-				displacements[0] = start;
-				for(int k = 1; k < ySz; k++) {				
-					displacements[k] =  displacements[k-1] + xSz * dims[1];
-				}
-				int k = 0;
-				for(int i = 0; i < ySz; i++) {
-					for(int j = 0; j < blocklength; j++) {
-						pA[k] = A[displacements[i] + j];
-						k++;
-					}
-				}
-
-				//B matrix
-				blocklength = ySz;
-				start = (proc % dims[0]) * dims[0] + (proc / dims[0]) * (dims[0] * xSz * ySz);
-				displacements[0] = start;
-				for(int k = 1; k < xSz; k++) {
-					displacements[k] = displacements[k-1] + ySz * dims[0];
-				}
-				k = 0;
-				for(int i = 0; i < xSz; i++) {
-					for(int j = 0; j < blocklength; j++) {
-						pB[k] = B[displacements[i] + j];
-						k++;
-					}
-				}
-
-				if(proc != ROOT) {
-					MPI_Send(pA, 1, MPI_SUBMATRIX, proc, DISTRIBUTION, cartcom);
-					MPI_Send(pB, 1, MPI_SUBMATRIX, proc, DISTRIBUTION, cartcom);
-				}
-				//po ostatnim refrenie w pA jest zawartośc dla procesu 0
-				
-				// tutej można zrównoleglić, żeby na drugim procesorze
-				// robiły się podmacierze B, ale to później.
-			}
-		}
-		
-	} else {
-		if(dims[0] < max) {
-			MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
-			MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
-		}
-	}
-
-
-
-
     switch(arguments.method) {
         case SEQUENTIAL:
         {               
-            break;
-        }
-        case NAIVE:
-        {
-		    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0, pA, k, pB, n, 0.0, pC, n);
-
-			if(pid != ROOT) {
-				MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);		
-			}
-
-			if(pid == ROOT) {
-				int displacements[ySz];
-
-				int k = 0;
-				for(int i = 0; i < xSz * ySz; i++) {
-					if(i%xSz == 0) {
-						k++;
-					}
-					C[(i % xSz) + (k * xSz * dims[1])] = pC[i];
-				}
-
-
-				for(int proc = 1; proc < numprocs; proc++) {
-					MPI_Recv(pA, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
-					int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
-					
-				}
-
-			}
             break;
         }
         case STRASSEN:
@@ -301,12 +207,74 @@ int main(int argc, char *argv[]) {
         }
         case CANNON:
         {
+			//distribution
+			if(dims[0] >= max) {
+				MPI_Scatter(A, 1, MPI_DOUBLE, pA, 1, MPI_DOUBLE, ROOT, cartcom);
+				MPI_Scatter(B, 1, MPI_DOUBLE, pB, 1, MPI_DOUBLE, ROOT, cartcom);
+			}
+
+			if(pid == ROOT) {
+				if(dims[0] < max) {
+					int blocklength = xSz;
+					int displacements[ySz];
+
+					//initial shift
+					int procl[numprocs];
+					for(int i = 0; i < dims[0]; i++) {
+						for(int j = 0; j < dims[1]; j++) {
+							if(j < i) {
+								procl[i * dims[1] + j] = (dims[1] - i) + j + i * dims[1];				
+							} else {
+								procl[i * dims[1] + j] = i * dims[1] + j;
+							}
+						}
+					}
+
+					for(int proc = numprocs - 1; proc >= 0; proc--) {
+
+						//A matrix
+						int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+						displacements[0] = start;
+						for(int k = 1; k < ySz; k++) {				
+							displacements[k] =  displacements[k-1] + xSz * dims[1];
+						}
+						int k = 0;
+						for(int i = 0; i < ySz; i++) {
+							for(int j = 0; j < blocklength; j++) {
+								pA[k] = A[displacements[i] + j];
+								pB[k] = B[displacements[i] + j];
+								k++;
+							}
+						}
+
+						if(proc != ROOT) {
+							MPI_Send(pA, 1, MPI_SUBMATRIX, procl[proc], DISTRIBUTION, cartcom);
+							MPI_Send(pB, 1, MPI_SUBMATRIX, procl[proc], DISTRIBUTION, cartcom);
+						}
+						//po ostatnim refrenie w pA jest zawartośc dla procesu 0
+						
+						// tutej można zrównoleglić, żeby na drugim procesorze
+						// robiły się podmacierze B, ale to później.
+					}
+				}
+		
+			} else {
+				if(dims[0] < max) {
+					MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
+					MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
+
+			}
+			//scewing
+			int pdest;
+			int psrc;
+
+
+
+
             break;
         }
     }
 
-	// collecting data
-	
 	
 
 
