@@ -224,25 +224,27 @@ int main(int argc, char *argv[]) {
 					int proclA[numprocs];
 					for(int i = 0; i < dims[0]; i++) {
 						for(int j = 0; j < dims[1]; j++) {
-							if(j < i) {
-								proclA[i * dims[1] + j] = (dims[1] - i) + j + i * dims[1];				
+							if(j < dims[1] - i) {
+								proclA[i * dims[1] + j] = i * dims[1] + j + i;			
 							} else {
-								proclA[i * dims[1] + j] = i * dims[1] + j - i;
-							}
+								proclA[i * dims[1] + j] = i * dims[1] + j - (dims[1] - i);
+							 }
 						}
 					}
 
 					int proclB[numprocs];
-					for(int i = 0; i < dims[1]; i++) {
-						for(int j = 0; j < dims[0]; j++) {
-							if(j < i) {
-								proclB[i * dims[0] + j] = (dims[0] - i) + j + i * dims[0];				
+					for(int j = 0; j < dims[1]; j++) {
+						for(int i = 0; i < dims[0]; i++) {
+							if(i < dims[0] - j) { 
+								proclB[i * dims[1] + j] = (i + j) * dims[0] + j;			
 							} else {
-								proclB[i * dims[0] + j] = i * dims[0] + j - i;
-							}
+								proclB[i * dims[1] + j] = (i - dims[0] + j) * dims[1] + j;
+							 }
 						}
 					}
 
+
+					
 					for(int i = 0; i < numprocs; i++) {
 						printf("%d, %d\n", i, proclB[i]);
 					}
