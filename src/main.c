@@ -290,7 +290,7 @@ int main(int argc, char *argv[]) {
 			for(int i = 0; i < dims[0]; i++) {
 				MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
 				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, SKEW, bottom, SKEW, cartcom, &status);				
-				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
+				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, tmp_pC, xSz);
 				mkl_domatadd (CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 0.0, tmp_pC, xSz, pC, xSz);
 			}
             break;
