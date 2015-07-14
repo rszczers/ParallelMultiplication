@@ -179,6 +179,7 @@ int main(int argc, char *argv[]) {
 	double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+	double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 
 
 	MPI_Datatype MPI_SUBMATRIX;
@@ -277,6 +278,9 @@ int main(int argc, char *argv[]) {
 				}
 			}
 			MPI_Barrier(cartcom);
+
+			cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
+
 			//scewing
 			int top, bottom, left, right;
 
@@ -284,20 +288,27 @@ int main(int argc, char *argv[]) {
 			MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
 
 			for(int i = 0; i < dims[0]; i++) {
-				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 				MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
 				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, SKEW, bottom, SKEW, cartcom, &status);				
+				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
+				mkl_domatadd (CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 0.0, tmp_pC, xSz, pC, xSz);
 			}
             break;
-        }
+        	}
     }
+	for(int i = 0; i < numprocs; i++) {
+		if(pid == i) {
+			MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
+		}
 
-	
-
+		if (pid == ROOT) {
+			MPI_Recv(tmp_pC, 1, MPI_SUBMATRIX, i, COLLECTING, cartcom, &status);
+			// put submatrix in its place
+		}
+		MPI_Barrier(cartcom);
+	}	
 
 	if(pid == 0) {
-
-
 	    switch(arguments.mode) {
 			case VERBOSE:
 	        {
