@@ -80,9 +80,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             break;
         }
         case 'C':
-        case 'o':
+        case 'o': {
             arguments->pathC = arg;
             break;
+		}
         case 'l':
         {
             printf("Available methods:\n");
@@ -114,8 +115,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathC = NULL;
             break;
         case ARGP_KEY_END:
-            if(state->arg_num > 0)
-				argp_usage(state);
+//            if(state->arg_num > 0)
+//				argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
@@ -248,11 +249,14 @@ int main(int argc, char *argv[]) {
 					for(int proc = numprocs - 1; proc >= 0; proc--) {
 
 						//A matrix
-						int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+						int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
 						displacements[0] = start;
+						printf("Dla procesu %d, %d-tą linię przesuwam %d\n", proc, 0, displacements[0]);
 						for(int k = 1; k < ySz; k++) {				
 							displacements[k] =  displacements[k-1] + xSz * dims[1];
+							printf("Dla procesu %d, %d-tą linię przesuwam %d\n", proc, k, displacements[k]);
 						}
+
 						int k = 0;
 						for(int i = 0; i < ySz; i++) {
 							for(int j = 0; j < blocklength; j++) {
@@ -267,8 +271,6 @@ int main(int argc, char *argv[]) {
 							MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION, cartcom);
 						}
 						//po ostatnim refrenie w pA jest zawartośc dla procesu 0
-//						mkl_free(A);
-//						mkl_free(B);
 					}
 				}
 		
@@ -292,7 +294,7 @@ int main(int argc, char *argv[]) {
 				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, tmp_pC, xSz);
 			//	mkl_domatadd(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 1.0, tmp_pC, xSz, pC, xSz);
 				for(int j = 0; j < xSz * ySz; j++) {
-					pC[j] = pC[j] + tmp_pC[j];
+					pC[j] += tmp_pC[j];
 				}
 			}
             break;
@@ -301,20 +303,31 @@ int main(int argc, char *argv[]) {
 
 	MPI_Barrier(cartcom);
 
+	if(pid == ROOT) {
+		int k = 0;
+		for(int i = 0; i < ySz; i++) {
+			for(int j = 0; j < xSz; j++) {
+				C[i * xSz + j] = pC[k];
+				k++;
+			}
+		}
+	}
+
 	for(int proc = 1; proc < numprocs; proc++) {
 		if(pid == proc) {
 			MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
 		}
 
 		if (pid == ROOT) {
-			MPI_Recv(tmp_pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
+			MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
+
 			int displacements[ySz];
-			int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+			int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
 			displacements[0] = start;
+
 			for(int k = 1; k < ySz; k++) {				
 				displacements[k] =  displacements[k-1] + xSz * dims[1];
 			}
-			int k = 0;
 
 			for(int i = 0; i < ySz; i++) {
 				for(int j = 0; j < xSz; j++) {
@@ -323,37 +336,36 @@ int main(int argc, char *argv[]) {
 			}
 
 		}
-		MPI_Barrier(cartcom);
 	}	
 
-	if(pid == 0) {
-		for(int i = 0; i < ySz; i++) {
-			for(int j = 0; j < xSz; j++) {
-				C[i * xSz + j] = pC[i * xSz + j];
-			}
-		}
+	if(pid == ROOT) {
+
 
 
 	    switch(arguments.mode) {
-			case VERBOSE:
-	        {
-		        for (int j = 0; j < xSz * ySz; ++j)
-		            printf("%d, %lf\n", j, C[j]);
-	        }
-	        case QUIET:
-	        {            
-				if (arguments.pathC != NULL) {
-                //save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
+			case VERBOSE: {
+				for(int i = 0; i < m * n; i++) {
+					printf("%d)\t%.2lf \t", i, C[i]);
+					if((i + 1) % m  == 0) {
+						printf("\n");
+					}
 				}
-//				mkl_free(C);
+			}
+
+	        case QUIET:
+	        {				
+				if (arguments.pathC != NULL) {
+					save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
+				}
+
 				break;
 			}
 	    }
-		
-  
+		mkl_free(A);
+		mkl_free(B);
+		mkl_free(C);		
 	}
 
-	MPI_Barrier(cartcom);
 	mkl_free(pA);
 	mkl_free(pB);
 	mkl_free(pC);
