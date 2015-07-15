@@ -181,7 +181,6 @@ int main(int argc, char *argv[]) {
 	double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 	double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 
-
 	MPI_Datatype MPI_SUBMATRIX;
 	MPI_Type_contiguous(xSz * ySz, MPI_DOUBLE, &MPI_SUBMATRIX);
 	MPI_Type_commit(&MPI_SUBMATRIX);
@@ -268,42 +267,47 @@ int main(int argc, char *argv[]) {
 							MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION, cartcom);
 						}
 						//po ostatnim refrenie w pA jest zawartośc dla procesu 0
+//						mkl_free(A);
+//						mkl_free(B);
 					}
 				}
 		
 			} else {
-				if(dims[0] < max) {
+				if(dims[0] < max) {					
 					MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 					MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
 				}
 			}
-			MPI_Barrier(cartcom);
 
 			cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 
+			MPI_Barrier(cartcom);
 			//scewing
 			int top, bottom, left, right;
-
 			MPI_Cart_shift(cartcom, 1, 1, &left, &right);
 			MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
-
 			for(int i = 0; i < dims[0]; i++) {
 				MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
-				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, SKEW, bottom, SKEW, cartcom, &status);				
+				MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW, top, SKEW, cartcom, &status);
 				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, tmp_pC, xSz);
-				mkl_domatadd (CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 0.0, tmp_pC, xSz, pC, xSz);
+			//	mkl_domatadd(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 1.0, tmp_pC, xSz, pC, xSz);
+				for(int j = 0; j < xSz * ySz; j++) {
+					pC[j] = pC[j] + tmp_pC[j];
+				}
 			}
             break;
         	}
     }
-	for(int proc = 0; proc < numprocs; proc++) {
+
+	MPI_Barrier(cartcom);
+
+	for(int proc = 1; proc < numprocs; proc++) {
 		if(pid == proc) {
 			MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
 		}
 
 		if (pid == ROOT) {
 			MPI_Recv(tmp_pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
-
 			int displacements[ySz];
 			int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
 			displacements[0] = start;
@@ -311,9 +315,10 @@ int main(int argc, char *argv[]) {
 				displacements[k] =  displacements[k-1] + xSz * dims[1];
 			}
 			int k = 0;
+
 			for(int i = 0; i < ySz; i++) {
 				for(int j = 0; j < xSz; j++) {
-					C[displacements[i] + j] = pC[k];
+					C[displacements[i] + j] = pC[i * xSz + j];
 				}
 			}
 
@@ -322,17 +327,25 @@ int main(int argc, char *argv[]) {
 	}	
 
 	if(pid == 0) {
+		for(int i = 0; i < ySz; i++) {
+			for(int j = 0; j < xSz; j++) {
+				C[i * xSz + j] = pC[i * xSz + j];
+			}
+		}
+
+
 	    switch(arguments.mode) {
 			case VERBOSE:
 	        {
-			//        for (int j = 0; j < xSz * ySz; ++j)
-			            //printf("%d, %lf\n", pid, pC[j]);
+		        for (int j = 0; j < xSz * ySz; ++j)
+		            printf("%d, %lf\n", j, C[j]);
 	        }
 	        case QUIET:
 	        {            
 				if (arguments.pathC != NULL) {
                 //save_matrix(arguments.pathC, A, arguments.m * arguments.k);            
 				}
+//				mkl_free(C);
 				break;
 			}
 	    }
@@ -341,9 +354,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	MPI_Barrier(cartcom);
-//	mkl_free(pA);
-//	mkl_free(pB);
-//	mkl_free(pC);
+	mkl_free(pA);
+	mkl_free(pB);
+	mkl_free(pC);
+	mkl_free(tmp_pC);
+
 
 	MPI_Comm_free(&cartcom);
 	MPI_Finalize();
