@@ -79,7 +79,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->pathB = arg;
             break;
         }
-        case 'C':
+		case 'C':
         case 'o': {
             arguments->pathC = arg;
             break;
@@ -346,7 +346,7 @@ int main(int argc, char *argv[]) {
 	    switch(arguments.mode) {
 			case VERBOSE: {
 				for(int i = 0; i < m * n; i++) {
-					printf("%d)\t%.2lf \t", i, C[i]);
+					printf("%lf \t", C[i]);
 					if((i + 1) % m  == 0) {
 						printf("\n");
 					}
@@ -354,9 +354,9 @@ int main(int argc, char *argv[]) {
 			}
 
 	        case QUIET:
-	        {				
+	        {
 				if (arguments.pathC != NULL) {
-					save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
+				save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
 				}
 
 				break;
