@@ -251,10 +251,8 @@ int main(int argc, char *argv[]) {
 						//A matrix
 						int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
 						displacements[0] = start;
-						printf("Dla procesu %d, %d-tą linię przesuwam %d\n", proc, 0, displacements[0]);
 						for(int k = 1; k < ySz; k++) {				
 							displacements[k] =  displacements[k-1] + xSz * dims[1];
-							printf("Dla procesu %d, %d-tą linię przesuwam %d\n", proc, k, displacements[k]);
 						}
 
 						int k = 0;
@@ -304,14 +302,19 @@ int main(int argc, char *argv[]) {
 	MPI_Barrier(cartcom);
 
 	if(pid == ROOT) {
-		int k = 0;
+		int displacements[ySz];
+		displacements[0] = 0; 
+		for(int k = 1; k < ySz; k++) {				
+			displacements[k] =  displacements[k-1] + xSz * dims[1];
+		}
 		for(int i = 0; i < ySz; i++) {
 			for(int j = 0; j < xSz; j++) {
-				C[i * xSz + j] = pC[k];
-				k++;
+				C[displacements[i] + j] = pC[i * xSz + j];
 			}
 		}
+	
 	}
+
 
 	for(int proc = 1; proc < numprocs; proc++) {
 		if(pid == proc) {
@@ -336,12 +339,10 @@ int main(int argc, char *argv[]) {
 			}
 
 		}
-	}	
+	}
+
 
 	if(pid == ROOT) {
-
-
-
 	    switch(arguments.mode) {
 			case VERBOSE: {
 				for(int i = 0; i < m * n; i++) {
