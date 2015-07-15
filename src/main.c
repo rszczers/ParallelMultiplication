@@ -296,14 +296,27 @@ int main(int argc, char *argv[]) {
             break;
         	}
     }
-	for(int i = 0; i < numprocs; i++) {
-		if(pid == i) {
+	for(int proc = 0; proc < numprocs; proc++) {
+		if(pid == proc) {
 			MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
 		}
 
 		if (pid == ROOT) {
-			MPI_Recv(tmp_pC, 1, MPI_SUBMATRIX, i, COLLECTING, cartcom, &status);
-			// put submatrix in its place
+			MPI_Recv(tmp_pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
+
+			int displacements[ySz];
+			int start = (proc % dims[1]) * dims[1] + (proc / dims[1]) * (dims[1] * xSz * ySz);
+			displacements[0] = start;
+			for(int k = 1; k < ySz; k++) {				
+				displacements[k] =  displacements[k-1] + xSz * dims[1];
+			}
+			int k = 0;
+			for(int i = 0; i < ySz; i++) {
+				for(int j = 0; j < xSz; j++) {
+					C[displacements[i] + j] = pC[k];
+				}
+			}
+
 		}
 		MPI_Barrier(cartcom);
 	}	
