@@ -207,7 +207,6 @@ int main(int argc, char *argv[]) {
 		{
 			if(pid == ROOT) {
 				t0 = MPI_Wtime();
-
 				for(int i = 0; i < arguments.m; i++) {
 					for(int j = 0; j < arguments.n; j++) {
 						for(int l = 0; l < arguments.k; l++) {
@@ -215,18 +214,17 @@ int main(int argc, char *argv[]) {
 						}
 					}
 				}
-
 				t1 = MPI_Wtime();
 			}
 			break;
         }
         case MKL:
 	    {
-			t0 = MPI_Wtime();
 			if(pid == ROOT) {
+				t0 = MPI_Wtime();
 				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, arguments.m, arguments.k, arguments.n, 1.0, A, arguments.k, B, arguments.n, 0.0, C, arguments.n);
+				t1 = MPI_Wtime();
 			}
-			t1 = MPI_Wtime();
             break;
         }
         case CANNON:
@@ -379,7 +377,7 @@ int main(int argc, char *argv[]) {
 	        case QUIET:
 	        {
 				if (arguments.pathC != NULL) {
-				save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
+					save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
 				}
 
 				break;
