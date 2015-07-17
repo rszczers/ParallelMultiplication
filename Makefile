@@ -9,7 +9,10 @@ test:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
 make mrun:
-	mpirun -np 4 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 8 -n 8 -k 8 --method=cannon -v -o ./resources/c.dat
+	mpirun -np 16 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 256 -n 256 -k 256 --method=cannon -v 
+
+make srun:
+	mpirun -np 1 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -m 256 -n 256 -k 256 --method=sequential -v 
 
 data:
 	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat

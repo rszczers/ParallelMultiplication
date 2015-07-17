@@ -44,7 +44,7 @@ static struct argp_option options[] = {
 };
 
 struct arguments {
-    enum {SEQUENTIAL, STRASSEN, CANNON} method;
+    enum {SEQUENTIAL, MKL, CANNON} method;
     enum {QUIET, VERBOSE} mode;
     int m, k, n;
     char *pathA;
@@ -62,8 +62,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
-            if(strcmp("strassen", name) == 0)
-                arguments->method = STRASSEN;
+            if(strcmp("mkl", name) == 0)
+                arguments->method = MKL;
             else if(strcmp("sequential", name) == 0)
                 arguments->method = SEQUENTIAL;
             // cannon is set as default
@@ -87,7 +87,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'l':
         {
             printf("Available methods:\n");
-            char *availableMethods[] = {"sequential", "strassen", "cannon"};
+            char *availableMethods[] = {"sequential", "MKL", "cannon"};
             for (int i = 0; i <= CANNON; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
@@ -132,6 +132,8 @@ int main(int argc, char *argv[]) {
 	int m = arguments.m;
 	int k = arguments.k;
 	int n = arguments.n;
+
+	double t0, t1;
 
 	int pid;
 	int numprocs;
@@ -202,11 +204,29 @@ int main(int argc, char *argv[]) {
 
     switch(arguments.method) {
         case SEQUENTIAL:
-        {               
-            break;
+		{
+			if(pid == ROOT) {
+				t0 = MPI_Wtime();
+
+				for(int i = 0; i < arguments.m; i++) {
+					for(int j = 0; j < arguments.n; j++) {
+						for(int l = 0; l < arguments.k; l++) {
+							C[i * n + j] = A[i * n + l] * B[l * n + j];
+						}
+					}
+				}
+
+				t1 = MPI_Wtime();
+			}
+			break;
         }
-        case STRASSEN:
+        case MKL:
 	    {
+			t0 = MPI_Wtime();
+			if(pid == ROOT) {
+				cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, arguments.m, arguments.k, arguments.n, 1.0, A, arguments.k, B, arguments.n, 0.0, C, arguments.n);
+			}
+			t1 = MPI_Wtime();
             break;
         }
         case CANNON:
@@ -279,9 +299,10 @@ int main(int argc, char *argv[]) {
 				}
 			}
 
+			t0 = MPI_Wtime();
 			cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 
-			MPI_Barrier(cartcom);
+//			MPI_Barrier(cartcom);
 			//scewing
 			int top, bottom, left, right;
 			MPI_Cart_shift(cartcom, 1, 1, &left, &right);
@@ -295,62 +316,64 @@ int main(int argc, char *argv[]) {
 					pC[j] += tmp_pC[j];
 				}
 			}
+			t1 = MPI_Wtime();
             break;
         	}
     }
 
 	MPI_Barrier(cartcom);
 
-	if(pid == ROOT) {
-		int displacements[ySz];
-		displacements[0] = 0; 
-		for(int k = 1; k < ySz; k++) {				
-			displacements[k] =  displacements[k-1] + xSz * dims[1];
-		}
-		for(int i = 0; i < ySz; i++) {
-			for(int j = 0; j < xSz; j++) {
-				C[displacements[i] + j] = pC[i * xSz + j];
-			}
-		}
-	
-	}
-
-
-	for(int proc = 1; proc < numprocs; proc++) {
-		if(pid == proc) {
-			MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
-		}
-
-		if (pid == ROOT) {
-			MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
-
+	if(arguments.method != SEQUENTIAL) {
+		if(pid == ROOT) {
 			int displacements[ySz];
-			int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
-			displacements[0] = start;
-
+			displacements[0] = 0; 
 			for(int k = 1; k < ySz; k++) {				
 				displacements[k] =  displacements[k-1] + xSz * dims[1];
 			}
-
 			for(int i = 0; i < ySz; i++) {
 				for(int j = 0; j < xSz; j++) {
 					C[displacements[i] + j] = pC[i * xSz + j];
 				}
 			}
+	
+		}
 
+		for(int proc = 1; proc < numprocs; proc++) {
+			if(pid == proc) {
+				MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
+			}
+
+			if (pid == ROOT) {
+				MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
+
+				int displacements[ySz];
+				int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
+				displacements[0] = start;
+
+				for(int k = 1; k < ySz; k++) {				
+					displacements[k] =  displacements[k-1] + xSz * dims[1];
+				}
+
+				for(int i = 0; i < ySz; i++) {
+					for(int j = 0; j < xSz; j++) {
+						C[displacements[i] + j] = pC[i * xSz + j];
+					}
+				}
+			}
 		}
 	}
 
-
 	if(pid == ROOT) {
-	    switch(arguments.mode) {
+		switch(arguments.mode) {
 			case VERBOSE: {
-				for(int i = 0; i < m * n; i++) {
-					printf("%lf \t", C[i]);
-					if((i + 1) % m  == 0) {
-						printf("\n");
-					}
+				for(int i = 0; i < arguments.m * arguments.n; i++) {
+//					printf("%lf \t", C[i]);
+//					if((i + 1) % m  == 0) {
+//						printf("\n");
+					printf("%lf ", C[i]);
+//					}					
 				}
+				printf("\nTime elapsed: %lf\n", t1-t0);
 			}
 
 	        case QUIET:
@@ -371,7 +394,6 @@ int main(int argc, char *argv[]) {
 	mkl_free(pB);
 	mkl_free(pC);
 	mkl_free(tmp_pC);
-
 
 	MPI_Comm_free(&cartcom);
 	MPI_Finalize();
