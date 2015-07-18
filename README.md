@@ -2,9 +2,10 @@ Parallel multiplication
 ========================
 An implementation of parallel Cannon's matrix multiplication algorithm over n*n grid with MPI and Intel Math Kernel Library.
 
-#Usage
--A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
+##Usage
 <pre>
+-A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
+
   -a, --method=METHOD        Algorithm used.
   -A, --inputA=FILE          Path to input FILE containing matrix A data.
   -B, --inputB=FILE          Path to input FILE containing matrix B data.
