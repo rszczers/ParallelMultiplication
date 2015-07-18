@@ -4,7 +4,7 @@ An implementation of parallel Cannon's matrix multiplication algorithm over n*n 
 
 #Usage
 -A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
-
+<pre>
   -a, --method=METHOD        Algorithm used.
   -A, --inputA=FILE          Path to input FILE containing matrix A data.
   -B, --inputB=FILE          Path to input FILE containing matrix B data.
@@ -20,5 +20,5 @@ An implementation of parallel Cannon's matrix multiplication algorithm over n*n 
   -?, --help                 Give this help list
       --usage                Give a short usage message
   -V, --version              Print program version
-
+</pre>
 
