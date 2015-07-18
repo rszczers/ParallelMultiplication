@@ -30,6 +30,7 @@ static struct argp_option options[] = {
     { "inputA", 'A', "FILE", 0, "Path to input FILE containing matrix A data."},
     { "inputB", 'B', "FILE", 0, "Path to input FILE containing matrix B data."},
     { "output", 'o', "FILE", OPTION_ARG_OPTIONAL, "Path to output FILE containing matrix C=A*B data."},
+    { "debug", 'd', "DIR", OPTION_ARG_OPTIONAL, "Path debug directory."},
     { 0 , 'C', "FILE", OPTION_ALIAS, 0},
     { 0, 'm', "NUM", 0, "Number of rows of A."},
     { 0, 'k', "NUM", 0, "Number of rows of B."},
@@ -48,6 +49,7 @@ struct arguments {
     char *pathA;
     char *pathB;
     char *pathC;
+	char *debugDir;
 };
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state) {
@@ -79,6 +81,17 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'o': {
             arguments->pathC = arg;
             break;
+		}
+		case 'd': {
+			if(arg[strlen(arg)-1] != '/') {
+				char parg[strlen(arg)+1];
+				strcpy(parg, arg);
+				parg[strlen(arg)] = '/';
+				arguments->debugDir = parg;
+			} else {
+				arguments->debugDir = arg;
+			}
+			break;
 		}
         case 'l':
         {
@@ -116,7 +129,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
@@ -373,10 +386,14 @@ int main(int argc, char *argv[]) {
 	        case QUIET:
 	        {
 				if (arguments.pathC != NULL) {
-					char filename[15];
-					char method[10];
+					save_matrix(arguments.pathC, C, arguments.m * arguments.k);
+				}
 
-					sprintf(filename,"debug_%d", (unsigned)time(NULL));
+				if(arguments.debugDir != NULL) {
+					char filename[15 + strlen(arguments.debugDir)];				
+					char method[10];
+					
+					sprintf(filename,"%sdebug_%d", arguments.debugDir, (unsigned)time(NULL));
 
 					switch(arguments.method) {
 						case 0: {
@@ -392,10 +409,9 @@ int main(int argc, char *argv[]) {
 							break;
 						}
 					}
-					save_matrix(arguments.pathC, C, arguments.m * arguments.k);
+
 					save_info(filename, t1-t0, method, arguments.m, arguments.k, arguments.n, numprocs);
 				}
-
 				break;
 			}
 	    }
