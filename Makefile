@@ -7,18 +7,19 @@ OUT=./build/test.o
 SIZE=256
 NPROC=4
 OUTPUT=./resources/c.dat
+DEBUG=./debug/
 
 test:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
 make crun:
-	mpirun -np $(NPROC) ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=cannon -q 
+	mpirun -np $(NPROC) ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=cannon -q -d$(DEBUG)
 
 make mrun:
-	mpirun -np $(NPROC) ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=MKL -q 
+	mpirun -np $(NPROC) ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=MKL -q -d$(DEBUG)
 
 make srun:
-	mpirun -np 1 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=sequential -q 
+	mpirun -np 1 ./build/test.o -A ./resources/a.dat -B ./resources/b.dat -C$(OUTPUT) -m $(SIZE) -n $(SIZE) -k $(SIZE) --method=sequential -q -d$(DEBUG) 
 
 data:
 	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat
