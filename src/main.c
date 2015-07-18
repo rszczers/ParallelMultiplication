@@ -45,6 +45,7 @@ static struct argp_option options[] = {
 struct arguments {
     enum {SEQUENTIAL, MKL, CANNON} method;
     enum {QUIET, VERBOSE} mode;
+	bool time;
     int m, k, n;
     char *pathA;
     char *pathB;
@@ -110,6 +111,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'k':
             arguments->k = atoi(arg);
             break;
+		case 't':
+			arguments->time = true;
+			break;
         case 'q':
             arguments->mode = QUIET;
             break;
@@ -380,11 +384,13 @@ int main(int argc, char *argv[]) {
 					printf("%lf ", C[i]);
 //					}					
 				}
-				printf("\nTime elapsed: %lf\n", t1-t0);
 			}
 
 	        case QUIET:
 	        {
+				if(arguments.time == true)
+					printf("\nETA: %lf\n", t1-t0);
+
 				if (arguments.pathC != NULL) {
 					save_matrix(arguments.pathC, C, arguments.m * arguments.k);
 				}
