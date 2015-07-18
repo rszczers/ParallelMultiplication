@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <argp.h>
 #include <string.h>
+#include <time.h>
 
 #include <mkl.h>
 #include <math.h>
@@ -17,10 +18,7 @@
 
 #include "load_matrix.h"
 #include "save_matrix.h"
-
-
-//#include "sequential.h"
-//#include "naive.h"
+#include "save_info.h"
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
@@ -57,8 +55,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
     switch (key) {        
         case 'a':
         {           
-            char *name = (char *)malloc(10 * sizeof(char));
-
+			char name[11];
             for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
@@ -68,7 +65,6 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
                 arguments->method = SEQUENTIAL;
             // cannon is set as default
 
-            free(name);         
             break;
         }
         case 'A': {
@@ -377,7 +373,27 @@ int main(int argc, char *argv[]) {
 	        case QUIET:
 	        {
 				if (arguments.pathC != NULL) {
-					save_matrix(arguments.pathC, C, arguments.m * arguments.k);           
+					char filename[15];
+					char method[10];
+
+					sprintf(filename,"debug_%d", (unsigned)time(NULL));
+
+					switch(arguments.method) {
+						case 0: {
+							sprintf(method, "SEQUENTIAL");
+							break;
+						}
+						case 1: {
+							sprintf(method, "MKL");
+							break;
+						}
+						case 2: {
+							sprintf(method, "CANNON");
+							break;
+						}
+					}
+					save_matrix(arguments.pathC, C, arguments.m * arguments.k);
+					save_info(filename, t1-t0, method, arguments.m, arguments.k, arguments.n, numprocs);
 				}
 
 				break;
@@ -395,5 +411,5 @@ int main(int argc, char *argv[]) {
 
 	MPI_Comm_free(&cartcom);
 	MPI_Finalize();
-    return EXIT_SUCCESS;
+    return(EXIT_SUCCESS);
 }
