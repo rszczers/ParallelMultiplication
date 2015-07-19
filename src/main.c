@@ -57,8 +57,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
     struct arguments *arguments = state->input;
     switch (key) {        
         case 'a':
-        {           
-            char name[11];
+        {   
+            char *name = (char *)malloc(11 * sizeof(char));
             for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
@@ -188,7 +188,6 @@ int main(int argc, char *argv[]) {
     int max = m;
     (max < k) && (max = k); 
     (max < n) && (max = n);
-
     int xSz = max/dims[1];  // długość bloku
     int ySz = max/dims[0]; // wysokość bloku
 
@@ -210,20 +209,22 @@ int main(int argc, char *argv[]) {
         A = (double *)mkl_malloc(max * max * sizeof(double), 64);
         B = (double *)mkl_malloc(max * max * sizeof(double), 64);
         C = (double *)mkl_malloc(max * max * sizeof(double), 64);
+        //C = (double *)calloc(max * max , sizeof(double));
 
         load_matrix(arguments.pathA, A, arguments.m, arguments.k, max);
-    load_matrix(arguments.pathB, B, arguments.k, arguments.n, max);
+        load_matrix(arguments.pathB, B, arguments.k, arguments.n, max);
     }
 
     switch(arguments.method) {
         case SEQUENTIAL:
         {
             if(pid == ROOT) {
+
                 t0 = MPI_Wtime();
                 for(int i = 0; i < arguments.m; i++) {
                     for(int j = 0; j < arguments.n; j++) {
                         for(int l = 0; l < arguments.k; l++) {
-                            C[i * n + j] = A[i * n + l] * B[l * n + j];
+                            C[i * n + j] = C[i * n + j] + A[i * n + l] * B[l * n + j];
                         }
                     }
                 }
@@ -314,15 +315,14 @@ int main(int argc, char *argv[]) {
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 
 //          MPI_Barrier(cartcom);
-            //scewing
+            //skewing
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
-            for(int i = 0; i < dims[0]; i++) {
+            for(int i = 0; i < dims[0] - 1; i++) {
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW, top, SKEW, cartcom, &status);
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, tmp_pC, xSz);
-            //  mkl_domatadd(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, 1.0, pC, xSz, 1.0, tmp_pC, xSz, pC, xSz);
                 for(int j = 0; j < xSz * ySz; j++) {
                     pC[j] += tmp_pC[j];
                 }
@@ -334,8 +334,9 @@ int main(int argc, char *argv[]) {
 
     MPI_Barrier(cartcom);
 
-    if(arguments.method != SEQUENTIAL) {
+    if(arguments.method == CANNON) {
         if(pid == ROOT) {
+
             int displacements[ySz];
             displacements[0] = 0; 
             for(int k = 1; k < ySz; k++) {              

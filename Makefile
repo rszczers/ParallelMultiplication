@@ -9,7 +9,7 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 256
+SIZE = 16
 NPROC = 4
 OUTPUT = ./resources/c.dat
 DEBUG_DIR = ./debug/
@@ -27,14 +27,16 @@ make crun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=cannon \
-	-q -d$(DEBUG_DIR)
+	-q \
+   	-d$(DEBUG_DIR)
 
 make mrun:
 	mpirun -np $(NPROC) \
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
 	-B ./resources/b.dat \
-	-C$(OUTPUT) -m $(SIZE) \
+	-C$(OUTPUT) \
+	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=MKL \
@@ -46,14 +48,17 @@ make srun:
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
 	-B ./resources/b.dat \
-	-C$(OUTPUT) -m $(SIZE) \
-	-n $(SIZE) -k $(SIZE) \
+	-C$(OUTPUT) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
 	--method=sequential \
 	-q \
-	-d$(DEBUG) 
+	-d$(DEBUG_DIR)
 
 data:
-	bash ./src/generate.sh > ./resources/a.dat; bash ./src/generate.sh > ./resources/b.dat
+	bash ./src/generate.sh $(SIZE) > ./resources/a.dat; \
+	bash ./src/generate.sh $(SIZE) > ./resources/b.dat
 
 run:
 	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)

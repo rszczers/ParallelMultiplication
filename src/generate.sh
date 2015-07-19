@@ -1,6 +1,5 @@
-#!/bin/bash
-for i in `seq 1 65536`
-do	
+#!/bin/sh
+for((i=0; i<$1 * $1; i++)); do
 	A+="$[RANDOM % 10] "
 done
 echo "$A";
