@@ -8,8 +8,8 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 16
-NPROC = 4 
+SIZE = 256 
+NPROC = 16 
 OUTPUT = ./resources/c.dat
 DEBUG_DIR = ./debug/
 
@@ -20,14 +20,14 @@ make crun:
 	mpirun -np $(NPROC) \
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
-   	-B ./resources/b.dat \
+	-B ./resources/b.dat \
 	-C$(OUTPUT) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=cannon \
-	-v \
-   	-d$(DEBUG_DIR)
+	-q \
+	-d$(DEBUG_DIR)
 
 make mrun:
 	mpirun -np $(NPROC) \
@@ -39,7 +39,7 @@ make mrun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=MKL \
-	-v \
+	-q \
 	-d$(DEBUG_DIR)
 
 make srun:
@@ -52,7 +52,7 @@ make srun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=sequential \
-	-v \
+	-q \
 	-d$(DEBUG_DIR)
 
 data:
