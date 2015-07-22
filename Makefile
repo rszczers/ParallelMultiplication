@@ -8,7 +8,7 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 4
+SIZE = 11
 NPROC = 4 
 OUTPUT = ./resources/c.dat
 DEBUG_DIR = ./debug/
@@ -26,7 +26,7 @@ make crun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=cannon \
-	-q \
+	-v \
    	-d$(DEBUG_DIR)
 
 make mrun:
@@ -39,7 +39,7 @@ make mrun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=MKL \
-	-q \
+	-v \
 	-d$(DEBUG_DIR)
 
 make srun:
@@ -52,7 +52,7 @@ make srun:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=sequential \
-	-q \
+	-v \
 	-d$(DEBUG_DIR)
 
 data:

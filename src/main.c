@@ -144,9 +144,6 @@ int main(int argc, char *argv[]) {
     struct arguments arguments;
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
-    int m = arguments.m;
-    int k = arguments.k;
-    int n = arguments.n;
 
     double t0, t1; 
 
@@ -224,9 +221,13 @@ int main(int argc, char *argv[]) {
         case CANNON:
         {
             //lets assume that dims[0] = dims[1]
-            int max = m;
-            (max < k) && (max = k); 
-            (max < n) && (max = n);
+            if (dims[0] != dims[1]) {
+                return EXIT_FAILURE;
+            }
+
+            int max = arguments.m;
+            (max < arguments.k) && (max = arguments.k); 
+            (max < arguments.n) && (max = arguments.n);
 
             int sz = max/dims[0];  // row length per block 
 
@@ -264,10 +265,9 @@ int main(int argc, char *argv[]) {
 
             if (pid == ROOT) {
                 if (dims[0] < max) {
-                    int blocklength = sz;
                     int displacements[sz];
 
-                    //initial shift
+                    //initial shift with procesor ranks 
                     int proclA[numprocs];
                     for (int i = 0; i < dims[0]; i++) {
                         for (int j = 0; j < dims[1]; j++) {
@@ -301,7 +301,7 @@ int main(int argc, char *argv[]) {
 
                         int k = 0;
                         for (int i = 0; i < sz; i++) {
-                            for (int j = 0; j < blocklength; j++) {
+                            for (int j = 0; j < sz; j++) {
                                 pA[k] = A[displacements[i] + j];
                                 pB[k] = B[displacements[i] + j];
                                 k++;
@@ -323,15 +323,16 @@ int main(int argc, char *argv[]) {
             }
 
             t0 = MPI_Wtime();
+
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
 
-          MPI_Barrier(cartcom);
             //skewing
 
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
-            for (int i = 0; i < dims[0] - 1; i++) {
+
+            for (int i = 1; i < dims[0]; i++) {
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW_LEFTRIGHT, right, SKEW_LEFTRIGHT, cartcom, &status);
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW_BOTTOMUP, top, SKEW_BOTTOMUP, cartcom, &status);
 
@@ -340,7 +341,6 @@ int main(int argc, char *argv[]) {
                 for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
                 }
-
             }
             t1 = MPI_Wtime();
 
@@ -348,26 +348,30 @@ int main(int argc, char *argv[]) {
 
             if(pid == ROOT) {
                 int displacements[sz];
+                // przesunięcia wierszy dla procesu ROOT
                 displacements[0] = 0; 
                 for(int k = 1; k < sz; k++) {              
                     displacements[k] =  displacements[k-1] + sz * dims[1];
                 }
                 for(int i = 0; i < sz; i++) {
                     for(int j = 0; j < sz; j++) {
-                        C[displacements[i] + j] = pC[i * sz + j];
+                        C[displacements[i] + j] = pC[i * sz + j];                        
                     }
                 }
             }
 
             for(int proc = 1; proc < numprocs; proc++) {
                 if(pid == proc) {
+                    // procesy wysyłają do ROOT swoje wyminiki
                     MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, COLLECTING, cartcom);
                 }
 
                 if (pid == ROOT) {
                     MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
-
+                    // przesunięcia wierszy dla pozostałych procesów
                     int displacements[sz];
+                    //  proc % dims[1] * sz - kolumna początku pierwszego wiersza podmacierzy
+                    //  (proc / dims[1])... - przesunięcie o odpowiednią liczbę podmacierzy 
                     int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
                     displacements[0] = start;
 
@@ -382,7 +386,6 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
-
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
@@ -397,7 +400,8 @@ int main(int argc, char *argv[]) {
             case VERBOSE: {
                 for(int i = 0; i < arguments.m; i++) {
                     for(int j = 0; j < arguments.n; j++) {
-                        printf("%lf ", C[i * arguments.n + j]);
+                        printf("%.0lf\t", C[i * arguments.n + j]);
+                        if(j == arguments.n -1) printf("\n");
                     }
                 }
             }

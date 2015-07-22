@@ -14,13 +14,12 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
     } else {
         length = m * n; 
     }
-    int progress;
 
     char sep[] = " ";
     
     if(file == NULL) {
         perror(filename);
-        return -1;
+        return EXIT_FAILURE;;
     }
         
     fseek(file, 0L, SEEK_END);
@@ -42,9 +41,9 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
                 while(token != NULL && i < length) {
                     out[i] = atof(token);
                     token = strtok(NULL, sep);
-                    i++;
-                    j++;
-                    if(resize && j >= n) {
+                    i++; // sprawdza czy nie wyleciało z tablicy
+                    j++; // liczba kolumn czy się zgadza
+                    if(resize && j > n) {
                         for(; j < max; j++) {
                             out[i] = 0;
                             i++;                        
@@ -67,5 +66,5 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
 
 
     fclose(file);
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -5,7 +5,7 @@ int save_matrix(char *filename, double *data, int y, int x) {
     FILE *file = fopen(filename, "wb"); 
     if(file == NULL) {
         perror(filename);
-        exit(EXIT_FAILURE);
+        return EXIT_FAILURE;
     }
     for(int i = 0; i < y; i++) {
         for(int j = 0; j < x; j++) {
