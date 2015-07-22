@@ -172,39 +172,32 @@ int main(int argc, char *argv[]) {
     MPI_Cart_coords(cartcom, pid, 2, coord);
     MPI_Comm_rank(cartcom, &pid);
 
-    m = pow(2, 31 - __builtin_clz(arguments.m)); // 32 - n-pierwszych zer
-    if(m != arguments.m) {
-        m = pow(2, 32 - __builtin_clz(arguments.m));        
-    }
+    //lets assume that dims[0] = dims[1]
 
-    k = pow(2, 31 - __builtin_clz(arguments.k)); // 32 - n-pierwszych zer
-    if(k != arguments.k) {
-        k = pow(2, 32 - __builtin_clz(arguments.k));        
-    }
-
-    n = pow(2, 31 - __builtin_clz(arguments.n)); // 32 - n-pierwszych zer
-    if(n != arguments.n) {
-        n = pow(2, 32 - __builtin_clz(arguments.n));        
-    }
-
-    // maximum of m, k, n
     int max = m;
     (max < k) && (max = k); 
     (max < n) && (max = n);
-    int xSz = max/dims[1];  // długość bloku
-    int ySz = max/dims[0]; // wysokość bloku
 
-    double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+    int sz = max/dims[0];  // row length per block 
 
-    for(int i = 0; i < xSz * ySz; i++) {
+    if(max > sz * dims[0]) {
+        sz += 1;
+        max = sz * dims[0];
+    }
+
+    int blockSz = sz * sz;
+
+    double *pA = (double *)mkl_malloc(blockSz * sizeof(double), 64);
+    double *pB = (double *)mkl_malloc(blockSz * sizeof(double), 64);
+    double *pC = (double *)mkl_malloc(blockSz * sizeof(double), 64);
+    double *tmp_pC = (double *)mkl_malloc(blockSz * sizeof(double), 64);
+
+    for(int i = 0; i < blockSz ; i++) {
         pC[i] = 0;
     }
 
     MPI_Datatype MPI_SUBMATRIX;
-    MPI_Type_contiguous(xSz * ySz, MPI_DOUBLE, &MPI_SUBMATRIX);
+    MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
     MPI_Type_commit(&MPI_SUBMATRIX);
     
     double *A;
@@ -257,8 +250,8 @@ int main(int argc, char *argv[]) {
 
             if(pid == ROOT) {
                 if(dims[0] < max) {
-                    int blocklength = xSz;
-                    int displacements[ySz];
+                    int blocklength = sz;
+                    int displacements[sz];
 
                     //initial shift
                     int proclA[numprocs];
@@ -287,14 +280,14 @@ int main(int argc, char *argv[]) {
                     for(int proc = numprocs - 1; proc >= 0; proc--) {
 
                         //A matrix
-                        int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
+                        int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
                         displacements[0] = start;
-                        for(int k = 1; k < ySz; k++) {              
-                            displacements[k] =  displacements[k-1] + xSz * dims[1];
+                        for(int k = 1; k < sz; k++) {              
+                            displacements[k] =  displacements[k-1] + sz * dims[1];
                         }
 
                         int k = 0;
-                        for(int i = 0; i < ySz; i++) {
+                        for(int i = 0; i < sz; i++) {
                             for(int j = 0; j < blocklength; j++) {
                                 pA[k] = A[displacements[i] + j];
                                 pB[k] = B[displacements[i] + j];
@@ -318,7 +311,7 @@ int main(int argc, char *argv[]) {
             }
 
             t0 = MPI_Wtime();
-            cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
+            cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
 
 //          MPI_Barrier(cartcom);
             //skewing
@@ -328,8 +321,8 @@ int main(int argc, char *argv[]) {
             for(int i = 0; i < dims[0] - 1; i++) {
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW, right, SKEW, cartcom, &status);
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW, top, SKEW, cartcom, &status);
-                cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, tmp_pC, xSz);
-                for(int j = 0; j < xSz * ySz; j++) {
+                cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
+                for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
                 }
 
@@ -344,14 +337,14 @@ int main(int argc, char *argv[]) {
     if(arguments.method == CANNON) {
         if(pid == ROOT) {
 
-            int displacements[ySz];
+            int displacements[sz];
             displacements[0] = 0; 
-            for(int k = 1; k < ySz; k++) {              
-                displacements[k] =  displacements[k-1] + xSz * dims[1];
+            for(int k = 1; k < sz; k++) {              
+                displacements[k] =  displacements[k-1] + sz * dims[1];
             }
-            for(int i = 0; i < ySz; i++) {
-                for(int j = 0; j < xSz; j++) {
-                    C[displacements[i] + j] = pC[i * xSz + j];
+            for(int i = 0; i < sz; i++) {
+                for(int j = 0; j < sz; j++) {
+                    C[displacements[i] + j] = pC[i * sz + j];
                 }
             }
     
@@ -365,17 +358,17 @@ int main(int argc, char *argv[]) {
             if (pid == ROOT) {
                 MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, COLLECTING, cartcom, &status);
 
-                int displacements[ySz];
-                int start = (proc % dims[1]) * xSz + (proc / dims[1]) * (dims[1] * xSz * ySz);
+                int displacements[sz];
+                int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
                 displacements[0] = start;
 
-                for(int k = 1; k < ySz; k++) {              
-                    displacements[k] =  displacements[k-1] + xSz * dims[1];
+                for(int k = 1; k < sz; k++) {              
+                    displacements[k] =  displacements[k-1] + sz * dims[1];
                 }
 
-                for(int i = 0; i < ySz; i++) {
-                    for(int j = 0; j < xSz; j++) {
-                        C[displacements[i] + j] = pC[i * xSz + j];
+                for(int i = 0; i < sz; i++) {
+                    for(int j = 0; j < sz; j++) {
+                        C[displacements[i] + j] = pC[i * sz + j];
                     }
                 }
             }
@@ -385,12 +378,10 @@ int main(int argc, char *argv[]) {
     if(pid == ROOT) {
         switch(arguments.mode) {
             case VERBOSE: {
-                for(int i = 0; i < arguments.m * arguments.n; i++) {
-//                  printf("%lf \t", C[i]);
-//                  if((i + 1) % m  == 0) {
-//                      printf("\n");
-                    printf("%lf ", C[i]);
-//                  }                   
+                for(int i = 0; i < arguments.m; i++) {
+                    for(int j = 0; j < arguments.n; j++) {
+                        printf("%lf ", C[i * arguments.n + j]);
+                    }
                 }
             }
 
@@ -400,7 +391,7 @@ int main(int argc, char *argv[]) {
                     printf("\nETA: %lf\n", t1-t0);
 
                 if (arguments.pathC != NULL) {
-                    save_matrix(arguments.pathC, C, arguments.m * arguments.k);
+                    save_matrix(arguments.pathC, C, arguments.m,  arguments.n);
                 }
 
                 if(arguments.debugDir != NULL) {
