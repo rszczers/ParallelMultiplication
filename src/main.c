@@ -178,7 +178,7 @@ int main(int argc, char *argv[]) {
     double *pB;
     double *pC; 
     double *tmp_pC;
-
+    int max; // placed here for verbose mode purproses; indices new line;
     MPI_Datatype MPI_SUBMATRIX;
     
     switch (arguments.method) {
@@ -225,7 +225,7 @@ int main(int argc, char *argv[]) {
                 return EXIT_FAILURE;
             }
 
-            int max = arguments.m;
+            max = arguments.m;
             (max < arguments.k) && (max = arguments.k); 
             (max < arguments.n) && (max = arguments.n);
 
@@ -255,6 +255,7 @@ int main(int argc, char *argv[]) {
 
             for (int i = 0; i < blockSz ; i++) {
                 pC[i] = 0;
+                tmp_pC[i] = 0;
             }
 
             //distribution
@@ -325,9 +326,7 @@ int main(int argc, char *argv[]) {
             t0 = MPI_Wtime();
 
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
-
             //skewing
-
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
@@ -337,11 +336,12 @@ int main(int argc, char *argv[]) {
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW_BOTTOMUP, top, SKEW_BOTTOMUP, cartcom, &status);
 
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
-
+                
                 for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
                 }
             }
+
             t1 = MPI_Wtime();
 
             MPI_Barrier(cartcom);
@@ -358,6 +358,7 @@ int main(int argc, char *argv[]) {
                         C[displacements[i] + j] = pC[i * sz + j];                        
                     }
                 }
+
             }
 
             for(int proc = 1; proc < numprocs; proc++) {
@@ -398,21 +399,32 @@ int main(int argc, char *argv[]) {
     if(pid == ROOT) {
         switch(arguments.mode) {
             case VERBOSE: {
-                for(int i = 0; i < arguments.m; i++) {
-                    for(int j = 0; j < arguments.n; j++) {
-                        printf("%.0lf\t", C[i * arguments.n + j]);
-                        if(j == arguments.n -1) printf("\n");
+                if(arguments.method == CANNON) {
+                    for(int i = 0; i < arguments.m; i++) {
+                        for(int j = 0; j < arguments.n; j++) {
+                            printf("%.0lf\t", C[i * max + j]);
+                            if(j == arguments.n - 1) printf("\n");
+                        }
+                    }
+                } else {
+                    for(int i = 0; i < arguments.m; i++) {
+                        for(int j = 0; j < arguments.n; j++) {
+                            printf("%.0lf\t", C[i * arguments.n + j]);
+                            if(j == arguments.n - 1) printf("\n");
+                        }
                     }
                 }
             }
-
             case QUIET:
             {
-                if(arguments.time == true)
+                if(arguments.time == true || arguments.mode == VERBOSE)
                     printf("\nETA: %lf\n", t1-t0);
 
                 if (arguments.pathC != NULL) {
-                    save_matrix(arguments.pathC, C, arguments.m,  arguments.n);
+                    if(arguments.method == CANNON)
+                        save_matrix(arguments.pathC, C, arguments.m,  arguments.n, max);
+                    else
+                        save_matrix(arguments.pathC, C, arguments.m,  arguments.n, arguments.n);
                 }
 
                 if(arguments.debugDir != NULL) {
