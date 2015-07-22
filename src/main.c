@@ -172,18 +172,20 @@ int main(int argc, char *argv[]) {
     MPI_Cart_coords(cartcom, pid, 2, coord);
     MPI_Comm_rank(cartcom, &pid);
 
-    bool m_odd = !arguments.m || (arguments.m & (arguments.m - 1));
-    bool k_odd = !arguments.k || (arguments.k & (arguments.k - 1));
-    bool n_odd = !arguments.n || (arguments.n & (arguments.n - 1));
-        
-    if (m_odd)
-        m = pow(2, 32 - __builtin_clz(arguments.m)); // 32 - n-pierwszych zer
+    m = pow(2, 31 - __builtin_clz(arguments.m)); // 32 - n-pierwszych zer
+    if(m != arguments.m) {
+        m = pow(2, 32 - __builtin_clz(arguments.m));        
+    }
 
-    if (k_odd)
-        k = pow(2, 32 - __builtin_clz(arguments.k));
+    k = pow(2, 31 - __builtin_clz(arguments.k)); // 32 - n-pierwszych zer
+    if(k != arguments.k) {
+        k = pow(2, 32 - __builtin_clz(arguments.k));        
+    }
 
-    if (n_odd)
-        n = pow(2, 32 - __builtin_clz(arguments.n));
+    n = pow(2, 31 - __builtin_clz(arguments.n)); // 32 - n-pierwszych zer
+    if(n != arguments.n) {
+        n = pow(2, 32 - __builtin_clz(arguments.n));        
+    }
 
     // maximum of m, k, n
     int max = m;
@@ -194,7 +196,7 @@ int main(int argc, char *argv[]) {
 
     double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
     double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *pC = (double *)mkl_malloc(xSz * ySz , sizeof(double), 64);
+    double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
     double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 
     for(int i = 0; i < xSz * ySz; i++) {
