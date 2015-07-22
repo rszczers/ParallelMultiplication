@@ -193,13 +193,13 @@ int main(int argc, char *argv[]) {
     int ySz = max/dims[0]; // wysokość bloku
 
     double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *tmp_pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-   
     double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-    double *tmp_pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
-
-    double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+    double *pC = (double *)mkl_malloc(xSz * ySz , sizeof(double), 64);
     double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+
+    for(int i = 0; i < xSz * ySz; i++) {
+        pC[i] = 0;
+    }
 
     MPI_Datatype MPI_SUBMATRIX;
     MPI_Type_contiguous(xSz * ySz, MPI_DOUBLE, &MPI_SUBMATRIX);
@@ -214,7 +214,6 @@ int main(int argc, char *argv[]) {
         A = (double *)mkl_malloc(max * max * sizeof(double), 64);
         B = (double *)mkl_malloc(max * max * sizeof(double), 64);
         C = (double *)mkl_malloc(max * max * sizeof(double), 64);
-        //C = (double *)calloc(max * max , sizeof(double));
 
         load_matrix(arguments.pathA, A, arguments.m, arguments.k, max);
         load_matrix(arguments.pathB, B, arguments.k, arguments.n, max);
@@ -319,14 +318,6 @@ int main(int argc, char *argv[]) {
             t0 = MPI_Wtime();
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 
-            if(pid == 1) {
-                for(int i = 0; i < xSz * ySz; i++) {
-                    printf("%lf \t", pA[i]);
-                    if((i + 1) % xSz  == 0) {
-                          printf("\n");
-                   }              
-                }
-            }
 //          MPI_Barrier(cartcom);
             //skewing
             int top, bottom, left, right;
