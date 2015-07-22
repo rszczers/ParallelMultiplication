@@ -1,5 +1,6 @@
 #define ROOT 0
-#define DISTRIBUTION 1337
+#define DISTRIBUTION_A 1337
+#define DISTRIBUTION_B 1338 
 #define SKEW 23
 #define COLLECTING 42
 
@@ -192,7 +193,11 @@ int main(int argc, char *argv[]) {
     int ySz = max/dims[0]; // wysokość bloku
 
     double *pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+    double *tmp_pA = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+   
     double *pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+    double *tmp_pB = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
+
     double *pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
     double *tmp_pC = (double *)mkl_malloc(xSz * ySz * sizeof(double), 64);
 
@@ -297,8 +302,8 @@ int main(int argc, char *argv[]) {
                         }
 
                         if(proc != ROOT) {
-                            MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION, cartcom);
-                            MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION, cartcom);
+                            MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom);
+                            MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom);
                         }
                         //po ostatnim refrenie w pA jest zawartośc dla procesu 0
                     }
@@ -306,14 +311,22 @@ int main(int argc, char *argv[]) {
         
             } else {
                 if(dims[0] < max) {                 
-                    MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
-                    MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION, cartcom, &status);
+                    MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &status);
+                    MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &status);
                 }
             }
 
             t0 = MPI_Wtime();
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, xSz, xSz, xSz, 1.0, pA, xSz, pB, xSz, 0.0, pC, xSz);
 
+            if(pid == 1) {
+                for(int i = 0; i < xSz * ySz; i++) {
+                    printf("%lf \t", pA[i]);
+                    if((i + 1) % xSz  == 0) {
+                          printf("\n");
+                   }              
+                }
+            }
 //          MPI_Barrier(cartcom);
             //skewing
             int top, bottom, left, right;
@@ -326,6 +339,7 @@ int main(int argc, char *argv[]) {
                 for(int j = 0; j < xSz * ySz; j++) {
                     pC[j] += tmp_pC[j];
                 }
+
             }
             t1 = MPI_Wtime();
             break;

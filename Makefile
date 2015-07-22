@@ -9,7 +9,7 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 16
+SIZE = 4
 NPROC = 4
 OUTPUT = ./resources/c.dat
 DEBUG_DIR = ./debug/
