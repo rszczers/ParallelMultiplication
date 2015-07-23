@@ -144,7 +144,6 @@ int main(int argc, char *argv[]) {
     struct arguments arguments;
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
-
     double t0, t1; 
 
     int pid;
@@ -178,7 +177,7 @@ int main(int argc, char *argv[]) {
     double *pB;
     double *pC; 
     double *tmp_pC;
-    int max; // placed here for verbose mode purproses; indices new line;
+    unsigned int max; // placed here for verbose mode purproses; indices new line;
     MPI_Datatype MPI_SUBMATRIX;
     
     switch (arguments.method) {
@@ -240,13 +239,6 @@ int main(int argc, char *argv[]) {
 
             MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
             MPI_Type_commit(&MPI_SUBMATRIX);
-    
-            A = (double *) mkl_malloc(max * max * sizeof(double), 64);
-            B = (double *) mkl_malloc(max * max * sizeof(double), 64);
-            C = (double *) mkl_malloc(max * max * sizeof(double), 64);
-
-            load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
-            load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
             pA = (double *) mkl_malloc(blockSz * sizeof(double), 64);
             pB = (double *) mkl_malloc(blockSz * sizeof(double), 64);
@@ -257,14 +249,15 @@ int main(int argc, char *argv[]) {
                 pC[i] = 0;
                 tmp_pC[i] = 0;
             }
-
-            //distribution
-            if (dims[0] >= max) {
-                MPI_Scatter(A, 1, MPI_DOUBLE, pA, 1, MPI_DOUBLE, ROOT, cartcom);
-                MPI_Scatter(B, 1, MPI_DOUBLE, pB, 1, MPI_DOUBLE, ROOT, cartcom);
-            }
-
+            MPI_Request sendReq[2], recvReq[2];
             if (pid == ROOT) {
+                A = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                B = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                C = (double *) mkl_malloc(max * max * sizeof(double), 64);
+
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
+
                 if (dims[0] < max) {
                     int displacements[sz];
 
@@ -310,16 +303,27 @@ int main(int argc, char *argv[]) {
                         }
 
                         if(proc != ROOT) {
-                            MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom);
-                            MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom);
+                            //printf("%d, wysyłam do %d macierz pA \n", pid, proclA[proc]);
+                            MPI_Isend(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom, &sendReq[0]);
+                            MPI_Wait(&sendReq[0], &status);
+//                            printf("%d, koniec wysyłania do %d macierzy pA \n", pid, proclA[proc]);
+//                            printf("%d, wysyłam do %d macierz pB \n", pid, proclB[proc]);
+                            MPI_Isend(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom, &sendReq[1]);
+//                            printf("%d, koniec wysyłania do %d macierzy pB \n", pid, proclB[proc]);
                         }
                         //po ostatnim refrenie w pA jest zawartośc dla procesu 0
                     }
                 }
             } else {
                 if(dims[0] < max) {                 
-                    MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &status);
-                    MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &status);
+//                    printf("%d, próbuję odebrać odebrać pA\n", pid);
+                    MPI_Irecv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &recvReq[0]);
+                    MPI_Wait(&recvReq[0], &status);
+//                    printf("%d, odebałem a\n", pid);
+//                    printf("%d, próbuję odebrać odebrać pB\n", pid);
+                    MPI_Irecv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &recvReq[1]);
+                    MPI_Wait(&recvReq[1], &status);
+//                    printf("%d, odebałem b\n", pid);
                 }
             }
 

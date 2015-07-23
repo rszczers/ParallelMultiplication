@@ -1,5 +1,4 @@
 #!/bin/sh
 for((i=0; i<$1 * $1; i++)); do
-	A+="$[RANDOM % 10] "
+    printf "%s" "$[RANDOM % 10] " >> $2 
 done
-echo "$A";

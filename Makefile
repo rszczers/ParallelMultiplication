@@ -8,8 +8,8 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 256 
-NPROC = 16 
+SIZE = 2048 
+NPROC = 4 
 OUTPUT = ./resources/c.dat
 DEBUG_DIR = ./debug/
 
@@ -56,8 +56,11 @@ make srun:
 	-d$(DEBUG_DIR)
 
 data:
-	bash ./src/generate.sh $(SIZE) > ./resources/a.dat; \
-	bash ./src/generate.sh $(SIZE) > ./resources/b.dat
+	rm ./resources/a.dat; \
+	rm ./resources/b.dat; \
+	rm ./resources/c.dat; \
+	bash ./src/generate.sh $(SIZE) ./resources/a.dat; \
+	bash ./src/generate.sh $(SIZE) ./resources/b.dat
 
 run:
 	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
