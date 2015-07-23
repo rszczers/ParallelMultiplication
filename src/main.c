@@ -305,7 +305,6 @@ int main(int argc, char *argv[]) {
                         if(proc != ROOT) {
                             //printf("%d, wysyłam do %d macierz pA \n", pid, proclA[proc]);
                             MPI_Isend(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom, &sendReq[0]);
-                            MPI_Wait(&sendReq[0], &status);
 //                            printf("%d, koniec wysyłania do %d macierzy pA \n", pid, proclA[proc]);
 //                            printf("%d, wysyłam do %d macierz pB \n", pid, proclB[proc]);
                             MPI_Isend(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom, &sendReq[1]);

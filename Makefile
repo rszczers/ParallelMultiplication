@@ -8,9 +8,11 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 2048 
-NPROC = 4 
-OUTPUT = ./resources/c.dat
+SIZE = 1024 
+NPROC = 4
+OUTPUT_SRUN = ./resources/c_srun.dat
+OUTPUT_CRUN = ./resources/c_crun.dat
+OUTPUT_MRUN = ./resources/c_mrun.dat
 DEBUG_DIR = ./debug/
 
 test:
@@ -21,7 +23,7 @@ make crun:
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
 	-B ./resources/b.dat \
-	-C$(OUTPUT) \
+	-C$(OUTPUT_CRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -30,11 +32,11 @@ make crun:
 	-d$(DEBUG_DIR)
 
 make mrun:
-	mpirun -np $(NPROC) \
+	mpirun -np 1 \
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
 	-B ./resources/b.dat \
-	-C$(OUTPUT) \
+	-C$(OUTPUT_MRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -47,7 +49,7 @@ make srun:
 	$(BUILD_PATH) \
 	-A ./resources/a.dat \
 	-B ./resources/b.dat \
-	-C$(OUTPUT) \
+	-C$(OUTPUT_SRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -66,4 +68,4 @@ run:
 	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
 
 clean:
-	$(RM) ./build/*.o ./resources/*.dat ./build/*.out ./src/*.swp
+	$(RM) ./build/*.o ./resources/c* ./build/*.out ./src/*.swp ./debug/*
