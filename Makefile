@@ -70,10 +70,14 @@ endif
 	bash ./src/generate.sh $(SIZE) $(PATH_B) 
 
 run:
-	clear; \
-	make data; \
-	make all; \
-	make cannon
+	clear
+ifeq ($(wildcard $(PATH_A) $(PATH_B)),)		
+	@make data
+endif
+ifeq ($(wildcard $(BUILD_PATH)),)
+	@make all
+endif
+	@make cannon
 
 clean:
 ifneq ($(wildcard $(BUILD_PATH) $(DEBUG_DIR)*),)
