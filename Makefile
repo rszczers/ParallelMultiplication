@@ -7,22 +7,28 @@ SRC = ./src/main.c \
 	  ./src/save_matrix.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
+
 OUT = ./build/test.o
 SIZE = 512 
 NPROC = 4
-OUTPUT_SRUN = ./resources/c_srun.dat
-OUTPUT_CRUN = ./resources/c_crun.dat
-OUTPUT_MRUN = ./resources/c_mrun.dat
+
+PATH_A = ./resources/a.dat 
+PATH_B = ./resources/b.dat
+OUTPUT_SRUN = ./resources/c_seq.dat
+OUTPUT_CRUN = ./resources/c_cannon.dat
+OUTPUT_MRUN = ./resources/c_mkl.dat
 DEBUG_DIR = ./debug/
 
-test:
+.PHONY: clean
+
+all:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
 
-make crun:
+cannon:
 	mpirun -np $(NPROC) \
 	$(BUILD_PATH) \
-	-A ./resources/a.dat \
-	-B ./resources/b.dat \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
 	-C$(OUTPUT_CRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
@@ -31,11 +37,11 @@ make crun:
 	-q \
 	-d$(DEBUG_DIR)
 
-make mrun:
+mkl:
 	mpirun -np 1 \
 	$(BUILD_PATH) \
-	-A ./resources/a.dat \
-	-B ./resources/b.dat \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
 	-C$(OUTPUT_MRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
@@ -44,11 +50,11 @@ make mrun:
 	-q \
 	-d$(DEBUG_DIR)
 
-make srun:
+seq:
 	mpirun -np 1 \
 	$(BUILD_PATH) \
-	-A ./resources/a.dat \
-	-B ./resources/b.dat \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
 	-C$(OUTPUT_SRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
@@ -58,11 +64,11 @@ make srun:
 	-d$(DEBUG_DIR)
 
 data:
-	rm ./resources/a.dat; \
-	rm ./resources/b.dat; \
-	rm ./resources/c.dat; \
-	bash ./src/generate.sh $(SIZE) ./resources/a.dat; \
-	bash ./src/generate.sh $(SIZE) ./resources/b.dat
+ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
+	rm $(PATH_A) $(PATH_B)
+endif
+	bash ./src/generate.sh $(SIZE) $(PATH_A); \
+	bash ./src/generate.sh $(SIZE) $(PATH_B) 
 
 run:
 	clear; \
@@ -72,4 +78,13 @@ run:
 	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
 
 clean:
-	$(RM) ./build/*.o ./resources/c* ./build/*.out ./src/*.swp ./debug/*
+ifneq ($(wildcard $(BUILD_PATH) $(DEBUG_DIR)*),)
+	$(RM) $(BUILD_PATH) $(PATH_A) $(PATH_B) $(DEBUG_DIR)*
+ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
+	$(RM) $(PATH_A) $(PATH_B)
+ifneq ($(wildcard $(OUTPUT_SRUN)),)
+	$(RM) $(OUTPUT_SRUN)
+ifneq ($(wildcard $(OUTPUT_CRUN)),)
+	$(RM) $(OUTPUT_CRUN)
+ifneq ($(wildcard $(OUTPUT_MRUN)),)
+	$(RM) $(OUTPUT_MRUN)
