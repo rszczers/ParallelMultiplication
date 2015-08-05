@@ -258,6 +258,13 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
+                char debug_pathA[20];
+                char debug_pathB[20];
+                sprintf(debug_pathA, "%sdA%d", arguments.debugDir, pid);
+                sprintf(debug_pathB, "%sdB%d", arguments.debugDir, pid);
+                save_matrix(debug_pathA, A, arguments.m, arguments.k, arguments.k);
+                save_matrix(debug_pathB, B, arguments.k, arguments.n, arguments.n);
+
                 if (dims[0] < max) {
                     int displacements[sz];
 
@@ -325,6 +332,11 @@ int main(int argc, char *argv[]) {
 //                    printf("%d, odebałem b\n", pid);
                 }
             }
+
+            MPI_Barrier(cartcom);
+            char debug_path[20];
+            sprintf(debug_path, "%spB%d", arguments.debugDir, pid);
+            save_matrix(debug_path, pB, max, max, max);
 
             t0 = MPI_Wtime();
 

@@ -53,7 +53,7 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
                     }
                 }
                 if(token == NULL) {
-                    i--;
+//                    i--;
                 }
             }           
             free(buffer);   
