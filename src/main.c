@@ -250,7 +250,6 @@ int main(int argc, char *argv[]) {
                 tmp_pC[i] = 0;
             } // memset? calloc?
 
-            int displacements[sz]; /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
 
             if (pid == ROOT) {
                 A = (double *) mkl_malloc(max * max * sizeof(double), 64);
@@ -259,13 +258,6 @@ int main(int argc, char *argv[]) {
 
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
-
-                char debug_pathA[20]; /* debugging data */
-                char debug_pathB[20];
-                sprintf(debug_pathA, "%sdA%d", arguments.debugDir, pid);
-                sprintf(debug_pathB, "%sdB%d", arguments.debugDir, pid);
-                save_matrix(debug_pathA, A, arguments.m, arguments.k, arguments.k);
-                save_matrix(debug_pathB, B, arguments.k, arguments.n, arguments.n);
 
                 //initial shift with procesor ranks 
                 int proclA[numprocs];
@@ -280,6 +272,7 @@ int main(int argc, char *argv[]) {
                 }
                 
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    int displacements[sz]; /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
                     int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
                     displacements[0] = start;
                     for (int k = 1; k < sz; k++) {              
@@ -295,17 +288,14 @@ int main(int argc, char *argv[]) {
                     }
 
                     if(proc != ROOT) {
-                        printf("A -> %d->%d,\t wysyłam pA \n", pid, proclA[proc]);
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom);
-                        printf("A => %d->%d,\t koniec wysyłania pA \n", pid, proclA[proc]);
                     }
-                    //po ostatnim refrenie w pA jest zawartośc dla procesu 0                    
                 }
             } else {
-                printf("<-A %d,\t próbuję odebrać pA\n", pid);
                 MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &status);
-                printf("<=A  %d,\t odebałem a\n", pid);
             }
+
+            MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
                 int proclB[numprocs];
@@ -320,6 +310,13 @@ int main(int argc, char *argv[]) {
                 }
 
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    int displacements[sz]; /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
+                    int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+                    for (int k = 1; k < sz; k++) {              
+                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                    }
+
                     int k = 0;
                     for (int i = 0; i < sz; i++) {
                         for (int j = 0; j < sz; j++) {
@@ -329,33 +326,23 @@ int main(int argc, char *argv[]) {
                     }
 
                     if(proc != ROOT) {
-                        printf("B -> %d->%d,\t wysyłam pB \n", pid, proclB[proc]);
                         MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom);
-                        printf("B => %d->%d,\t koniec wysyłania pB \n", pid, proclB[proc]);
                     }                    
                 }            
             } else {                
-                printf("<-B %d,\t próbuję odebrać pB\n", pid);
                 MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &status);
-                printf("<=B %d,\t odebałem b", pid);
             }
-
-
-            MPI_Barrier(cartcom);
-
-            char debug_path[20];
-            sprintf(debug_path, "%spB%d", arguments.debugDir, pid);
-            save_matrix(debug_path, pB, sz, sz, sz);
 
             t0 = MPI_Wtime();
 
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
+
             //skewing
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
 
-            for (int i = 1; i < dims[0]; i++) {
+            for (int i = 1; i < dims[0]; i++) { /* zakładamy, że dims[0]=dims[1] */
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, SKEW_LEFTRIGHT, right, SKEW_LEFTRIGHT, cartcom, &status);
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, SKEW_BOTTOMUP, top, SKEW_BOTTOMUP, cartcom, &status);
 

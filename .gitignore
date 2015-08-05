@@ -2,4 +2,4 @@
 *.o
 *.swp
 debug/
-resources/
+resources/*

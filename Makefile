@@ -8,7 +8,7 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 256 
+SIZE = 512 
 NPROC = 4
 OUTPUT_SRUN = ./resources/c_srun.dat
 OUTPUT_CRUN = ./resources/c_crun.dat
