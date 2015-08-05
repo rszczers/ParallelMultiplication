@@ -83,7 +83,7 @@ endif
 	@bash ./src/generate.sh $(SIZE) $(PATH_A); \
 	bash ./src/generate.sh $(SIZE) $(PATH_B) 
 
-run:
+run: rebuild_dirtree
 	clear
 ifeq ($(wildcard $(PATH_A) $(PATH_B)),)		
 	@make data
