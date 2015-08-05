@@ -11,17 +11,31 @@ BUILD_PATH = ./build/$(PROJECT).o
 SIZE = 512 
 NPROC = 4
 
-PATH_A = ./resources/a.dat
-PATH_B = ./resources/b.dat
-OUTPUT_SRUN = ./resources/c_seq.dat
-OUTPUT_CRUN = ./resources/c_cannon.dat
-OUTPUT_MRUN = ./resources/c_mkl.dat
 DEBUG_DIR = ./debug/
+RESOURCES_DIR = ./resources/
+BUILD_DIR = ./build/
+
+PATH_A = $(RESOURCES_DIR)a.dat
+PATH_B = $(RESOURCES_DIR)b.dat
+OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
+OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
+OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
 
 .PHONY: clean
 
 all:
 	@$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(BUILD_PATH)
+
+rebuild_dirtree:
+ifeq ($(wildcard $(DEBUG_DIR)),)
+	mkdir $(DEBUG_DIR)
+endif
+ifeq ($(wildcard $(RESOURCES_DIR)),)
+	mkdir $(RESOURCES_DIR)
+endif
+ifeq ($(wildcard $(BUILD_DIR)),)
+	mkdir $(BUILD_DIR)
+endif
 
 cannon:
 	@mpirun -np $(NPROC) \
