@@ -249,7 +249,8 @@ int main(int argc, char *argv[]) {
                 pC[i] = 0;
                 tmp_pC[i] = 0;
             }
-            MPI_Request sendReq[2], recvReq[2];
+
+
             if (pid == ROOT) {
                 A = (double *) mkl_malloc(max * max * sizeof(double), 64);
                 B = (double *) mkl_malloc(max * max * sizeof(double), 64);
@@ -258,14 +259,13 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
-                char debug_pathA[20];
+                char debug_pathA[20]; /* debugging data */
                 char debug_pathB[20];
                 sprintf(debug_pathA, "%sdA%d", arguments.debugDir, pid);
                 sprintf(debug_pathB, "%sdB%d", arguments.debugDir, pid);
                 save_matrix(debug_pathA, A, arguments.m, arguments.k, arguments.k);
                 save_matrix(debug_pathB, B, arguments.k, arguments.n, arguments.n);
 
-                if (dims[0] < max) {
                     int displacements[sz];
 
                     //initial shift with procesor ranks 
@@ -310,33 +310,71 @@ int main(int argc, char *argv[]) {
                         }
 
                         if(proc != ROOT) {
-                            //printf("%d, wysyłam do %d macierz pA \n", pid, proclA[proc]);
-                            MPI_Isend(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom, &sendReq[0]);
-//                            printf("%d, koniec wysyłania do %d macierzy pA \n", pid, proclA[proc]);
-//                            printf("%d, wysyłam do %d macierz pB \n", pid, proclB[proc]);
-                            MPI_Isend(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom, &sendReq[1]);
-//                            printf("%d, koniec wysyłania do %d macierzy pB \n", pid, proclB[proc]);
+                            printf("A -> %d->%d,\t wysyłam pA \n", pid, proclA[proc]);
+                            MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], DISTRIBUTION_A, cartcom);
+                            printf("A => %d->%d,\t koniec wysyłania pA \n", pid, proclA[proc]);
+                            printf("B -> %d->%d,\t wysyłam pB \n", pid, proclB[proc]);
+                            MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom);
+                            printf("B => %d->%d,\t koniec wysyłania pB \n", pid, proclB[proc]);
                         }
                         //po ostatnim refrenie w pA jest zawartośc dla procesu 0
                     }
                 }
             } else {
                 if(dims[0] < max) {                 
-//                    printf("%d, próbuję odebrać odebrać pA\n", pid);
-                    MPI_Irecv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &recvReq[0]);
-                    MPI_Wait(&recvReq[0], &status);
-//                    printf("%d, odebałem a\n", pid);
-//                    printf("%d, próbuję odebrać odebrać pB\n", pid);
-                    MPI_Irecv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &recvReq[1]);
-                    MPI_Wait(&recvReq[1], &status);
-//                    printf("%d, odebałem b\n", pid);
+                    printf("<-A %d,\t próbuję odebrać pA\n", pid);
+                    MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_A, cartcom, &status);
+                    printf("<=A  %d,\t odebałem a\n", pid);
+                    printf("<-B %d,\t próbuję odebrać pB\n", pid);
+                    MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &status);
+                    printf("<=B %d,\t odebałem b", pid);
                 }
             }
+
+            if(pid == ROOT) {
+                  int proclB[numprocs];
+                    for (int j = 0; j < dims[1]; j++) {
+                        for (int i = 0; i < dims[0]; i++) {
+                            if (i < dims[0] - j) { 
+                                proclB[i * dims[1] + j] = (i + j) * dims[0] + j;            
+                            } else {
+                                proclB[i * dims[1] + j] = (i - dims[0] + j) * dims[1] + j;
+                            }
+                        }
+                    }
+
+                    for (int proc = numprocs - 1; proc >= 0; proc--) {
+
+                        //A matrix
+                        int start = (proc % dims[1]) * sz + (proc / dims[1]) * (dims[1] * blockSz);
+                        displacements[0] = start;
+                        for (int k = 1; k < sz; k++) {              
+                            displacements[k] =  displacements[k-1] + sz * dims[1];
+                        }
+
+                        int k = 0;
+                        for (int i = 0; i < sz; i++) {
+                            for (int j = 0; j < sz; j++) {
+                                pB[k] = B[displacements[i] + j];
+                                k++;
+                            }
+                        }
+
+                        if(proc != ROOT) {
+                            printf("B -> %d->%d,\t wysyłam pB \n", pid, proclB[proc]);
+                            MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], DISTRIBUTION_B, cartcom);
+                            printf("B => %d->%d,\t koniec wysyłania pB \n", pid, proclB[proc]);
+                        }
+                        //po ostatnim refrenie w pA jest zawartośc dla procesu 0
+                    }
+
+            }
+
 
             MPI_Barrier(cartcom);
             char debug_path[20];
             sprintf(debug_path, "%spB%d", arguments.debugDir, pid);
-            save_matrix(debug_path, pB, max, max, max);
+            save_matrix(debug_path, pB, sz, sz, sz);
 
             t0 = MPI_Wtime();
 

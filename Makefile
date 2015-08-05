@@ -8,7 +8,7 @@ SRC = ./src/main.c \
 	  ./src/save_info.c
 BUILD_PATH = ./build/test.o
 OUT = ./build/test.o
-SIZE = 1024 
+SIZE = 256 
 NPROC = 4
 OUTPUT_SRUN = ./resources/c_srun.dat
 OUTPUT_CRUN = ./resources/c_crun.dat
@@ -65,7 +65,11 @@ data:
 	bash ./src/generate.sh $(SIZE) ./resources/b.dat
 
 run:
-	clear; printf "Generowanie próbnych danych. Proszę poczekać...\n"; make data; printf "Trwa kompilowanie. Proszę poczekać...\n"; $(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
+	clear; \
+	printf "Generowanie próbnych danych. Proszę poczekać...\n"; \
+	make data; \
+	printf "Trwa kompilowanie. Proszę poczekać...\n"; \
+	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
 
 clean:
 	$(RM) ./build/*.o ./resources/c* ./build/*.out ./src/*.swp ./debug/*
