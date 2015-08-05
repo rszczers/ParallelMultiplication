@@ -1,4 +1,4 @@
-PROJECT = test
+PROJECT = pmm
 CC = mpiicc
 OPTIONS = -std=c99
 LIBS = -mkl
@@ -6,13 +6,12 @@ SRC = ./src/main.c \
 	  ./src/load_matrix.c \
 	  ./src/save_matrix.c \
 	  ./src/save_info.c
-BUILD_PATH = ./build/test.o
+BUILD_PATH = ./build/$(PROJECT).o
 
-OUT = ./build/test.o
 SIZE = 512 
 NPROC = 4
 
-PATH_A = ./resources/a.dat 
+PATH_A = ./resources/a.dat
 PATH_B = ./resources/b.dat
 OUTPUT_SRUN = ./resources/c_seq.dat
 OUTPUT_CRUN = ./resources/c_cannon.dat
@@ -22,7 +21,7 @@ DEBUG_DIR = ./debug/
 .PHONY: clean
 
 all:
-	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT)
+	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(BUILD_PATH)
 
 cannon:
 	mpirun -np $(NPROC) \
@@ -65,7 +64,7 @@ seq:
 
 data:
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
-	rm $(PATH_A) $(PATH_B)
+	$(RM) $(PATH_A) $(PATH_B)
 endif
 	bash ./src/generate.sh $(SIZE) $(PATH_A); \
 	bash ./src/generate.sh $(SIZE) $(PATH_B) 
@@ -80,11 +79,16 @@ run:
 clean:
 ifneq ($(wildcard $(BUILD_PATH) $(DEBUG_DIR)*),)
 	$(RM) $(BUILD_PATH) $(PATH_A) $(PATH_B) $(DEBUG_DIR)*
+endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	$(RM) $(PATH_A) $(PATH_B)
+endif
 ifneq ($(wildcard $(OUTPUT_SRUN)),)
 	$(RM) $(OUTPUT_SRUN)
+endif
 ifneq ($(wildcard $(OUTPUT_CRUN)),)
 	$(RM) $(OUTPUT_CRUN)
+endif
 ifneq ($(wildcard $(OUTPUT_MRUN)),)
 	$(RM) $(OUTPUT_MRUN)
+endif
