@@ -21,10 +21,10 @@ DEBUG_DIR = ./debug/
 .PHONY: clean
 
 all:
-	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(BUILD_PATH)
+	@$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(BUILD_PATH)
 
 cannon:
-	mpirun -np $(NPROC) \
+	@mpirun -np $(NPROC) \
 	$(BUILD_PATH) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
@@ -37,7 +37,7 @@ cannon:
 	-d$(DEBUG_DIR)
 
 mkl:
-	mpirun -np 1 \
+	@mpirun -np 1 \
 	$(BUILD_PATH) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
@@ -50,7 +50,7 @@ mkl:
 	-d$(DEBUG_DIR)
 
 seq:
-	mpirun -np 1 \
+	@mpirun -np 1 \
 	$(BUILD_PATH) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
@@ -64,31 +64,30 @@ seq:
 
 data:
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
-	$(RM) $(PATH_A) $(PATH_B)
+	@$(RM) $(PATH_A) $(PATH_B)
 endif
-	bash ./src/generate.sh $(SIZE) $(PATH_A); \
+	@bash ./src/generate.sh $(SIZE) $(PATH_A); \
 	bash ./src/generate.sh $(SIZE) $(PATH_B) 
 
 run:
 	clear; \
-	printf "Generowanie próbnych danych. Proszę poczekać...\n"; \
 	make data; \
-	printf "Trwa kompilowanie. Proszę poczekać...\n"; \
-	$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(OUT); clear; $(OUT)
+	make all; \
+	make cannon
 
 clean:
 ifneq ($(wildcard $(BUILD_PATH) $(DEBUG_DIR)*),)
-	$(RM) $(BUILD_PATH) $(PATH_A) $(PATH_B) $(DEBUG_DIR)*
+	@$(RM) $(BUILD_PATH) $(PATH_A) $(PATH_B) $(DEBUG_DIR)*
 endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
-	$(RM) $(PATH_A) $(PATH_B)
+	@$(RM) $(PATH_A) $(PATH_B)
 endif
 ifneq ($(wildcard $(OUTPUT_SRUN)),)
-	$(RM) $(OUTPUT_SRUN)
+	@$(RM) $(OUTPUT_SRUN)
 endif
 ifneq ($(wildcard $(OUTPUT_CRUN)),)
-	$(RM) $(OUTPUT_CRUN)
+	@$(RM) $(OUTPUT_CRUN)
 endif
 ifneq ($(wildcard $(OUTPUT_MRUN)),)
-	$(RM) $(OUTPUT_MRUN)
+	@$(RM) $(OUTPUT_MRUN)
 endif
