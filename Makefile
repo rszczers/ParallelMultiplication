@@ -1,5 +1,6 @@
-RANK = 16	#random generated data size
+RANK = 16	#rank of randomly generated test square matrix
 NPROC = 4	#number of MPI threads
+###############################################################################
 
 PROJECT = pmm
 SOURCE_DIR = ./src/
@@ -99,6 +100,7 @@ seq:
 	-q \
 	-d$(DEBUG_DIR)
 
+#generates test data
 data:
 ifeq ($(wildcard $(BUILD_PATH_PMM) $(BUILD_PATH_GEN)),)
 	@make all
@@ -109,6 +111,7 @@ endif
 	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_A)
 	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_B)
 
+#rebuilds directory tree
 run: rebuild_dirtree
 	clear
 ifeq ($(wildcard $(BUILD_PATH_GEN)),)
