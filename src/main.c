@@ -29,18 +29,18 @@ static char args_doc[] = "-A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM";
 
 static struct argp_option options[] = {
     { "method", 'a', "METHOD", 0, "Algorithm used."},
-    { "inputA", 'A', "FILE", 0, "Path to input FILE containing matrix A data."},
-    { "inputB", 'B', "FILE", 0, "Path to input FILE containing matrix B data."},
-    { "output", 'o', "FILE", OPTION_ARG_OPTIONAL, "Path to output FILE containing matrix C=A*B data."},
+    { "inputA", 'A', "FILE", 0, "Path to input FILE containing matrix A data"},
+    { "inputB", 'B', "FILE", 0, "Path to input FILE containing matrix B data"},
+    { "output", 'o', "FILE", OPTION_ARG_OPTIONAL, "Path to output FILE containing matrix C=A*B data"},
     { 0 , 'C', "FILE", OPTION_ALIAS, 0},
-    { "debug", 'd', "DIR", OPTION_ARG_OPTIONAL, "Path to debug directory."},
-    { 0, 'm', "NUM", 0, "Number of rows of A."},
-    { 0, 'k', "NUM", 0, "Number of rows of B."},
-    { 0, 'n', "NUM", 0, "Number of columns of B."},
-    { "list", 'l', 0, 0, "Show list of available algorithms."},
-    { "time", 't', 0, 0, "Show elapsed time."},
-    { "quiet", 'q', 0, 0, "Do not show any computations."},
-    { "verbose", 'v', 0, 0, "Show all computations."},
+    { "debug", 'd', "DIR", OPTION_ARG_OPTIONAL, "Path to debug directory"},
+    { 0, 'm', "NUM", 0, "Number of rows of A"},
+    { 0, 'k', "NUM", 0, "Number of rows of B"},
+    { 0, 'n', "NUM", 0, "Number of columns of B"},
+    { "list", 'l', 0, 0, "Show list of available algorithms"},
+    { "time", 't', 0, 0, "Show elapsed time"},
+    { "quiet", 'q', 0, 0, "Do not show any computations"},
+    { "verbose", 'v', 0, 0, "Show all computations"},
     { 0 } 
 };
 
