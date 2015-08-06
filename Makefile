@@ -12,7 +12,7 @@ PATH_A = $(RESOURCES_DIR)a.dat
 PATH_B = $(RESOURCES_DIR)b.dat
 #lower and upper bounds of randomly generated test data
 MIN = 10
-MAX = 100 
+MAX = 100
 SIZE = $(shell echo $(RANK)\*$(RANK) | bc)# RANK * RANK arithmetic operation
 
 # DATA OUTPUT
@@ -36,7 +36,6 @@ GCC = gcc
 SRC_GEN = $(SOURCE_DIR)generate.c
 BUILD_PATH_GEN = $(BUILD_DIR)gen
 
-
 .PHONY: clean
 
 all: pmm gen
@@ -58,9 +57,10 @@ ifeq ($(wildcard $(BUILD_DIR)),)
 	mkdir $(BUILD_DIR)
 endif
 
+#runs cannon's algorithm
 cannon:
 	@mpirun -np $(NPROC) \
-	$(BUILD_PATH) \
+	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_CRUN) \
@@ -71,9 +71,10 @@ cannon:
 	-q \
 	-d$(DEBUG_DIR)
 
+#runs mkl multiplication procedure
 mkl:
 	@mpirun -np 1 \
-	$(BUILD_PATH) \
+	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_MRUN) \
@@ -84,9 +85,10 @@ mkl:
 	-q \
 	-d$(DEBUG_DIR)
 
+#runs simple sequential algorithm 
 seq:
 	@mpirun -np 1 \
-	$(BUILD_PATH) \
+	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_SRUN) \
@@ -98,25 +100,37 @@ seq:
 	-d$(DEBUG_DIR)
 
 data:
+ifeq ($(wildcard $(BUILD_PATH_PMM) $(BUILD_PATH_GEN)),)
+	@make all
+endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
 endif
-	$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_A)
-	$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_B)
+	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_A)
+	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_B)
 
 run: rebuild_dirtree
 	clear
+ifeq ($(wildcard $(BUILD_PATH_GEN)),)
+	@make gen 
+endif
 ifeq ($(wildcard $(PATH_A) $(PATH_B)),)		
 	@make data
 endif
-ifeq ($(wildcard $(BUILD_PATH)),)
-	@make all
+ifeq ($(wildcard $(BUILD_PATH_PMM)),)
+	@make pmm 
 endif
 	@make cannon
 
 clean:
-ifneq ($(wildcard $(BUILD_PATH) $(DEBUG_DIR)*),)
-	@$(RM) $(BUILD_PATH) $(PATH_A) $(PATH_B) $(DEBUG_DIR)*
+ifneq ($(wildcard $(BUILD_PATH_PMM)),)
+	@$(RM) $(BUILD_PATH_PMM)
+endif
+ifneq ($(wildcard $(BUILD_PATH_GEN)),)
+	@$(RM) $(BUILD_PATH_GEN)
+endif
+ifneq ($(wildcard $(DEBUG_DIR)*),)
+	@$(RM) $(DEBUG_DIR)*
 endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
