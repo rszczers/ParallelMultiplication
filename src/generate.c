@@ -13,33 +13,33 @@ static struct argp_option options[] = {
     {"max",     'M', "NUM",                   0, ""},
     {"min",     'm', "NUM",                   0, ""},
     {"float",   'f',     0, OPTION_ARG_OPTIONAL, ""},
-    {"verbose", 'v',     0, OPTION_ARG_OPTIONAL, ""
+    {"verbose", 'v',     0, OPTION_ARG_OPTIONAL, ""},
     { 0 }
 };
 
 struct arguments {
-    char *path;
+    char *filename;
     int length;
     int min;
     int max;
     bool isFloat;
     bool isVerbose;
-}
+};
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state) {
     struct arguments *arguments = state->input;
     switch (key) {
         case 'p':
-            arguments->path = arg;
+            arguments->filename = arg;
             break;
         case 'l':
-            arguments->length = arg;
+            arguments->length = atoi(arg);
             break;
         case 'M':
-            arguments->max = arg;
+            arguments->max = atoi(arg);
             break;
         case 'm':
-            arguments->min = arg;
+            arguments->min = atoi(arg);
             break;
         case 'f':
             arguments->isFloat = true;
@@ -73,45 +73,53 @@ int main(int argc, char *argv[]) {
     int min = arguments.min;
     int max = arguments.max;
     
-    file = fopen(filename, "wb");
+    file = fopen(arguments.filename, "wb");
     if(file == NULL) {
-        perror(filename);
+        perror(arguments.filename);
         return EXIT_FAILURE;
     }
 
     if(arguments.isFloat) {
         char maxtoken[80];
-        float data[length];
- 
+        float data[arguments.length];
         for(int i = 0; i < arguments.length; ++i) {
-            int r = min + (float) rand() / (float) (RAND_MAX / (max - min));
-            sprintf(out, "%lf ", r);
+            float r = ((float)rand()/(float)(RAND_MAX)) * max;
+            data[i] = r;
         }
 
-        snprintf(maxtoken, "%lf ", (float)max);
+        sprintf(maxtoken, "%lf ", (float)max);
         int token_sz = strlen(maxtoken);
 
-        int ntok = BUFFER_SIZE / token_sz; /* optimal number of tokens per write buffer
-                                       where lenght is total number of tokens */
+        int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1); 
+        /* optimal number of tokens per write buffer
+           where lenght is total number of tokens    */
 
-        char *buffer = (char *) malloc( (ntok * token_sz + 1 ) * sizeof(char));
 
+        char *buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));
+        memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+        
+        char token[token_sz];
         int i = 0; /* token number indicator */
-        while(i < lenght) {
+        while(i < arguments.length) {
             int j = 0; /* token number per buffer indicator; total = ntok */
-            while(j < ntok) {
-                snprintf(buffer, "%lf ", data[i]);
+            while (j < ntok && i < arguments.length) {
+                sprintf(token, "%lf ", data[i]);
+                strcat(buffer, token); 
                 i++;
                 j++;
             }
+            fwrite(buffer, sizeof(char), ntok * token_sz, file);
+            memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+
             /* buffer is full and ready to write */
-
+//            buffer[j] = '\0'; /* end of cstring indicator */
             j = 0;
-        } 
+        }
 
-        free(buffer); 
+        fclose(file);
+        free(buffer);
     } else {
-        int data[length];
+        int data[arguments.length];
         for(int i = 0; i < arguments.length; ++i) {
             data[i] = min + rand() % (max - min);
         }

@@ -11,6 +11,8 @@ BUILD_PATH = ./build/$(PROJECT).o
 SIZE = 512 
 NPROC = 4
 
+
+SOURCE_DIR = ./src/
 DEBUG_DIR = ./debug/
 RESOURCES_DIR = ./resources/
 BUILD_DIR = ./build/
@@ -25,6 +27,7 @@ OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
 
 all:
 	@$(CC) $(OPTIONS) $(SRC) $(LIBS) -o $(BUILD_PATH)
+	@gcc $(OPTIONS) ./src/generate.c -o ./build/gen.o
 
 rebuild_dirtree:
 ifeq ($(wildcard $(DEBUG_DIR)),)
