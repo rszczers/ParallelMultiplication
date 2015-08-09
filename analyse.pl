@@ -10,22 +10,18 @@ my $dir = './debug';
 
 foreach my $fp (glob("$dir/debug_*")) {
     open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";
-
-    unless (<$fh> =~ /$method/i) {
-        last;
-    }
-
-    my @data; 
-    while (<$fh>) {
-        my @tmp = /(\d+\.\d+)|(\d+)/g;
-        foreach(@tmp) {
-            if((defined $_) and !($_ =~ /^$/)){
-                push @data, $_;
+    if(<$fh> =~ /$method/gi) {
+        my @data; 
+        while (<$fh>) {
+            my @tmp = /(\d+\.\d+)|(\d+)/g;
+            foreach(@tmp) {
+                if((defined $_) and !($_ =~ /^$/)){
+                    push @data, $_;
+                }
             }
         }
+        print join("\t", @data);
+        print "\n";
     }
-
-    print join("\t", @data);
-    print "\n";
     close $fh or die "can't read close '$fp': $OS_ERROR";
 }
