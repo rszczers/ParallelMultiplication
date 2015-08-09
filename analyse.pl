@@ -1,30 +1,31 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Switch;
 use English;
-
+use feature "switch";
+$ARGV[0] = "CANNON" unless defined $ARGV[0];
 my $method = shift;
-my $dir = '../debug';
-my $dataline;
-foreach my $fp (glob("$dir/debug_*")) {
-    open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR"
 
-    unless (<$fh> ~= /$method/) {
-        break;
+my $dir = './debug';
+
+foreach my $fp (glob("$dir/debug_*")) {
+    open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";
+
+    unless (<$fh> =~ /$method/i) {
+        last;
     }
 
-    while (<$fh>) { # <$fh> returns false at end of file
-        switch($_) {
-            case /ETA/ {
-                my @timedata = split "\t", $_;
-                my $eta = $timedata[1];
-                printf "%s", $eta;
-            }
-            case /ARGS/ {
-
+    my @data; 
+    while (<$fh>) {
+        my @tmp = /(\d+\.\d+)|(\d+)/g;
+        foreach(@tmp) {
+            if((defined $_) and !($_ =~ /^$/)){
+                push @data, $_;
             }
         }
     }
+
+    print join("\t", @data);
+    print "\n";
     close $fh or die "can't read close '$fp': $OS_ERROR";
 }
