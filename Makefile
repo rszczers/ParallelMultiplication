@@ -1,5 +1,5 @@
-RANK = 16	#rank of randomly generated test square matrix
-NPROC = 4	#number of MPI threads
+RANK = 2048	#rank of randomly generated test square matrix
+NPROC = 16	#number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -65,9 +65,9 @@ cannon:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_CRUN) \
-	-m $(SIZE) \
-	-n $(SIZE) \
-	-k $(SIZE) \
+	-m $(RANK) \
+	-n $(RANK) \
+	-k $(RANK) \
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR)
@@ -79,9 +79,9 @@ mkl:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_MRUN) \
-	-m $(SIZE) \
-	-n $(SIZE) \
-	-k $(SIZE) \
+	-m $(RANK) \
+	-n $(RANK) \
+	-k $(RANK) \
 	--method=MKL \
 	-q \
 	-d$(DEBUG_DIR)
@@ -93,9 +93,9 @@ seq:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_SRUN) \
-	-m $(SIZE) \
-	-n $(SIZE) \
-	-k $(SIZE) \
+	-m $(RANK) \
+	-n $(RANK) \
+	-k $(RANK) \
 	--method=sequential \
 	-q \
 	-d$(DEBUG_DIR)
