@@ -1,0 +1,362 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{inputenc}
+\usepackage{geometry}
+\usepackage{polski}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage[]{algorithm2e}
+\DeclareGraphicsExtensions{.eps}
+
+\setlength\parindent{0pt}
+%opening
+\title{Równoległe algorytmy mnożenia macierzy \\
+\large Parallel matrix multiplication algorithms}
+\author{Rafał Szczerski}
+
+\newtheorem{definition}{Definicja}
+
+\begin{document}
+
+\maketitle
+\newpage
+\section{Wstęp}
+Zbiór dobrze określonych reguł lub zadań prowadzących w skończonej ilości kroków do rozwiązania pewnego problemu nazywamy algorytmem\cite{IEEE96}.\\
+
+Określone w ten sposób zadania są z reguły względem siebie niezależne. Pewne z nich mogą zachodzić równolegle (\emph{concurrently}), inne – sekwencyjnie, jedno po drugim. Wobec tego algorytm może być określony częściowo równolegle, częściowo sekwencyjnie.\\
+\begin{figure}[h]
+\centering
+\begin{subfigure}{1\textwidth}
+\centering
+\includegraphics[scale=.5]{Rys1.eps}
+\caption{Algorytm równoległy}
+\label{fig:parallel}
+\end{subfigure}\\
+
+\vspace{5mm}
+\begin{subfigure}{1\textwidth}
+\centering
+\includegraphics[scale=.5]{Rys2.eps}
+\caption{Algorytm sekwencyjny}
+\label{fig:parallel}
+\end{subfigure}
+
+\caption{Tutaj będzie ładny i mądry podpis}
+\end{figure}
+
+Algorytmy możemy z grubsza podzielić na 
+\begin{enumerate}
+ \item Algorytmy szeregowe
+ \item Algorytmy równoległe
+ \item Algorytmy szeregowo równoległe (SPA, Serial–parallel algorithms)
+ \item Algorytmy nieszeregowo-równoległe (Nonserial-parallel algorithms, NSPA)
+ \item Regular iterative algorithms (RIA)
+\end{enumerate}
+
+
+\subsection{Terminologia}
+Ograniczenia zasobów (np. czasu i przestrzeni) wymagane przez algorytmy sekwencyjne mierzymy jako funkcję rozmiaru danych wejściowych \(T(n)\), tzw. złożoność. Ograniczenia te wyrażamy asymptotycznie używając notacji:
+
+\begin{enumerate}
+\item \(T(n) = O(f(n))\), jeśli istnieje dodatnie stałe \(c\) i \(n_0\) takie, że \(\forall{n \geq n_0}: (T(n)\leq cf(n)) \)
+\item \(T(n) = \Omega(f(n))\), jeśli istnieje dodatnie stałe \(c\) i \(n_0\) takie, że \(\forall{n \geq n_0}: (T(n)\geq cf(n)) \)
+\item \(T(n) = \Theta(f(n))\), jeśli \(T(n)=O(f(n))\) i \(T(n)=\Omega(f(n))\)
+\end{enumerate}
+
+Czas wykonania algorytmu sekwencyjnego szacuje się przez liczbę operacji podstawowych wymaganych przez algorytm jako funkcję ilości danych wejściowych.\\
+
+Model formalny odpowiedni dla powyższych rozważań odpowiada maszynie RAM (Random Access Machine). Zakłada on istnienie pewnej centralnej jednostki obliczeniowej z dołączoną do niej pamięcią swobodnego dostępu oraz wejściem i wyjściem dla danych.\\
+
+
+% Dowolny algorytm możemy przedstawić jako rysunek grafu zależności (\emph{dependence graph}).
+% \begin{definition}[Graf zależności]
+% Powiedzmy, że:
+% \begin{enumerate}
+% \item \(V\neq\emptyset\) jest zbiorem,
+% \item \( E \subseteq V \times V \) jest relacją przechodnią taką, że jeśli \((a, b) \in R\), to \(a, b)\) znaczy ``wykonaj b przed a''.
+% \end{enumerate}
+% Grafem zależności \(G\) nazwiemy dwójkę \((S, T)\), gdzie \(T \subseteq R\) i \(R\) jest przechodnim domknięciem \(T\).
+% \end{definition}
+
+% Elementy zbioru \(E\) nazywamy \textbf{krawędziami} grafu \(G\), zaś elementy zbioru \(V\) – \textbf{węzłami} (wierzchołkami) grafu G. Jeśli \((a, b)\in E\), to \(a\) nazywamy \textbf{początkiem} krawędzi \(ab\), \(b\) – \textbf{końcem} krawędzi \(ab\).\\
+% 
+% W myśl powyższej definicji graf zależności jest pewnym zbiorem węzłów i krawędzi. Węzły przedstawiają zadania wykonywane w algorytmie, zaś krawędzie – dane użyte w trakcie tych czynności.\\
+
+% Chcąc zaznaczyć kierunek przepływu danych między czynnościami możemy reprezentować algorytm również za pomocą \textbf{grafu skierowanego} (digrafu).
+
+% Grafem \(G\) nazywamy parę uporządkowaną \((V, E)\), składającą się ze zbioru wierzchołków V i zbioru krawędzi E. Określone jest przy tym odwzorowanie, tzw. \emph{funkcja incydencji}, która każdemu elementowi z \(E\) przyporządkowuje dokładnie jedną parę uporządkowaną lub nieuporządkowaną (niekoniecznie różnych) elementów zbioru \(V\).
+
+\begin{definition}[Graf skierowany (DG)]
+Powiedzmy, że:
+\begin{enumerate}
+\item \(V\neq\emptyset\) jest zbiorem
+\item \( E \subseteq V \times V \)
+\end{enumerate}
+Grafem skierowanym \(G\) nazwiemy dwójkę \((V, E)\).\\
+\end{definition}
+\textbf{Ścieżką} łączącą \(v_0\) z \(v_n\) o długości \(n\) nazywamy ciąg wierzchołków \((v_0, v_1, \dots, v_n)\) taki, że dla każdego \(k\in \{0, 1, \dots, n-1\}\) istnieje krawędź z \(v_k)\) do \(v_{k+1}\)\\
+
+\textbf{Drogą} w grafie \(G\)nazywamy ścieżkę, której wierzchołki są różne. \textbf{Długością} drogi w grafie \(G\) nazywamy liczbę krawędzi, które zawiera droga.
+
+Drogę zamkniętą długości co najmniej 1 z ciągiem wierzchołków \(x_1 x_2\dots x_n x_1\) nazywamy \textbf{cyklem}, jeśli wszystkie wierzchołki \(x_1, x_2\dots x_n\) są różne.\\
+
+\textbf{Stopień \(d_{G}(v)\) wierzchołka} \(v\) definiujemy jako liczbę incydentnych z \(v\) krawędzi. Każdemu wierzchołkowi \(v\) grafu skierowanego \(G\) możemy przypisać stopień wyjściowy (ang. \emph{indegree}) \(d_{G}^{+}(v)\) i stopień wejściowy (ang. \emph{outdegree}) \(d_{G}^{-}(v)\):
+\begin{align*}
+ d_{G}^{+}(v) = \#\{w|(v,w)\in E\}\\ 
+ d_{G}^{-}(v) = \#\{w|(w,v)\in E\}
+\end{align*}
+
+\begin{definition}{Macierz}\\
+ Niech \(\mathbb{K}\) będzie ciałem. Macierzą o \(m\) wierszach i \(n\) kolumnach i wartościach w \(\mathbb{K}\) (krótko: macierzą \(m\times n\)) nazwamy każde odwzorowanie \(A:\{1,\dots, m\}\times \{1, \dots, n\}\longmapsto \mathbb{K}, (i,j)\longmapsto A_{ij}\)
+\end{definition}
+
+
+
+\newpage
+\paragraph{Równoległość}
+Słownik IEEE pojęć elektrycznych i elektronicznych\cite{IEEE96} definiuje równoległość w odniesieniu do oprogramowania jako symultaniczny transfer, występowanie albo przetwarzanie poszczególnych części pewnej całości, takich jak bity składające się na znak albo znaki pewnego słowa, używając osobnych urządzeń dla różnych części.\\
+
+Algorytmy równoległe i architektury równoległe są ze sobą blisko spokrewnione. Nie sposób myśleć o jednym bez drugiego. Równoległość może być zaimplementowana na wielu poziomach używając technik sprzętowych i programowych\cite{A&PC2011}
+\begin{enumerate}
+ \item Równoległość na poziomie danych, gdzie pracujemy na wielu bitach danych lub na wielu danych jednocześnie.
+ \item Równoległość na poziomie instrukcji (ILP), gdzie jednocześnie procesor może wykonać więcej niż jedną instrukcję.
+ \item Równoległość na poziomie wątków (TLP). Wątem jest częścią programu, która współdzieli zasoby procesora z innymi wątkami. W TLP wiele programowych wątków jest uruchamianych jednocześnie na jednym bądź wielu procesorach.
+ \item Równoległość na poziomie procesów. Proces to program, który jest uruchomiany na komputerze. Rezerwuje on własne zasoby komputera, takie jak przestrzeń pamięciową i rejestry. 
+\end{enumerate}
+
+Słownik IEEE pojęć elektrycznych i elektronicznych\cite{IEEE96} definiuje architekturę równoległą jako „architekturę wieloprocesorową, na której można wykonywać przetwarzanie równoległe”.\\
+
+\textbf{Algorytmem równoległym} nazywamy każdy algorytm w którym spośród określonych w nim czynności \(T_1\), \(T_2\), \(\dots\), \(T_n\) co najmniej dwie czynności \(T_i\), \(T_j\), \(i\neq j\) dzięki ich wzajemnej niezależności, mogą być wykonane równocześnie\cite{A&PC2011}.\\
+
+Graf skierowany przedstawiający algorytm równoległy wygląda jak długi wiersz wzajemnie niezależnych zadań. Na Rysunku 1 pokazany jest przykładowy rysunek takiego grafu.\\
+
+Prostym przykładem algorytmu równoległego jest serwer siecowy, który każde zapytanie przychodzące przetwarza niezależnie od innych zapytań. Innym przykładem są wielozadaniowe systemy operacyjne, radzące sobie z jednoczesną obsługą kilku uruchomionych programów.\\
+
+\paragraph{Motywacja}
+Można wyróżnić trzy zasadnicze powody dla których od drugiej połowy lat '90 istnieje silne zainteresowanie obliczeniami równoległymi.
+\begin{enumerate}
+ \item Stały spadek kosztów sprzętu komputerowego
+ \item Rozwój VLSI (\emph{Very-large-scale integration}) do poziomu umożliwiającego projektowanie układów scalonych zawierających miliony tranzystorów na pojedyńczym chipie
+ \item Osiągnięcie fizycznych ograniczeń czasu cyklu procesora w architekturze von Neumanna
+\end{enumerate}
+
+Obliczenia równoległe, w świetle ograniczeń fizycznych procesorów jednordzeniowych, są odpowiedzią na potrzebę wykonywania szybszych obliczeń. Szybsze obliczenia pozwalają na obliczenia w większej skali i otrzymywanie szybszych rozwiązań.
+
+\paragraph{Komputer równoległy} Dowolny układ procesorów, zwykle tego samego rodzaju, połączonych w pewien sposób umożliwiający zarządzanie zadaniami i wymianę danych nazywamy komputerem równoległym\cite{JaJa92}.\\
+
+\subsection{Szacowanie korzyści z obliczeń równoległych}
+Potencjalną korzyść z równoległego wykonania zadania obliczeniowego możemy zmierzyć licząć czas jaki zajmuje wykonanie go na jednym procesorze i skonfrontowanie wyniku z wykonaniem tego samego zadaniarównolegle na \(N\) procesorach. Współczynnik przyspieszenia \(S(N)\) możemy zdefiniować jako
+\begin{align}
+ S(N)=\frac{T_{p}(1)}{T_{p}(N)}
+\end{align}
+gdzie \(T_{p}(1)\) jest czasem obliczenia wykonanego na jednym procesorze, \(T_{p}(N)\) jest czasem obliczenia równoległego.
+\subsubsection{Koszty komunikacji}
+Dla pojedyńczego lub równoległego systemu komputerowego zawsze istnieje potrzeba odczytu z pamięci i zapisu wyniku obliczeń. Komunikacja z pamięcią zabiera czas ze względu na niezgodność czasu taktowania procesora i czasu taktowania pamięci. Ponadto w systemach równoległych istnieje potrzeba wymiany danych między samymi procesorami.\\
+
+\subsubsection{Prawo Amdahla}
+Maksymale przyspieszenie określone jest wzorem
+\begin{equation}
+ S(p, n) = \left(s+\frac{1-s}{p}\right)^{-1}
+\end{equation}
+gdzie s – część obliczeń w algorytmie które muszą być wykonane sekwencyjnie; p – liczba procesorów.
+
+
+\subsubsection{Prawo Gustafsona i Barsisa}
+Prawo Gustafsona i Barsisa określa skalowanie przyspieszenia, ponieważ wraz ze wzrostem liczby procesorów rośnie rozmiar problemu, tak aby zachować stały czas obliczeń równoległych\\
+Wraz ze wzrostem rozmiaru danych wejściowych rośnie zapotrzebowanie na pamięć operacyjną, dyskową oraz przepustowość sieci.
+
+
+\subsection{Acykliczne grafy skierowane}
+
+\begin{definition}[Acykliczny graf skierowany (DAG)]
+Acyklicznym grafem skierowanym nazywamy graf skierowany nie zawierający cykli.
+\end{definition}
+
+Wiele obliczeń możemy repezentować za pomocą acyklicznych grafów skierowanych. Każde wejście jest oznaczane przez węzeł bez dochodzących do niego łuków. Operacje oznaczamy przez węzły do których wchodzą łuki z innych węzłów oznaczających argumenty (operandy). Stopeiń wejściowy dowolnego węzła wynosi co najwyżej 2. Węzeł, którego stopień wyjściowy jest równy 0 oznacza wyjście. Zakładamy, że każdy węzeł przedstawia operację, która wymaga jednej jestostki czasu wykonania.\\
+
+Za pomocą modelu DAG'owskiego możemy analizować zachowanie równoległych algorytmów pod założeniem, że każdy z procesorów ma dostęp do danych obliczonych przez inny procesor bez dodatkoych narzutów. Algorymtm możemy zaimplementować przez \emph{planowanie} wykonania każdego węzła na wybranym procesorze.\\
+Bardziej szczegółowo powiedzielibyśmy, że dla danych \(p\) procesorów, chcemy przyporządkować każdemu węzłowi \(i\) parę \((j_i, t_i)\), gdzie \(j_i \leq p\) oznacza indeks procesora, zaś \(t_i\) jednostkę czasu, taką że zachodzą poniższe warunki:
+\begin{enumerate}
+\item Jeśli \(t_i=t_k\) dla pewnego \(i\neq k\), to \(j_i\neq j_k\). Oznacza to, że każdy procesor może wykonać pojedyńczą operację podczas każdej jednostki czasu.
+\item Jeśli \((i, k)\) jest łukiem grafu, to \(t_k\geq t_i + 1\). Oznacza to, że operacja, którą przedstawia węzeł k powinna być zaplanowania po wykonaniu operacji przedstawionej przez węzeł \(i\).
+\end{enumerate}
+
+Przyjmuje się, że czas \(t_i\) węzła wejściowego \(i\) wynosi 0 oraz żaden procesor nie jest przyporządkowany do tego węzła.\\
+
+Ciąg \(\{(j_i, t_i) | i\in N\}\) nazywamy planem równoległego wykonania DAG przez \(p\) procesorów, gdzie \(N\) oznacza zbiór węzłów DAG.
+
+Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) algorytmu jest określony przez \(\max_{i\in N}t_i\). Złożonośc równoległa DAG'a jest określona przez \(T_{p}(n) = \min{\{\max_{i\in N}t_i\}}\), gdzie minimum bierzemy po wszystkich planach, które używają \(p\) procesorów. widać, że głębokość DAG'a, określana jako długość drogi między węzłem wejścia i węzłem wyjścia, jest ograniczeniem dolnym \(T_{p}(n)\) dla dowolnej liczby procesorów \(p\).
+
+\subsection{Model pamięci współdzielonej}
+
+Model wspólnej pamięci składa się z pewnej liczby procesorów, z których każdy posiada własną pamięć i może lokalnie wykonywać programy. Wszystkie procesory mogą komunikować się za pomocą wspólnej globalnej pamięci.\\
+Każdemu procesorowi przypożądkowany jest niepowtarzająca się liczba naturalna. Jest to lokalnie dostępny indeks, numer procesora lub jego identyfikator.\\
+
+W modelu wspólnej pamięci wyróżniamy dwa podstawowe tryby operacji. W pierwszym trybie, synchronicznym, wszystkie procesory działają synchronicznie według wspólnego zegara. Model ten nazywamy równoległą maszyną o dostepie swobodnym (PRAM, parallel random-access machine).\\
+W drugi trybie, asynchronicznym, każdy procesor pracuje według osobnego zegara. W tym trybie programista jest odpowiedzialny za odpowiednią synchronizację procesorów, jeśli zachodzi taka potrzeba. Dokładniej mówiąc, jeśli procesor ma pobrać dane, to odpowiedzialnością programisty jest upewnienie się, że odpowiednie dane są już uzyskane, ponieważ wartości wspólnych zmiennych są określane dynamicznie w trakcie wykonania programu na różnych procesorach.\\
+
+Ponieważ każdy procesor może uruchomić swój program lokalnie, ten model jest typu MIMD w klasyfikacji Flynna. Znaczy to tyle, że każdy procesor może wykonać pewną instrukcję lub operację na danych niezależnie od tych wykonanych na jakimkolwiek innym procesorze w trakcie danej jednostki czasu.\\
+
+Dla danego algorytmu, rozmiar danych wymienionych pomiędzy pamięcią globalną i pamięcią lokalną różnych procesorów wyraża rozmiar \textbf{komunikacji} wymaganej przez algorytm.
+
+Możemy wyróżnić kilka wariantów modelu PRAM w zależności od wymagań jakie postawimy odnośnie jednoczesnego dostępu kilku procesorów do tego samego adresu w pamięci globalnej.\\
+
+\textbf{EREW} – algorytmy z wyłącznym odczytem i wyłącznym zapisem; nie pozwala na jednoczesny zapis do pamieci\\
+\textbf{CREW} – algorytmy z jednoczesnym odczytem i wyłącznym zapisem; pozwala na jednoczesny  dostęp do pamięci dla instrukcji odczytu\\
+\textbf{CRCW} algorytmy z jednoczesnym odczytem i jednoczesnym zapisem;\\
+\textbf{ERCW} algorytmy z wyłącznym odczytem i jednoczesnym zapisem.\\
+
+Jeśli nie poczyni się żadnych dodatkowych założeń, to nie jest jasno określone, co zostanie zapisane w komórce pamięci w wyniku jednoczesnego zapisywania do niej przez wiele procesorów w algorytmie typu CRCW. W literaturze można spotkać wiele typów maszyny PRAM, które różnią się sposobami rozwiązywania konfliktów zapisu. Można wśród nich wyróżnić\cite{Cormen94}:\\
+
+\begin{enumerate}
+\item jednolity (ang. common) – procesory muszą zapisać do tej samej komórki pamięci jednolitą wartość
+\item dowolny (ang. arbitrary) – zapamiętywana jest dowolna wartość z wartości zapisywanych do tej samej komórki pamięci
+\item priorytetowy (ang. priority) – zapamiętywana jest wartość zapisywana przez procesor o najmniejszym numerze
+\item (ang. combining) – zapamiętywana jest wartość jest pewną, jednak ściśle określoną kombinacją zapisywanych wartości
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.25]{Rys4.eps}
+\caption{Model wspólnej pamięci}
+\label{fig:parallel}
+\end{figure}
+\subsection{Model sieciowy}
+Sieć możemy przedstawić modelowo jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory. Tak jak w przypadku modelu z pamięcią współdzieloną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
+
+W opisie algorytmów dla modelu sieciowego potrzebujemy zdefiniować dwie instrukcje do opisania komunikacji między procesorami.
+\begin{enumerate}
+ \item send\((X,i)\)
+ \item receive\((X,j)\)
+\end{enumerate}
+
+Procesor \(P\) wykonujący instrukcję \textbf{send} wysyła kopię \(X\) do procesora \(P_i\), następnie natychmiast przechodzi do wykonywania kolejnej instrukcji.\\
+Procesor \(P\) wykonujący instrukcję \textbf{receive} zatrzymuje wykonanie programu aż do chwili, gdy otrzyma dane z procesora \(P_j\), a następnie przechowuje dane w \(Y\) i kontynuuje wykonanie programu.\\
+
+Procesory w pracujące w sieci asynchronicznej zarządzają swoimi zadaniami przez wymianę komunikatów. Schemat taki nazywamy modelem wymiany komunikatów. Procesory te niekoniecznie muszą być ze sobą sąsiadujące. Proces dostarczania każdego komunikatu od źródła do przeznaczenia nazywmy routingiem.\\
+
+Charakterysuje ją kilka parametrów:
+
+\begin{enumerate}
+ \item średnica – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej.
+ \item maksymalny stopień wierzchołka – maksymalna liczba łączy do dane procesora
+ \item szerokość połowienia sieci – minimalna liczba krawędzi, które muszą zostać usunięty, aby podzielić ją na dwie równe podsieci
+ \item spójność krawędziowa – minimalna liczba krawędzi, które muszą ulec awarii, aby sieć stała się niespójna
+ \item koszt sieci – koszt wykonania, zarządzania i utrzymania połączeń między procesorami; w najprostrzym przypadku mierzony liczbą krawędzi
+\end{enumerate}
+
+
+\subsubsection{Sieć liniowa}
+Model składa się z \(p\) procesorów \(P_1, P_2, \dots, P_p\) połączonych ze sobą w ciąg, tzn. procesor \(P_i\) połączony jest z procesorem \(P_{i-1}\) i \(P_{i+1}\), o ile takie istnieją. Średnica takiej sieci wynosi \(p-1\), jej maksymalny stopień wynosi \(2\).\\
+\paragraph{Pierścień}Sieć liniowa z połączonymi końcami.
+\subsubsection{Dwuwymiarowa bryła}
+Dwuwymiarowa bryła jest dwuwymiarową wersją sieci liniowej. Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) taką, że procesor \(P_{i,j}\) jest połączony z procesorem \(P_{i\pm 1, j}\) i \(P_{i, j\pm 1}\).\\
+Średnica takiej sieci złożonej z \(p=m^2\) procesorów wynos \(\sqrt{p}\) a jej maksymalny stopień \(4\)
+\subsubsection{Sieć hipersześcienna}
+\begin{definition}{Kostka Boola}\\
+Niech \(i_{d-1}i_{d-2}\dots i_{0}\), gdzie \(0\leq i \leq p-1\) będzie binarną reprezentacją \(i\). Wówczas procesor \({i}\) jest połaczony z procesorem \(P_{i^(j)}\), gdzie \(i^{(j)}=i_{d-1}\dots \overline{i_j} \dots i_0\) i \(\overline{i_j} = 1 - i_j\). Innymi słowy, dwa procesory są ze sobą połączone wtedy i tylko wtedy, gdy ich wskaźniki różnią się tylko jednym bitem.
+
+\end{definition}
+Sieć w topologii hipersześcianu skłąda się z \(p=2^d\) procesorów połączonych w d-wymiarową kostkę Boola.\\
+
+Hipersześcian ma strukurę rekursywną. Kostkę \(d\)-wymiarową możemy rozszerzyć do \(d+1\) wymiarów przez połączenie odpowiednichy procesorów do \(d\)-wymiarowych kostek.\\
+
+Średnica d-wymiarowego kipersześcianu wynosi \(d=\log{p}\). Jest tak ponieważ odległośc w grafie między dwoma procesorami \(P_i\) i \(P_j\) jest równa liczbie pozycji bitów, którymi wskaźniki \(i\) i \(j\) różnią się między sobą. Stąd jest ona mniejsza lub równa \(d\), a ponadto odległość między \(P_0\) a \(P_{2^d-1}\) wynosi d. Każdy węzeł jest stopnia \(d=\log{p}\).
+
+
+
+
+\newpage
+\section{Algorytmy mnożenia macierzy}
+\subsection{Algorytm sekwencyjny}
+\subsection{Standardowy algorytm równoległy}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.5]{Rys3.eps}
+\caption{Standardowy iloczyn macierzowy}
+\label{fig:parallel}
+\end{figure}
+
+Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia Rys. 2. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając n procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
+
+\subsection{Standardowy algorytm w modelu PRAM}
+Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\). Załóżmy, że dysponujemy \(n^3\) procesorami w naszej maszynie PRAM; oznaczmy je przez \(P_{i,j,l}\) gdzie \(1\leq i, j, l \leq n\). Wówczas dla każdej pary \((i, j)\), n procesorów \(P_{i,j,l}\), gdzie \(1\leq l \leq n\), oblicza sumę \(\sum_{l=1}^{n}A(i,l)B(l,j)\).\\
+\begin{algorithm}[h]
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\Input{Macierze \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\) przechowywanych we wspólnej pamięci. Lokalnie zainicjalizowane zmienne to \(n\) i trójka wskaźników \((i, j, l)\)}
+\Output{Iloczyn \(\mathbf{C=AB}\) w pamięci współdzielonej}
+\begin{enumerate}
+ \item \( C'(i,j,l) = A(i,l)B(l,j) \)
+ \item for \(h = 1\) to \( \log{n}\) do\\
+ if \(l \leq n/2^k\) then \(C(i,j,l):=C'(i,j,2l-1)+C'(i,j,2l)\)
+ \item \(if(l=1)\) thne set \(C(i,j):=C'(i,j,1)\)
+\end{enumerate}
+\caption{Algorytm mnożenia macierzy w modelu PRAM\label{IR}}
+\end{algorithm}
+\subsection{Mnożenie systoliczne w bryle}
+Rysunek 1.7 przedstawia możliwy schemat obliczenia iloczynu \(AB = C\) w myśl paradygmatu systoilicznego. Wiersze macierzy \(A\) są wprowadzane synchroniczne skośnie od lewej strony bryły; kolumny macierzy \(B\) są wprowadzane synchronicznie skośnie od góry bryły.\\
+Gdy procesor \(P_{i,j}\) odbierze dwie dane wejściowe \(A(i, l)\) i \(B(l,j)\), to przeprowadza operację \(C(i,j):=C(i,j+A(i,l)(B(l,j)\); po tym przesyła \(A(i,l)\) do swojego prawego sąsiada, a \(B(l,j)\) do sąsiada poniżej.
+
+Po \(O(n)\) krokach, każdy procesor \(P_{i,j}\) będzie miał szukaną wartość \(C(i,j)\).\\
+
+Algorytmy systoliczne pracują całkowicie synchronicznie; w każdej jednostce czasu, procesor otrzymuje dane od pewnego sąsiada, przeprowadza na nich lokalne obliczenia i następnie wysyła dane do któregoś swojego sąsiada.
+
+\subsection{Algorytm mnożenia w sieci hipersześciennej}
+Rozważmy problem mnożenia macierzy \(AB = C\) w synchronicznym hipersześcianie z \(p=n^3\) procesorów, gdzie wszystkie macierze są wymiaru \(n\times n\).\\
+Niech \(n=2^q\) i stąd \(p=2^{3q}\). Przypiszmy procesorom wskaźniki \((l,i,j)\) takie, że \(P_{l,i,j}\) oznacza procesor \(P_r\), gdzie \(r=ln^2+in+j\). Innymi słowy, rozkładając wskaźnik r binarnie otrzymuje, że \(q\) najbardziej znaczących bitów odpowiada indeksowi \(l\), następne \(q\) najbardziej znaczących bitów odpowiada indeksowi \(i\) i ostatecznie \(q\) najmniej znaczących bitow odpowiada wskaźnikowi \(j\). W szczególności, jeśli ustalimy dowolną parę wskaźników spośród \(l\), \(i\) oraz \(j\) oraz będziemy przechodzili z pozostałym wskaźnikiem po wszystkich jego możliwych wartościach, otrzymamy podkostkę wymiaru \(q\).\\
+
+Wejściowy ciąg \(A\) jest zapamiętany w podkostce wyznaczonej przez procesory \(P_{l,i,0}\), gdzie \(0\leq l, i \leq n-1\), tak, że \(A(i,l)\) jest zapamiętane w procesorze \(P_{l,i,0}\).\\
+Podobnie ciąg B jest zapamiętany w podkostce procesorów \(P_{l,0,j}\), gdzie procesor \(P_{l,0,j}\) zapamiętuje \(B(l,j)\).\\
+Celem jest obliczeniem \(C(i,j)=\sum_{l=0}^{n-1}A(i,l)B(l,j)\) dla \(0\leq i, j\leq n-1\). Algorytm składa się z trzech etapów:
+\begin{enumerate}
+ \item Dane wejściowe są rozdystrybuowane tak, że procesor \(P_{l,i,j}\) pamięta 
+\end{enumerate}
+
+\subsection{Algorytm Strassena}
+\cite{Strassen68}
+\cite{Cormen94}
+\subsection{Algorytm Foxa}
+\subsection{Algorytm Cannona}
+
+\begin{thebibliography}{9}
+ 
+\newpage 
+\bibitem{IEEE96}
+  Standards Coordinating Committee 10, Terms and Definitions. 
+  \emph{The IEEE Standard Dictionary of
+Electrical and Electronics Terms}, J. Radatz, Ed. IEEE, 1996.
+
+\bibitem{A&PC2011}
+Fayez Gebali,
+\emph{Algorithms and Parallel Computing},
+Wiley 2011
+
+\bibitem{Cormen94}
+Cormen Thomas H., Leiserson Charles E., Rivest Roland L., Stein Clifford
+\emph{Wprowadzenie do algorytmów},
+WNT 2001
+
+\bibitem{JaJa92}
+Joseph JaJa,
+\emph{Introduction to Parallel Algorithms},
+Addison-Wesley 1992
+
+\bibitem{Strassen68}
+Volker Strassen,
+\emph{Gaussian Elimination is not Optimal},
+Numer. Math. 13, 354–356, 1969
+
+\end{thebibliography}
+
+\end{document}
