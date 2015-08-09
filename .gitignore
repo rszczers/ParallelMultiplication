@@ -3,7 +3,4 @@
 *.swp
 ./debug/
 ./resources/*
-./resources/a.dat
-./resources/b.dat
-./resources/c*
 
