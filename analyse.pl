@@ -8,12 +8,13 @@ my $method = shift;
 my $dir = '../debug';
 my $dataline;
 foreach my $fp (glob("$dir/debug_*")) {
-    open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";    
-    while (<$fh>) { # <$fh> returns false at end of file
-        unless (/$method/) {
-            break;
-        }
+    open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR"
 
+    unless (<$fh> ~= /$method/) {
+        break;
+    }
+
+    while (<$fh>) { # <$fh> returns false at end of file
         switch($_) {
             case /ETA/ {
                 my @timedata = split "\t", $_;
