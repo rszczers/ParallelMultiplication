@@ -50,7 +50,7 @@
 \thispagestyle{empty}
 \begin{tabular}{c@{\hspace{15mm}}|@{\hspace{3mm}}l}
 \vspace{-31mm}  & \\
-\multicolumn{2}{l}{\hspace{-35.5mm}\includegraphics[scale=0.25]{logoumcs}} \\
+\multicolumn{2}{l}{\hspace{-35.5mm}\includegraphics[scale=0.25]{./images/logoumcs}} \\
 \multicolumn{2}{@{\hspace{20mm}}l}{\vspace{-4mm}} \\
 \multicolumn{2}{@{\hspace{20mm}}l}{\Large UNIWERSYTET MARII CURIE-SKŁODOWSKIEJ} \\
 \multicolumn{2}{@{\hspace{20mm}}l}{\vspace{-4mm}} \\
@@ -186,7 +186,7 @@ Na podstawie niezależności zadań obliczeniowych algorytmy możemy podzielić 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=29em]{Rys2.eps}
+\includegraphics[width=29em]{./images/Rys2.eps}
 \caption{Algorytm sekwencyjny}
 \label{fig:sequential}
 \end{figure}
@@ -204,7 +204,7 @@ W celu rozwiązania problemu za pomocą większej liczby procesorów należy go 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=23em]{Rys1.eps}
+\includegraphics[width=23em]{./images/Rys1.eps}
 \caption{Algorytm równoległy}
 \label{fig:parallel}
 \end{figure}
@@ -268,7 +268,7 @@ Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) al
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia Rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając n procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
 \begin{figure}[H]
 \centering
-\includegraphics[width=36em]{Rys3.eps}
+\includegraphics[width=36em]{./images/Rys3.eps}
 \caption{Standardowy iloczyn macierzowy}
 \label{fig:standard_parallel}
 \end{figure}
@@ -380,7 +380,7 @@ Model RAM (\emph{Random Access Machine}) odpowiada rozważaniom zawartym w \ref{
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=7em]{Rys_RAM.eps}
+\includegraphics[width=7em]{./images/Rys_RAM.eps}
 \caption{Model obliczeń sekwencyjnych RAM}
 \label{fig:ram}
 \end{figure}
@@ -446,7 +446,7 @@ Jeśli nie poczyni się żadnych dodatkowych założeń, to nie jest jasno okre�
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=20em]{Rys4.eps}
+\includegraphics[width=20em]{./images/Rys4.eps}
 \caption{Model wspólnej pamięci}
 \label{fig:model_shared}
 \end{figure}
@@ -512,7 +512,7 @@ Hipersześcian ma strukurę rekursywną. Kostkę \(d\)-wymiarową możemy rozsze
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=36em]{systolic.eps}
+\includegraphics[width=36em]{./images/systolic.eps}
 \caption{Sieć w topologii hipersześcianu}
 \label{fig:systolic}
 \end{figure}
@@ -679,7 +679,7 @@ Pomijamy szczegóły operacji dotyczących dostępu do pamięci. Operacje postac
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=34em]{pram_sum}
+\includegraphics[width=34em]{./images/pram_sum}
 \caption{Algorytm sumowania ośmiu elementów w modelu PRAM z osmioma procesorami. Każdy wewnętrzny wierzchołek grafu reprezentuje operację sumowania.}
 \label{fig:pram_sum}
 \end{figure}
@@ -819,7 +819,7 @@ Algorytmy systoliczne pracują całkowicie synchronicznie; w każdej jednostce c
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=30em]{systolic2.eps}
+\includegraphics[width=30em]{./images/systolic2.eps}
 \caption{Mnożenie macierzy w modelu sieciowym za pomocą algorytmu systolicznego. Wiersze macierzy \(\mathbf{A}\) są synchronicznie umieszczane w sieci od lewej strony, podczas, gdy równocześnie ,,od góry'' umieszczane są synchronicznie kolumny macierzy \(\mathbf{B}\). Gdy elementy \(A(i,l)\) i \(B(l,j)\) są dostępne na procesorze \(P_{i,j}\), wykonywane jest działanie \(C(i,j)=C(i,j)+A(i,l)B(l,j)\), \(A(i,l)\) zostaje wysłany do procesora \(P_{i,j+1}\) (o ile taki istnieje) oraz \(B(l,j)\) zostaje wysłany do procesora \(P_{i+1,j}\) (o ile taki istnieje).}
 \label{fig:systolic_mesh}
 \end{figure}
