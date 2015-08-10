@@ -19,9 +19,9 @@ for((j=0; j<3; j++)); do
     echo "make mkl"   
 done
 
-./analyse.pl cannon | sort -k1,8 > gnuplot/cannon.dat
-./analyse.pl mkl | sort -k1,8 > gnuplot/mkl.dat
-./analyse.pl sequential | sort -k1,8 > gnuplot/sequential.dat
+./analyse.pl cannon | sort -t$'\t' -k5 -n > gnuplot/cannon.dat
+./analyse.pl mkl | sort -t$'\t' -k5 -n > gnuplot/mkl.dat
+./analyse.pl sequential | sort -t$'\t' -k5 -n > gnuplot/sequential.dat
 
 cd gnuplot
 gnuplot speedup.p
