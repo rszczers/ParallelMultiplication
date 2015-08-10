@@ -1,4 +1,4 @@
-RANK = 2048	#rank of randomly generated test square matrix
+PROBLEM = 512	#rank of randomly generated test square matrix
 NPROC = 16	#number of MPI threads
 ###############################################################################
 
@@ -14,7 +14,7 @@ PATH_B = $(RESOURCES_DIR)b.dat
 #lower and upper bounds of randomly generated test data
 MIN = 10
 MAX = 100
-SIZE = $(shell echo $(RANK)\*$(RANK) | bc)# RANK * RANK arithmetic operation
+SIZE = $(shell echo $(PROBLEM)\*$(PROBLEM) | bc)
 
 # DATA OUTPUT
 OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
@@ -65,9 +65,9 @@ cannon:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_CRUN) \
-	-m $(RANK) \
-	-n $(RANK) \
-	-k $(RANK) \
+	-m $(PROBLEM) \
+	-n $(PROBLEM) \
+	-k $(PROBLEM) \
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR)
@@ -79,9 +79,9 @@ mkl:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_MRUN) \
-	-m $(RANK) \
-	-n $(RANK) \
-	-k $(RANK) \
+	-m $(PROBLEM) \
+	-n $(PROBLEM) \
+	-k $(PROBLEM) \
 	--method=MKL \
 	-q \
 	-d$(DEBUG_DIR)
@@ -93,9 +93,9 @@ seq:
 	-A $(PATH_A) \
 	-B $(PATH_B) \
 	-C$(OUTPUT_SRUN) \
-	-m $(RANK) \
-	-n $(RANK) \
-	-k $(RANK) \
+	-m $(PROBLEM) \
+	-n $(PROBLEM) \
+	-k $(PROBLEM) \
 	--method=sequential \
 	-q \
 	-d$(DEBUG_DIR)
