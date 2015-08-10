@@ -24,4 +24,4 @@ done
 ./analyse.pl sequential | sort -t$'\t' -k5 -n > gnuplot/sequential.dat
 
 cd gnuplot
-gnuplot speedup.p
+#gnuplot speedup.p
