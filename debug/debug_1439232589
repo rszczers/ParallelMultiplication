@@ -1,0 +1,3 @@
+METHOD:	MKL
+ETA:	0.041010
+ARGS:	m=512, k=512, n=512, nprocs=1
