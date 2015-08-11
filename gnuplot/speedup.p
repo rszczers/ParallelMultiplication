@@ -29,5 +29,5 @@ fit f(x) 'mkl.dat' u 5:1 via mean_seq
 plot 'cannon.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 1, \
  1 ls 2 t 'MKL'
 set output
-set terminal X11
+set terminal dumb 
 replot

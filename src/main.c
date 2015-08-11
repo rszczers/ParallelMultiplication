@@ -259,6 +259,7 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
+                t0 = MPI_Wtime();
                 //initial shift with procesor ranks 
                 int proclA[numprocs];
                 for (int i = 0; i < dims[0]; i++) {
@@ -333,7 +334,6 @@ int main(int argc, char *argv[]) {
                 MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, DISTRIBUTION_B, cartcom, &status);
             }
 
-            t0 = MPI_Wtime();
 
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
 

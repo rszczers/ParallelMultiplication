@@ -1,4 +1,4 @@
-PROBLEM = 512	#rank of randomly generated test square matrix
+PROBLEM = 1024	#rank of randomly generated test square matrix
 NPROC = 16	#number of MPI threads
 ###############################################################################
 
