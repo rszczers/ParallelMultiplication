@@ -1,2 +1,0 @@
-manpath: can't set the locale; make sure $LC_* and $LANG are correct
-bash: ./makeplots.sh: No such file or directory
