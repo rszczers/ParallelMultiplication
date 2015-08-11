@@ -1,4 +1,4 @@
-PROBLEM = 1024	#rank of randomly generated test square matrix
+PROBLEM = 4096 #rank of randomly generated test square matrix
 NPROC = 16	#number of MPI threads
 ###############################################################################
 
@@ -64,7 +64,6 @@ cannon:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-C$(OUTPUT_CRUN) \
 	-m $(PROBLEM) \
 	-n $(PROBLEM) \
 	-k $(PROBLEM) \
@@ -78,7 +77,6 @@ mkl:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-C$(OUTPUT_MRUN) \
 	-m $(PROBLEM) \
 	-n $(PROBLEM) \
 	-k $(PROBLEM) \
@@ -92,7 +90,6 @@ seq:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-C$(OUTPUT_SRUN) \
 	-m $(PROBLEM) \
 	-n $(PROBLEM) \
 	-k $(PROBLEM) \
