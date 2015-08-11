@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  11 AUG 2015 14:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  11 AUG 2015 15:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,25 +524,25 @@ e
 ))
 (./speedup.tex
 Package epstopdf Info: Source file: <speedup.eps>
-(epstopdf)                    date: 2015-08-11 14:48:13
-(epstopdf)                    size: 24025 bytes
+(epstopdf)                    date: 2015-08-11 15:16:22
+(epstopdf)                    size: 21124 bytes
 (epstopdf)             Output file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-11 14:46:24
-(epstopdf)                    size: 4160 bytes
+(epstopdf)                    date: 2015-08-11 15:15:47
+(epstopdf)                    size: 4154 bytes
 (epstopdf)             Command: <repstopdf --outfile=speedup-eps-converted-to.p
 df speedup.eps>
-(epstopdf)             \includegraphics on input line 166.
+(epstopdf)             \includegraphics on input line 129.
 runsystem(repstopdf --outfile=speedup-eps-converted-to.pdf speedup.eps)...execu
 ted safely (allowed).
 
 Package epstopdf Info: Result file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-11 14:48:16
-(epstopdf)                    size: 4213 bytes.
+(epstopdf)                    date: 2015-08-11 15:16:23
+(epstopdf)                    size: 4135 bytes.
  <speedup-eps-converted-to.pdf, id=1, 426.59375pt x 198.7425pt>
 File: speedup-eps-converted-to.pdf Graphic file (type pdf)
 
 <use speedup-eps-converted-to.pdf>
-Package pdftex.def Info: speedup-eps-converted-to.pdf used on input line 166.
+Package pdftex.def Info: speedup-eps-converted-to.pdf used on input line 129.
 (pdftex.def)             Requested size: 426.5927pt x 198.742pt.
 ) [1
 
@@ -551,14 +551,14 @@ Package pdftex.def Info: speedup-eps-converted-to.pdf used on input line 166.
 Here is how much of TeX's memory you used:
  3020 strings out of 493304
  39872 string characters out of 6139871
- 108999 words of memory out of 5000000
+ 107999 words of memory out of 5000000
  6428 multiletter control sequences out of 15000+600000
  4136 words of font info for 15 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,24p,230b,355s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,24p,230b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
 }</usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
-Output written on test.pdf (1 page, 13153 bytes).
+Output written on test.pdf (1 page, 13732 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream
