@@ -1,5 +1,5 @@
-PROBLEM = 4096 #rank of randomly generated test square matrix
-NPROC = 16	#number of MPI threads
+SIZE = 4096 #rank of randomly generated test square matrix
+NPROC = 484	#number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -14,7 +14,7 @@ PATH_B = $(RESOURCES_DIR)b.dat
 #lower and upper bounds of randomly generated test data
 MIN = 10
 MAX = 100
-SIZE = $(shell echo $(PROBLEM)\*$(PROBLEM) | bc)
+PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 
 # DATA OUTPUT
 OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
@@ -36,6 +36,8 @@ OBJ1 = gen
 GCC = gcc
 SRC_GEN = $(SOURCE_DIR)generate.c
 BUILD_PATH_GEN = $(BUILD_DIR)gen
+
+MPI_OPT = -env I_MPI_DEVICE sock 
 
 .PHONY: clean
 
@@ -60,39 +62,45 @@ endif
 
 #runs cannon's algorithm
 cannon:
-	@mpirun -np $(NPROC) \
+	@mpirun \
+	$(MPI_OPT) \
+	-np $(NPROC) \
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-m $(PROBLEM) \
-	-n $(PROBLEM) \
-	-k $(PROBLEM) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR)
 
 #runs mkl multiplication procedure
 mkl:
-	@mpirun -np 1 \
+	@mpirun \
+	$(MPI_OPT) \
+	-np 1 \
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-m $(PROBLEM) \
-	-n $(PROBLEM) \
-	-k $(PROBLEM) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
 	--method=MKL \
 	-q \
 	-d$(DEBUG_DIR)
 
 #runs simple sequential algorithm 
 seq:
-	@mpirun -np 1 \
+	@mpirun \
+	$(MPI_OPT) \
+	-np 1 \
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
-	-m $(PROBLEM) \
-	-n $(PROBLEM) \
-	-k $(PROBLEM) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
 	--method=sequential \
 	-q \
 	-d$(DEBUG_DIR)
@@ -105,8 +113,8 @@ endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
 endif
-	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_A)
-	@$(BUILD_PATH_GEN) -l $(SIZE) -m $(MIN) -M $(MAX) -p $(PATH_B)
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_A)
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_B)
 
 #rebuilds directory tree
 run: rebuild_dirtree
@@ -120,7 +128,10 @@ endif
 ifeq ($(wildcard $(BUILD_PATH_PMM)),)
 	@make pmm 
 endif
-	@make cannon
+	./makeplots.sh $(NPROC)
+
+test:
+	./makeplots.sh $(NPROC)
 
 clean:
 ifneq ($(wildcard $(BUILD_PATH_PMM)),)

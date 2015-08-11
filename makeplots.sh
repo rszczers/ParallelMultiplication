@@ -1,5 +1,5 @@
 #!/bin/bash
-rm ./debug/*
+#rm ./debug/*
 i=3;
 for((n=4; n<=$1; i++)); do
     make cannon NPROC=$n

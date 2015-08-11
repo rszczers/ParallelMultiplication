@@ -1,0 +1,2 @@
+manpath: can't set the locale; make sure $LC_* and $LANG are correct
+/var/spool/torque/mom_priv/jobs/34214.solaris.SC: 8: /var/spool/torque/mom_priv/jobs/34214.solaris.SC: ./makeplots.sh: not found
