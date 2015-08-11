@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: speedup.tex
-%%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Tue Aug 11 15:16:22 2015
+%%Creator: gnuplot 4.6 patchlevel 0
+%%CreationDate: Tue Aug 11 15:37:06 2015
 %%DocumentFonts: 
 %%BoundingBox: 50 50 475 248
 %%EndComments
@@ -47,7 +47,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.6 (September 2012)
+% Gnuplot Prolog Version 4.4 (August 2010)
 %
 %/SuppressPDFMark true def
 %
@@ -314,8 +314,7 @@ gnudict begin
 /PatternFill {gsave /PFa [ 9 2 roll ] def
   PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
   PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
-  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
-  clip
+  gsave 1 setgray fill grestore clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
   0 0 M PFa 5 get rotate PFs -2 div dup translate
@@ -429,11 +428,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (speedup.tex)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 4)
+  /Creator (gnuplot 4.6 patchlevel 0)
   /Author (rszczers)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Tue Aug 11 15:16:22 2015)
+  /CreationDate (Tue Aug 11 15:37:06 2015)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -453,69 +452,88 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 861 1341 M
+0.75 0.75 0.75 C 861 1243 M
 7244 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 1341 M
+0.50 0.50 0.50 C 861 1243 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 1637 M
+0.50 0.50 0.50 C 861 1489 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 861 1932 M
+0.75 0.75 0.75 C 861 1735 M
 7244 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 1932 M
+0.50 0.50 0.50 C 861 1735 M
 -47 0 V
 stroke
+LT0
+LC0 setrgbcolor
+0.50 0.50 0.50 C 861 1981 M
+-23 0 V
+stroke
+1.000 UL
+LT2
+LC2 setrgbcolor
+0.75 0.75 0.75 C 861 2227 M
+7244 0 V
+stroke
+1.500 UL
 LT0
 LC0 setrgbcolor
 0.50 0.50 0.50 C 861 2227 M
+-47 0 V
+stroke
+LT0
+LC0 setrgbcolor
+0.50 0.50 0.50 C 861 2473 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 861 2522 M
+0.75 0.75 0.75 C 861 2719 M
 7244 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 2522 M
+0.50 0.50 0.50 C 861 2719 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 2817 M
+0.50 0.50 0.50 C 861 2965 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 861 3113 M
-7244 0 V
+0.75 0.75 0.75 C 861 3211 M
+5465 0 V
+1647 0 R
+132 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 3113 M
+0.50 0.50 0.50 C 861 3211 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 861 3408 M
+0.50 0.50 0.50 C 861 3457 M
 -23 0 V
 stroke
 1.000 UL
@@ -549,13 +567,13 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 1378 751 M
+0.75 0.75 0.75 C 3276 751 M
 0 2952 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 1378 751 M
+0.50 0.50 0.50 C 3276 751 M
 0 -47 V
 stroke
 LT0
@@ -563,173 +581,13 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 1896 751 M
+0.75 0.75 0.75 C 5690 751 M
 0 2952 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 1896 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 2413 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 2413 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 2931 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 2931 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 3448 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 3448 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 3966 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 3966 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 4483 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 4483 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 5000 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 5000 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 5518 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 5518 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 6035 751 M
-0 2952 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 6035 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 6553 751 M
-0 2449 V
-0 440 R
-0 63 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 6553 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 7070 751 M
-0 2449 V
-0 440 R
-0 63 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 7070 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 7588 751 M
-0 2449 V
-0 440 R
-0 63 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 7588 751 M
+0.50 0.50 0.50 C 5690 751 M
 0 -47 V
 stroke
 LT0
@@ -772,36 +630,14 @@ LT0
 LC0 setrgbcolor
 0.00 0.00 0.00 C 7250 3530 M
 591 0 V
-861 2384 M
-517 819 V
-518 -188 V
-517 -969 V
-518 -217 V
-517 -146 V
-518 -19 V
-517 -239 V
-517 -120 V
-518 -110 V
-517 228 V
-518 -142 V
-517 -99 V
-518 -19 V
-517 -74 V
-861 2384 Circle
-1378 3203 Circle
-1896 3015 Circle
-2413 2046 Circle
-2931 1829 Circle
-3448 1683 Circle
-3966 1664 Circle
-4483 1425 Circle
-5000 1305 Circle
-5518 1195 Circle
-6035 1423 Circle
-6553 1281 Circle
-7070 1182 Circle
-7588 1163 Circle
-8105 1089 Circle
+861 2144 M
+3276 3307 L
+2414 192 V
+8105 2804 L
+861 2144 Circle
+3276 3307 Circle
+5690 3499 Circle
+8105 2804 Circle
 7545 3530 Circle
 4.000 UL
 LT2
@@ -811,7 +647,7 @@ LT2
 LC2 setrgbcolor
 0.00 0.00 0.00 C 7250 3310 M
 591 0 V
-861 1341 M
+861 1243 M
 73 0 V
 73 0 V
 74 0 V

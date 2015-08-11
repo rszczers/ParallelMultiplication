@@ -1,4 +1,5 @@
 #!/bin/bash
+rm ./debug/*
 i=3;
 for((n=4; n<=$1; i++)); do
     make cannon NPROC=$n
@@ -7,11 +8,11 @@ for((n=4; n<=$1; i++)); do
     n=$((i*i))
 done
 
-for((j=0; j<3; j++)); do
-    make seq
-    sleep 1;
-    echo "make seq"   
-done
+#for((j=0; j<3; j++)); do
+#    make seq
+#    sleep 1;
+#    echo "make seq"   
+#done
 
 for((j=0; j<3; j++)); do
     make mkl 
