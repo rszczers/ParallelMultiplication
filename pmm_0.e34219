@@ -1,4 +1,0 @@
-manpath: can't set the locale; make sure $LC_* and $LANG are correct
-=>> PBS: job killed: walltime 923 exceeded limit 900
-make: *** [test] Terminated
-make[1]: *** [cannon] Terminated

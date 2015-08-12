@@ -15,4 +15,59 @@ make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make cannon NPROC=36
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-APPLICATION TERMINATED WITH THE EXIT STRING: Terminated (signal 15)
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=49
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=64
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=81
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=100
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=121
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=144
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=169
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=196
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=225
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=256
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=289
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=324
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=361
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=400
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=441
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=484
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl
