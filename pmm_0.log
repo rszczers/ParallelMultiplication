@@ -1,4 +1,4 @@
-./makeplots.sh 484	
+./makeplots.sh 256	
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make cannon NPROC=4
@@ -44,24 +44,6 @@ make cannon NPROC=225
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make cannon NPROC=256
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=289
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=324
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=361
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=400
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=441
-make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
-make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
-make cannon NPROC=484
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make mkl

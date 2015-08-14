@@ -25,4 +25,4 @@ done
 ./parse.pl sequential | sort -t$'\t' -k5 -n > gnuplot/sequential.dat
 
 cd gnuplot
-./speedup.p
+gnuplot ./speedup.p

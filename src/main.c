@@ -230,7 +230,7 @@ int main(int argc, char *argv[]) {
 
             int sz = max/dims[0];  // row length per block 
 
-            if(max > sz * dims[0]) {
+            if(max > sz * dims[0]) { 
                 sz += 1;
                 max = sz * dims[0];
             }
@@ -245,10 +245,13 @@ int main(int argc, char *argv[]) {
             pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
             tmp_pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
 
-            for (int i = 0; i < blockSz ; i++) {
-                pC[i] = 0;
-                tmp_pC[i] = 0;
-            } // memset? calloc?
+            memset(pC, 0, blockSz * sizeof(double));
+            memset(tmp_pC, 0, blockSz * sizeof(double));
+
+//            for (int i = 0; i < blockSz ; i++) {
+//                pC[i] = 0;
+//                tmp_pC[i] = 0;
+//            } // memset? calloc?
 
 
             if (pid == ROOT) {
@@ -258,6 +261,15 @@ int main(int argc, char *argv[]) {
 
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
+
+                for(int i=0; i<max; i++) {
+                    for(int j=0; j<max; j++) {
+                        printf("%.2lf\t", A[i*max+j]);
+                        if(j==max-1) {
+                            printf("\n");
+                        }
+                    }
+                }
 
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 

@@ -1,5 +1,5 @@
-SIZE = 4096 #rank of randomly generated test square matrix
-NPROC = 484	#number of MPI threads
+SIZE = 8 #rank of randomly generated test square matrix
+NPROC = 9 	#number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -68,6 +68,7 @@ cannon:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_CRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -83,6 +84,7 @@ mkl:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_MRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -98,6 +100,7 @@ seq:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_SRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \

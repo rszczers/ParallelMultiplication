@@ -30,37 +30,44 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
     int i = 0;
     int j = 0; 
     int f = 0; // number of columns read
+    int el = 0; // number of elements
     char *token;
-    while((i < length) && !feof(file)) {
-            buffer = (char *)malloc(sizeof(char) * 4096);
-            memset(buffer, 0, 4096);
-            fg = fscanf(file, "%4095c", buffer);
+    while((el < m * n) && !feof(file)) {
+        buffer = (char *)malloc(sizeof(char) * 4096);
+        memset(buffer, 0, 4096);
+        fg = fscanf(file, "%4095c", buffer);
 
-            if(fg != EOF) {
-                token = strtok(buffer, sep);            
-                while(token != NULL && i < length) {
-                    out[i] = atof(token);
-                    token = strtok(NULL, sep);
-                    i++; // sprawdza czy nie wyleciało z tablicy
-                    j++; // liczba kolumn czy się zgadza
-                    if(resize && j > n) {
+        if(fg != EOF) {
+            token = strtok(buffer, sep);            
+            while(token != NULL && el < m*n) {
+                out[i] = atof(token);
+                token = strtok(NULL, sep);
+                i++; // sprawdza czy nie wyleciało z tablicy
+                j++; // liczba kolumn czy się zgadza
+                el++; 
+                if(resize) {
+                    if(j >= m) {
                         for(; j < max; j++) {
-                            out[i] = 0;
+                            out[i] = 0.0;
                             i++;                        
                         }
                         j = 0;
+                    }
+
+                    if((i % max) == 1) {
                         f++;
                     }
                 }
-                if(token == NULL) {
-//                    i--;
-                }
-            }           
-            free(buffer);   
+            }
+//            if(token = NULL) {
+//                i--;
+//            }
+        }           
+        free(buffer);   
     }
 
     while(resize && i < length) {
-        out[i] = 0;
+        out[i] = 0.0;
         i++;
     }
 
