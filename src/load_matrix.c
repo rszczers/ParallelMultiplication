@@ -29,7 +29,6 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
     int fg;
     int i = 0;
     int j = 0; 
-    int f = 0; // number of columns read
     int el = 0; // number of elements
     char *token;
     while((el < m * n) && !feof(file)) {
@@ -52,10 +51,6 @@ int load_matrix(const char *filename, double *out, int m, int n, int max, bool r
                             i++;                        
                         }
                         j = 0;
-                    }
-
-                    if((i % max) == 1) {
-                        f++;
                     }
                 }
             }
