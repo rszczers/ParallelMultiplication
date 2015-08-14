@@ -248,12 +248,6 @@ int main(int argc, char *argv[]) {
             memset(pC, 0, blockSz * sizeof(double));
             memset(tmp_pC, 0, blockSz * sizeof(double));
 
-//            for (int i = 0; i < blockSz ; i++) {
-//                pC[i] = 0;
-//                tmp_pC[i] = 0;
-//            } // memset? calloc?
-
-
             if (pid == ROOT) {
                 A = (double *) mkl_malloc(max * max * sizeof(double), 64);
                 B = (double *) mkl_malloc(max * max * sizeof(double), 64);
@@ -262,14 +256,6 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
-                for(int i=0; i<max; i++) {
-                    for(int j=0; j<max; j++) {
-                        printf("%.2lf\t", A[i*max+j]);
-                        if(j==max-1) {
-                            printf("\n");
-                        }
-                    }
-                }
 
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 
