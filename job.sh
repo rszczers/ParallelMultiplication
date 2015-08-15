@@ -7,5 +7,7 @@
 #PBS -M rafal.szczerski@gmail.com
 #PBS -m abe
 #PBS -o pmm_0.log
-cd /home/rszczers/ParallelMultiplication
+
+SCRIPT_DIR=`pwd -P`
+cd $(SCRIPT_DIR)
 make test

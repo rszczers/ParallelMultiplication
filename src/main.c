@@ -1,10 +1,3 @@
-#define ROOT 0
-#define DISTRIBUTION_A 1337
-#define DISTRIBUTION_B 1338 
-#define SKEW_LEFTRIGHT 23
-#define SKEW_BOTTOMUP 93
-#define COLLECTING 42
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
@@ -21,6 +14,13 @@
 #include "load_matrix.h"
 #include "save_matrix.h"
 #include "save_info.h"
+
+#define ROOT 0
+#define DISTRIBUTION_A 1337
+#define DISTRIBUTION_B 1338 
+#define SKEW_LEFTRIGHT 23
+#define SKEW_BOTTOMUP 93
+#define COLLECTING 42
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
@@ -188,6 +188,14 @@ int main(int argc, char *argv[]) {
                 B = (double *)mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
                 C = (double *)mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
 
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory. Aborting.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
+
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, 0, false);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, 0, false);
 
@@ -209,10 +217,18 @@ int main(int argc, char *argv[]) {
                 B = (double *) mkl_malloc(arguments.k * arguments.n * sizeof(double), 64);
                 C = (double *) mkl_malloc(arguments.m * arguments.n * sizeof(double), 64);
 
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory. Aborting.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
+
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, 0, false);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, 0, false);
-
-                t0 = MPI_Wtime();
+                
+                t0 = MPI_Wtime();                
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, arguments.m, arguments.k, arguments.n, 1.0, A, arguments.k, B, arguments.n, 0.0, C, arguments.n);
                 t1 = MPI_Wtime();
             }
@@ -221,7 +237,8 @@ int main(int argc, char *argv[]) {
         {
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
-                return EXIT_FAILURE;
+                printf("\nProcess mesh is not appropriate. Aborting.\n\n");
+                exit(EXIT_FAILURE);
             }
 
             max = arguments.m;
@@ -245,6 +262,14 @@ int main(int argc, char *argv[]) {
             pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
             tmp_pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
 
+            if(A == NULL || B == NULL || C == NULL) {
+                printf("\nCouldn't allocate memory.\n\n");
+                mkl_free(A);
+                mkl_free(B);
+                mkl_free(C);
+                exit(EXIT_FAILURE);
+            }
+
             memset(pC, 0, blockSz * sizeof(double));
             memset(tmp_pC, 0, blockSz * sizeof(double));
 
@@ -252,6 +277,14 @@ int main(int argc, char *argv[]) {
                 A = (double *) mkl_malloc(max * max * sizeof(double), 64);
                 B = (double *) mkl_malloc(max * max * sizeof(double), 64);
                 C = (double *) mkl_malloc(max * max * sizeof(double), 64);
+
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
 
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
@@ -272,7 +305,7 @@ int main(int argc, char *argv[]) {
                             proclA[i * dims[1] + j] = i * dims[1] + j + i;          
                         } else {
                             proclA[i * dims[1] + j] = i * dims[1] + j - (dims[1] - i);
-                         }
+                        }
                     }
                 }
                 
