@@ -262,11 +262,12 @@ int main(int argc, char *argv[]) {
             pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
             tmp_pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
 
-            if(A == NULL || B == NULL || C == NULL) {
-                printf("\nCouldn't allocate memory.\n\n");
-                mkl_free(A);
-                mkl_free(B);
-                mkl_free(C);
+            if(pA == NULL || pB == NULL || pC == NULL || tmp_pC == NULL) {
+                printf("\nCouldn't allocate memory. Aborting.\n\n");
+                mkl_free(pA);
+                mkl_free(pB);
+                mkl_free(pC);
+                mkl_free(tmp_pC);
                 exit(EXIT_FAILURE);
             }
 
@@ -288,13 +289,6 @@ int main(int argc, char *argv[]) {
 
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
-
-                for(int i = 0; i < max * max; i++) {
-                    printf("%.0lf ", A[i]);
-                    if(i%max==max-1) {
-                        printf("\n");
-                    }
-                }
 
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 

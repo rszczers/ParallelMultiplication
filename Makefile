@@ -116,8 +116,8 @@ endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
 endif
-	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_A) -f
-	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_B) -f
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p$(PATH_A) 
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p$(PATH_B)
 
 #rebuilds directory tree
 run: rebuild_dirtree

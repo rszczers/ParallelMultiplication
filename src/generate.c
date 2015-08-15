@@ -9,12 +9,12 @@
 
 static char args_doc[] = "-l NUM";
 static struct argp_option options[] = {
-    {"path",    'p', "FILE",                  0, "output file"},
+    {"path",    'p',"FILE", OPTION_ARG_OPTIONAL, "output file"},
     {"length",  'l', "NUM",                   0, "lenght of array to generate"},
-    {"max",     'M', "NUM",                   0, ""},
-    {"min",     'm', "NUM",                   0, ""},
-    {"float",   'f',     0, OPTION_ARG_OPTIONAL, ""},
-    {"verbose", 'v',     0, OPTION_ARG_OPTIONAL, ""},
+    {"max",     'M', "NUM",                   0, "upper boundary of generated elements"},
+    {"min",     'm', "NUM",                   0, "lower boundary of generated elements"},
+    {"float",   'f',     0, OPTION_ARG_OPTIONAL, "generate floating point numbers"},
+    {"verbose", 'v',     0, OPTION_ARG_OPTIONAL, "verbose mode"},
     { 0 }
 };
 
@@ -51,6 +51,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case ARGP_KEY_ARG:
             break;
         case ARGP_KEY_INIT:
+            arguments->filename = NULL;
             arguments->isFloat = false;
             arguments->isVerbose = false;
             break;
@@ -70,15 +71,19 @@ int main(int argc, char *argv[]) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
     FILE *file;
-    
+    char *buffer;
+
     srand(time(NULL));
+
     int min = arguments.min;
     int max = arguments.max;
-    
-    file = fopen(arguments.filename, "wb");
-    if(file == NULL) {
-        perror(arguments.filename);
-        return EXIT_FAILURE;
+
+    if(arguments.filename != NULL) {
+        file = fopen(arguments.filename, "wb");
+        if(file == NULL) {
+            perror(arguments.filename);
+            return EXIT_FAILURE;
+        }
     }
 
     if(arguments.isFloat) {
@@ -89,36 +94,44 @@ int main(int argc, char *argv[]) {
         int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1);  
         /* optimal number of tokens per write buffer
            where lenght is total number of tokens    */
-
-        char *buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));
+        if(arguments.filename != NULL) {
+            buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));
+        }
         char token[token_sz];
         int totallen = 0;
         int i = 0; /* token number indicator */
         while(i < arguments.length) {
             int j = 0; /* token number per buffer indicator; total = ntok */
             while (j < ntok && i < arguments.length) {
-                sprintf(token, "%.6lf ", ((float)rand()/(float)(RAND_MAX)) * max);
-                totallen += (strlen(token));
-                strcat(buffer, token); 
+                sprintf(token, "%.6lf ", ((float)rand()/(float)(RAND_MAX))*max);
+                if(arguments.isVerbose) {
+                    printf("%s", token);
+                }
+                if(arguments.filename != NULL) {
+                    totallen += (strlen(token));
+                    strcat(buffer, token); 
+                }
                 i++;
                 j++;
             }
             /* buffer is full and ready to write */
-            fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
-            totallen = 0;
-            memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+            if(arguments.filename != NULL) {
+                fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
+                totallen = 0;
+                memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+            }
             j = 0;
         }
 
-        free(buffer);
     } else {
         char maxtoken[80];
         sprintf(maxtoken, "%d ", max);
         int token_sz = strlen(maxtoken);
 
         int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1);
-
-        char *buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));       
+        if(arguments.filename != NULL) {
+            buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));       
+        }
         char token[token_sz];
         int totallen = 0;
         int i = 0; /* token number indicator */
@@ -126,18 +139,27 @@ int main(int argc, char *argv[]) {
             int j = 0; /* token number per buffer indicator; total = ntok */
             while (j < ntok && i < arguments.length) {
                 sprintf(token, "%d ", min + rand() % (max - min));
-                totallen += strlen(token);
-                strcat(buffer, token); 
+                if(arguments.isVerbose) {
+                    printf("%s", token);
+                }
+                if(arguments.filename != NULL) {
+                    totallen += strlen(token);
+                    strcat(buffer, token);
+                }
                 i++;
                 j++;
             }
             /* buffer is full and ready to write */
-            fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
-            totallen = 0;
-            memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+            if(arguments.filename != NULL) {
+                fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
+                totallen = 0;
+                memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
+            }
             j = 0;
         }
+    }
 
+    if(arguments.filename != NULL) {
         free(buffer);
     }
 
