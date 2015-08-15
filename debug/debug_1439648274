@@ -1,0 +1,3 @@
+METHOD:	CANNON
+ETA:	0.004775
+ARGS:	m=64, k=64, n=64, nprocs=9

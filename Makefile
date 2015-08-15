@@ -1,4 +1,4 @@
-SIZE = 512 #rank of randomly generated test square matrix
+SIZE = 64 #rank of randomly generated test square matrix
 NPROC = 9 	#number of MPI threads
 ###############################################################################
 
@@ -116,8 +116,8 @@ endif
 ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
 endif
-	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_A)
-	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_B)
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_A) -f
+	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p $(PATH_B) -f
 
 #rebuilds directory tree
 run: rebuild_dirtree

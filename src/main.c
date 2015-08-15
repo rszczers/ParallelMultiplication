@@ -256,6 +256,12 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, true);
 
+                for(int i = 0; i < max * max; i++) {
+                    printf("%.0lf ", A[i]);
+                    if(i%max==max-1) {
+                        printf("\n");
+                    }
+                }
 
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 

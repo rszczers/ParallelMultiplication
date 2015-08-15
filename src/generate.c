@@ -1,11 +1,11 @@
-#define BUFFER_SIZE 4096
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <argp.h>
 #include <string.h>
 #include <time.h>
+
+#define BUFFER_SIZE 4096
 
 static char args_doc[] = "-l NUM";
 static struct argp_option options[] = {
@@ -84,60 +84,64 @@ int main(int argc, char *argv[]) {
     if(arguments.isFloat) {
         char maxtoken[80];
 
-        sprintf(maxtoken, "%lf ", (float)max);
+        sprintf(maxtoken, "%.6lf ", (float)max);
         int token_sz = strlen(maxtoken);
-
-        int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1); 
+        int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1);  
         /* optimal number of tokens per write buffer
            where lenght is total number of tokens    */
 
         char *buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));
         char token[token_sz];
-
+        int totallen = 0;
         int i = 0; /* token number indicator */
         while(i < arguments.length) {
             int j = 0; /* token number per buffer indicator; total = ntok */
             while (j < ntok && i < arguments.length) {
-                sprintf(token, "%lf ", ((float)rand()/(float)(RAND_MAX)) * max);
+                sprintf(token, "%.6lf ", ((float)rand()/(float)(RAND_MAX)) * max);
+                totallen += (strlen(token));
                 strcat(buffer, token); 
                 i++;
                 j++;
             }
             /* buffer is full and ready to write */
-            fwrite(buffer, sizeof(char), ntok * token_sz, file);
+            fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
+            totallen = 0;
             memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
             j = 0;
         }
 
-        fclose(file);
         free(buffer);
     } else {
         char maxtoken[80];
         sprintf(maxtoken, "%d ", max);
         int token_sz = strlen(maxtoken);
+
         int ntok = (BUFFER_SIZE / token_sz) % (arguments.length + 1);
 
         char *buffer = (char *) calloc(ntok * token_sz + 1,  sizeof(char));       
         char token[token_sz];
-
+        int totallen = 0;
         int i = 0; /* token number indicator */
         while(i < arguments.length) {
             int j = 0; /* token number per buffer indicator; total = ntok */
             while (j < ntok && i < arguments.length) {
                 sprintf(token, "%d ", min + rand() % (max - min));
+                totallen += strlen(token);
                 strcat(buffer, token); 
                 i++;
                 j++;
             }
             /* buffer is full and ready to write */
-            fwrite(buffer, sizeof(char), ntok * token_sz, file);
+            fwrite(buffer, sizeof(char), totallen * sizeof(char), file);
+            totallen = 0;
             memset(buffer, 0, (ntok * token_sz + 1) * sizeof(char));
             j = 0;
         }
 
-        fclose(file);
         free(buffer);
-
     }
+
+    fputs("\0" , file);
+    fclose(file);
     return EXIT_SUCCESS;
 }
