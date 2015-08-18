@@ -312,10 +312,14 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
                         true);
 
+
                 char *da = "./debug/A_raw"; 
+                char *db = "./debug/B_raw"; 
 
                 save_matrix(da, A,
                     arguments.m, arguments.k, max, true);
+                save_matrix(db, B,
+                    arguments.k, arguments.n, max, true);
 
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 
@@ -359,15 +363,6 @@ int main(int argc, char *argv[]) {
             }
 
 
-            char *ddo = (char *)malloc(20 * sizeof(char));
-            sprintf(ddo, "./debug/00_00_debug");
-            char *pidstro = (char *)malloc(2 * sizeof(char));
-            sprintf(pidstro, "%02d", pid);
-            strncpy(ddo+8, pidstro, 2 * sizeof(char));
-
-            save_matrix(ddo, pA,
-                sz, sz, sz, true);
-            free(pidstro);
 
             MPI_Barrier(cartcom);
 
@@ -413,6 +408,15 @@ int main(int argc, char *argv[]) {
                         DISTRIBUTION_B, cartcom, &status);
             }
 
+            char *ddo = (char *)malloc(20 * sizeof(char));
+            sprintf(ddo, "./debug/00_00_debugB");
+            char *pidstro = (char *)malloc(2 * sizeof(char));
+            sprintf(pidstro, "%02d", pid);
+            strncpy(ddo+8, pidstro, 2 * sizeof(char));
+
+            save_matrix(ddo, pB,
+                sz, sz, sz, true);
+            free(pidstro);
 
 
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
@@ -427,11 +431,11 @@ int main(int argc, char *argv[]) {
             for (int i = 1; i < dims[0]; i++) { /* zakładamy, że dims[0]=dims[1] */
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, 
                         SKEW_LEFTRIGHT, right, SKEW_LEFTRIGHT, cartcom, &status);
-                MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, 
-                        SKEW_BOTTOMUP, top, SKEW_BOTTOMUP, cartcom, &status);
+                MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
+                        SKEW_BOTTOMUP, bottom, SKEW_BOTTOMUP, cartcom, &status);
 
                 char *dd = (char *)malloc(20 * sizeof(char));
-                sprintf(dd, "./debug/00_00_debug");
+                sprintf(dd, "./debug/00_00_debugB");
                 char *pidstr = (char *)malloc(2 * sizeof(char));
                 sprintf(pidstr, "%02d", pid);
                 char *iter = (char *) malloc(2 * sizeof(char));
@@ -439,7 +443,7 @@ int main(int argc, char *argv[]) {
                 strncpy(dd+8, pidstr, 2 * sizeof(char));
                 strncpy(dd+11, iter, 2 * sizeof(char));
 
-                save_matrix(dd, pA,
+                save_matrix(dd, pB,
                     sz, sz, sz, true);
                 free(iter);
                 free(pidstr);
