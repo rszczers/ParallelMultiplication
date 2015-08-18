@@ -1,5 +1,5 @@
-SIZE = 9 #rank of randomly generated test square matrix
-NPROC = 9 	#number of MPI threads
+SIZE = 256 #rank of randomly generated test square matrix
+NPROC = 64 #number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -75,7 +75,6 @@ cannon:
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR) \
-	-s
 
 #runs mkl multiplication procedure
 mkl:
