@@ -1,4 +1,4 @@
-SIZE = 64 #rank of randomly generated test square matrix
+SIZE = 9 #rank of randomly generated test square matrix
 NPROC = 9 	#number of MPI threads
 ###############################################################################
 
@@ -12,8 +12,8 @@ BUILD_DIR = ./build/
 PATH_A = $(RESOURCES_DIR)a.dat
 PATH_B = $(RESOURCES_DIR)b.dat
 #lower and upper bounds of randomly generated test data
-MIN = 10
-MAX = 100
+MIN = 0
+MAX = 10
 PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 
 # DATA OUTPUT

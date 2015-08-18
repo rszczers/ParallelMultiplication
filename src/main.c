@@ -40,6 +40,7 @@ static struct argp_option options[] = {
     {   "list", 'l',        0, 0, "Show list of available algorithms"},
     {   "time", 't',        0, 0, "Show elapsed time"},
     {  "quiet", 'q',        0, 0, "Do not show any computations"},
+    {  "steps", 's',        0, 0, "Dump every step of computation from each node"},
     {"verbose", 'v',        0, 0, "Show all computations"},
     { 0 } 
 };
@@ -48,6 +49,7 @@ struct arguments {
     enum {SEQUENTIAL, MKL, CANNON} method;
     enum {QUIET, VERBOSE} mode;
     bool time;
+    bool steps;
     int m, k, n;
     char *pathA;
     char *pathB;
@@ -122,6 +124,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'v':
             arguments->mode = VERBOSE;
             break;
+        case 's':
+            arguments->steps = true;
+            break;
         case ARGP_KEY_ARG:
             break;
         case ARGP_KEY_INIT:
@@ -179,7 +184,7 @@ int main(int argc, char *argv[]) {
     double *tmp_pC;
     unsigned int max; // placed here for verbose mode purproses; indices new line;
     MPI_Datatype MPI_SUBMATRIX;
-    
+
     switch (arguments.method) {
         case SEQUENTIAL:
         {
@@ -238,7 +243,7 @@ int main(int argc, char *argv[]) {
                         false);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, 0, 
                         false);
-                
+
                 t0 = MPI_Wtime();                
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                         arguments.m, arguments.k, arguments.n, 1.0, A, 
@@ -292,6 +297,8 @@ int main(int argc, char *argv[]) {
                 B = (double *) mkl_malloc(max * max * sizeof(double), 64);
                 C = (double *) mkl_malloc(max * max * sizeof(double), 64);
 
+                memset(C, 0, max * max * sizeof(double));
+
                 if(A == NULL || B == NULL || C == NULL) {
                     printf("\nCouldn't allocate memory.\n\n");
                     mkl_free(A);
@@ -305,20 +312,25 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
                         true);
 
+                char *da = "./debug/A_raw"; 
+
+                save_matrix(da, A,
+                    arguments.m, arguments.k, max, true);
+
                 t0 = MPI_Wtime();
                 //initial shift with procesor ranks 
                 int proclA[numprocs];
                 for (int i = 0; i < dims[0]; i++) {
                     for (int j = 0; j < dims[1]; j++) {
                         if (j < dims[1] - i) {
-                            proclA[i * dims[1] + j] = i * dims[1] + j + i;          
+                            proclA[i * dims[1] + j + i] = i * dims[1] + j;
                         } else {
-                            proclA[i * dims[1] + j] = i * dims[1] + j - 
-                                (dims[1] - i);
+                            proclA[i * dims[1] + j - (dims[1] - i)] = 
+                                i * dims[1] + j;
                         }
                     }
                 }
-                
+
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
                     int displacements[sz];
                     int start = (proc % dims[1]) * sz + 
@@ -346,6 +358,17 @@ int main(int argc, char *argv[]) {
                         DISTRIBUTION_A, cartcom, &status);
             }
 
+
+            char *ddo = (char *)malloc(20 * sizeof(char));
+            sprintf(ddo, "./debug/00_00_debug");
+            char *pidstro = (char *)malloc(2 * sizeof(char));
+            sprintf(pidstro, "%02d", pid);
+            strncpy(ddo+8, pidstro, 2 * sizeof(char));
+
+            save_matrix(ddo, pA,
+                sz, sz, sz, true);
+            free(pidstro);
+
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
@@ -353,11 +376,11 @@ int main(int argc, char *argv[]) {
                 for (int j = 0; j < dims[1]; j++) {
                     for (int i = 0; i < dims[0]; i++) {
                         if (i < dims[0] - j) { 
-                            proclB[i * dims[1] + j] = 
-                                (i + j) * dims[0] + j;            
+                            proclB[(i + j) * dims[0] + j] = 
+                                i * dims[1] + j;
                         } else {
-                            proclB[i * dims[1] + j] = 
-                                (i - dims[0] + j) * dims[1] + j;
+                            proclB[(i - dims[0] + j) * dims[1] + j] = 
+                                i * dims[1] + j;
                         }
                     }
                 }
@@ -391,6 +414,7 @@ int main(int argc, char *argv[]) {
             }
 
 
+
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                     sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
 
@@ -398,6 +422,7 @@ int main(int argc, char *argv[]) {
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
+            
 
             for (int i = 1; i < dims[0]; i++) { /* zakładamy, że dims[0]=dims[1] */
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, 
@@ -405,6 +430,19 @@ int main(int argc, char *argv[]) {
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, bottom, 
                         SKEW_BOTTOMUP, top, SKEW_BOTTOMUP, cartcom, &status);
 
+                char *dd = (char *)malloc(20 * sizeof(char));
+                sprintf(dd, "./debug/00_00_debug");
+                char *pidstr = (char *)malloc(2 * sizeof(char));
+                sprintf(pidstr, "%02d", pid);
+                char *iter = (char *) malloc(2 * sizeof(char));
+                sprintf(iter, "%02d", i);
+                strncpy(dd+8, pidstr, 2 * sizeof(char));
+                strncpy(dd+11, iter, 2 * sizeof(char));
+
+                save_matrix(dd, pA,
+                    sz, sz, sz, true);
+                free(iter);
+                free(pidstr);
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                         sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
                 
@@ -501,10 +539,10 @@ int main(int argc, char *argv[]) {
                 if (arguments.pathC != NULL) {
                     if(arguments.method == CANNON)
                         save_matrix(arguments.pathC, C,
-                                arguments.m, arguments.n, max);
+                                arguments.m, arguments.n, max, false);
                     else
                         save_matrix(arguments.pathC, C,
-                                arguments.m,  arguments.n, arguments.n);
+                                arguments.m,  arguments.n, arguments.n, false);
                 }
 
                 if(arguments.debugDir != NULL) {

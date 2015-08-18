@@ -8,6 +8,6 @@
 #PBS -m abe
 #PBS -o pmm_0.log
 
-SCRIPT_DIR=`pwd -P`
-cd $(SCRIPT_DIR)
+JOB_DIR=`pwd -P`
+cd $(JOB_DIR)
 make test
