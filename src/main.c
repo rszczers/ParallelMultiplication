@@ -66,9 +66,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
-            if(strcmp("mkl", name) == 0)
+            if(strncmp("mkl", name, 10) == 0)
                 arguments->method = MKL;
-            else if(strcmp("sequential", name) == 0)
+            else if(strncmp("sequential", name, 10) == 0)
                 arguments->method = SEQUENTIAL;
             // cannon method is set as default
             break;
@@ -129,6 +129,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case ARGP_KEY_ARG:
             break;
         case ARGP_KEY_INIT:
+            arguments->steps = false;
             arguments->method = CANNON;
             arguments->mode = QUIET;
             arguments->pathC = NULL;
