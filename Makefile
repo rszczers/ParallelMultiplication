@@ -74,7 +74,8 @@ cannon:
 	-k $(SIZE) \
 	--method=cannon \
 	-q \
-	-d$(DEBUG_DIR)
+	-d$(DEBUG_DIR) \
+	-s
 
 #runs mkl multiplication procedure
 mkl:
@@ -117,6 +118,7 @@ ifneq ($(wildcard $(PATH_A) $(PATH_B)),)
 	@$(RM) $(PATH_A) $(PATH_B)
 endif
 	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p$(PATH_A) 
+	@sleep 1 #time() changes every 1s
 	@$(BUILD_PATH_GEN) -l $(PROBLEM) -m $(MIN) -M $(MAX) -p$(PATH_B)
 
 #rebuilds directory tree

@@ -40,7 +40,7 @@ static struct argp_option options[] = {
     {   "list", 'l',        0, 0, "Show list of available algorithms"},
     {   "time", 't',        0, 0, "Show elapsed time"},
     {  "quiet", 'q',        0, 0, "Do not show any computations"},
-    {  "steps", 's',        0, 0, "Dump every step of computation from each node"},
+    {  "steps", 's',        0, 0, "Dump data from each node for every step"},
     {"verbose", 'v',        0, 0, "Show all computations"},
     { 0 } 
 };
@@ -70,8 +70,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
                 arguments->method = MKL;
             else if(strcmp("sequential", name) == 0)
                 arguments->method = SEQUENTIAL;
-            // cannon is set as default
-            //
+            // cannon method is set as default
             break;
         }
         case 'A': {
@@ -312,17 +311,29 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
                         true);
 
+                /* debug dump */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 6)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%sA_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, B,
+                        arguments.m, arguments.k, max, true);
 
-                char *da = "./debug/A_raw"; 
-                char *db = "./debug/B_raw"; 
+                    sprintf(dump_path, "%sB_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, A,
+                        arguments.k, arguments.n, max, true);
 
-                save_matrix(da, A,
-                    arguments.m, arguments.k, max, true);
-                save_matrix(db, B,
-                    arguments.k, arguments.n, max, true);
+                    free(dump_path);
+                }
 
                 t0 = MPI_Wtime();
-                //initial shift with procesor ranks 
+
+                /* initial shift with procesor ranks */                
                 int proclA[numprocs];
                 for (int i = 0; i < dims[0]; i++) {
                     for (int j = 0; j < dims[1]; j++) {
@@ -361,8 +372,6 @@ int main(int argc, char *argv[]) {
                 MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, 
                         DISTRIBUTION_A, cartcom, &status);
             }
-
-
 
             MPI_Barrier(cartcom);
 
@@ -407,52 +416,78 @@ int main(int argc, char *argv[]) {
                 MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, 
                         DISTRIBUTION_B, cartcom, &status);
             }
-
-            char *ddo = (char *)malloc(20 * sizeof(char));
-            sprintf(ddo, "./debug/00_00_debugB");
-            char *pidstro = (char *)malloc(2 * sizeof(char));
-            sprintf(pidstro, "%02d", pid);
-            strncpy(ddo+8, pidstro, 2 * sizeof(char));
-
-            save_matrix(ddo, pB,
-                sz, sz, sz, true);
-            free(pidstro);
-
+            
 
             cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                     sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, pC, sz);
 
-            //skewing
+            /* dump data for first step  */
+            if(arguments.steps) {
+                char *dump_path = (char *)malloc(
+                        (strlen(arguments.debugDir) + 12)
+                        * sizeof(char));
+                /* assuming that theres less than 9999 nodes */
+                /* that gives less than 9999 steps to dump   */
+                sprintf(dump_path, "%s%04d_0000_A", arguments.debugDir, pid);
+                save_matrix(dump_path, pA,
+                    sz, sz, sz, true);
+
+                sprintf(dump_path, "%s%04d_0000_B", arguments.debugDir, pid);
+                save_matrix(dump_path, pB,
+                    sz, sz, sz, true);
+
+                sprintf(dump_path, "%s%04d_0000_C", arguments.debugDir, pid);
+                save_matrix(dump_path, pC,
+                    sz, sz, sz, true);
+
+                free(dump_path);
+            }
+
+            /* skewing */
             int top, bottom, left, right;
             MPI_Cart_shift(cartcom, 1, 1, &left, &right);
             MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
             
-
-            for (int i = 1; i < dims[0]; i++) { /* zakładamy, że dims[0]=dims[1] */
+            for (int i = 1; i < dims[0]; i++) { /* if dims[0] == dims[1] */
                 MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, 
-                        SKEW_LEFTRIGHT, right, SKEW_LEFTRIGHT, cartcom, &status);
+                        SKEW_LEFTRIGHT, right, 
+                        SKEW_LEFTRIGHT, cartcom, &status);
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
-                        SKEW_BOTTOMUP, bottom, SKEW_BOTTOMUP, cartcom, &status);
-
-                char *dd = (char *)malloc(20 * sizeof(char));
-                sprintf(dd, "./debug/00_00_debugB");
-                char *pidstr = (char *)malloc(2 * sizeof(char));
-                sprintf(pidstr, "%02d", pid);
-                char *iter = (char *) malloc(2 * sizeof(char));
-                sprintf(iter, "%02d", i);
-                strncpy(dd+8, pidstr, 2 * sizeof(char));
-                strncpy(dd+11, iter, 2 * sizeof(char));
-
-                save_matrix(dd, pB,
-                    sz, sz, sz, true);
-                free(iter);
-                free(pidstr);
+                        SKEW_BOTTOMUP, bottom, 
+                        SKEW_BOTTOMUP, cartcom, &status);
+               
                 cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                         sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
-                
+
                 for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
                 }
+
+                /* dump data for step 1-p */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 12)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%s%04d_%04d_A", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pA,
+                        sz, sz, sz, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_B", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pB,
+                        sz, sz, sz, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_C", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pC,
+                        sz, sz, sz, true);
+
+                    free(dump_path);
+                }
+
             }
 
             t1 = MPI_Wtime();
@@ -460,8 +495,8 @@ int main(int argc, char *argv[]) {
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                /* displacement for root process */
                 int displacements[sz];
-                // przesunięcia wierszy dla procesu ROOT
                 displacements[0] = 0; 
                 for(int k = 1; k < sz; k++) {              
                     displacements[k] =  
@@ -474,10 +509,9 @@ int main(int argc, char *argv[]) {
                 }
 
             }
-
+            /* sending computed data from all over the grid to root process*/
             for(int proc = 1; proc < numprocs; proc++) {
                 if(pid == proc) {
-                    // procesy wysyłają do ROOT swoje wyminiki
                     MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, 
                             COLLECTING, cartcom);
                 }
@@ -487,10 +521,9 @@ int main(int argc, char *argv[]) {
                             COLLECTING, cartcom, &status);
                     // przesunięcia wierszy dla pozostałych procesów
                     int displacements[sz];
-                    /*  proc % dims[1] * sz - kolumna początku */
-                    /*  pierwszego wiersza podmacierzy */
-                    /*  (proc / dims[1])... - przesunięcie */
-                    /*  o odpowiednią liczbę podmacierzy */
+                    /*  proc % dims[1] * sz - first column */
+                    /*  of first line of submatrix stored in p-process */
+                    /*  (proc / dims[1])... - horizontal shifts */
                     int start = (proc % dims[1]) * sz +
                         (proc / dims[1]) * (dims[1] * blockSz);
                     displacements[0] = start;
