@@ -321,12 +321,12 @@ int main(int argc, char *argv[]) {
                     sprintf(dump_path, "%sA_raw", 
                             arguments.debugDir);
                     save_matrix(dump_path, B,
-                        arguments.m, arguments.k, max, true);
+                        arguments.m, arguments.k, max, true, true);
 
                     sprintf(dump_path, "%sB_raw", 
                             arguments.debugDir);
                     save_matrix(dump_path, A,
-                        arguments.k, arguments.n, max, true);
+                        arguments.k, arguments.n, max, true, true);
 
                     free(dump_path);
                 }
@@ -430,15 +430,15 @@ int main(int argc, char *argv[]) {
                 /* that gives less than 9999 steps to dump   */
                 sprintf(dump_path, "%s%04d_0000_A", arguments.debugDir, pid);
                 save_matrix(dump_path, pA,
-                    sz, sz, sz, true);
+                    sz, sz, sz, true, true);
 
                 sprintf(dump_path, "%s%04d_0000_B", arguments.debugDir, pid);
                 save_matrix(dump_path, pB,
-                    sz, sz, sz, true);
+                    sz, sz, sz, true, true);
 
                 sprintf(dump_path, "%s%04d_0000_C", arguments.debugDir, pid);
                 save_matrix(dump_path, pC,
-                    sz, sz, sz, true);
+                    sz, sz, sz, true, true);
 
                 free(dump_path);
             }
@@ -473,17 +473,17 @@ int main(int argc, char *argv[]) {
                     sprintf(dump_path, "%s%04d_%04d_A", 
                             arguments.debugDir, pid, i);
                     save_matrix(dump_path, pA,
-                        sz, sz, sz, true);
+                        sz, sz, sz, true, true);
 
                     sprintf(dump_path, "%s%04d_%04d_B", 
                             arguments.debugDir, pid, i);
                     save_matrix(dump_path, pB,
-                        sz, sz, sz, true);
+                        sz, sz, sz, true, true);
 
                     sprintf(dump_path, "%s%04d_%04d_C", 
                             arguments.debugDir, pid, i);
                     save_matrix(dump_path, pC,
-                        sz, sz, sz, true);
+                        sz, sz, sz, true, true);
 
                     free(dump_path);
                 }
@@ -576,10 +576,12 @@ int main(int argc, char *argv[]) {
                 if (arguments.pathC != NULL) {
                     if(arguments.method == CANNON)
                         save_matrix(arguments.pathC, C,
-                                arguments.m, arguments.n, max, false);
+                                arguments.m, arguments.n, max, 
+                                false, false);
                     else
                         save_matrix(arguments.pathC, C,
-                                arguments.m,  arguments.n, arguments.n, false);
+                                arguments.m,  arguments.n, arguments.n, 
+                                false, false);
                 }
 
                 if(arguments.debugDir != NULL) {
