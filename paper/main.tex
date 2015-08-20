@@ -22,21 +22,23 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{pdfpages}
+\usepackage{import}
 
-\include{def}
+
+\subimport{includes/}{def.tex}
 
 \begin{document}
-\include{strona_tytulowa}
+\subimport{includes/}{strona_tytulowa.tex}
 \tableofcontents
 
 \chapter{Wstęp}
-\include{ch_wstep}
+\subimport{includes/}{ch_wstep.tex}
 \chapter{Wiadomości wstępne}
-\include{ch_ustalenia_wstepne}
+\subimport{includes/}{ch_ustalenia_wstepne.tex}
 \chapter{Klasyczne algorytmy mnożenia macierzy}
-\include{ch_algorytmy_klasyczne}
+\subimport{includes/}{ch_algorytmy_klasyczne.tex}
 \chapter{Równoległe algorytmy mnożenia macierzy}
-\include{ch_algorytmy_rownolegle}
+\subimport{includes/}{ch_algorytmy_rownolegle.tex}
 
 \chapter{Interfejsy programowania równoległego}
 \section{MPI}
