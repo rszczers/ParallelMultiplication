@@ -1,0 +1,15 @@
+Rozważmy algorytm sekwencyjny o złożoności \(T_1(n)\) rozwiązujący zadany problem o dowolnym, ustalonym rozmiarze \(n\). Niech \(s\) oznacza część obliczeń algorytmu, która musi być wykonana sekwencyjnie, zaś \(r\) część obliczeń, która może być wykonana równolegle. Mamy wówczas: \(T^{s}(n) = sT_{1}(n), T^{r}(n)=rT_{1}(n)\), gdzie \(s+r=1\). Przyspieszenie algorytmu, jakie można uzyskać po jego zrównolegleniu można wyznaczyć upraszczając wzór \eqref{eq:supSpn} przez pominięcie złożoności \(T^{o}_{p}(n)\).
+
+Mamy wówczas:
+\begin{equation}\label{eq:amdahl}
+\begin{split}
+S(p, n) &= \frac{T_{1}(n)}{T_{p}(n)}\leq\\
+&\leq \frac{T^{s}_{1}(n) + T^{r}_{1}(n)}{T^{s}_{1}(n) + T^{r}_{1}(n)/p + T^{o}_{p}(n)}\leq\\
+&\leq \frac{sT_{1}(n) + rT_{1}(n)}{sT_{1}(n) + rT_{1}(n)/p} =
+= \frac{s+r}{s+r/p} = \frac{1}{s+r/p}= \\
+&= \left(s+\frac{1-s}{p}\right)^{-1}
+\end{split}
+\end{equation}
+gdzie \(s\) – część obliczeń w algorytmie które muszą być wykonane sekwencyjnie; \(p\) – liczba procesorów.\\
+
+Wzór \eqref{eq:amdahl} znany jest jako \textbf{prawo Amdahla}. Służy on do wyznaczania górnego ograniczenia przyspieszenia będącego funkcją \(s\) oraz liczby procesorów \(p\) przy ustalonym rozmiarze problemu \(n\).

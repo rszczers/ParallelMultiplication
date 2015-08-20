@@ -1,0 +1,26 @@
+Potencjalną korzyść z równoległego wykonania zadania obliczeniowego możemy zmierzyć licząć czas jaki zajmuje wykonanie go na jednym procesorze i porównanie wyniku z wykonaniem tego samego zadania równolegle na \(N\) procesorach. Współczynnik przyspieszenia \(S(p, n)\) możemy zdefiniować jako
+
+\begin{align}\label{def:speedup_abs}
+ S(p, n)=\frac{T^{*}_{p}(1)}{T_{p}(N)}
+\end{align}
+
+gdzie \(T^{*}_{p}(1)\) jest pesymistyczną złożonością czasową najszybszego znanego algorytmu sekwencyjnego rozwiązującego problem \(Z\) na jednym procesorze, \(T_{p}(N)\) jest pesymistyczną złożonością algorytmu równoległego. Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem bezwzględnym}.
+
+Maksymalną wartością przyspieszenia \(S(p,n)\) jest p, ponieważ używając \(p\) procesorów można przyspieszyć obliczenia najlepszego algorytmu sekwencyjnego co najwyżej \(p\) razy. Zwykle uzyskiwane przyspieszenie jest mniejsze niż \(p\). Przyczyną tego może być niewystarczający stopień współbieżności w problemie \(Z\). 
+
+
+
+W złożoności \(T^{r}_{1}(n)\) można wyróżnić operacje obliczeniowe, które muszą być wykonane sekwencyjnie, \(T^{s}_{1}(n)\), oraz obliczenia, które mogą być wykonane równolegle, \(T^{r}_{1}(n)\). Wobec tego mamy, że:
+
+\begin{align}
+T_{1}(n) = T^{s}_{1}(n) + T^{r}_{1}(n)
+\end{align}
+
+Zakładając, że obliczenia \(T^{r}(n)\) da się równomiernie rozdzielić między \(p\) procesorami, przyspieszenie \(S(p, n)\) wyraża się wzorem:
+
+\begin{align}\label{eq:supSpn}
+S(p, n) = \frac{T_{1}(n)}{T_{p}(n)}\leq\frac{T^{s}_{1}(n) + T^{r}_{1}(n)}{T^{s}_{1}(n) + T^{r}_{1}(n)/p + T^{o}_{p}(n)}
+\end{align}
+
+
+gdzie \(T^{o}_{p}(n)\) jest złożonością dodatkową wynikającą z organizacji obliczeń równoległych. W jej skład wchodzą m.in. operacje komunikacji między procesorami.

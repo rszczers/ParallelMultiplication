@@ -1,0 +1,57 @@
+\begin{definicja}[Zbiór przechodni]\label{def:transitive_set}
+Zbiór \(A\) nazywamy \textbf{przechodnim}, wtedy i tylko wtedy, gdy
+\(\forall{x}\left(x\in A \land y\in x\implies y\in A\right)\).  
+\end{definicja}
+
+\begin{definicja}[Domknięcie przechodnie zbioru]\label{def:transitive_closure_set}
+Domknięciem przechodnim zbioru \(X\) nazywamy najmniejszy w sensie inkluzji zbiór przechodni, który zawiera \(X\).
+\end{definicja}
+
+\begin{definicja}[Graf skierowany (DG)]\label{def:DG}
+Powiedzmy, że:
+\begin{enumerate}
+\item \(V\neq\emptyset\) jest zbiorem
+\item \( E \subseteq V \times V \)
+\end{enumerate}
+Grafem skierowanym \(G\) nazwiemy dwójkę \((V, E)\).
+\end{definicja}
+
+\begin{definicja}[Acykliczny graf skierowany (DAG)]\label{def:dag}
+Acyklicznym grafem skierowanym nazywamy graf skierowany nie zawierający cykli.
+\end{definicja}
+
+\begin{definicja}[Domknięcie przechodnie grafu]\label{def:domk_przechodnie_grafu}
+Niech \(G=(V,A)\) będzie grafem skierowanym. Graf skierowany \(G^+=(V,A^{+})\) nazywamy \textbf{domknięciem przechodnim} grafu \(G\), gdy \(A^{+}\) jest zbiorem wszystkich takich par \((a,b)\) wierzchołków zbioru \(V\), że w grafie \(G\) istnieje droga z \(a\) do \(b\).
+\end{definicja}
+
+\begin{definicja}[Graf zależności]\label{def:depend_graph}
+Niech dane będą zbiór \(S\neq\emptyset\), relacja przechodnia \(R\subseteq S\times S\). \textbf{Grafem zależności} nazywamy graf \(G=(S,T)\) i \(T\subseteq R\), gdzie \(R\) jest przechodnim domknięciem \(T\).
+\end{definicja}
+
+
+\begin{definicja}[Ścieżka]\label{def:sciezka}
+\textbf{Ścieżką} łączącą \(v_0\) z \(v_n\) o długości \(n\) nazywamy ciąg wierzchołków \((v_0, v_1, \dots, v_n)\) taki, że dla każdego \(k\in \{0, 1, \dots, n-1\}\) istnieje krawędź z \(v_k\) do \(v_{k+1}\).
+\end{definicja}
+
+\begin{definicja}[Droga]\label{def:droga}
+\textbf{Drogą} w grafie \(G\) nazywamy ścieżkę, której wierzchołki są różne.
+\end{definicja}
+
+\begin{definicja}[Długość drogi]\label{def:dlugosc_drogi}
+\textbf{Długością} drogi w grafie \(G\) nazywamy liczbę krawędzi, które zawiera droga.
+\end{definicja}
+\begin{definicja}[Cykl]\label{def:cykl_w_grafie}
+Drogę zamkniętą długości co najmniej 1 z ciągiem wierzchołków \(x_1 x_2\dots x_n x_1\) nazywamy \textbf{cyklem}, jeśli wszystkie wierzchołki\\ \(x_1, x_2\dots x_n\) są różne.
+\end{definicja}
+
+\begin{definicja}[Stopień wierzchołka]\label{def:stopien_node}
+\textbf{Stopień \(d_{G}(v)\) wierzchołka} \(v\) definiujemy jako liczbę incydentnych z \(v\) krawędzi. Każdemu wierzchołkowi \(v\) grafu skierowanego \(G\) możemy przypisać stopień wyjściowy (ang. \emph{indegree}) \(d_{G}^{+}(v)\) i stopień wejściowy (ang. \emph{outdegree}) \(d_{G}^{-}(v)\):
+\begin{align*}
+ d_{G}^{+}(v) = \#\{w|(v,w)\in E\}\\ 
+ d_{G}^{-}(v) = \#\{w|(w,v)\in E\}
+\end{align*}
+\end{definicja}
+
+\begin{definicja}[Macierz]\label{def:matrix}
+Niech \(\mathbb{K}\) będzie ciałem. Macierzą o \(m\) wierszach i \(n\) kolumnach i wartościach w \(\mathbb{K}\) (krótko: macierzą \(m\times n\)) nazwamy każde odwzorowanie \(A:\{1,\dots, m\}\times \{1, \dots, n\}\xrightarrow{} \mathbb{K}, (i,j)\longmapsto A_{ij}\)
+\end{definicja}

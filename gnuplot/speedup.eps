@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: speedup.tex
-%%Creator: gnuplot 4.6 patchlevel 0
-%%CreationDate: Thu Aug 20 17:43:43 2015
+%%Creator: gnuplot 4.6 patchlevel 4
+%%CreationDate: Thu Aug 20 19:07:20 2015
 %%DocumentFonts: 
 %%BoundingBox: 50 50 475 248
 %%EndComments
@@ -47,7 +47,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.4 (August 2010)
+% Gnuplot Prolog Version 4.6 (September 2012)
 %
 %/SuppressPDFMark true def
 %
@@ -314,7 +314,8 @@ gnudict begin
 /PatternFill {gsave /PFa [ 9 2 roll ] def
   PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
   PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
-  gsave 1 setgray fill grestore clip
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
   0 0 M PFa 5 get rotate PFs -2 div dup translate
@@ -428,11 +429,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (speedup.tex)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 0)
+  /Creator (gnuplot 4.6 patchlevel 4)
   /Author (rszczers)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Thu Aug 20 17:43:43 2015)
+  /CreationDate (Thu Aug 20 19:07:20 2015)
   /DOCINFO pdfmark
 end
 } ifelse
