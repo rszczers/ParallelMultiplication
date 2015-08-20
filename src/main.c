@@ -83,7 +83,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         }
         case 'C':
         case 'o': {
-            arguments->pathC = arg;
+            if(sizeof(arg) != 1)
+                arguments->pathC = arg;
             break;
         }
         case 'd': {

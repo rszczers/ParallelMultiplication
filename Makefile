@@ -1,5 +1,5 @@
 SIZE = 4096 #rank of randomly generated test square matrix
-NPROC = 480 #number of MPI threads
+NPROC = 960 #number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -17,9 +17,9 @@ MAX = 10
 PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 
 # DATA OUTPUT
-OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
-OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
-OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
+#OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
+#OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
+#OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
 
 # PMM
 CC = mpiicc
@@ -68,6 +68,7 @@ cannon:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_CRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -83,6 +84,7 @@ mkl:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_MRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
@@ -98,6 +100,7 @@ seq:
 	$(BUILD_PATH_PMM) \
 	-A $(PATH_A) \
 	-B $(PATH_B) \
+	-C$(OUTPUT_SRUN) \
 	-m $(SIZE) \
 	-n $(SIZE) \
 	-k $(SIZE) \
