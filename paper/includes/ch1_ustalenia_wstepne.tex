@@ -23,112 +23,13 @@
 \newpage
 
 \section{Teoretyczne modele obliczeń}
+\include{ch1s2_teoretyczne_modele_obliczen}
 \subsection{Model RAM}
-\include{ch1s2s1_model_ram.tex}
+\include{ch1s2s1_model_ram}
 
 \label{subsec:PRAM}
 \subsection{Model PRAM}
-
-Model wspólnej pamięci składa się z pewnej liczby procesorów, z których każdy posiada własną pamięć i może lokalnie wykonywać programy. Wszystkie procesory mogą komunikować się za pomocą wspólnej globalnej pamięci.\\
-Każdemu procesorowi przypożądkowany jest niepowtarzająca się liczba naturalna. Jest to lokalnie dostępny indeks, numer procesora lub jego identyfikator.\\
-
-W modelu wspólnej pamięci wyróżniamy dwa podstawowe tryby operacji. W pierwszym trybie, synchronicznym, wszystkie procesory działają synchronicznie według wspólnego zegara. Model ten nazywamy równoległą maszyną o dostepie swobodnym (PRAM, parallel random-access machine).\\
-W drugi trybie, asynchronicznym, każdy procesor pracuje według osobnego zegara. W tym trybie programista jest odpowiedzialny za odpowiednią synchronizację procesorów, jeśli zachodzi taka potrzeba. Dokładniej mówiąc, jeśli procesor ma pobrać dane, to odpowiedzialnością programisty jest upewnienie się, że odpowiednie dane są już uzyskane, ponieważ wartości wspólnych zmiennych są określane dynamicznie w trakcie wykonania programu na różnych procesorach.\\
-
-Ponieważ każdy procesor może uruchomić swój program lokalnie, ten model jest typu MIMD w klasyfikacji Flynna. Znaczy to tyle, że każdy procesor może wykonać pewną instrukcję lub operację na danych niezależnie od tych wykonanych na jakimkolwiek innym procesorze w trakcie danej jednostki czasu.\\
-
-Dla danego algorytmu, rozmiar danych wymienionych pomiędzy pamięcią globalną i pamięcią lokalną różnych procesorów wyraża rozmiar \textbf{komunikacji} wymaganej przez algorytm.
-
-
-
-Możemy wyróżnić kilka wariantów modelu PRAM w zależności od wymagań jakie postawimy odnośnie jednoczesnego dostępu kilku procesorów do tego samego adresu w pamięci globalnej.\\
-\begin{definicja}{Klasyfikacja PRAM ze względu na dostęp do pamięci}
-\begin{itemize}
-\item\textbf{EREW} -- algorytmy z wyłącznym odczytem i wyłącznym zapisem; nie pozwala na jednoczesny zapis do pamieci\\
-\item\textbf{CREW} -- algorytmy z jednoczesnym odczytem i wyłącznym zapisem; pozwala na jednoczesny  dostęp do pamięci dla instrukcji odczytu\\
-\item\textbf{CRCW} -- algorytmy z jednoczesnym odczytem i jednoczesnym zapisem;\\
-\item\textbf{ERCW} -- algorytmy z wyłącznym odczytem i jednoczesnym zapisem.\\
-\end{itemize}
-\end{definicja}
-
-Jeśli nie poczyni się żadnych dodatkowych założeń, to nie jest jasno określone, co zostanie zapisane w komórce pamięci w wyniku jednoczesnego zapisywania do niej przez wiele procesorów w algorytmie typu CRCW. W literaturze można spotkać wiele typów maszyny PRAM, które różnią się sposobami rozwiązywania konfliktów zapisu. Można wśród nich wyróżnić\cite{Cormen94}:
-
-\begin{enumerate}
-\item jednolity (ang. common) – procesory muszą zapisać do tej samej komórki pamięci jednolitą wartość
-\item dowolny (ang. arbitrary) – zapamiętywana jest dowolna wartość z wartości zapisywanych do tej samej komórki pamięci
-\item priorytetowy (ang. priority) – zapamiętywana jest wartość zapisywana przez procesor o najmniejszym numerze
-\item (ang. combining) – zapamiętywana jest wartość jest pewną, jednak ściśle określoną kombinacją zapisywanych wartości
-\end{enumerate}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=20em]{./images/Rys4.eps}
-\caption{Model wspólnej pamięci}
-\label{fig:model_shared}
-\end{figure}
+\include{ch1s2s2_model_pram}
 
 \subsection{Model sieciowy}
-
-Sieć możemy przedstawić modelowo jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory. Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
-
-W opisie algorytmów dla modelu sieciowego potrzebujemy zdefiniować dwie instrukcje do opisania komunikacji między procesorami.
-\begin{enumerate}
- \item send\((X,i)\)
- \item receive\((X,j)\)
-\end{enumerate}
-
-Procesor \(P\) wykonujący instrukcję \textbf{send} wysyła kopię \(X\) do procesora \(P_i\), następnie natychmiast przechodzi do wykonywania kolejnej instrukcji.\\
-Procesor \(P\) wykonujący instrukcję \textbf{receive} zatrzymuje wykonanie programu aż do chwili, gdy otrzyma dane z procesora \(P_j\), a następnie przechowuje dane w \(Y\) i kontynuuje wykonanie programu.\\
-
-
-
-Procesory pracujące w sieci asynchronicznej zarządzają swoimi zadaniami przez wymianę komunikatów. Schemat taki nazywamy modelem wymiany komunikatów. Procesory te niekoniecznie muszą być ze sobą sąsiadujące. 
-
-%\begin{definicja}[Routing]
-%Proces dostarczania każdego komunikatu od źródła do przeznaczenia nazywmy routingiem.
-%\end{definicja}
-
-Charakterysuje ją kilka parametrów:
-
-\begin{enumerate}
- \item średnica – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej.
- \item maksymalny stopień wierzchołka – maksymalna liczba łączy do dane procesora
- \item szerokość połowienia sieci – minimalna liczba krawędzi, które muszą zostać usunięty, aby podzielić ją na dwie równe podsieci
- \item spójność krawędziowa – minimalna liczba krawędzi, które muszą ulec awarii, aby sieć stała się niespójna
- \item koszt sieci – koszt wykonania, zarządzania i utrzymania połączeń między procesorami; w najprostrzym przypadku mierzony liczbą krawędzi
-\end{enumerate}
-
-
-\subsubsection{Sieć liniowa}
-\begin{definicja}[Sieć liniowa]
-Model składa się z \(p\) procesorów \(P_1, P_2, \dots, P_p\) połączonych ze sobą w ciąg, tzn. procesor \(P_i\) połączony jest z procesorem \(P_{i-1}\) i \(P_{i+1}\), o ile takie istnieją. Średnica takiej sieci wynosi \(p-1\), jej maksymalny stopień wynosi \(2\).\\
-\end{definicja}
-\begin{definicja}[Torus]
-Sieć liniowa z połączonymi końcami.
-\end{definicja}
-
-
-\subsubsection{Sieć dwuwymiarowa}
-
-Dwuwymiarowa sieć jest dwuwymiarową wersją sieci liniowej. Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) taką, że procesor \(P_{i,j}\) jest połączony z procesorem \(P_{i\pm 1, j}\) i \(P_{i, j\pm 1}\).\\
-Średnica takiej sieci złożonej z \(p=m^2\) procesorów wynos \(\sqrt{p}\) a jej maksymalny stopień \(4\)
-
-
-\subsubsection{Sieć hipersześcienna}
-
-\begin{definicja}{Kostka Boola}\\
-Niech \(i_{d-1}i_{d-2}\dots i_{0}\), gdzie \(0\leq i \leq p-1\) będzie binarną reprezentacją \(i\). Wówczas procesor \({i}\) jest połaczony z procesorem \(P_{i^(j)}\), gdzie \(i^{(j)}=i_{d-1}\dots \overline{i_j} \dots i_0\) i \(\overline{i_j} = 1 - i_j\). Innymi słowy, dwa procesory są ze sobą połączone wtedy i tylko wtedy, gdy ich wskaźniki różnią się tylko jednym bitem.\\
-\end{definicja}
-
-Sieć w topologii hipersześcianu skłąda się z \(p=2^d\) procesorów połączonych w d-wymiarową kostkę Boola.\\
-
-Hipersześcian ma strukurę rekursywną. Kostkę \(d\)-wymiarową możemy rozszerzyć do \(d+1\) wymiarów przez połączenie poszczególnych procesorów do \(d\)-wymiarowych kostek.\\
-
-Średnica d-wymiarowego hipersześcianu wynosi \(d=\log{p}\). Jest tak ponieważ odległośc w grafie między dwoma procesorami \(P_i\) i \(P_j\) jest równa liczbie pozycji bitów, którymi wskaźniki \(i\) i \(j\) różnią się między sobą. Stąd jest ona mniejsza lub równa \(d\), a ponadto odległość między \(P_0\) a \(P_{2^d-1}\) wynosi d. Każdy węzeł jest stopnia \(d=\log{p}\).
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=36em]{./images/systolic.eps}
-\caption{Sieć w topologii hipersześcianu}
-\label{fig:systolic}
-\end{figure}
+\include{ch1s2s3_model_sieciowy}
