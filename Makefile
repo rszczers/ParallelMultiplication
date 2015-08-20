@@ -1,5 +1,5 @@
-SIZE = 256 #rank of randomly generated test square matrix
-NPROC = 64 #number of MPI threads
+SIZE = 2048 #rank of randomly generated test square matrix
+NPROC = 384 #number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -135,6 +135,8 @@ endif
 	./makeplots.sh $(NPROC)
 
 test:
+	rm $(DEBUG_DIR)/*
+	rm pmm.*
 	./makeplots.sh $(NPROC)
 
 clean:
