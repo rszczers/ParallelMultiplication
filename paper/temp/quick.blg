@@ -1,12 +1,17 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: quick.aux
+A level-1 auxiliary file: strona_tytulowa.aux
+A level-1 auxiliary file: wstep.aux
+A level-1 auxiliary file: ustalenia_wstepne.aux
+A level-1 auxiliary file: algorytmy_klasyczne.aux
+A level-1 auxiliary file: algorytmy_rownolegle.aux
 The style file: unsrt.bst
 Database file #1: bibdb.bib
 Warning--empty school in Cannon:1969:CCI:905686
 You've used 12 entries,
             1791 wiz_defined-function locations,
-            528 strings with 5529 characters,
+            533 strings with 5625 characters,
 and the built_in function-call counts, 2043 in all, are:
 = -- 171
 > -- 93

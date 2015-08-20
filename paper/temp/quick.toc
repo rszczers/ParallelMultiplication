@@ -1,45 +1,46 @@
-\contentsline {chapter}{\numberline {1}Wiadomo\IeC {\'s}ci wst\IeC {\k e}pne}{4}
-\contentsline {section}{\numberline {1.1}Ustalenia terminologiczne}{4}
-\contentsline {section}{\numberline {1.2}Klasyfikacja algorytm\IeC {\'o}w}{6}
-\contentsline {subsection}{\numberline {1.2.1}Reprezentacja algorytm\IeC {\'o}w}{8}
-\contentsline {section}{\numberline {1.3}Ocena algorytm\IeC {\'o}w}{9}
-\contentsline {subsection}{\numberline {1.3.1}Algorytmy sekwencyjne}{9}
-\contentsline {subsection}{\numberline {1.3.2}Algorytmy r\IeC {\'o}wnoleg\IeC {\l }e}{10}
-\contentsline {subsection}{\numberline {1.3.3}Przyspieszenie}{10}
-\contentsline {subsection}{\numberline {1.3.4}Prawo Amdahla}{11}
-\contentsline {subsection}{\numberline {1.3.5}Prawo Gustafsona i Barsisa}{12}
-\contentsline {section}{\numberline {1.4}Teoretyczne modele oblicze\IeC {\'n} }{13}
-\contentsline {subsection}{\numberline {1.4.1}Model RAM}{13}
-\contentsline {subsection}{\numberline {1.4.2}Model PRAM}{14}
-\contentsline {subsection}{\numberline {1.4.3}Model sieciowy}{16}
-\contentsline {subsubsection}{Sie\IeC {\'c} liniowa}{17}
-\contentsline {subsubsection}{Sie\IeC {\'c} dwuwymiarowa}{17}
-\contentsline {subsubsection}{Sie\IeC {\'c} hipersze\IeC {\'s}cienna}{17}
-\contentsline {chapter}{\numberline {2}Klasyczne algorytmy mno\IeC {\.z}enia macierzy}{19}
-\contentsline {section}{\numberline {2.1}Algorytm naiwny}{19}
-\contentsline {section}{\numberline {2.2}Algorytm ,,dziel i rz\IeC {\k a}d\IeC {\'z}''}{20}
-\contentsline {section}{\numberline {2.3}Algorytm Cannona}{20}
-\contentsline {section}{\numberline {2.4}Algorytm Strassena}{21}
-\contentsline {section}{\numberline {2.5}Algorytm Strassena-Winograda}{21}
-\contentsline {chapter}{\numberline {3}R\IeC {\'o}wnoleg\IeC {\l }e algorytmy mno\IeC {\.z}enia macierzy}{23}
-\contentsline {section}{\numberline {3.1}Algorytm w modelu PRAM}{23}
-\contentsline {subsubsection}{Algorytm sumowania}{23}
-\contentsline {subsubsection}{Algorytm mno\IeC {\.z}enia}{25}
-\contentsline {section}{\numberline {3.2}Algorytmy w modelu sieciowym}{26}
-\contentsline {subsection}{\numberline {3.2.1}Algorytm w dwuwymiarowym torusie}{26}
-\contentsline {subsection}{\numberline {3.2.2}Algorytm systoliczny w sieci dwuwymiarowej}{27}
-\contentsline {subsection}{\numberline {3.2.3}Algorytm w topologii hipersze\IeC {\'s}cianu}{28}
-\contentsline {subsubsection}{Rozg\IeC {\l }aszanie ,,jednego do wszystkich'' w hipersze\IeC {\'s}cianie}{28}
+\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{4}
+\contentsline {chapter}{\numberline {2}Wiadomo\IeC {\'s}ci wst\IeC {\k e}pne}{5}
+\contentsline {section}{\numberline {2.1}Ustalenia terminologiczne}{6}
+\contentsline {section}{\numberline {2.2}Klasyfikacja algorytm\IeC {\'o}w}{8}
+\contentsline {subsection}{\numberline {2.2.1}Reprezentacja algorytm\IeC {\'o}w}{10}
+\contentsline {section}{\numberline {2.3}Ocena algorytm\IeC {\'o}w}{11}
+\contentsline {subsection}{\numberline {2.3.1}Algorytmy sekwencyjne}{11}
+\contentsline {subsection}{\numberline {2.3.2}Algorytmy r\IeC {\'o}wnoleg\IeC {\l }e}{12}
+\contentsline {subsection}{\numberline {2.3.3}Przyspieszenie}{12}
+\contentsline {subsection}{\numberline {2.3.4}Prawo Amdahla}{13}
+\contentsline {subsection}{\numberline {2.3.5}Prawo Gustafsona i Barsisa}{14}
+\contentsline {section}{\numberline {2.4}Teoretyczne modele oblicze\IeC {\'n} }{15}
+\contentsline {subsection}{\numberline {2.4.1}Model RAM}{15}
+\contentsline {subsection}{\numberline {2.4.2}Model PRAM}{16}
+\contentsline {subsection}{\numberline {2.4.3}Model sieciowy}{18}
+\contentsline {subsubsection}{Sie\IeC {\'c} liniowa}{19}
+\contentsline {subsubsection}{Sie\IeC {\'c} dwuwymiarowa}{19}
+\contentsline {subsubsection}{Sie\IeC {\'c} hipersze\IeC {\'s}cienna}{19}
+\contentsline {chapter}{\numberline {3}Klasyczne algorytmy mno\IeC {\.z}enia macierzy}{21}
+\contentsline {section}{\numberline {3.1}Algorytm naiwny}{22}
+\contentsline {section}{\numberline {3.2}Algorytm ,,dziel i rz\IeC {\k a}d\IeC {\'z}''}{23}
+\contentsline {section}{\numberline {3.3}Algorytm Cannona}{23}
+\contentsline {section}{\numberline {3.4}Algorytm Strassena}{24}
+\contentsline {section}{\numberline {3.5}Algorytm Strassena-Winograda}{24}
+\contentsline {chapter}{\numberline {4}R\IeC {\'o}wnoleg\IeC {\l }e algorytmy mno\IeC {\.z}enia macierzy}{26}
+\contentsline {section}{\numberline {4.1}Algorytm w modelu PRAM}{27}
+\contentsline {subsubsection}{Algorytm sumowania}{27}
 \contentsline {subsubsection}{Algorytm mno\IeC {\.z}enia}{28}
-\contentsline {subsection}{\numberline {3.2.4}Algorytm Cannona w dwuwymiarowej sieci}{30}
-\contentsline {subsection}{\numberline {3.2.5}Algorytm 2.5D}{30}
-\contentsline {subsection}{\numberline {3.2.6}Algorytm 3D}{30}
-\contentsline {subsection}{\numberline {3.2.7}R\IeC {\'o}wnoleg\IeC {\l }y algorytm Strassena CAPS}{30}
-\contentsline {chapter}{\numberline {4}Interfejsy programowania r\IeC {\'o}wnoleg\IeC {\l }ego}{31}
-\contentsline {section}{\numberline {4.1}MPI}{31}
-\contentsline {section}{\numberline {4.2}OpenMP}{31}
-\contentsline {section}{\numberline {4.3}Cilk++}{31}
-\contentsline {chapter}{\numberline {5}Implementacja wybranych algorytm\IeC {\'o}w}{32}
-\contentsline {section}{\numberline {5.1}MPI}{32}
-\contentsline {section}{\numberline {5.2}OpenMP}{32}
-\contentsline {section}{\numberline {5.3}Cilk++}{32}
+\contentsline {section}{\numberline {4.2}Algorytmy w modelu sieciowym}{30}
+\contentsline {subsection}{\numberline {4.2.1}Algorytm w dwuwymiarowym torusie}{30}
+\contentsline {subsection}{\numberline {4.2.2}Algorytm systoliczny w sieci dwuwymiarowej}{31}
+\contentsline {subsection}{\numberline {4.2.3}Algorytm w topologii hipersze\IeC {\'s}cianu}{32}
+\contentsline {subsubsection}{Rozg\IeC {\l }aszanie ,,jednego do wszystkich'' w hipersze\IeC {\'s}cianie}{32}
+\contentsline {subsubsection}{Algorytm mno\IeC {\.z}enia}{32}
+\contentsline {subsection}{\numberline {4.2.4}Algorytm Cannona w dwuwymiarowej sieci}{34}
+\contentsline {subsection}{\numberline {4.2.5}Algorytm 2.5D}{34}
+\contentsline {subsection}{\numberline {4.2.6}Algorytm 3D}{34}
+\contentsline {subsection}{\numberline {4.2.7}R\IeC {\'o}wnoleg\IeC {\l }y algorytm Strassena CAPS}{34}
+\contentsline {chapter}{\numberline {5}Interfejsy programowania r\IeC {\'o}wnoleg\IeC {\l }ego}{35}
+\contentsline {section}{\numberline {5.1}MPI}{35}
+\contentsline {section}{\numberline {5.2}OpenMP}{35}
+\contentsline {section}{\numberline {5.3}Cilk++}{35}
+\contentsline {chapter}{\numberline {6}Implementacja wybranych algorytm\IeC {\'o}w}{36}
+\contentsline {section}{\numberline {6.1}MPI}{36}
+\contentsline {section}{\numberline {6.2}OpenMP}{36}
+\contentsline {section}{\numberline {6.3}Cilk++}{36}

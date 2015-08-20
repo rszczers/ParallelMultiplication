@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  10 AUG 2015 00:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  20 AUG 2015 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,30 +702,35 @@ File: pppdftex.def 2013/08/25 v0.4v Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count136
 \AM@templatesizebox=\box67
 )
+\@input{def.aux}
+\openout2 = `def.aux'.
+
+(./def.tex
 \c@przyklad=\count137
 \c@definicja=\count138
 \c@twierdzenie=\count139
 \c@lemat=\count140
 \c@uwaga=\count141
 \c@wniosek=\count142
-
-(temp//quick.aux)
+) (temp//quick.aux (temp//strona_tytulowa.aux) (temp//wstep.aux)
+(temp//ustalenia_wstepne.aux) (temp//algorytmy_klasyczne.aux)
+(temp//algorytmy_rownolegle.aux))
 \openout1 = `quick.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -778,52 +783,59 @@ LaTeX Font Info:    ... okay on input line 49.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box69
-LaTeX Font Info:    Try loading font information for OML+plm on input line 51.
- (/usr/share/texlive/texmf-dist/tex/latex/polski/omlplm.fd
+\openout2 = `strona_tytulowa.aux'.
+
+ (./strona_tytulowa.tex
+LaTeX Font Info:    Try loading font information for OML+plm on input line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/polski/omlplm.fd
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 51.
-
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omsplsy.fd
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 51.
-
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omxplex.fd
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <12> on input line 51.
+(Font)              <12> on input line 2.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 51.
+(Font)              <8> on input line 2.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 51.
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+(Font)              <6> on input line 2.
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logoumcs.png, id=1, 1320.43312pt x 500.62032pt>
-File: logoumcs.png Graphic file (type png)
- <use logoumcs.png>
-Package pdftex.def Info: logoumcs.png used on input line 53.
+<./images/logoumcs.png, id=1, 1320.43312pt x 500.62032pt>
+File: ./images/logoumcs.png Graphic file (type png)
+
+<use ./images/logoumcs.png>
+Package pdftex.def Info: ./images/logoumcs.png used on input line 4.
 (pdftex.def)             Requested size: 330.10747pt x 125.15477pt.
 
-Overfull \hbox (53.5649pt too wide) in paragraph at lines 51--84
+Overfull \hbox (53.5649pt too wide) in paragraph at lines 2--35
 [][] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logoumcs.png>]
-(temp//quick.toc [2
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/logoumcs.png>]) (
+temp//quick.toc [2
+
 
 ])
 \tf@toc=\write3
@@ -833,13 +845,27 @@ Overfull \hbox (53.5649pt too wide) in paragraph at lines 51--84
 Rozdzia\PlPrIeC {\l } 1.
 [4
 
-] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+]
+\openout2 = `wstep.aux'.
+
+ (./wstep.tex)
+Rozdzia\PlPrIeC {\l } 2.
+[5
+
+
+
+]
+\openout2 = `ustalenia_wstepne.aux'.
+
+ (./ustalenia_wstepne.tex [6
+
+] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
@@ -851,17 +877,17 @@ Package epstopdf Info: Source file: <./images/Rys2.eps>
 (epstopdf)                    size: 10380 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/Rys2-eps-converte
 d-to.pdf ./images/Rys2.eps>
-(epstopdf)             \includegraphics on input line 189.
+(epstopdf)             \includegraphics on input line 91.
 Package epstopdf Info: Output file is already uptodate.
-<./images/Rys2-eps-converted-to.pdf, id=31, 675.52374pt x 129.48375pt>
+<./images/Rys2-eps-converted-to.pdf, id=38, 675.52374pt x 129.48375pt>
 File: ./images/Rys2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/Rys2-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Rys2-eps-converted-to.pdf used on input line 
-189.
+91.
 (pdftex.def)             Requested size: 340.74646pt x 65.31467pt.
- [6 <./images/Rys2-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+ [8 <./images/Rys2-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
@@ -873,26 +899,26 @@ Package epstopdf Info: Source file: <./images/Rys1.eps>
 (epstopdf)                    size: 14702 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/Rys1-eps-converte
 d-to.pdf ./images/Rys1.eps>
-(epstopdf)             \includegraphics on input line 207.
+(epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
-<./images/Rys1-eps-converted-to.pdf, id=37, 532.99126pt x 250.9375pt>
+<./images/Rys1-eps-converted-to.pdf, id=44, 532.99126pt x 250.9375pt>
 File: ./images/Rys1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/Rys1-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Rys1-eps-converted-to.pdf used on input line 
-207.
+109.
 (pdftex.def)             Requested size: 270.2472pt x 127.23743pt.
- [7 <./images/Rys1-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
+ [9 <./images/Rys1-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--261
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
-[8]
+[10]
 Package epstopdf Info: Source file: <./images/Rys3.eps>
 (epstopdf)                    date: 2015-02-22 19:00:34
 (epstopdf)                    size: 186842 bytes
@@ -901,31 +927,31 @@ Package epstopdf Info: Source file: <./images/Rys3.eps>
 (epstopdf)                    size: 23024 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/Rys3-eps-converte
 d-to.pdf ./images/Rys3.eps>
-(epstopdf)             \includegraphics on input line 271.
+(epstopdf)             \includegraphics on input line 173.
 Package epstopdf Info: Output file is already uptodate.
- <./images/Rys3-eps-converted-to.pdf, id=47, 861.2175pt x 347.2975pt>
+ <./images/Rys3-eps-converted-to.pdf, id=53, 861.2175pt x 347.2975pt>
 File: ./images/Rys3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/Rys3-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Rys3-eps-converted-to.pdf used on input line 
-271.
+173.
 (pdftex.def)             Requested size: 422.9956pt x 170.58pt.
 
-Overfull \hbox (24.65701pt too wide) in paragraph at lines 271--272
+Overfull \hbox (24.65701pt too wide) in paragraph at lines 173--174
  [][] 
  []
 
-[9 <./images/Rys3-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+[11 <./images/Rys3-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 345--347
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 247--249
 
  []
 
-[11] [12]
+[13] [14]
 Package epstopdf Info: Source file: <./images/Rys_RAM.eps>
 (epstopdf)                    date: 2015-04-11 13:54:17
 (epstopdf)                    size: 133373 bytes
@@ -934,74 +960,74 @@ Package epstopdf Info: Source file: <./images/Rys_RAM.eps>
 (epstopdf)                    size: 9925 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/Rys_RAM-eps-conve
 rted-to.pdf ./images/Rys_RAM.eps>
-(epstopdf)             \includegraphics on input line 383.
+(epstopdf)             \includegraphics on input line 285.
 Package epstopdf Info: Output file is already uptodate.
 
-<./images/Rys_RAM-eps-converted-to.pdf, id=64, 313.17pt x 432.61626pt>
+<./images/Rys_RAM-eps-converted-to.pdf, id=71, 313.17pt x 432.61626pt>
 File: ./images/Rys_RAM-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/Rys_RAM-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Rys_RAM-eps-converted-to.pdf used on input li
-ne 383.
+ne 285.
 (pdftex.def)             Requested size: 82.24915pt x 113.61957pt.
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 395
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 297
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-Overfull \hbox (30.46913pt too wide) in paragraph at lines 392--409
+Overfull \hbox (30.46913pt too wide) in paragraph at lines 294--311
  [] 
  []
 
-[13 <./images/Rys_RAM-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 416--418
+[15 <./images/Rys_RAM-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 318--320
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--421
+Underfull \hbox (badness 10000) in paragraph at lines 321--323
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 431.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 333.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 431.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 333.
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--432
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 432--433
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 335--336
 
  []
 
-[15]
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+
+ []
+
+[17]
 Package epstopdf Info: Source file: <./images/Rys4.eps>
 (epstopdf)                    date: 2015-02-22 19:36:17
 (epstopdf)                    size: 161614 bytes
@@ -1010,42 +1036,42 @@ Package epstopdf Info: Source file: <./images/Rys4.eps>
 (epstopdf)                    size: 11523 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/Rys4-eps-converte
 d-to.pdf ./images/Rys4.eps>
-(epstopdf)             \includegraphics on input line 449.
+(epstopdf)             \includegraphics on input line 351.
 Package epstopdf Info: Output file is already uptodate.
- <./images/Rys4-eps-converted-to.pdf, id=79, 1028.84375pt x 566.115pt>
+ <./images/Rys4-eps-converted-to.pdf, id=85, 1028.84375pt x 566.115pt>
 File: ./images/Rys4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/Rys4-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/Rys4-eps-converted-to.pdf used on input line 
-449.
+351.
 (pdftex.def)             Requested size: 234.99756pt x 129.30533pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--466
+Underfull \hbox (badness 10000) in paragraph at lines 366--368
 
  []
 
-[16 <./images/Rys4-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 488--489
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 503--505
-
- []
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+[18 <./images/Rys4-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 390--391
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 509--510
+Underfull \hbox (badness 10000) in paragraph at lines 405--407
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
@@ -1057,71 +1083,89 @@ Package epstopdf Info: Source file: <./images/systolic.eps>
 (epstopdf)                    size: 28003 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/systolic-eps-conv
 erted-to.pdf ./images/systolic.eps>
-(epstopdf)             \includegraphics on input line 515.
+(epstopdf)             \includegraphics on input line 417.
 Package epstopdf Info: Output file is already uptodate.
-<./images/systolic-eps-converted-to.pdf, id=89, 411.5375pt x 172.645pt>
+<./images/systolic-eps-converted-to.pdf, id=96, 411.5375pt x 172.645pt>
 File: ./images/systolic-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/systolic-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/systolic-eps-converted-to.pdf used on input l
-ine 515.
+ine 417.
 (pdftex.def)             Requested size: 422.9956pt x 177.45224pt.
 
-Overfull \hbox (24.65701pt too wide) in paragraph at lines 515--516
+Overfull \hbox (24.65701pt too wide) in paragraph at lines 417--418
  [][] 
  []
 
-[18 <./images/systolic-eps-converted-to.pdf>]
-Rozdzia\PlPrIeC {\l } 2.
-[19
+) [20 <./images/systolic-eps-converted-to.pdf>]
+Rozdzia\PlPrIeC {\l } 3.
+[21
 
-] [20] [21]
-Overfull \hbox (6.69618pt too wide) in paragraph at lines 636--637
+
+]
+\openout2 = `algorytmy_klasyczne.aux'.
+
+ (./algorytmy_klasyczne.tex
+Overfull \hbox (13.9775pt too wide) in paragraph at lines 1--2
+\OT4/cmr/m/n/12 naj-cz¦-±ciej im-ple-men-to-wa-nej dzi-siaj po-sta-ci al-go-ryt
+-mu \OT4/cmr/m/sc/12 Strassena-Winograda
+ []
+
+[22
+
+] [23] [24])
+Overfull \hbox (6.69618pt too wide) in paragraph at lines 117--37
 []\OT4/cmr/m/n/12 W prak-ty-ce sto-su-je si¦ tyl-ko kil-ka kro-ków al-go-ryt-mu
  Strassena-Winegrada[[]].
  []
 
-[22]
-Rozdzia\PlPrIeC {\l } 3.
+[25]
+Rozdzia\PlPrIeC {\l } 4.
+[26
 
-Overfull \hbox (17.62482pt too wide) detected at line 663
+
+]
+\openout2 = `algorytmy_rownolegle.aux'.
+
+ (./algorytmy_rownolegle.tex
+Overfull \hbox (17.62482pt too wide) detected at line 24
 [][] 
  []
 
-[23
+[27
 
-] <./images/pram_sum.pdf, id=112, 329.44702pt x 220.42712pt>
+] <./images/pram_sum.pdf, id=125, 329.44702pt x 220.42712pt>
 File: ./images/pram_sum.pdf Graphic file (type pdf)
 
 <use ./images/pram_sum.pdf>
-Package pdftex.def Info: ./images/pram_sum.pdf used on input line 682.
+Package pdftex.def Info: ./images/pram_sum.pdf used on input line 43.
 (pdftex.def)             Requested size: 399.49585pt x 267.2995pt.
 
-Overfull \hbox (1.15726pt too wide) in paragraph at lines 682--683
+Overfull \hbox (1.15726pt too wide) in paragraph at lines 43--44
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--690
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[24 <./images/pram_sum.pdf>]
-Overfull \hbox (17.62482pt too wide) detected at line 705
+
+Overfull \hbox (17.62482pt too wide) detected at line 66
 [][] 
  []
 
-
-Overfull \hbox (17.62482pt too wide) detected at line 809
+[28 <./images/pram_sum.pdf>]
+Overfull \hbox (17.62482pt too wide) detected at line 170
 [][] 
  []
 
-[25]
+[29]
 Overfull \vbox (85.62363pt too high) has occurred while \output is active []
 
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 816--817
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
@@ -1133,43 +1177,44 @@ Package epstopdf Info: Source file: <./images/systolic2.eps>
 (epstopdf)                    size: 213739 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/systolic2-eps-con
 verted-to.pdf ./images/systolic2.eps>
-(epstopdf)             \includegraphics on input line 822.
+(epstopdf)             \includegraphics on input line 183.
 Package epstopdf Info: Output file is already uptodate.
-<./images/systolic2-eps-converted-to.pdf, id=131, 817.0525pt x 549.05125pt>
+<./images/systolic2-eps-converted-to.pdf, id=143, 817.0525pt x 549.05125pt>
 File: ./images/systolic2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./images/systolic2-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/systolic2-eps-converted-to.pdf used on input 
-line 822.
+line 183.
 (pdftex.def)             Requested size: 352.49634pt x 236.87495pt.
- [27 <./images/systolic2-eps-converted-to.pdf>]
+ [31 <./images/systolic2-eps-converted-to.pdf>]
 
-Package caption Warning: \label without proper \caption on input line 836.
+Package caption Warning: \label without proper \caption on input line 197.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `alg:broadcast_one_many' on page 28 undefined on input
- line 857.
+LaTeX Warning: Reference `alg:broadcast_one_many' on page 32 undefined on input
+ line 218.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 860--862
+Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
 
-[28]
-Overfull \hbox (0.93068pt too wide) in paragraph at lines 867--868
+[32]
+Overfull \hbox (0.93068pt too wide) in paragraph at lines 228--229
 []\OT4/cmr/m/n/12 Dane wej-±cio-we s¡ roz-dy-stry-bu-owa-ne tak, »e pro-ce-sor 
 $\OML/plm/m/it/12 P[]$ \OT4/cmr/m/n/12 pa-mi¦-ta $\OML/plm/m/it/12 A\OT4/cmr/m/
 n/12 (\OML/plm/m/it/12 i; l\OT4/cmr/m/n/12 )$
  []
 
-[29] [30]
-Rozdzia\PlPrIeC {\l } 4.
-[31
+[33]) [34]
+Rozdzia\PlPrIeC {\l } 5.
+[35
+
 
 ]
-Rozdzia\PlPrIeC {\l } 5.
-(temp//quick.bbl [32
+Rozdzia\PlPrIeC {\l } 6.
+(temp//quick.bbl [36
 
 ]
 Underfull \hbox (badness 1975) in paragraph at lines 58--61
@@ -1177,21 +1222,23 @@ Underfull \hbox (badness 1975) in paragraph at lines 58--61
 t matrix-
  []
 
-[33
+[37
 
-]) [34] (temp//quick.aux)
+]) [38] (temp//quick.aux (temp//strona_tytulowa.aux) (temp//wstep.aux)
+(temp//ustalenia_wstepne.aux) (temp//algorytmy_klasyczne.aux)
+(temp//algorytmy_rownolegle.aux))
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8167 strings out of 493304
- 120411 string characters out of 6139871
- 229413 words of memory out of 5000000
- 11443 multiletter control sequences out of 15000+600000
+ 8209 strings out of 493304
+ 121336 string characters out of 6139871
+ 232805 words of memory out of 5000000
+ 11448 multiletter control sequences out of 15000+600000
  16124 words of font info for 47 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,20n,40p,801b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,20n,40p,831b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plit.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/pl/plsc.enc}{/usr/share/texlive/texmf-dist/fonts/e
 nc/dvips/pl/plrm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc
@@ -1212,10 +1259,10 @@ ublic/pl/plr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr8.pfb
 xlive/texmf-dist/fonts/type1/public/pl/plsy8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/pl/plti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/pl/pltt12.pfb>
-Output written on temp//quick.pdf (34 pages, 975798 bytes).
+Output written on temp//quick.pdf (38 pages, 976867 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
+ 237 PDF objects out of 1000 (max. 8388607)
+ 165 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
