@@ -1,5 +1,5 @@
 PROJECT=parallel_multiplication_algorithms
-SOURCE=main.tex
+SOURCE=main
 OUTPUT_DIR=./temp/
 
 all:
@@ -8,5 +8,9 @@ all:
 	-pdflatex="pdflatex -interactive=nonstopmode" \
 	-use-make \
 	-output-directory=$(OUTPUT_DIR) \
-	$(SOURCE)
-	mv $(OUTPUT_DIR)main.pdf ./$(PROJECT).pdf
+	$(SOURCE).tex
+	mv $(OUTPUT_DIR)$(SOURCE).pdf ./$(PROJECT).pdf
+	make clean
+
+clean:
+	rm $(OUTPUT_DIR)*
