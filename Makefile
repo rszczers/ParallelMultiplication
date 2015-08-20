@@ -135,8 +135,6 @@ endif
 	./makeplots.sh $(NPROC)
 
 test:
-	rm $(DEBUG_DIR)/*
-	rm pmm.*
 	./makeplots.sh $(NPROC)
 
 clean:
