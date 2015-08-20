@@ -1,5 +1,5 @@
-SIZE = 4096 #rank of randomly generated test square matrix
-NPROC = 960 #number of MPI threads
+SIZE = 4096 #size of randomly generated test square matrix
+NPROC = 441 #number of MPI threads
 ###############################################################################
 
 PROJECT = pmm

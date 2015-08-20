@@ -26,3 +26,5 @@ done
 
 cd gnuplot
 gnuplot ./speedup.p
+
+cp speedup.eps speedup.tex ../paper/includes/plots/
