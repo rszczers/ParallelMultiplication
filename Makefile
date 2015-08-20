@@ -1,4 +1,4 @@
-SIZE = 2048 #rank of randomly generated test square matrix
+SIZE = 4096 #rank of randomly generated test square matrix
 NPROC = 480 #number of MPI threads
 ###############################################################################
 
