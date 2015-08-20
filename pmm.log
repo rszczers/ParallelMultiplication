@@ -1,4 +1,4 @@
-./makeplots.sh 384 
+./makeplots.sh 480 
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make cannon NPROC=4
@@ -243,8 +243,287 @@ Process mesh is not appropriate. Aborting.
 
 Process mesh is not appropriate. Aborting.
 
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make cannon NPROC=361
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=400
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=441
 make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
 make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
 make mkl
