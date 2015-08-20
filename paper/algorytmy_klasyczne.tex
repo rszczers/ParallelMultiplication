@@ -1,0 +1,117 @@
+W swojej pracy \emph{,,Gaussian Elimination is not Optimal''} z 1969 roku \textsc{Volker Strassen} pokazał rekursyjny algorytm mnożenia macierzy kwadratowych wymiaru \(m2^k\) o złożoności \(\mathcal{O}(n^{2,81})\)\cite{Strassen68}. W przypadku macierzy \(2\times 2\) oznaczało to, że mnożenie można wykonać już za pomocą 7 mnożeń i 18 dodawań. Algorytm za sprawą \textsc{Shmuela Winograda} został zoptymalizowany\cite{Winograd}\cite{Loeckx1974} do najczęściej implementowanej dzisiaj postaci algorytmu \textsc{Strassena-Winograda} (implementacja zawiera się na przykład w bibliotece GEMMW\cite{Douglas94gemmw}). W przypadku macierzy \(2\times 2\) wykonuje on 7 operacji mnożenia i 15 dodawań\cite{DBLP:journals/corr/abs-1202-3173}.
+\section{Algorytm naiwny}
+Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm sekwencyjny wyznaczania macierzy \(\mathbf{C}=\mathbf{AB}\) o złożoności \(\mathcal{O}(n^3)\).
+
+\begin{algorithm}
+\For{\(i\in\{1,2,\dots,n\}\)}{
+\For{\(j\in\{1,2,\dots,n\}\)}{
+\(\mathbf{C}(i,j)=0\)\;
+\For{\(k\in\{1,2,\dots,n\}\)}{
+\(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\;
+}}}
+\caption{Sekwencyjny algorytm mnożenia macierzy}
+\end{algorithm}
+\newpage
+\section{Algorytm ,,dziel i rządź''}
+Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\in\mathbb{R}^{n\times n}\) oraz macierzy wyjściowej \(\mathbf{C}\in\mathbb{R}^{n\times n}\) mamy:
+\begin{align*}
+\mathbf{A}& = \begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22} \end{bmatrix}&
+\mathbf{B}& = \begin{bmatrix} B_{11}& B_{12} \\ B_{21}& B_{22} \end{bmatrix}&
+\mathbf{C}& = \begin{bmatrix} C_{11}& C_{12} \\ C_{21}& C_{22} \end{bmatrix}
+\end{align*}
+gdzie
+\begin{align}\label{eq:divide&conquer}
+\begin{bmatrix} C_{11}& C_{12} \\ C_{21}& C_{22}\end{bmatrix}=
+\begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22}\end{bmatrix}
+\begin{bmatrix} B_{11}& B_{12} \\ B_{21}& B_{22}\end{bmatrix}
+\end{align}
+\eqref{eq:divide&conquer} możemy wyrazić inaczej:
+
+\begin{equation}
+\begin{split}
+C_{11} &= A_{11}B_{11} + A_{12}B_{21}\\
+C_{11} &= A_{11}B_{12} + A_{12}B_{22}\\
+C_{21} &= A_{21}B_{11} + A_{22}B_{21}\\
+C_{22} &= A_{21}B_{12} + A_{22}B_{22}
+\end{split}
+\end{equation}
+
+Z powyższych konstatacji nasuwa się łatwy algorytm rekurencyjny.
+
+\begin{algorithm}
+\SetKwFunction{Multiply}{multiply}
+\SetKwInOut{Input}{Dane wejściowe}
+\SetKwInOut{Output}{Dane wyjściowe}
+\SetKwProg{ParFor}{parfor}{}{}
+\SetKwInOut{Help}{Dane pomocnicze}
+\Multiply{\(\mathbf{A}, \mathbf{B}\)}\;
+\Input{Macierze wejściowe \(\mathbf{A}, \mathbf{B}\) wymiaru \(n\)}
+\Output{Macierz \(\mathbf{C}\)}
+\Begin{
+\uIf{n=1}{
+\(C_{11}=A_{11}B_{11}\)
+}
+\Else{
+\(C_{11}=\)
+\Multiply{\(A_{11}B_{11}\)}+\Multiply{\(A_{12}B_{21}\)}\;
+\(C_{12}=\) \Multiply{\(A_{11}B_{12}\)}+\Multiply{\(A_{12}B_{22}\)}\;
+\(C_{21}=\) \Multiply{\(A_{21}B_{11}\)}+\Multiply{\(A_{22}B_{21}\)}\;
+\(C_{22}=\) \Multiply{\(A_{21}B_{12}\)}+\Multiply{\(A_{22}B_{22}\)}\;
+}
+\Return{C}
+}
+\end{algorithm}
+\section{Algorytm Cannona}
+\cite{Cannon:1969:CCI:905686}
+\section{Algorytm Strassena}
+Niech \(A\) i \(B\) będą macierzami \(m2^k\times m2^k\). Definiując następujące macierze pomocnicze
+\begin{align*}
+H_1 &= (A_{11}+A_{22})(B_{11}+B_{22})&
+ H_2 &= (A_{21}+A_{22})B_{11}\\
+H_3 &= A_{11}(B_{12} + A_{22})&
+ H_4 &= A_{22}(B_{21} + A_{11})\\
+H_5 &= (A_{11}+A_{12})B_{22}&
+ H_6 &= (A_{21} + A_{11})(B_{11} + B_{12}) \\
+H_7 &= (A_{12}-A_{22})(B_{21}+B_{22}) 
+\end{align*}
+otrzymujemy
+\begin{align}
+C = \begin{bmatrix}
+H_1+H_4-H_5+H_7& H_3+H_5\\
+H_2+H_4& H_1+H_3-H_2+H_6
+\end{bmatrix}
+\end{align}
+
+\section{Algorytm Strassena-Winograda}
+Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\) oraz macierzy wyjściowej \(\mathbf{C}\) mamy
+\begin{align*}
+\mathbf{A}& = \begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22} \end{bmatrix}&
+\mathbf{B}& = \begin{bmatrix} B_{11}& B_{12} \\ B_{21}& B_{22} \end{bmatrix}&
+\mathbf{C}& = \begin{bmatrix} C_{11}& C_{12} \\ C_{21}& C_{22} \end{bmatrix}
+\end{align*}
+
+Następnie ustalmy odpowiednio po siedem kombinacji liniowych \(T_i\), \(S_i\), \(i\in \{1, 2, \dots,7\}\) dla każdej z podmacierzy \(\mathbf{A}\) i \(\mathbf{B}\).
+
+\begin{align*}
+T_0& = A_{11}& S_0 &= B_{11}\\
+T_1& = A_{12}& S_1 &= B_{21}\\
+T_2& = A_{21} + A_{22}& S_2 &= B_{12}+B_{11}\\
+T_3& = T_2 - A_{12}& S_3 &= B_{22}-S_2\\
+T_4& = A_{11}-A_{21}& S_4 &= B_{22}-B_{12}\\
+T_5& = A_{12}+T_3& S_5 &= B_{22}\\
+T_6& = A_{22}& S_6 &= S_3-B_{21}
+\end{align*}
+oraz
+\begin{align*}
+Q_0& = T_{0}S_{0}& U_1 &= Q_{0} + Q_{3}\\
+Q_1& = T_{1}S_{1}& U_2 &= U_{1} + Q_{4}\\
+Q_2& = T_{2}S_{2}& U_3 &= U_{1} + Q_{2}\\
+Q_3& = T_{3}S_{3}& C_{11} &= Q_{0} + Q_{1}\\
+Q_4& = T_{4}S_{4}& C_{12} &= U_{3} + Q_{5}\\
+Q_5& = T_{5}S_{5}& C_{21} &= U_{2} - Q_{6}\\
+Q_6& = T_{6}S_{6}& C_{22} &= U_{2} + Q_{2}
+\end{align*}
+
+Jest to jeden krok metody Strassena-Winograda. Algorytm jest rekursywny ponieważ może być użyty ponownie dla wyznaczenia \(Q_i,\,i\in\{0,1,\dots,6\}\)
+
+W praktyce stosuje się tylko kilka kroków algorytmu Strassena-Winegrada\cite{DBLP:journals/corr/abs-1202-3173}. Złożoność obliczeniową \(O(n^{w_0})\) algortytmu oznacza, że jego wykonanie zatrzymuje się po osiągnięciu macierzy wymiaru \(1\times 1\).

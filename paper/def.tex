@@ -1,0 +1,23 @@
+%\setlist[enumerate]{itemsep=-1mm}
+%\DeclareGraphicsExtensions{.eps}
+
+\linespread{1.25}
+\pagestyle{plain}
+
+\theoremstyle{definition} 
+\newtheorem{przyklad}{Przykład}[chapter]
+\newtheorem{definicja}{Definicja}[chapter]
+\theoremstyle{plain}
+\newtheorem{twierdzenie}{Twierdzenie}[chapter]
+\newtheorem{lemat}{Lemat}[chapter]
+\theoremstyle{remark}
+\newtheorem{uwaga}{Uwaga}[chapter]
+\newtheorem{wniosek}{Wniosek}[chapter]
+
+\SetKwProg{ParFor}{parfor}{}{}
+
+\newcommand\BlockIf[1]{\KwSty{Start If} \\ #1 \\ \KwSty{End If}}
+\newcommand\BlockElseIf[1]{\KwSty{Start Else If} \\ #1 \\ \KwSty{End Else If}}
+\newcommand\BlockElse[1]{\KwSty{Start Else} \\ #1 \\ \KwSty{End Else}}
+
+
