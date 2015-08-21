@@ -1976,3 +1976,46 @@ correlation matrix of the fit parameters:
 
                mean_s 
 mean_seq        1.000 
+
+
+*******************************************************************************
+Fri Aug 21 09:35:49 2015
+
+
+FIT:    data read from 'mkl.dat' u 5:1
+        format = x:z
+        #datapoints = 3
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1962.51           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 1
+
+initial set of free parameter values
+
+mean_seq        = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 1.81068
+rel. change during last iteration : -8.29964e-13
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.951493
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.90534
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+mean_seq        = 26.5649          +/- 0.5493       (2.068%)
+
+
+correlation matrix of the fit parameters:
+
+               mean_s 
+mean_seq        1.000 

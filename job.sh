@@ -8,5 +8,4 @@
 #PBS -o pmm.log
 
 cd $PBS_O_WORKDIR
-#cd /home/rszczers/ParallelMultiplication/
 make test
