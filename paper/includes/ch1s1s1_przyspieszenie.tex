@@ -1,14 +1,33 @@
-Potencjalną korzyść z równoległego wykonania zadania obliczeniowego możemy zmierzyć licząć czas jaki zajmuje wykonanie go na jednym procesorze i porównanie wyniku z wykonaniem tego samego zadania równolegle na \(N\) procesorach. Współczynnik przyspieszenia \(S(p, n)\) możemy zdefiniować jako
+Potencjalną korzyść z równoległego wykonania zadania obliczeniowego możemy zmierzyć licząć czas jaki zajmuje wykonanie go na jednym procesorze i porównanie wyniku z wykonaniem tego samego zadania równolegle na \(N\) procesorach. 
+
+\begin{definicja}[Przyspieszenie bezwzględne\cite{Czech}]
+Niech \(P\) będzie pewnym zadaniem obliczeniowym, \(n\) -- rozmiarem danych wejjściowych. Wówczas
 
 \begin{align}\label{def:speedup_abs}
- S(p, n)=\frac{T^{*}_{p}(1)}{T_{p}(N)}
+ S(p, n)=\frac{T^{*}(n)}{T_{p}(n)(N)}
 \end{align}
 
-gdzie \(T^{*}_{p}(1)\) jest pesymistyczną złożonością czasową najszybszego znanego algorytmu sekwencyjnego rozwiązującego problem \(Z\) na jednym procesorze, \(T_{p}(N)\) jest pesymistyczną złożonością algorytmu równoległego. Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem bezwzględnym}.
+gdzie \(T^{*}(n)\) jest pesymistyczną złożonością czasową najszybszego znanego algorytmu sekwencyjnego \(R_s\) rozwiązującego problem \(P\) na jednym procesorze, \(T_{n}(N)\) jest pesymistyczną złożonością algorytmu \(R\), gdzie \(R\) jest równoległą wersją algorytmu \(R_s\). Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem bezwzględnym} algorytmu \(R\).
+\end{definicja}
 
-Maksymalną wartością przyspieszenia \(S(p,n)\) jest p, ponieważ używając \(p\) procesorów można przyspieszyć obliczenia najlepszego algorytmu sekwencyjnego co najwyżej \(p\) razy. Zwykle uzyskiwane przyspieszenie jest mniejsze niż \(p\). Przyczyną tego może być niewystarczający stopień współbieżności w problemie \(Z\). 
+
+Zgodnie z definicją \ref{def:pesymistyczna_zlozonosc_czasowa} przez \(T_{1}(n)\) rozumiemy złożoność algorytmu równoległego \(R\) wykonywanego przy użyciu jednego procesora. Jeśli algorytm \(R\) nie jest najlepszą równoległą wersją znanego algorytmu sekwencyjnego, to równość \(T_{1}(n) = T^{*}(n)\) nie zachodzi.
 
 
+Maksymalną wartością przyspieszenia \(S(p,n)\) jest p, ponieważ używając \(p\) procesorów można przyspieszyć obliczenia najlepszego algorytmu sekwencyjnego co najwyżej \(p\) razy. Zwykle uzyskiwane przyspieszenie jest mniejsze niż \(p\). Przyczyną tego może być niewystarczający stopień zrównoleglenia problemu \(P\), opóźnienia w komunikacji między procesami lub narzut czasu wykonania spowodowane synchronizacją procesów.
+
+
+Istnieją problemy dla których najlepszy znany algorytm sekwencyjny \(R_s\) nie może zostać zrównoleglony. Wówczas równoległe rozwiązanie problemu w postaci pewnego algorytmu \(R\) działa na innej zasadzie. Wówczas pomocne w ocenie korzyści z jest posługiwanie się \emph{przyspieszeniem względnym}.
+
+\begin{definicja}[Przyspieszenie bezwzględne\cite{Czech}]
+Niech \(P\) będzie pewnym zadaniem obliczeniowym, \(n\) -- rozmiarem danych wejściowych. Wówczas
+
+\begin{align}\label{def:speedup_rel}
+ S(p, n)=\frac{T_{1}(n)}{T_{p}(n)(N)}
+\end{align}
+
+gdzie \(T_{1}(n)\) jest pesymistyczną złożonością czasową algorytmu równoległego \(R\) rozwiązującego problem \(P\) na jednym procesorze, \(T_{n}(N)\) jest pesymistyczną złożonością algorytmu \(R\) wykonanego na \(n\) procesorach. Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem względnym} algorytmu \(R\).
+\end{definicja}
 
 W złożoności \(T^{r}_{1}(n)\) można wyróżnić operacje obliczeniowe, które muszą być wykonane sekwencyjnie, \(T^{s}_{1}(n)\), oraz obliczenia, które mogą być wykonane równolegle, \(T^{r}_{1}(n)\). Wobec tego mamy, że:
 

@@ -2,15 +2,18 @@ W swojej pracy \emph{,,Gaussian Elimination is not Optimal''} z 1969 roku \texts
 \section{Algorytm naiwny}
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm sekwencyjny wyznaczania macierzy \(\mathbf{C}=\mathbf{AB}\) o złożoności \(\mathcal{O}(n^3)\).
 
-\begin{algorithm}
-\For{\(i\in\{1,2,\dots,n\}\)}{
-\For{\(j\in\{1,2,\dots,n\}\)}{
-\(\mathbf{C}(i,j)=0\)\;
-\For{\(k\in\{1,2,\dots,n\}\)}{
-\(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\;
-}}}
-\caption{Sekwencyjny algorytm mnożenia macierzy}
-\end{algorithm}
+% \begin{algorithm}
+% \For{\(i\in\{1,2,\dots,n\}\)}{
+% \For{\(j\in\{1,2,\dots,n\}\)}{
+% \(\mathbf{C}(i,j)=0\)\;
+% \For{\(k\in\{1,2,\dots,n\}\)}{
+% \(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\;
+% }}}
+% \caption{Sekwencyjny algorytm mnożenia macierzy}
+% \end{algorithm}
+
+
+
 \newpage
 \section{Algorytm ,,dziel i rządź''}
 Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\in\mathbb{R}^{n\times n}\) oraz macierzy wyjściowej \(\mathbf{C}\in\mathbb{R}^{n\times n}\) mamy:
@@ -38,31 +41,31 @@ C_{22} &= A_{21}B_{12} + A_{22}B_{22}
 
 Z powyższych konstatacji nasuwa się łatwy algorytm rekurencyjny.
 
-\begin{algorithm}
-\SetKwFunction{Multiply}{multiply}
-\SetKwInOut{Input}{Dane wejściowe}
-\SetKwInOut{Output}{Dane wyjściowe}
-\SetKwProg{ParFor}{parfor}{}{}
-\SetKwInOut{Help}{Dane pomocnicze}
-\Multiply{\(\mathbf{A}, \mathbf{B}\)}\;
-\Input{Macierze wejściowe \(\mathbf{A}, \mathbf{B}\) wymiaru \(n\)}
-\Output{Macierz \(\mathbf{C}\)}
-\Begin{
-\uIf{n=1}{
-\(C_{11}=A_{11}B_{11}\)
-}
-\Else{
-\(C_{11}=\)
-\Multiply{\(A_{11}B_{11}\)}+\Multiply{\(A_{12}B_{21}\)}\;
-\(C_{12}=\) \Multiply{\(A_{11}B_{12}\)}+\Multiply{\(A_{12}B_{22}\)}\;
-\(C_{21}=\) \Multiply{\(A_{21}B_{11}\)}+\Multiply{\(A_{22}B_{21}\)}\;
-\(C_{22}=\) \Multiply{\(A_{21}B_{12}\)}+\Multiply{\(A_{22}B_{22}\)}\;
-}
-\Return{C}
-}
-\end{algorithm}
-\section{Algorytm Cannona}
-\cite{Cannon:1969:CCI:905686}
+% \begin{algorithm}
+% \SetKwFunction{Multiply}{multiply}
+% \SetKwInOut{Input}{Dane wejściowe}
+% \SetKwInOut{Output}{Dane wyjściowe}
+% \SetKwProg{ParFor}{parfor}{}{}
+% \SetKwInOut{Help}{Dane pomocnicze}
+% \Multiply{\(\mathbf{A}, \mathbf{B}\)}\;
+% \Input{Macierze wejściowe \(\mathbf{A}, \mathbf{B}\) wymiaru \(n\)}
+% \Output{Macierz \(\mathbf{C}\)}
+% \Begin{
+% \uIf{n=1}{
+% \(C_{11}=A_{11}B_{11}\)
+% }
+% \Else{
+% \(C_{11}=\)
+% \Multiply{\(A_{11}B_{11}\)}+\Multiply{\(A_{12}B_{21}\)}\;
+% \(C_{12}=\) \Multiply{\(A_{11}B_{12}\)}+\Multiply{\(A_{12}B_{22}\)}\;
+% \(C_{21}=\) \Multiply{\(A_{21}B_{11}\)}+\Multiply{\(A_{22}B_{21}\)}\;
+% \(C_{22}=\) \Multiply{\(A_{21}B_{12}\)}+\Multiply{\(A_{22}B_{22}\)}\;
+% }
+% \Return{C}
+% }
+% \end{algorithm}
+% \section{Algorytm Cannona}
+% \cite{Cannon:1969:CCI:905686}
 \section{Algorytm Strassena}
 Niech \(A\) i \(B\) będą macierzami \(m2^k\times m2^k\). Definiując następujące macierze pomocnicze
 \begin{align*}

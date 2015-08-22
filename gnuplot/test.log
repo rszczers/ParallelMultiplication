@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  20 AUG 2015 19:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  21 AUG 2015 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,11 +524,11 @@ e
 ))
 (./speedup.tex
 Package epstopdf Info: Source file: <speedup.eps>
-(epstopdf)                    date: 2015-08-20 19:07:20
-(epstopdf)                    size: 22410 bytes
+(epstopdf)                    date: 2015-08-21 10:30:27
+(epstopdf)                    size: 22406 bytes
 (epstopdf)             Output file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-20 17:52:08
-(epstopdf)                    size: 4135 bytes
+(epstopdf)                    date: 2015-08-20 19:07:27
+(epstopdf)                    size: 4512 bytes
 (epstopdf)             Command: <repstopdf --outfile=speedup-eps-converted-to.p
 df speedup.eps>
 (epstopdf)             \includegraphics on input line 141.
@@ -536,8 +536,8 @@ runsystem(repstopdf --outfile=speedup-eps-converted-to.pdf speedup.eps)...execu
 ted safely (allowed).
 
 Package epstopdf Info: Result file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-20 19:07:27
-(epstopdf)                    size: 4512 bytes.
+(epstopdf)                    date: 2015-08-21 10:30:40
+(epstopdf)                    size: 4516 bytes.
  <speedup-eps-converted-to.pdf, id=1, 426.59375pt x 198.7425pt>
 File: speedup-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -558,7 +558,7 @@ Here is how much of TeX's memory you used:
  38i,8n,24p,230b,346s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
 }</usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
-Output written on test.pdf (1 page, 14283 bytes).
+Output written on test.pdf (1 page, 14288 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream

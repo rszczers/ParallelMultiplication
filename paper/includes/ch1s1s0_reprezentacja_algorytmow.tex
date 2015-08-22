@@ -27,7 +27,7 @@ Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) al
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia Rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając n procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
 \begin{figure}[H]
 \centering
-\includegraphics[width=36em]{./images/Rys3.eps}
+\includegraphics[width=36em]{images/Rys3.eps}
 \caption{Standardowy iloczyn macierzowy}
 \label{fig:standard_parallel}
 \end{figure}
@@ -48,9 +48,11 @@ Ograniczenia zasobów (np. czasu i przestrzeni) wymagane przez algorytmy sekwenc
 Czas działania algorytmu sekwencyjnego szacuje się przez liczbę operacji podstawowych wymaganych przez algorytm jako funkcję ilości danych wejściowych.
 \subsection{Algorytmy równoległe}
 
-Załóżmy że algorytm równoległy \(R\) rozwiązuje problem \(Z\) o rozmiarze \(n\). \textbf{Pesymityczną złożonością czasową algorytmu} \(R\) nazywamy funkcję:\\
 
+\begin{definicja}[Pesymistyczna złożoność obliczeniowa\cite{Czech}]\label{def:pesymistyczna_zlozonosc_czasowa}
+Załóżmy że algorytm równoległy \(R\) rozwiązuje problem \(P\) o rozmiarze \(n\). \textbf{Pesymityczną złożonością czasową algorytmu} \(R\) nazywamy funkcję:\\
 \begin{align}
 T_{p}(n) = \sup_{d\in{D_n}}{\left\{t(p,d)\right\}},
 \end{align}
-gdzie \(t(p,d)\) oznacza liczbę kroków obliczeniowych (operacji dominujących) wykonanych dla zestawu danych \(d\) od momentu rozpoczęcia obliczeń algorytmu \(R\) przez pierwszy procesor do chwili zakończenia obliczeń przez wszystkie procesory, \(p\) -- liczbę procesorów, \(D_n\) -- zbiór wszystkich zestawów danych wejściowych \(d\) o rozmiarze \(n\) \cite{Czech}.
+gdzie \(t(p,d)\) oznacza liczbę kroków obliczeniowych (operacji dominujących) wykonanych dla zestawu danych \(d\) od momentu rozpoczęcia obliczeń algorytmu \(R\) przez pierwszy procesor do chwili zakończenia obliczeń przez wszystkie procesory, \(p\) -- liczbę procesorów, \(D_n\) -- zbiór wszystkich zestawów danych wejściowych \(d\) o rozmiarze \(n\).
+\end{definicja}

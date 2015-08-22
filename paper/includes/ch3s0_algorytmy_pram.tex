@@ -1,0 +1,69 @@
+\subsubsection{Algorytm sumowania}
+Niech dany będzie tablica \(A\) \(n=2^k\) liczb i maszyna PRAM z n-procesorami \(\{P_1, P_2, \dots, P_n\}\). Każdy z procesorów wykonuje synchronicznie poniższy algorytm
+
+\label{alg:crew_pram_sum}
+% \begin{algorithm}[H]
+% \SetKwFunction{Gread}{global read}
+% \SetKwFunction{Gwrite}{global write}
+% \SetKwInOut{Input}{Dane wejściowe}\SetKwInOut{Output}{Dane wyjściowe}
+% \Input{Tablica \(A\) długości \(n=2^k\) przechowywana w pamięci wspólnej. Każdy procesor ma zainicjalizowane zmienne lokalne \(n\) oraz identyfikator \(i\)}
+% \Output{Suma \(S\) wartości tablicy \(A\). Tablica \(A\) nie ulega zmianie}
+% \begin{enumerate}
+%  \item \Gread{A(i), a}
+%  \item \Gwrite(a, B(i))
+%  \item for \(h = 1\) to \( \log{n}\) do\\
+% 	 if \(i \leq n/2^k\) then\\
+% 	 \Gread{B(2i-1), x}\\
+% 	 \Gread{B(2i),y}\\
+% 	 Set z:= x + y\\
+% 	 \Gwrite(z, B(i))\\
+%  \item \(if(i=1)\) then \Gwrite{z, S}
+% \end{enumerate}
+% \caption{Algorytm sumowania w PRAM\label{alg:pram_sum}}
+% \end{algorithm}
+
+Przypadek dla \(n=8\) ilustruje rysunek \ref{fig:pram_sum}. W pierwszym i drugim kroku kopia B tablicy A jest tworzona w pamięci wspólnej. 
+Zadania obliczeniowe w kroku 3 są na podstawie wyważonego drzewa binarnego, którego liście odpowiadają elementom tablicy A. Procesor odpowiedzialny za wykonanie za wykonanie operacji jest określony przez indeks poniżej węzła reprezentującego tę operację. Zauważmy, że procesor \(P_1\), odpowiedzialny za ustawianie wartości \(B(1)\) i zapisywanie sumy \(S\), jest zawsze aktywny w trakcie wykonywania algorytmu, podczas gdy procesory \(P_5, P_6, P_7, P_8\) są aktywne tylko podczas kroków 1 i 2.
+
+\begin{uwaga}
+Pomijamy szczegóły operacji dotyczących dostępu do pamięci. Operacje postaci \texttt{Ustaw A:=B+C}, gdzie A, B i C są zmiennymi wspólnymi będziemy interpretować jako ciąg instrukcji\\
+% \begin{algorithm}[H]
+% \SetKwFunction{Gread}{global read}
+% \SetKwFunction{Gwrite}{global write}
+% \Gread{B, x}\;
+% \Gread{C, y}\;
+% \texttt{Ustaw} z:= x + y\;
+% \Gwrite{z,A}\;
+% \end{algorithm}
+\end{uwaga}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=34em]{images/pram_sum}
+\caption{Algorytm sumowania ośmiu elementów w modelu PRAM z osmioma procesorami. Każdy wewnętrzny wierzchołek grafu reprezentuje operację sumowania.}
+\label{fig:pram_sum}
+\end{figure}
+
+
+\subsubsection{Algorytm mnożenia}
+Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny PRAM. Wówczas dla każdej pary \((i, j)\), n procesorów \(P_{i,j,l}\), gdzie \(1\leq l \leq n\), oblicza sumę \(\sum_{l=1}^{n}A(i,l)B(l,j)\) w myśl algorytmu \ref{alg:pram_sum}.\\
+
+% \label{alg:crew_pram_multiplication}
+% \begin{algorithm}[H]
+% \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+% \SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+% \SetKwInOut{Input}{wejście}\SetKwInOut{Output}{wyjście}
+% \Input{Macierze \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\) przechowywanych we wspólnej pamięci. Lokalnie zainicjalizowane zmienne to \(n\) i trójka wskaźników \((i, j, l)\)}
+% \Output{Iloczyn \(\mathbf{C=AB}\) w pamięci współdzielonej}
+% \begin{enumerate}
+%  \item \( \mathtt{Oblicz}\quad C'(i,j,l) = A(i,l)B(l,j) \)
+%  \item for \(h = 1\) to \( \log{n}\) do\\
+%  if \(l \leq n/2^k\) then \texttt{Ustaw} \(C'(i,j,l):=C'(i,j,2l-1)+C'(i,j,2l)\)
+%  \item \(if(l=1)\) then \texttt{Ustaw} \(C(i,j):=C'(i,j,1)\)
+% \end{enumerate}
+% \caption{Algorytm mnożenia macierzy w modelu PRAM\label{alg:pram_pseudokod}}
+% \end{algorithm}
+
+\begin{uwaga}
+Algorytm \ref{alg:crew_pram_multiplication} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (1) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (1) wszystkie wymagają dostępu do \(A(i,l)\).
+\end{uwaga}

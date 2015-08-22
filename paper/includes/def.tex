@@ -1,6 +1,6 @@
 %\setlist[enumerate]{itemsep=-1mm}
 %\DeclareGraphicsExtensions{.eps}
-
+\DeclareUnicodeCharacter{00A0}{ }
 \linespread{1.25}
 \pagestyle{plain}
 
@@ -14,10 +14,8 @@
 \newtheorem{uwaga}{Uwaga}[chapter]
 \newtheorem{wniosek}{Wniosek}[chapter]
 
-\SetKwProg{ParFor}{parfor}{}{}
+% \SetKwProg{ParFor}{parfor}{}{}
 
 \newcommand\BlockIf[1]{\KwSty{Start If} \\ #1 \\ \KwSty{End If}}
 \newcommand\BlockElseIf[1]{\KwSty{Start Else If} \\ #1 \\ \KwSty{End Else If}}
 \newcommand\BlockElse[1]{\KwSty{Start Else} \\ #1 \\ \KwSty{End Else}}
-
-
