@@ -6,13 +6,15 @@ C_{p}(n) = p T_{p}(n)
 nazywamy kosztem algorytmu \(R\) dla \(p\) procesorów.
 \end{definicja}
 
-W myśl definicji \ref{def:def:pesymistyczna_zlozonosc_czasowa} koszt algorytmu możemy rozumieć przez analogię do liczby operacji dominujących wykonanych łącznie przez wszystkie procesory. 
+W myśl definicji \ref{def:pesymistyczna_zlozonosc_czasowa} koszt algorytmu możemy rozumieć przez analogię do liczby operacji dominujących wykonanych łącznie przez wszystkie procesory. 
 
-
+\begin{wniosek}
 Łatwo widać, że koszt osiąga minimalną wartość \(C_{1}(n) = T^{*}(n)\) dla  najlepszego znanego algorytmu sekwencyjnego. Stąd koszt algorytmu równoległego \(R\) jest minimalny wtedy i tylko wtedy, gdy wykonywane są w nim tylko te operacje, które są wykonywane w najlepszym algorytmie sekwencyjnym \(R_s\).
+\end{wniosek}
 
-
+\begin{uwaga}
 W praktyce uzyskanie równości kosztów \(pT_{p}(n)=T^{*}(n)\) wymaga minimalizacji komunikacji między procesorami lub uruchomienia algorytmów na architekturach w których komunikacja odbywa się na tyle szybko, że jej dodatkowe koszty są pomijalne. Różnicę między kosztem wykonania algorytmu równoległego a kosztem wykonania najlepszego algorytmu sekwencyjnego nazywamy \emph{kosztem organizacji obliczeń równoległych}.
+\end{uwaga}
 
 \begin{definicja}[Koszt organizacji obliczeń]
 Różnicę 

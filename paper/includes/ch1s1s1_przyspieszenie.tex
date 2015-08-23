@@ -10,14 +10,17 @@ Niech \(P\) będzie pewnym zadaniem obliczeniowym, \(n\) -- rozmiarem danych wej
 gdzie \(T^{*}(n)\) jest pesymistyczną złożonością czasową najszybszego znanego algorytmu sekwencyjnego \(R_s\) rozwiązującego problem \(P\) na jednym procesorze, \(T_{n}(N)\) jest pesymistyczną złożonością algorytmu \(R\), gdzie \(R\) jest równoległą wersją algorytmu \(R_s\). Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem bezwzględnym} algorytmu \(R\).
 \end{definicja}
 
-
+\begin{wniosek}
 Zgodnie z definicją \ref{def:pesymistyczna_zlozonosc_czasowa} przez \(T_{1}(n)\) rozumiemy złożoność algorytmu równoległego \(R\) wykonywanego przy użyciu jednego procesora. Jeśli algorytm \(R\) nie jest najlepszą równoległą wersją znanego algorytmu sekwencyjnego, to równość \(T_{1}(n) = T^{*}(n)\) nie zachodzi.
+\end{wniosek}
 
-
+\begin{uwaga}
 Maksymalną wartością przyspieszenia \(S(p,n)\) jest p, ponieważ używając \(p\) procesorów można przyspieszyć obliczenia najlepszego algorytmu sekwencyjnego co najwyżej \(p\) razy. Zwykle uzyskiwane przyspieszenie jest mniejsze niż \(p\). Przyczyną tego może być niewystarczający stopień zrównoleglenia problemu \(P\), opóźnienia w komunikacji między procesami lub narzut czasu wykonania spowodowane synchronizacją procesów.
+\end{uwaga}
 
-
+\begin{uwaga}
 Istnieją problemy dla których najlepszy znany algorytm sekwencyjny \(R_s\) nie może zostać zrównoleglony. Wówczas równoległe rozwiązanie problemu w postaci pewnego algorytmu \(R\) działa na innej zasadzie. Wówczas pomocne w ocenie korzyści z jest posługiwanie się \emph{przyspieszeniem względnym}.
+\end{uwaga}
 
 \begin{definicja}[Przyspieszenie bezwzględne\cite{Czech}]
 Niech \(P\) będzie pewnym zadaniem obliczeniowym, \(n\) -- rozmiarem danych wejściowych. Wówczas

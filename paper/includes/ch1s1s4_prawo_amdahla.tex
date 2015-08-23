@@ -27,9 +27,14 @@ Otrzymany wzór \eqref{eq:amdahl} nazywamy \textbf{prawem Amdahla}.
 
 \begin{definicja}[Prawo Amdahla\cite{Quinn}]\label{def:prawo_amdahla}
 Niech \(s\) będzie częścią operacji w algorytmie \(R\), która musi być wykonana sekwencyjnie, taką że \(0\leq s \leq 1\). Wówczas maksymalne przyspieszenie \(\phi\) osiągalne przez komputer równoległy z \(p\) procesorami wykonujący algorytm \(R\) spełnia nierówność:
-\begin{align*}
+\begin{align}
 \phi \leq \frac{1}{s+(1-s)/p}
-\end{align*}
+\end{align}
 \end{definicja}
+\begin{uwaga}
 Nierówność z definicji \ref{def:prawo_amdahla} służy do wyznaczania górnego ograniczenia przyspieszenia będącego funkcją wielkości \(s\) oraz liczby procesorów \(p\) przy ustalonym rozmiarze problemu \(n\).
+\end{uwaga}
+\begin{wniosek}
+Przechodząć z wyrażeniem \eqref{def:amdahl} do granicy \(p\to\infty\) mamy \(\lim_{p\to\infty} \frac{1}{s+(1-s)/p} = \frac{1}{s}\). Widać, że maksymalne przyspieszenie \(S_{p}(n)\), jakie można osiągnać nie zależy od liczby użytch procesorów \(p\), ale od ilości obliczeń sekwencyjnych \(s\) (pomijając dodatkowe koszty ogranizacji obliczeń).
+\end{wniosek}
 
