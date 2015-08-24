@@ -47,7 +47,7 @@ static struct argp_option options[] = {
 };
 
 struct arguments {
-    enum {SEQUENTIAL, MKL, CANNON, CANNON_DGEMM, CANNON_OMP} method;
+    enum {SEQUENTIAL, MKL, OMP, CANNON, CANNON_DGEMM, CANNON_OMP} method;
     enum {QUIET, VERBOSE} mode;
     bool time;
     bool steps;
@@ -71,6 +71,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
                 arguments->method = MKL;
             else if(strncmp("sequential", name, 10) == 0)
                 arguments->method = SEQUENTIAL;
+            else if(strncmp("omp", name, 3) == 0) 
+                arguments->method = OMP;
             else if(strncmp("cannon", name, 6) == 0)
                 arguments->method = CANNON;
             else if(strncmp("cannon_dgemm", name, 12) == 0)
@@ -113,7 +115,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'l':
         {
             printf("Available methods:\n");
-            char *availableMethods[] = {"Sequential", "MKL", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
+            char *availableMethods[] = {"Sequential", "MKL", "OMP", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
             for (int i = 0; i <= 2D-OMP; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
@@ -264,7 +266,345 @@ int main(int argc, char *argv[]) {
                 t1 = MPI_Wtime();
             }
             break;
+        case OMP:
+        {
+            if (pid == ROOT) {
+                A = (double *) mkl_malloc(arguments.m * arguments.k * 
+                        sizeof(double), 64);
+                B = (double *) mkl_malloc(arguments.k * arguments.n * 
+                        sizeof(double), 64);
+                C = (double *) mkl_malloc(arguments.m * arguments.n * 
+                        sizeof(double), 64);
+
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory. Aborting.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
+
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k, 0, 
+                        false);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n, 0, 
+                        false);
+
+                t0 = MPI_Wtime();
+                int j = 0;
+                int l = 0;
+                #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
+                for (int ii = 0; ii < sz; ii++) {
+                   for (j = 0; j < sz; j++) {
+                        for (l = 0; l < sz; l++) {
+                            pC[ii * sz + j] +=
+                             pA[ii * sz + l] * pB[l * sz + j];
+                        }
+                    }
+                }            
+                t1 = MPI_Wtime();
+            }
+            break;
+        }
         case CANNON:
+        {
+            //lets assume that dims[0] = dims[1]
+            if (dims[0] != dims[1]) {
+                printf("\nProcess mesh is not appropriate. Aborting.\n\n");
+                exit(EXIT_FAILURE);
+            }
+
+            max = arguments.m;
+            (max < arguments.k) && (max = arguments.k); 
+            (max < arguments.n) && (max = arguments.n);
+
+            int sz = max/dims[0];  // row length per block 
+
+            if(max > sz * dims[0]) { 
+                sz += 1;
+                max = sz * dims[0];
+            }
+
+            int blockSz = sz * sz;
+
+            MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
+            MPI_Type_commit(&MPI_SUBMATRIX);
+
+            pA = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+            pB = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+            pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+
+            if(pA == NULL || pB == NULL || pC == NULL) {
+                printf("\nCouldn't allocate memory. Aborting.\n\n");
+                mkl_free(pA);
+                mkl_free(pB);
+                mkl_free(pC);                
+                exit(EXIT_FAILURE);
+            }
+
+            memset(pC, 0, blockSz * sizeof(double));
+
+            if (pid == ROOT) {
+                A = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                B = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                C = (double *) mkl_malloc(max * max * sizeof(double), 64);
+
+                memset(C, 0, max * max * sizeof(double));
+
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
+
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
+                        true);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
+                        true);
+
+                /* debug dump */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 6)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%sA_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, B,
+                        arguments.m, arguments.k, max, true, true);
+
+                    sprintf(dump_path, "%sB_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, A,
+                        arguments.k, arguments.n, max, true, true);
+
+                    free(dump_path);
+                }
+
+                t0 = MPI_Wtime();
+
+                /* initial shift with procesor ranks */                
+                int proclA[numprocs];
+                for (int i = 0; i < dims[0]; i++) {
+                    for (int j = 0; j < dims[1]; j++) {
+                        if (j < dims[1] - i) {
+                            proclA[i * dims[1] + j + i] = i * dims[1] + j;
+                        } else {
+                            proclA[i * dims[1] + j - (dims[1] - i)] = 
+                                i * dims[1] + j;
+                        }
+                    }
+                }
+
+                for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    int displacements[sz];
+                    int start = (proc % dims[1]) * sz + 
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+                    for (int k = 1; k < sz; k++) {              
+                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                    }
+
+                    int k = 0;
+                    for (int i = 0; i < sz; i++) {
+                        for (int j = 0; j < sz; j++) {
+                            pA[k] = A[displacements[i] + j];                            
+                            k++;
+                        }
+                    }
+
+                    if(proc != ROOT) {
+                        MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
+                                DISTRIBUTION_A, cartcom);
+                    }
+                }
+            } else {
+                MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, 
+                        DISTRIBUTION_A, cartcom, &status);
+            }
+
+            MPI_Barrier(cartcom);
+
+            if(pid == ROOT) {
+                int proclB[numprocs];
+                for (int j = 0; j < dims[1]; j++) {
+                    for (int i = 0; i < dims[0]; i++) {
+                        if (i < dims[0] - j) { 
+                            proclB[(i + j) * dims[0] + j] = 
+                                i * dims[1] + j;
+                        } else {
+                            proclB[(i - dims[0] + j) * dims[1] + j] = 
+                                i * dims[1] + j;
+                        }
+                    }
+                }
+
+                for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
+                    int displacements[sz]; 
+                    int start = (proc % dims[1]) * sz + 
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+                    for (int k = 1; k < sz; k++) {              
+                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                    }
+
+                    int k = 0;
+                    for (int i = 0; i < sz; i++) {
+                        for (int j = 0; j < sz; j++) {
+                            pB[k] = B[displacements[i] + j];
+                            k++;
+                        }
+                    }
+
+                    if(proc != ROOT) {
+                        MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], 
+                                DISTRIBUTION_B, cartcom);
+                    }                    
+                }            
+            } else {                
+                MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, 
+                        DISTRIBUTION_B, cartcom, &status);
+            }
+            
+            for (int ii = 0; ii < sz; ii++) {
+               for (int j = 0; j < sz; j++) {
+                    for (int l = 0; l < sz; l++) {
+                        pC[ii * sz + j] +=
+                            pA[ii * sz + l] * pB[l * sz + j];
+                    }
+                }
+            }
+
+            /* dump data for first step  */
+            if(arguments.steps) {
+                char *dump_path = (char *)malloc(
+                        (strlen(arguments.debugDir) + 12)
+                        * sizeof(char));
+                /* assuming that theres less than 9999 nodes */
+                /* that gives less than 9999 steps to dump   */
+                sprintf(dump_path, "%s%04d_0000_A", arguments.debugDir, pid);
+                save_matrix(dump_path, pA,
+                    sz, sz, sz, true, true);
+
+                sprintf(dump_path, "%s%04d_0000_B", arguments.debugDir, pid);
+                save_matrix(dump_path, pB,
+                    sz, sz, sz, true, true);
+
+                sprintf(dump_path, "%s%04d_0000_C", arguments.debugDir, pid);
+                save_matrix(dump_path, pC,
+                    sz, sz, sz, true, true);
+
+                free(dump_path);
+            }
+
+            /* skewing */
+            int top, bottom, left, right;
+            MPI_Cart_shift(cartcom, 1, 1, &left, &right);
+            MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
+            
+            for (int i = 1; i < dims[0]; i++) { /* if dims[0] == dims[1] */
+                MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, 
+                        SKEW_LEFTRIGHT, right, 
+                        SKEW_LEFTRIGHT, cartcom, &status);
+                MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
+                        SKEW_BOTTOMUP, bottom, 
+                        SKEW_BOTTOMUP, cartcom, &status);
+
+                for (int ii = 0; ii < sz; ii++) {
+                   for (int j = 0; j < sz; j++) {
+                        for (int l = 0; l < sz; l++) {
+                            pC[ii * sz + j] +=
+                                pA[ii * sz + l] * pB[l * sz + j];
+                        }
+                    }
+                }
+
+                /* dump data for step 1-p */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 12)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%s%04d_%04d_A", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pA,
+                        sz, sz, sz, true, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_B", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pB,
+                        sz, sz, sz, true, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_C", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pC,
+                        sz, sz, sz, true, true);
+
+                    free(dump_path);
+                }
+
+            }
+            t1 = MPI_Wtime();
+
+            MPI_Barrier(cartcom);
+
+            if(pid == ROOT) {
+                /* displacement for root process */
+                int displacements[sz];
+                displacements[0] = 0; 
+                for(int k = 1; k < sz; k++) {              
+                    displacements[k] =  
+                        displacements[k-1] + sz * dims[1];
+                }
+                for(int i = 0; i < sz; i++) {
+                    for(int j = 0; j < sz; j++) {
+                        C[displacements[i] + j] = pC[i * sz + j];                        
+                    }
+                }
+
+            }
+            /* sending computed data from all over the grid to root process*/
+            for(int proc = 1; proc < numprocs; proc++) {
+                if(pid == proc) {
+                    MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, 
+                            COLLECTING, cartcom);
+                }
+
+                if (pid == ROOT) {
+                    MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, 
+                            COLLECTING, cartcom, &status);
+                    // przesunięcia wierszy dla pozostałych procesów
+                    int displacements[sz];
+                    /*  proc % dims[1] * sz - first column */
+                    /*  of first line of submatrix stored in p-process */
+                    /*  (proc / dims[1])... - horizontal shifts */
+                    int start = (proc % dims[1]) * sz +
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+
+                    for(int k = 1; k < sz; k++) {              
+                        displacements[k] =
+                            displacements[k-1] + sz * dims[1];
+                    }
+
+                    for(int i = 0; i < sz; i++) {
+                        for(int j = 0; j < sz; j++) {
+                            C[displacements[i] + j] = pC[i * sz + j];
+                        }
+                    }
+                }
+            }
+            mkl_free(pA);
+            mkl_free(pB);
+            mkl_free(pC);
+
+            break;
+        }
+        case CANNON_DGEMM:
         {
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
@@ -469,32 +809,10 @@ int main(int argc, char *argv[]) {
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
                         SKEW_BOTTOMUP, bottom, 
                         SKEW_BOTTOMUP, cartcom, &status);
-                if(arguments.method == CANNON_OMP) {
-                    int j = 0;
-                    int l = 0;
-                    #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
-                    for (int ii = 0; ii < sz; ii++) {
-                       for (j = 0; j < sz; j++) {
-                            for (l = 0; l < sz; l++) {
-                               tmp_pC[ii * sz + j] = tmp_pC[ii * sz + j] + 
-                                    pA[ii * sz + l] * pB[l * sz + j];
-                            }
-                        }
-                    }
-                } else if(arguments.method == CANNON_DGEMM) {
-                    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
-                        sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
-                } else if(arguments.method == CANNON) {
-                    for (int ii = 0; ii < sz; ii++) {
-                       for (int j = 0; j < sz; j++) {
-                            for (int l = 0; l < sz; l++) {
-                               tmp_pC[ii * sz + j] = tmp_pC[ii * sz + j] + 
-                                    pA[ii * sz + l] * pB[l * sz + j];
-                            }
-                        }
-                    }
-                }
 
+               
+                cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
+                    sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
 
                 for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
@@ -584,6 +902,313 @@ int main(int argc, char *argv[]) {
 
             break;
         }
+       case CANNON_OMP:
+        {
+            //lets assume that dims[0] = dims[1]
+            if (dims[0] != dims[1]) {
+                printf("\nProcess mesh is not appropriate. Aborting.\n\n");
+                exit(EXIT_FAILURE);
+            }
+
+            max = arguments.m;
+            (max < arguments.k) && (max = arguments.k); 
+            (max < arguments.n) && (max = arguments.n);
+
+            int sz = max/dims[0];  // row length per block 
+
+            if(max > sz * dims[0]) { 
+                sz += 1;
+                max = sz * dims[0];
+            }
+
+            int blockSz = sz * sz;
+
+            MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
+            MPI_Type_commit(&MPI_SUBMATRIX);
+
+            pA = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+            pB = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+            pC = (double *) mkl_malloc(blockSz * sizeof(double), 64);
+
+
+            if(pA == NULL || pB == NULL || pC == NULL) {
+                printf("\nCouldn't allocate memory. Aborting.\n\n");
+                mkl_free(pA);
+                mkl_free(pB);
+                mkl_free(pC);
+                exit(EXIT_FAILURE);
+            }
+
+            memset(pC, 0, blockSz * sizeof(double));
+
+            if (pid == ROOT) {
+                A = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                B = (double *) mkl_malloc(max * max * sizeof(double), 64);
+                C = (double *) mkl_malloc(max * max * sizeof(double), 64);
+
+                memset(C, 0, max * max * sizeof(double));
+
+                if(A == NULL || B == NULL || C == NULL) {
+                    printf("\nCouldn't allocate memory.\n\n");
+                    mkl_free(A);
+                    mkl_free(B);
+                    mkl_free(C);
+                    exit(EXIT_FAILURE);
+                }
+
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
+                        true);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
+                        true);
+
+                /* debug dump */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 6)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%sA_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, B,
+                        arguments.m, arguments.k, max, true, true);
+
+                    sprintf(dump_path, "%sB_raw", 
+                            arguments.debugDir);
+                    save_matrix(dump_path, A,
+                        arguments.k, arguments.n, max, true, true);
+
+                    free(dump_path);
+                }
+
+                t0 = MPI_Wtime();
+
+                /* initial shift with procesor ranks */                
+                int proclA[numprocs];
+                for (int i = 0; i < dims[0]; i++) {
+                    for (int j = 0; j < dims[1]; j++) {
+                        if (j < dims[1] - i) {
+                            proclA[i * dims[1] + j + i] = i * dims[1] + j;
+                        } else {
+                            proclA[i * dims[1] + j - (dims[1] - i)] = 
+                                i * dims[1] + j;
+                        }
+                    }
+                }
+
+                for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    int displacements[sz];
+                    int start = (proc % dims[1]) * sz + 
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+                    for (int k = 1; k < sz; k++) {              
+                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                    }
+
+                    int k = 0;
+                    for (int i = 0; i < sz; i++) {
+                        for (int j = 0; j < sz; j++) {
+                            pA[k] = A[displacements[i] + j];                            
+                            k++;
+                        }
+                    }
+
+                    if(proc != ROOT) {
+                        MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
+                                DISTRIBUTION_A, cartcom);
+                    }
+                }
+            } else {
+                MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, 
+                        DISTRIBUTION_A, cartcom, &status);
+            }
+
+            MPI_Barrier(cartcom);
+
+            if(pid == ROOT) {
+                int proclB[numprocs];
+                for (int j = 0; j < dims[1]; j++) {
+                    for (int i = 0; i < dims[0]; i++) {
+                        if (i < dims[0] - j) { 
+                            proclB[(i + j) * dims[0] + j] = 
+                                i * dims[1] + j;
+                        } else {
+                            proclB[(i - dims[0] + j) * dims[1] + j] = 
+                                i * dims[1] + j;
+                        }
+                    }
+                }
+
+                for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
+                    int displacements[sz]; 
+                    int start = (proc % dims[1]) * sz + 
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+                    for (int k = 1; k < sz; k++) {              
+                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                    }
+
+                    int k = 0;
+                    for (int i = 0; i < sz; i++) {
+                        for (int j = 0; j < sz; j++) {
+                            pB[k] = B[displacements[i] + j];
+                            k++;
+                        }
+                    }
+
+                    if(proc != ROOT) {
+                        MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], 
+                                DISTRIBUTION_B, cartcom);
+                    }                    
+                }            
+            } else {                
+                MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, 
+                        DISTRIBUTION_B, cartcom, &status);
+            }
+
+            int j = 0;
+            int l = 0;
+            #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
+            for (int ii = 0; ii < sz; ii++) {
+               for (j = 0; j < sz; j++) {
+                    for (l = 0; l < sz; l++) {
+                        pC[ii * sz + j] +=
+                         pA[ii * sz + l] * pB[l * sz + j];
+                    }
+                }
+            }            
+
+            /* dump data for first step  */
+            if(arguments.steps) {
+                char *dump_path = (char *)malloc(
+                        (strlen(arguments.debugDir) + 12)
+                        * sizeof(char));
+                /* assuming that theres less than 9999 nodes */
+                /* that gives less than 9999 steps to dump   */
+                sprintf(dump_path, "%s%04d_0000_A", arguments.debugDir, pid);
+                save_matrix(dump_path, pA,
+                    sz, sz, sz, true, true);
+
+                sprintf(dump_path, "%s%04d_0000_B", arguments.debugDir, pid);
+                save_matrix(dump_path, pB,
+                    sz, sz, sz, true, true);
+
+                sprintf(dump_path, "%s%04d_0000_C", arguments.debugDir, pid);
+                save_matrix(dump_path, pC,
+                    sz, sz, sz, true, true);
+
+                free(dump_path);
+            }
+
+            /* skewing */
+            int top, bottom, left, right;
+            MPI_Cart_shift(cartcom, 1, 1, &left, &right);
+            MPI_Cart_shift(cartcom, 0, 1, &top, &bottom);
+            
+            for (int i = 1; i < dims[0]; i++) { /* if dims[0] == dims[1] */
+                MPI_Sendrecv_replace(pA, 1, MPI_SUBMATRIX, left, 
+                        SKEW_LEFTRIGHT, right, 
+                        SKEW_LEFTRIGHT, cartcom, &status);
+                MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
+                        SKEW_BOTTOMUP, bottom, 
+                        SKEW_BOTTOMUP, cartcom, &status);
+
+                int j = 0;
+                int l = 0;
+                #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
+                for (int ii = 0; ii < sz; ii++) {
+                   for (j = 0; j < sz; j++) {
+                        for (l = 0; l < sz; l++) {
+                            pC[ii * sz + j] += 
+                                pA[ii * sz + l] * pB[l * sz + j];
+                        }
+                    }
+                }
+
+                /* dump data for step 1-p */
+                if(arguments.steps) {
+                    char *dump_path = (char *)malloc(
+                            (strlen(arguments.debugDir) + 12)
+                            * sizeof(char));
+                    /* assuming that theres less than 9999 nodes */
+                    /* that gives less than 9999 steps to dump   */
+                    sprintf(dump_path, "%s%04d_%04d_A", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pA,
+                        sz, sz, sz, true, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_B", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pB,
+                        sz, sz, sz, true, true);
+
+                    sprintf(dump_path, "%s%04d_%04d_C", 
+                            arguments.debugDir, pid, i);
+                    save_matrix(dump_path, pC,
+                        sz, sz, sz, true, true);
+
+                    free(dump_path);
+                }
+
+            }
+
+            t1 = MPI_Wtime();
+
+            MPI_Barrier(cartcom);
+
+            if(pid == ROOT) {
+                /* displacement for root process */
+                int displacements[sz];
+                displacements[0] = 0; 
+                for(int k = 1; k < sz; k++) {              
+                    displacements[k] =  
+                        displacements[k-1] + sz * dims[1];
+                }
+                for(int i = 0; i < sz; i++) {
+                    for(int j = 0; j < sz; j++) {
+                        C[displacements[i] + j] = pC[i * sz + j];                        
+                    }
+                }
+
+            }
+            /* sending computed data from all over the grid to root process*/
+            for(int proc = 1; proc < numprocs; proc++) {
+                if(pid == proc) {
+                    MPI_Send(pC, 1, MPI_SUBMATRIX, ROOT, 
+                            COLLECTING, cartcom);
+                }
+
+                if (pid == ROOT) {
+                    MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, 
+                            COLLECTING, cartcom, &status);
+                    // przesunięcia wierszy dla pozostałych procesów
+                    int displacements[sz];
+                    /*  proc % dims[1] * sz - first column */
+                    /*  of first line of submatrix stored in p-process */
+                    /*  (proc / dims[1])... - horizontal shifts */
+                    int start = (proc % dims[1]) * sz +
+                        (proc / dims[1]) * (dims[1] * blockSz);
+                    displacements[0] = start;
+
+                    for(int k = 1; k < sz; k++) {              
+                        displacements[k] =
+                            displacements[k-1] + sz * dims[1];
+                    }
+
+                    for(int i = 0; i < sz; i++) {
+                        for(int j = 0; j < sz; j++) {
+                            C[displacements[i] + j] = pC[i * sz + j];
+                        }
+                    }
+                }
+            }
+            mkl_free(pA);
+            mkl_free(pB);
+            mkl_free(pC);
+
+            break;
+        }
     }
 
     if(pid == ROOT) {
@@ -640,14 +1265,18 @@ int main(int argc, char *argv[]) {
                             break;
                         }
                         case 2: {
-                            sprintf(method, "CANNON");
+                            sprintf(method, "OMP");
                             break;
                         }
                         case 3: {
-                            sprintf(method, "CANNON_DGEMM");
+                            sprintf(method, "CANNON");
                             break;
                         }
                         case 4: {
+                            sprintf(method, "CANNON_DGEMM");
+                            break;
+                        }
+                        case t: {
                             sprintf(method, "CANNON_OMP");
                             break;
                         }

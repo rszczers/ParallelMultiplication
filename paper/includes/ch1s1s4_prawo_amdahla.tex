@@ -4,7 +4,7 @@ T_{1}(n) = T^{s}_{1}(n) + T^{r}_{1}(n)
 \end{align}
 Zakładając, że obliczenia \(T^{r}(n)\) da się równomiernie rozdzielić między \(p\) procesorami, przyspieszenie \(S(p, n)\) wynosi wówczas
 \begin{align}\label{eq:supSpn}
-S(p, n) = \frac{T_{1}(n)}{T_{p}(n)}\leq\frac{T^{s}_{1}(n) + T^{r}_{1}(n)}{T^{s}_{1}(n) + T^{r}_{1}(n)/p + T^{o}_{p}(n)}
+S_{p}(n) = \frac{T_{1}(n)}{T_{p}(n)}\leq\frac{T^{s}_{1}(n) + T^{r}_{1}(n)}{T^{s}_{1}(n) + T^{r}_{1}(n)/p + T^{o}_{p}(n)}
 \end{align}
 gdzie \(T^{o}_{p}(n)\) jest złożonością dodatkową wynikającą z organizacji obliczeń równoległych.
 
@@ -14,27 +14,27 @@ Rozważmy teraz algorytm sekwencyjny o złożoności \(T_{1}(n)\) rozwiązujący
 
 Przyspieszenie algorytmu uzyskane po jego zrównolegleniu można wyznaczyć upraszczając wzór \eqref{eq:supSpn} przez pominięcie złożoności \(T^{o}_{p}(n)\). Mamy wówczas:
 
-\begin{equation*}\label{eq:amdahl}
-\begin{split}
-S(p, n) &= \frac{T_{1}(n)}{T_{p}(n)}\leq\\
+\begin{equation}
+\begin{split}\label{eq:amdahl}
+S_{p}(n) &= \frac{T_{1}(n)}{T_{p}(n)}\leq\\
 &\leq \frac{T^{s}_{1}(n) + T^{r}_{1}(n)}{T^{s}_{1}(n) + T^{r}_{1}(n)/p + T^{o}_{p}(n)}\leq\\
 &\leq \frac{sT_{1}(n) + rT_{1}(n)}{sT_{1}(n) + rT_{1}(n)/p} = \frac{s+r}{s+r/p} = \frac{1}{s+r/p}= \\
 &= \left(s+\frac{1-s}{p}\right)^{-1}
 \end{split}
-\end{equation*}
+\end{equation}
 gdzie \(s\) – część obliczeń w algorytmie które muszą być wykonane sekwencyjnie; \(p\) – liczba procesorów.\\
 Otrzymany wzór \eqref{eq:amdahl} nazywamy \textbf{prawem Amdahla}. 
 
 \begin{definicja}[Prawo Amdahla\cite{Quinn}]\label{def:prawo_amdahla}
-Niech \(s\) będzie częścią operacji w algorytmie \(R\), która musi być wykonana sekwencyjnie, taką że \(0\leq s \leq 1\). Wówczas maksymalne przyspieszenie \(\phi\) osiągalne przez komputer równoległy z \(p\) procesorami wykonujący algorytm \(R\) spełnia nierówność:
+Niech \(s\) będzie częścią operacji w algorytmie \(R\), która musi być wykonana sekwencyjnie, taką że \(0\leq s \leq 1\). Wówczas maksymalne przyspieszenie \(\Psi\) osiągalne przez komputer równoległy z \(p\) procesorami wykonujący algorytm \(R\) spełnia nierówność:
 \begin{align}
-\phi \leq \frac{1}{s+(1-s)/p}
+\Psi_{p}(n) \leq \frac{1}{s+(1-s)/p}
 \end{align}
 \end{definicja}
 \begin{uwaga}
 Nierówność z definicji \ref{def:prawo_amdahla} służy do wyznaczania górnego ograniczenia przyspieszenia będącego funkcją wielkości \(s\) oraz liczby procesorów \(p\) przy ustalonym rozmiarze problemu \(n\).
 \end{uwaga}
 \begin{wniosek}
-Przechodząć z wyrażeniem \eqref{def:amdahl} do granicy \(p\to\infty\) mamy \(\lim_{p\to\infty} \frac{1}{s+(1-s)/p} = \frac{1}{s}\). Widać, że maksymalne przyspieszenie \(S_{p}(n)\), jakie można osiągnać nie zależy od liczby użytch procesorów \(p\), ale od ilości obliczeń sekwencyjnych \(s\) (pomijając dodatkowe koszty ogranizacji obliczeń).
+Przechodząć z wyrażeniem \eqref{eq:amdahl} do granicy \(p\to\infty\) mamy \(\lim_{p\to\infty}\frac{1}{s+(1-s)/p} = \frac{1}{s}\). Widać, że maksymalne przyspieszenie \(S_{p}(n)\), jakie można osiągnać nie zależy od liczby użytch procesorów \(p\), ale od ilości obliczeń sekwencyjnych \(s\) (pomijając dodatkowe koszty ogranizacji obliczeń).
 \end{wniosek}
 

@@ -1,48 +1,48 @@
 \subsubsection{Algorytm sumowania}
-Niech dany będzie tablica \(A\) \(n=2^k\) liczb i maszyna PRAM z n-procesorami \(\{P_1, P_2, \dots, P_n\}\). Każdy z procesorów wykonuje synchronicznie poniższy algorytm
+% Niech dany będzie tablica \(A\) \(n=2^k\) liczb i maszyna PRAM z n-procesorami \(\{P_1, P_2, \dots, P_n\}\). Każdy z procesorów wykonuje synchronicznie poniższy algorytm
 
-\label{alg:crew_pram_sum}
-% \begin{algorithm}[H]
-% \SetKwFunction{Gread}{global read}
-% \SetKwFunction{Gwrite}{global write}
-% \SetKwInOut{Input}{Dane wejściowe}\SetKwInOut{Output}{Dane wyjściowe}
-% \Input{Tablica \(A\) długości \(n=2^k\) przechowywana w pamięci wspólnej. Każdy procesor ma zainicjalizowane zmienne lokalne \(n\) oraz identyfikator \(i\)}
-% \Output{Suma \(S\) wartości tablicy \(A\). Tablica \(A\) nie ulega zmianie}
-% \begin{enumerate}
-%  \item \Gread{A(i), a}
-%  \item \Gwrite(a, B(i))
-%  \item for \(h = 1\) to \( \log{n}\) do\\
-% 	 if \(i \leq n/2^k\) then\\
-% 	 \Gread{B(2i-1), x}\\
-% 	 \Gread{B(2i),y}\\
-% 	 Set z:= x + y\\
-% 	 \Gwrite(z, B(i))\\
-%  \item \(if(i=1)\) then \Gwrite{z, S}
-% \end{enumerate}
-% \caption{Algorytm sumowania w PRAM\label{alg:pram_sum}}
-% \end{algorithm}
+% \label{alg:crew_pram_sum}
+% % \begin{algorithm}[H]
+% % \SetKwFunction{Gread}{global read}
+% % \SetKwFunction{Gwrite}{global write}
+% % \SetKwInOut{Input}{Dane wejściowe}\SetKwInOut{Output}{Dane wyjściowe}
+% % \Input{Tablica \(A\) długości \(n=2^k\) przechowywana w pamięci wspólnej. Każdy procesor ma zainicjalizowane zmienne lokalne \(n\) oraz identyfikator \(i\)}
+% % \Output{Suma \(S\) wartości tablicy \(A\). Tablica \(A\) nie ulega zmianie}
+% % \begin{enumerate}
+% %  \item \Gread{A(i), a}
+% %  \item \Gwrite(a, B(i))
+% %  \item for \(h = 1\) to \( \log{n}\) do\\
+% % 	 if \(i \leq n/2^k\) then\\
+% % 	 \Gread{B(2i-1), x}\\
+% % 	 \Gread{B(2i),y}\\
+% % 	 Set z:= x + y\\
+% % 	 \Gwrite(z, B(i))\\
+% %  \item \(if(i=1)\) then \Gwrite{z, S}
+% % \end{enumerate}
+% % \caption{Algorytm sumowania w PRAM\label{alg:pram_sum}}
+% % \end{algorithm}
 
-Przypadek dla \(n=8\) ilustruje rysunek \ref{fig:pram_sum}. W pierwszym i drugim kroku kopia B tablicy A jest tworzona w pamięci wspólnej. 
-Zadania obliczeniowe w kroku 3 są na podstawie wyważonego drzewa binarnego, którego liście odpowiadają elementom tablicy A. Procesor odpowiedzialny za wykonanie za wykonanie operacji jest określony przez indeks poniżej węzła reprezentującego tę operację. Zauważmy, że procesor \(P_1\), odpowiedzialny za ustawianie wartości \(B(1)\) i zapisywanie sumy \(S\), jest zawsze aktywny w trakcie wykonywania algorytmu, podczas gdy procesory \(P_5, P_6, P_7, P_8\) są aktywne tylko podczas kroków 1 i 2.
+% Przypadek dla \(n=8\) ilustruje rysunek \ref{fig:pram_sum}. W pierwszym i drugim kroku kopia B tablicy A jest tworzona w pamięci wspólnej. 
+% Zadania obliczeniowe w kroku 3 są na podstawie wyważonego drzewa binarnego, którego liście odpowiadają elementom tablicy A. Procesor odpowiedzialny za wykonanie za wykonanie operacji jest określony przez indeks poniżej węzła reprezentującego tę operację. Zauważmy, że procesor \(P_1\), odpowiedzialny za ustawianie wartości \(B(1)\) i zapisywanie sumy \(S\), jest zawsze aktywny w trakcie wykonywania algorytmu, podczas gdy procesory \(P_5, P_6, P_7, P_8\) są aktywne tylko podczas kroków 1 i 2.
 
-\begin{uwaga}
-Pomijamy szczegóły operacji dotyczących dostępu do pamięci. Operacje postaci \texttt{Ustaw A:=B+C}, gdzie A, B i C są zmiennymi wspólnymi będziemy interpretować jako ciąg instrukcji\\
-% \begin{algorithm}[H]
-% \SetKwFunction{Gread}{global read}
-% \SetKwFunction{Gwrite}{global write}
-% \Gread{B, x}\;
-% \Gread{C, y}\;
-% \texttt{Ustaw} z:= x + y\;
-% \Gwrite{z,A}\;
-% \end{algorithm}
-\end{uwaga}
+% \begin{uwaga}
+% Pomijamy szczegóły operacji dotyczących dostępu do pamięci. Operacje postaci \texttt{Ustaw A:=B+C}, gdzie A, B i C są zmiennymi wspólnymi będziemy interpretować jako ciąg instrukcji\\
+% % \begin{algorithm}[H]
+% % \SetKwFunction{Gread}{global read}
+% % \SetKwFunction{Gwrite}{global write}
+% % \Gread{B, x}\;
+% % \Gread{C, y}\;
+% % \texttt{Ustaw} z:= x + y\;
+% % \Gwrite{z,A}\;
+% % \end{algorithm}
+% \end{uwaga}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=34em]{images/pram_sum}
-\caption{Algorytm sumowania ośmiu elementów w modelu PRAM z osmioma procesorami. Każdy wewnętrzny wierzchołek grafu reprezentuje operację sumowania.}
-\label{fig:pram_sum}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=34em]{images/pram_sum}
+% \caption{Algorytm sumowania ośmiu elementów w modelu PRAM z osmioma procesorami. Każdy wewnętrzny wierzchołek grafu reprezentuje operację sumowania.}
+% \label{fig:pram_sum}
+% \end{figure}
 
 
 \subsubsection{Algorytm mnożenia}
