@@ -10,6 +10,7 @@
 #include <math.h>
 
 #include <mpi.h>
+#include <omp.h>
 
 #include "load_matrix.h"
 #include "save_matrix.h"
@@ -46,7 +47,7 @@ static struct argp_option options[] = {
 };
 
 struct arguments {
-    enum {SEQUENTIAL, MKL, CANNON} method;
+    enum {SEQUENTIAL, MKL, CANNON, CANNON_DGEMM, CANNON_OMP} method;
     enum {QUIET, VERBOSE} mode;
     bool time;
     bool steps;
@@ -62,15 +63,26 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
     switch (key) {        
         case 'a':
         {   
-            char *name = (char *)malloc(11 * sizeof(char));
+            char *name = (char *)malloc(13 * sizeof(char));
             for (int i = 0; i<11 ; arg++, i++)
                 name[i] = tolower(*arg);
 
-            if(strncmp("mkl", name, 10) == 0)
+            if(strncmp("mkl", name, 3) == 0)
                 arguments->method = MKL;
             else if(strncmp("sequential", name, 10) == 0)
                 arguments->method = SEQUENTIAL;
-            // cannon method is set as default
+            else if(strncmp("cannon", name, 6) == 0)
+                arguments->method = CANNON;
+            else if(strncmp("cannon_dgemm", name, 12) == 0)
+                arguments->method = CANNON_DGEMM;
+            else if(strncmp("cannon_omp", name, 10) == 0)
+                arguments->method = CANNON_OMP;
+            else {
+                /* exit if there's no such method */
+                argp_usage(state);
+            }
+            // cannon_dgemm method is set as default
+            printf("%d\n", arguments->method);
             break;
         }
         case 'A': {
@@ -101,8 +113,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'l':
         {
             printf("Available methods:\n");
-            char *availableMethods[] = {"sequential", "MKL", "cannon"};
-            for (int i = 0; i <= CANNON; ++i)
+            char *availableMethods[] = {"Sequential", "MKL", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
+            for (int i = 0; i <= 2D-OMP; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
         }
@@ -457,9 +469,32 @@ int main(int argc, char *argv[]) {
                 MPI_Sendrecv_replace(pB, 1, MPI_SUBMATRIX, top, 
                         SKEW_BOTTOMUP, bottom, 
                         SKEW_BOTTOMUP, cartcom, &status);
-               
-                cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
+                if(arguments.method == CANNON_OMP) {
+                    int j = 0;
+                    int l = 0;
+                    #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
+                    for (int ii = 0; ii < sz; ii++) {
+                       for (j = 0; j < sz; j++) {
+                            for (l = 0; l < sz; l++) {
+                               tmp_pC[ii * sz + j] = tmp_pC[ii * sz + j] + 
+                                    pA[ii * sz + l] * pB[l * sz + j];
+                            }
+                        }
+                    }
+                } else if(arguments.method == CANNON_DGEMM) {
+                    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 
                         sz, sz, sz, 1.0, pA, sz, pB, sz, 0.0, tmp_pC, sz);
+                } else if(arguments.method == CANNON) {
+                    for (int ii = 0; ii < sz; ii++) {
+                       for (int j = 0; j < sz; j++) {
+                            for (int l = 0; l < sz; l++) {
+                               tmp_pC[ii * sz + j] = tmp_pC[ii * sz + j] + 
+                                    pA[ii * sz + l] * pB[l * sz + j];
+                            }
+                        }
+                    }
+                }
+
 
                 for(int j = 0; j < blockSz; j++) {
                     pC[j] += tmp_pC[j];
@@ -554,7 +589,9 @@ int main(int argc, char *argv[]) {
     if(pid == ROOT) {
         switch(arguments.mode) {
             case VERBOSE: {
-                if(arguments.method == CANNON) {
+                if(arguments.method == CANNON || 
+                        arguments.method == CANNON_DGEMM ||
+                        arguments.method == CANNON_OMP) {
                     for(int i = 0; i < arguments.m; i++) {
                         for(int j = 0; j < arguments.n; j++) {
                             printf("%.0lf\t", C[i * max + j]);
@@ -604,6 +641,14 @@ int main(int argc, char *argv[]) {
                         }
                         case 2: {
                             sprintf(method, "CANNON");
+                            break;
+                        }
+                        case 3: {
+                            sprintf(method, "CANNON_DGEMM");
+                            break;
+                        }
+                        case 4: {
+                            sprintf(method, "CANNON_OMP");
                             break;
                         }
                     }

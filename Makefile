@@ -1,5 +1,5 @@
-SIZE = 4096 #size of randomly generated test square matrix
-NPROC = 441 #number of MPI threads
+SIZE = 16 #size of randomly generated test square matrix
+NPROC = 4 #number of MPI threads
 ###############################################################################
 
 PROJECT = pmm
@@ -17,14 +17,14 @@ MAX = 10
 PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 
 # DATA OUTPUT
-#OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
-#OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
-#OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
+OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
+OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
+OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
 
 # PMM
 CC = mpiicc
 CFLAGS = -std=c99
-LIBS = -mkl
+LIBS = -mkl -openmp
 SRC_PMM = $(SOURCE_DIR)main.c \
 	$(SOURCE_DIR)load_matrix.c \
 	$(SOURCE_DIR)save_matrix.c \
