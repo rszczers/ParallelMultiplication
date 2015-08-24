@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: speedup.tex
-%%Creator: gnuplot 4.6 patchlevel 0
-%%CreationDate: Mon Aug 24 22:04:30 2015
+%%Creator: gnuplot 4.6 patchlevel 4
+%%CreationDate: Mon Aug 24 22:14:55 2015
 %%DocumentFonts: 
 %%BoundingBox: 50 50 475 248
 %%EndComments
@@ -47,7 +47,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.4 (August 2010)
+% Gnuplot Prolog Version 4.6 (September 2012)
 %
 %/SuppressPDFMark true def
 %
@@ -314,7 +314,8 @@ gnudict begin
 /PatternFill {gsave /PFa [ 9 2 roll ] def
   PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
   PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
-  gsave 1 setgray fill grestore clip
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
   0 0 M PFa 5 get rotate PFs -2 div dup translate
@@ -428,11 +429,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (speedup.tex)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 0)
+  /Creator (gnuplot 4.6 patchlevel 4)
   /Author (rszczers)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Mon Aug 24 22:04:30 2015)
+  /CreationDate (Mon Aug 24 22:14:55 2015)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -635,7 +636,9 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 5690 751 M
-0 2952 V
+0 2009 V
+0 880 R
+0 63 V
 stroke
 1.500 UL
 LT0
@@ -649,7 +652,9 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 6093 751 M
-0 2952 V
+0 2009 V
+0 880 R
+0 63 V
 stroke
 1.500 UL
 LT0
@@ -663,8 +668,8 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 6495 751 M
-0 2449 V
-0 440 R
+0 2009 V
+0 880 R
 0 63 V
 stroke
 1.500 UL
@@ -679,8 +684,8 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 6898 751 M
-0 2449 V
-0 440 R
+0 2009 V
+0 880 R
 0 63 V
 stroke
 1.500 UL
@@ -695,8 +700,8 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 7300 751 M
-0 2449 V
-0 440 R
+0 2009 V
+0 880 R
 0 63 V
 stroke
 1.500 UL
@@ -711,8 +716,8 @@ LC0 setrgbcolor
 LT2
 LC2 setrgbcolor
 0.75 0.75 0.75 C 7703 751 M
-0 2449 V
-0 440 R
+0 2009 V
+0 880 R
 0 63 V
 stroke
 1.500 UL
@@ -908,8 +913,103 @@ LC2 setrgbcolor
 74 0 V
 73 0 V
 73 0 V
-1.000 UP
+2.000 UP
 stroke
+LT1
+LC1 setrgbcolor
+0.00 0.00 0.00 C LCb setrgbcolor
+LT1
+LC1 setrgbcolor
+0.00 0.00 0.00 C 7250 3090 M
+591 0 V
+861 2993 M
+402 -411 V
+403 -49 V
+402 -147 V
+403 396 V
+402 -859 V
+403 -82 V
+402 -263 V
+403 -94 V
+402 -102 V
+402 -119 V
+403 -81 V
+402 35 V
+403 -103 V
+402 -39 V
+403 -65 V
+402 -36 V
+403 -72 V
+402 -10 V
+861 2993 Pls
+1263 2582 Pls
+1666 2533 Pls
+2068 2386 Pls
+2471 2782 Pls
+2873 1923 Pls
+3276 1841 Pls
+3678 1578 Pls
+4081 1484 Pls
+4483 1382 Pls
+4885 1263 Pls
+5288 1182 Pls
+5690 1217 Pls
+6093 1114 Pls
+6495 1075 Pls
+6898 1010 Pls
+7300 974 Pls
+7703 902 Pls
+8105 892 Pls
+7545 3090 Pls
+2.000 UP
+4.000 UL
+LT3
+LC3 setrgbcolor
+0.00 0.00 0.00 C LCb setrgbcolor
+LT3
+LC3 setrgbcolor
+0.00 0.00 0.00 C 7250 2870 M
+591 0 V
+861 1306 M
+402 -217 V
+403 10 V
+402 37 V
+403 129 V
+402 -104 V
+403 146 V
+402 113 V
+403 -89 V
+402 -43 V
+402 -29 V
+403 38 V
+402 -33 V
+403 -81 V
+402 -72 V
+403 -62 V
+402 -48 V
+403 -65 V
+402 -29 V
+861 1306 Crs
+1263 1089 Crs
+1666 1099 Crs
+2068 1136 Crs
+2471 1265 Crs
+2873 1161 Crs
+3276 1307 Crs
+3678 1420 Crs
+4081 1331 Crs
+4483 1288 Crs
+4885 1259 Crs
+5288 1297 Crs
+5690 1264 Crs
+6093 1183 Crs
+6495 1111 Crs
+6898 1049 Crs
+7300 1001 Crs
+7703 936 Crs
+8105 907 Crs
+7545 2870 Crs
+1.000 UP
 1.500 UL
 LT0
 LC0 setrgbcolor
