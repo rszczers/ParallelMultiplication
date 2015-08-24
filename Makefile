@@ -1,5 +1,5 @@
-SIZE = 16 #size of randomly generated test square matrix
-NPROC = 4 #number of MPI threads
+SIZE = 4096 #size of randomly generated test square matrix
+NPROC = 441 #number of MPI threads
 OMP_THREADS = 12
 ###############################################################################
 
@@ -18,12 +18,12 @@ MAX = 10
 PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 
 # DATA OUTPUT
-OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
-OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
-OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
-OUTPUT_OMP = $(RESOURCES_DIR)c_omp.dat
-OUTPUT_CANNON_OMP = $(RESOURCES_DIR)c_cannon_omp.dat
-OUTPUT_CANNON_MKL = $(RESOURCES_DIR)c_cannon_mkl.dat
+#OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
+#OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
+#OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
+#OUTPUT_OMP = $(RESOURCES_DIR)c_omp.dat
+#OUTPUT_CANNON_OMP = $(RESOURCES_DIR)c_cannon_omp.dat
+#OUTPUT_CANNON_MKL = $(RESOURCES_DIR)c_cannon_mkl.dat
 
 # PMM
 CC = mpiicc

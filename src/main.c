@@ -84,7 +84,6 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
                 argp_usage(state);
             }
             // cannon_dgemm method is set as default
-            printf("%d\n", arguments->method);
             break;
         }
         case 'A': {
@@ -104,7 +103,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'd': {
             if(arg[strlen(arg)-1] != '/') {
                 char parg[strlen(arg)+1];
-                strcpy(parg, arg);
+                strncpy(parg, arg, strlen(arg));
                 parg[strlen(arg)] = '/';
                 arguments->debugDir = parg;
             } else {
@@ -115,7 +114,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'l':
         {
             printf("Available methods:\n");
-            char *availableMethods[] = {"Sequential", "MKL", "OMP", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
+            char *availableMethods[] = {"Sequential", "MKL", 
+                "OMP", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
             for (int i = 0; i <= CANNON_OMP; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
@@ -607,7 +607,7 @@ int main(int argc, char *argv[]) {
             break;
         }
         case CANNON_DGEMM:
-        {
+        {            
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
