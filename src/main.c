@@ -64,20 +64,20 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         case 'a':
         {   
             char *name = (char *)malloc(13 * sizeof(char));
-            for (int i = 0; i<11 ; arg++, i++)
+            for (int i = 0; i<13 ; arg++, i++)
                 name[i] = tolower(*arg);
 
-            if(strncmp("mkl", name, 3) == 0)
+            if(strncmp("mkl", name, 12) == 0)
                 arguments->method = MKL;
-            else if(strncmp("sequential", name, 10) == 0)
+            else if(strncmp("sequential", name, 12) == 0)
                 arguments->method = SEQUENTIAL;
-            else if(strncmp("omp", name, 3) == 0) 
+            else if(strncmp("omp", name, 12) == 0) 
                 arguments->method = OMP;
-            else if(strncmp("cannon", name, 6) == 0)
+            else if(strncmp("cannon", name, 12) == 0)
                 arguments->method = CANNON;
             else if(strncmp("cannon_dgemm", name, 12) == 0)
                 arguments->method = CANNON_DGEMM;
-            else if(strncmp("cannon_omp", name, 10) == 0)
+            else if(strncmp("cannon_omp", name, 12) == 0)
                 arguments->method = CANNON_OMP;
             else {
                 /* exit if there's no such method */
@@ -116,7 +116,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         {
             printf("Available methods:\n");
             char *availableMethods[] = {"Sequential", "MKL", "OMP", "CANNON", "CANNON_DGEMM", "CANNON_OMP"};
-            for (int i = 0; i <= 2D-OMP; ++i)
+            for (int i = 0; i <= CANNON_OMP; ++i)
                 printf("%d - %s\n", i, availableMethods[i]);
             break;            
         }
@@ -228,8 +228,8 @@ int main(int argc, char *argv[]) {
                 for (int i = 0; i < arguments.m; i++) {
                     for (int j = 0; j < arguments.n; j++) {
                         for (int l = 0; l < arguments.k; l++) {
-                            C[i * arguments.n + j] = C[i * arguments.n + j] + 
-                                A[i * arguments.n + l] * B[l * arguments.n + j];
+                            C[i * arguments.n + j] += 
+                                A[i * arguments.k + l] * B[l * arguments.n + j];
                         }
                     }
                 }
@@ -290,14 +290,16 @@ int main(int argc, char *argv[]) {
                         false);
 
                 t0 = MPI_Wtime();
+                int ii = 0;
                 int j = 0;
                 int l = 0;
-                #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
-                for (int ii = 0; ii < sz; ii++) {
-                   for (j = 0; j < sz; j++) {
-                        for (l = 0; l < sz; l++) {
-                            pC[ii * sz + j] +=
-                             pA[ii * sz + l] * pB[l * sz + j];
+                #pragma omp parallel for shared(A, B, C) private(j,l) schedule(static)
+                for (ii = 0; ii < arguments.m; ii++) {
+                   for (j = 0; j < arguments.n; j++) {
+                        for (l = 0; l < arguments.k; l++) {
+                            C[ii * arguments.n + j] +=
+                                A[ii * arguments.k + l] *
+                                B[l * arguments.n + j];
                         }
                     }
                 }            
@@ -1066,11 +1068,11 @@ int main(int argc, char *argv[]) {
                 MPI_Recv(pB, 1, MPI_SUBMATRIX, ROOT, 
                         DISTRIBUTION_B, cartcom, &status);
             }
-
+            int ii = 0;
             int j = 0;
             int l = 0;
             #pragma omp parallel for shared(pA, pB, pC) private(j,l) schedule(static)
-            for (int ii = 0; ii < sz; ii++) {
+            for (ii = 0; ii < sz; ii++) {
                for (j = 0; j < sz; j++) {
                     for (l = 0; l < sz; l++) {
                         pC[ii * sz + j] +=
@@ -1276,7 +1278,7 @@ int main(int argc, char *argv[]) {
                             sprintf(method, "CANNON_DGEMM");
                             break;
                         }
-                        case t: {
+                        case 5: {
                             sprintf(method, "CANNON_OMP");
                             break;
                         }

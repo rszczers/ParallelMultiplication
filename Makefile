@@ -1,5 +1,6 @@
 SIZE = 16 #size of randomly generated test square matrix
 NPROC = 4 #number of MPI threads
+OMP_THREADS = 12
 ###############################################################################
 
 PROJECT = pmm
@@ -20,6 +21,9 @@ PROBLEM = $(shell echo $(SIZE)\*$(SIZE) | bc)
 OUTPUT_SRUN = $(RESOURCES_DIR)c_seq.dat
 OUTPUT_CRUN = $(RESOURCES_DIR)c_cannon.dat
 OUTPUT_MRUN = $(RESOURCES_DIR)c_mkl.dat
+OUTPUT_OMP = $(RESOURCES_DIR)c_omp.dat
+OUTPUT_CANNON_OMP = $(RESOURCES_DIR)c_cannon_omp.dat
+OUTPUT_CANNON_MKL = $(RESOURCES_DIR)c_cannon_mkl.dat
 
 # PMM
 CC = mpiicc
@@ -76,6 +80,38 @@ cannon:
 	-q \
 	-d$(DEBUG_DIR) \
 
+#runs cannon's algorithm
+cannon_dgemm:
+	@mpirun \
+	$(MPI_OPT) \
+	-np $(NPROC) \
+	$(BUILD_PATH_PMM) \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
+	-C$(OUTPUT_CANNON_MKL) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
+	--method=cannon_dgemm \
+	-q \
+	-d$(DEBUG_DIR) \
+
+cannon_omp:
+	export OMP_NUM_THREADS=$(OMP_THREADS)
+	@mpirun \
+	$(MPI_OPT) \
+	-np $(NPROC) \
+	$(BUILD_PATH_PMM) \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
+	-C$(OUTPUT_CANNON_OMP) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
+	--method=cannon_omp \
+	-q \
+	-d$(DEBUG_DIR) \
+
 #runs mkl multiplication procedure
 mkl:
 	@mpirun \
@@ -105,6 +141,23 @@ seq:
 	-n $(SIZE) \
 	-k $(SIZE) \
 	--method=sequential \
+	-q \
+	-d$(DEBUG_DIR)
+
+#runs simple sequential algorithm 
+omp:
+	export OMP_NUM_THREADS=$(OMP_THREADS)
+	@mpirun \
+	$(MPI_OPT) \
+	-np 1 \
+	$(BUILD_PATH_PMM) \
+	-A $(PATH_A) \
+	-B $(PATH_B) \
+	-C$(OUTPUT_OMP) \
+	-m $(SIZE) \
+	-n $(SIZE) \
+	-k $(SIZE) \
+	--method=omp \
 	-q \
 	-d$(DEBUG_DIR)
 
