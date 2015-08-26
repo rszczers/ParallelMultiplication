@@ -1,0 +1,73 @@
+manpath: can't set the locale; make sure $LC_* and $LANG are correct
+Fatal error in MPI_Sendrecv_replace: Other MPI error, error stack:
+MPI_Sendrecv_replace(240).: MPI_Sendrecv_replace(buf=0x7f76c1f60040, count=1, dtype=USER<contig>, dest=22, stag=93, src=36, rtag=93, comm=0x84000000, status=0x7fff76c813f0) failed
+dequeue_and_set_error(628): Communication error with rank 36
+Fatal error in MPI_Sendrecv_replace: Other MPI error, error stack:
+MPI_Sendrecv_replace(240).: MPI_Sendrecv_replace(buf=0x7f9cf5764040, count=1, dtype=USER<contig>, dest=21, stag=93, src=35, rtag=93, comm=0x84000000, status=0x7ffff191dc90) failed
+dequeue_and_set_error(628): Communication error with rank 35
+Fatal error in MPI_Sendrecv_replace: Other MPI error, error stack:
+MPI_Sendrecv_replace(240).: MPI_Sendrecv_replace(buf=0x2b2d54e23040, count=1, dtype=USER<contig>, dest=16, stag=93, src=30, rtag=93, comm=0x84000000, status=0x7fffc0affe00) failed
+dequeue_and_set_error(628): Communication error with rank 30
+Fatal error in MPI_Sendrecv_replace: Other MPI error, error stack:
+MPI_Sendrecv_replace(240).: MPI_Sendrecv_replace(buf=0x2ae77c239040, count=1, dtype=USER<contig>, dest=10, stag=93, src=24, rtag=93, comm=0x84000000, status=0x7fff1ed27ef0) failed
+dequeue_and_set_error(628): Communication error with rank 24
+make[1]: *** [cannon_omp] Error 15
+Assertion failed in file ../../socksm.c at line 2970: (it_plfd->revents & POLLERR) == 0
+internal ABORT - process 41
+Fatal error in MPI_Sendrecv_replace: Other MPI error, error stack:
+MPI_Sendrecv_replace(240)........: MPI_Sendrecv_replace(buf=0x7f4b3d74e040, count=1, dtype=USER<contig>, dest=18, stag=93, src=34, rtag=93, comm=0x84000000, status=0x7fff518d4ac0) failed
+MPID_Irecv(142)..................: 
+MPID_nem_lmt_RndvRecv(168).......: 
+MPIDI_CH3_RecvRndv(439)..........: failure occurred while attempting to send CTS packet
+MPID_nem_tcp_iStartContigMsg(385): 
+MPID_nem_tcp_connect(1037).......: Connection is in error state
+Fatal error in MPI_Recv: Other MPI error, error stack:
+MPI_Recv(200).............: MPI_Recv(buf=0x7f761b9b6040, count=1, dtype=USER<contig>, src=0, tag=1338, comm=0x84000000, status=0x7fff70f77d60) failed
+dequeue_and_set_error(628): Communication error with rank 0
+Fatal error in MPI_Recv: Other MPI error, error stack:
+MPI_Recv(200).............: MPI_Recv(buf=0x7f5b9a182040, count=1, dtype=USER<contig>, src=0, tag=1338, comm=0x84000000, status=0x7fff359c8f90) failed
+dequeue_and_set_error(628): Communication error with rank 0
+make[1]: *** [cannon_omp] Error 15
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+./data.sh: line 10: gnuplot: command not found

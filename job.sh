@@ -6,7 +6,7 @@
 #PBS -M rafal.szczerski@gmail.com
 #PBS -m abe
 #PBS -o pmm.log
-#export MV2_ENABLE_AFFINITY=0
-export OMP_NUM_THREADS=12
+export MV2_ENABLE_AFFINITY=0
+#export KMP_AFFINITY=balanced
 cd $PBS_O_WORKDIR
 make test

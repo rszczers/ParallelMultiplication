@@ -11,20 +11,26 @@ done
 
 i=3;
 for((n=4; n<=$1; i++)); do
-    make cannon_dgemm NPROC=$n
-    echo "make cannon_dgemm NPROC=$n"   
-    n=$(($i*$i))
-    echo $n;
-    sleep 1;
+    for((t=1; t<=24; t++)); do
+        export OMP_NUM_THREADS=$t
+        make cannon_dgemm NPROC=$n OMP_THREADS=$t
+        echo "make cannon_dgemm NPROC=$n"   
+        n=$(($i*$i))
+        echo $n;
+        sleep 1;
+    done
 done
 
 i=3;
 for((n=4; n<=$1; i++)); do
-    make cannon_omp NPROC=$n
-    echo "make cannon_omp NPROC=$n"   
-    n=$(($i*$i))
-    echo $n;
-    sleep 1;
+    for((t=1; t<=24; t++)); do
+        export OMP_NUM_THREADS=$t
+        make cannon_omp NPROC=$n OMP_THREADS=$t
+        echo "make cannon_omp NPROC=$n"   
+        n=$(($i*$i))
+        echo $n;
+        sleep 1;
+    done
 done
 
 for((j=0; j<3; j++)); do
@@ -34,15 +40,21 @@ for((j=0; j<3; j++)); do
 done
 
 for((j=0; j<3; j++)); do
-    make mkl 
-    sleep 1;
-    echo "make mkl"   
+    for((t=1; t<=24; t++)); do
+        export OMP_NUM_THREADS=$t
+        make mkl OMP_THREADS=$t
+        sleep 1;
+        echo "make mkl"
+    done
 done
 
 for((j=0; j<3; j++)); do
-    make omp
-    sleep 1;
-    echo "make omp"   
+    for((t=1; t<=24; t++)); do
+        export OMP_NUM_THREADS=$t
+        make omp OMP_THREADS=$t
+        sleep 1;
+        echo "make omp"
+    done
 done
 
 ./data.sh

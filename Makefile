@@ -1,5 +1,5 @@
 SIZE = 4096 #size of randomly generated test square matrix
-NPROC = 441 #number of MPI threads
+NPROC = 100 #number of MPI threads
 OMP_THREADS = 12
 ###############################################################################
 
@@ -79,6 +79,7 @@ cannon:
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 #runs cannon's algorithm
 cannon_dgemm:
@@ -95,9 +96,9 @@ cannon_dgemm:
 	--method=cannon_dgemm \
 	-q \
 	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 cannon_omp:
-	export OMP_NUM_THREADS=$(OMP_THREADS)
 	@mpirun \
 	$(MPI_OPT) \
 	-np $(NPROC) \
@@ -111,6 +112,7 @@ cannon_omp:
 	--method=cannon_omp \
 	-q \
 	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 #runs mkl multiplication procedure
 mkl:
@@ -126,7 +128,8 @@ mkl:
 	-k $(SIZE) \
 	--method=MKL \
 	-q \
-	-d$(DEBUG_DIR)
+	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 #runs simple sequential algorithm 
 seq:
@@ -142,11 +145,11 @@ seq:
 	-k $(SIZE) \
 	--method=sequential \
 	-q \
-	-d$(DEBUG_DIR)
+	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 #runs simple sequential algorithm 
 omp:
-	export OMP_NUM_THREADS=$(OMP_THREADS)
 	@mpirun \
 	$(MPI_OPT) \
 	-np 1 \
@@ -159,7 +162,8 @@ omp:
 	-k $(SIZE) \
 	--method=omp \
 	-q \
-	-d$(DEBUG_DIR)
+	-d$(DEBUG_DIR) \
+	--omp_threads=$(OMP_THREADS)
 
 #generates test data
 data:
