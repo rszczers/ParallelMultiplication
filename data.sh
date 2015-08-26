@@ -26,6 +26,12 @@ cat gnuplot/cannon_omp.dat | awk '$6==24' > gnuplot/cannon_omp_24.dat
 
 
 cd gnuplot
-#gnuplot ./speedup.p
+gnuplot ./speedup_cannon_dgemm.p
+gnuplot ./speedup_mono.p
+gnuplot ./speedup_cannon_omp.p
+gnuplot ./speedup_cannon_seq.p
 
-#cp speedup.eps speedup.tex ../paper/includes/plots/
+cp cannon_dgemm.eps cannon_dgemm.tex ../paper/includes/plots/
+cp mono.eps mono.tex ../paper/includes/plots/
+cp cannon_omp.eps cannon_omp.tex ../paper/includes/plots/
+cp cannon_seq.eps cannon_seq.tex ../paper/includes/plots/
