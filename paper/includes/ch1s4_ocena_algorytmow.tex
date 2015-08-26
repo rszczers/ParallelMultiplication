@@ -1,0 +1,20 @@
+\label{subsec:algorytmy_sekwencyjne}
+\subsubsection{Złożoność czasowa algorytmów sekwencyjnych}
+
+Ograniczenia zasobów (np. czasu i przestrzeni) wymagane przez algorytmy sekwencyjne mierzymy jako funkcję rozmiaru danych wejściowych \(T(n)\), tzw. złożoność czasową. Ograniczenia te wyrażamy asymptotycznie używając notacji:
+
+\begin{enumerate}
+\item{\(T(n) = O(f(n))\), jeśli istnieje dodatnie stałe \(c\) i \(n_0\) takie, że \(\forall{n \geq n_0}: (T(n)\leq cf(n)) \)}
+\item{\(T(n) = \Omega(f(n))\), jeśli istnieje dodatnie stałe \(c\) i \(n_0\) takie, że \(\forall{n \geq n_0}: (T(n)\geq cf(n)) \)}
+\item{\(T(n) = \Theta(f(n))\), jeśli \(T(n)=O(f(n))\) i \(T(n)=\Omega(f(n))\)}
+\end{enumerate}
+Czas działania algorytmu sekwencyjnego szacuje się przez liczbę operacji podstawowych wymaganych przez algorytm jako funkcję ilości danych wejściowych.
+\subsubsection{Złożoność czasowa algorytmów równoległych}
+
+\begin{definicja}[Pesymistyczna złożoność obliczeniowa\cite{Czech}]\label{def:pesymistyczna_zlozonosc_czasowa}
+Załóżmy że algorytm równoległy \(R\) rozwiązuje problem \(P\) o rozmiarze \(n\). \textbf{Pesymityczną złożonością czasową algorytmu} \(R\) nazywamy funkcję:\\
+\begin{align}
+T_{p}(n) = \sup_{d\in{D_n}}{\left\{t(p,d)\right\}},
+\end{align}
+gdzie \(t(p,d)\) oznacza liczbę kroków obliczeniowych (operacji dominujących) wykonanych dla zestawu danych \(d\) od momentu rozpoczęcia obliczeń algorytmu \(R\) przez pierwszy procesor do chwili zakończenia obliczeń przez wszystkie procesory, \(p\) -- liczbę procesorów, \(D_n\) -- zbiór wszystkich zestawów danych wejściowych \(d\) o rozmiarze \(n\).
+\end{definicja}
