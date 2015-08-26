@@ -2,7 +2,7 @@ Wiele obliczeń możemy repezentować za pomocą acyklicznych grafów skierowany
 
 
 
-Za pomocą acyklicznych grafów skierowanych możemy analizować zachowanie równoległych algorytmów przy założeniu, że każdy z procesorów ma dostęp do danych obliczonych przez inny procesor bez dodatkoych narzutów. Implementacja algorytmu polega na \emph{planowaniu} wykonania każdego węzła na wybranym procesorze.
+Za pomocą acyklicznych grafów skierowanych możemy analizować zachowanie równoległych algorytmów przy założeniu, że każdy z procesorów ma dostęp do danych obliczonych przez inny procesor bez dodatkowych narzutów. Implementacja algorytmu polega na \emph{planowaniu} wykonania każdego węzła na wybranym procesorze.
 %\begin{figure}[h]
 %\centering
 %\includegraphics[width=34em]{Rys3.eps}
@@ -13,21 +13,23 @@ Za pomocą acyklicznych grafów skierowanych możemy analizować zachowanie rów
 Powiedzmy, że dla danych \(p\) procesorów, chcemy przyporządkować każdemu węzłowi \(i\) parę \((j_i, t_i)\), gdzie \(j_i \leq p\) oznacza indeks procesora, zaś \(t_i\) jednostkę czasu, taką że zachodzą poniższe warunki:
 \begin{enumerate}
 \item Jeśli \(t_i=t_k\) dla pewnego \(i\neq k\), to \(j_i\neq j_k\). Oznacza to, że każdy procesor może wykonać pojedyńczą operację podczas każdej jednostki czasu.
-\item Jeśli \((i, k)\) jest łukiem grafu, to \(t_k\geq t_i + 1\). Oznacza to, że operacja, którą przedstawia węzeł k powinna być zaplanowania po wykonaniu operacji przedstawionej przez węzeł \(i\).
+\item Jeśli \((i, k)\) jest łukiem grafu, to \(t_k\geq t_i + 1\). Oznacza to, że operacja, którą przedstawia węzeł \(k\) powinna być zaplanowana po wykonaniu operacji przedstawionej przez węzeł \(i\).
 \end{enumerate}
 
 Przyjmuje się, że czas \(t_i\) węzła wejściowego \(i\) wynosi 0 oraz żaden procesor nie jest przyporządkowany do tego węzła.\\
 \begin{definicja}[Plan]\label{def:plan}
 Ciąg \(\{(j_i, t_i) | i\in N\}\) nazywamy \textbf{planem} równoległego wykonania DAG przez \(p\) procesorów, gdzie \(N\) oznacza zbiór węzłów DAG.
 \end{definicja}
-Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) algorytmu jest określony przez \(\max_{i\in N}t_i\). Złożonośc równoległa DAG'a jest określona przez \(T_{p}(n) = \min{\{\max_{i\in N}t_i\}}\), gdzie minimum bierzemy po wszystkich planach, które używają \(p\) procesorów.
+
+
+Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) algorytmu jest określony przez \(\max_{i\in N}t_i\). Złożoność równoległa DAG'a jest określona przez \(T_{p}(n) = \min{\{\max_{i\in N}t_i\}}\), gdzie minimum bierzemy po wszystkich planach, które używają \(p\) procesorów.
 
 
 \begin{przyklad}
-Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia Rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając n procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
+Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając \(n\) procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
 \begin{figure}[H]
 \centering
-\includegraphics[width=36em]{images/Rys3.eps}
+\includegraphics[width=34em]{images/Rys3.eps}
 \caption{Standardowy iloczyn macierzowy}
 \label{fig:standard_parallel}
 \end{figure}

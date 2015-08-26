@@ -1,7 +1,7 @@
-Nim przejdziemy do omówienia modeli obliczeń równoległych zajmiemy się omówieniem modelu RAM zwanego również architekturą von Neumanna.
+Nim przejdziemy do omówienia modeli obliczeń równoległych zajmiemy się omówieniem modelu RAM zwanego również architekturą von Neumanna. 
+
 
 Model RAM (\emph{Random Access Machine}) odpowiada rozważaniom zawartym w \ref{subsec:algorytmy_sekwencyjne}. Zakłada on:
-
 \begin{enumerate}
 \item{Istnienie pewnego procesora wyposażonego w:
 \begin{enumerate}
@@ -9,17 +9,28 @@ Model RAM (\emph{Random Access Machine}) odpowiada rozważaniom zawartym w \ref{
 \item pewną liczbę rejestrów arytmetycznych procesora \(R_1, R_2, \dots, R_n\), \(n>1\) które mogą przechowywać dowolne skończone liczby w zapisie binarnym
 \item specjalny rejestr sterujący \(L\) zwany licznikiem programu.
 \end{enumerate}}
-\item Istnienie pamięci złożonej z potencjalnie nieskończonej liczby komórek \(M_i, \, i=1, 2, 3, \dots\) (Rys. \ref{fig:ram}) w których można przechowywać dowolną skończoną liczbę w zapisie binarnym.
+\item Istnienie pamięci złożonej z potencjalnie nieskończonej liczby komórek \(M_i, \, i=1, 2, 3, \dots\) (Rys. \ref{fig:neumann}) w których można przechowywać dowolną skończoną liczbę w zapisie binarnym.
 \item Stały czas zapisu i odczytu wartości do/z komórki pamięci (inaczej \emph{dostęp swobodny}).
 
 \end{enumerate}
 
+
 \begin{figure}[h]
 \centering
-\includegraphics[width=7em]{images/Rys_RAM.eps}
+\includegraphics[width=8cm]{images/Rys_Neumann.eps}
+
 \caption{Model obliczeń sekwencyjnych RAM}
-\label{fig:ram}
+\label{fig:neumann}
 \end{figure}
+
+
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=7em]{images/Rys_RAM.eps}
+% \caption{Model obliczeń sekwencyjnych RAM}
+% \label{fig:ram}
+% \includegraphics[width=7cm]{images/Rys_Neumann.eps}
+% \end{figure}
 
 \begin{table}[H]
 \begin{center}

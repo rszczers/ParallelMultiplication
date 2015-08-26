@@ -1,5 +1,14 @@
-Model wspólnej pamięci składa się z pewnej liczby procesorów, z których każdy posiada własną pamięć i może lokalnie wykonywać programy. Wszystkie procesory mogą komunikować się za pomocą wspólnej globalnej pamięci.\\
-Każdemu procesorowi przypożądkowany jest niepowtarzająca się liczba naturalna. Jest to lokalnie dostępny indeks, numer procesora lub jego identyfikator.\\
+Model wspólnej pamięci składa się z pewnej liczby procesorów, z których każdy posiada własną pamięć i może lokalnie wykonywać programy. Wszystkie procesory mogą komunikować się za pomocą wspólnej globalnej pamięci (rys. \ref{fig:model_shared}).
+
+
+Każdemu procesorowi przypożądkowany jest niepowtarzająca się liczba naturalna. Jest to lokalnie dostępny indeks, numer procesora lub jego identyfikator.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=20em]{images/Rys4.eps}
+\caption{Model wspólnej pamięci}
+\label{fig:model_shared}
+\end{figure}
 
 W modelu wspólnej pamięci wyróżniamy dwa podstawowe tryby operacji. W pierwszym trybie, synchronicznym, wszystkie procesory działają synchronicznie według wspólnego zegara. Model ten nazywamy równoległą maszyną o dostepie swobodnym (PRAM, parallel random-access machine).\\
 W drugi trybie, asynchronicznym, każdy procesor pracuje według osobnego zegara. W tym trybie programista jest odpowiedzialny za odpowiednią synchronizację procesorów, jeśli zachodzi taka potrzeba. Dokładniej mówiąc, jeśli procesor ma pobrać dane, to odpowiedzialnością programisty jest upewnienie się, że odpowiednie dane są już uzyskane, ponieważ wartości wspólnych zmiennych są określane dynamicznie w trakcie wykonania programu na różnych procesorach.\\
@@ -29,9 +38,3 @@ Jeśli nie poczyni się żadnych dodatkowych założeń, to nie jest jasno okre�
 \item (ang. combining) – zapamiętywana jest wartość jest pewną, jednak ściśle określoną kombinacją zapisywanych wartości
 \end{enumerate}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=20em]{images/Rys4.eps}
-\caption{Model wspólnej pamięci}
-\label{fig:model_shared}
-\end{figure}

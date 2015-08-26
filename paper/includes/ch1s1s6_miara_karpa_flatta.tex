@@ -1,17 +1,17 @@
 Przyspieszenia uzyskiwane ze wzorów \eqref{eq:amdahl} i \eqref{eq:gustafson_barsis} nie uwzględniają złożoności \(T_{p}^{O}(n)\) związanej z prowadzeniem obliczeń i dlatego ich wartości są większe niż uzyskiwane doświadczalnie.
 
-Zgodnie z \ref{eq:supSpn} czas wykonywania algorytmu równoległego jest równy:
+Zgodnie z wyrażeniem \ref{eq:supSpn} czas wykonywania algorytmu równoległego jest równy:
 \begin{align}\label{eq:karp_flatt_1}
 T_{p}(n)=T_{1}^{s}(n)+T_{p}^{0}(n) + \frac{T_{1}^{r}(n)}{p}
 \end{align}
 
 Jeśli przez \(f\) oznaczymy częśc operacji algorytmu, których nie można zrównoleglić (część \emph{inherentnie sekwencyjną}) oraz złożoność dodatkową wynikającą z organizacji obliczeń, to mamy:
 
-\begin{align}\label{eq:karp_flatt_2}
-f=\frac{T_{1}^{s}(n)+T_{p}^{O}(n)}{T_{1}(n)}
+\begin{align}
+f=\frac{T_{1}^{s}(n)+T_{p}^{O}(n)}{T_{1}(n)}\label{eq:karp_flatt2}
 \end{align}
 
-Z \eqref{eq:karp_flatt_1} i \eqref{eq:karp_flatt_2}:
+Z \eqref{eq:karp_flatt_1} i \eqref{eq:karp_flatt2}:
 
 \begin{align}
 T_{p}(n)=T_{1}^{s}(n)+T_{p}^{O}(n)+\frac{T_{1}^{r}(n)}{p} = fT_{1}(n)+\frac{(1-f)T_{1}(n)}{p}
@@ -26,8 +26,8 @@ f=\frac{\frac{1}{S_{p}(n)}-\frac{1}{p}}{1-\frac{1}{p}}
 Wyrażenie \eqref{eq:karp_flatt_3} nazywamy \textbf{miarą Karpa-Flatta}.
 
 \begin{definicja}[Miara Karpa-Flatta]
-Dla danego algorytmu równoległego \(R\) rozwiązującego problem \(P\) o rozmiarze \(n\) przy pomocy \(p>1\) procesorów, doświadczalnie wyznaczona część sekwencyjna obliczeń \(e\) można wyraża się przez
+Dla danego algorytmu równoległego \(R\) rozwiązującego problem \(P\) o rozmiarze \(n\) przy pomocy \(p>1\) procesorów, doświadczalnie wyznaczona część sekwencyjna obliczeń \(f\) można wyraża się przez
 \begin{align}
-e = \frac{1/\Psi - 1/p}{1 - 1/p}
+f = \frac{1/S_{p}(n) - 1/p}{1 - 1/p}
 \end{align}
 \end{definicja}

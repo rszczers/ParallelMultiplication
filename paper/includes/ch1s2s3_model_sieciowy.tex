@@ -1,4 +1,11 @@
-Sieć możemy przedstawić modelowo jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory. Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
+Sposób łączenia układu procesorów w sieć nazywamy topologią sieci. Topologię sieci modelowować jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory (rys. \ref{fig:model_net}). Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=20em]{images/Rys_net.eps}
+\caption{Model wspólnej pamięci}
+\label{fig:model_net}
+\end{figure}
 
 W opisie algorytmów dla modelu sieciowego potrzebujemy zdefiniować dwie instrukcje do opisania komunikacji między procesorami.
 \begin{enumerate}

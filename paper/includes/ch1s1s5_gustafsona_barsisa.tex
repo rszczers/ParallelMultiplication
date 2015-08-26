@@ -1,9 +1,9 @@
 Niech \(p\) oznacza liczbę procesorów, \(\sigma\) -- część czasu obliczeń algorytmu równoległego przypadającą na wykonanie obliczeń w sposób sekwencyjny, a \(\rho\) -- część czasu obliczeń algorytmu równoległego przypadającą na wykonywanie obliczeń w sposób równoległy takie, że \(\sigma+\rho=1\). Czas wykonania tego samego algorytmu w hipotetycznym komputerze sekwencyjnym jest proporcjonalny do sumy \(\sigma + p\rho\), gdzie wyrażenie \(p\rho\) odpowiada czasowi wykonania części równoległej obliczeń przez jeden procesor. Przyspieszenie, które zostałoby uzyskane, gdyby obliczenia równoległe zostały przeprowadzone w komputerze sekwencyjnym wyraża się przez:
-\begin{equation}\label{eq:gustafson&barsis}
+\begin{equation}\label{eq:gustafson_barsis}
 \Psi_{p}(n)\leq\frac{\sigma+p\rho}{\sigma+\rho}=\sigma+p\rho=\sigma+p\left(1-\sigma\right)=p+\left(1-p\right)\sigma
 \end{equation}
 
-Wzór \eqref{eq:gustafson&barsis} jest znany jako \textbf{prawo Gustafsona i	Barsisa}. 
+Wzór \eqref{eq:gustafson_barsis} jest znany jako \textbf{prawo Gustafsona i	Barsisa}. 
 
 \begin{definicja}[Prawo Gustafsona i Barsisa\cite{Quinn}]
 Dla danego algorytmu \(R\) rozwiązującego problem \(P\) ustalonego rozmiaru \(n\) na \(p\) procesorach oznaczmy przez \(\sigma\) część całkowitego czasu wykonania algorytmu. Wówczas maksymalne przyspieszenie \(\Psi\) algorytmu \(R\) spełnia nierówność:
