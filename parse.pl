@@ -10,7 +10,7 @@ my $dir = './debug';
 
 foreach my $fp (glob("$dir/debug_*")) {
     open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";
-    if(<$fh> =~ /$method$/gi) {
+    if(<$fh> =~ /\s$method$/gim) {
         my @data; 
         while (<$fh>) {
             my @tmp = /(\d+\.\d+)|(\d+)/g;

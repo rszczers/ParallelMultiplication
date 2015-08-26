@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  24 AUG 2015 22:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  26 AUG 2015 23:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -522,43 +522,38 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(./speedup.tex
-Package epstopdf Info: Source file: <speedup.eps>
-(epstopdf)                    date: 2015-08-24 22:14:55
-(epstopdf)                    size: 22351 bytes
-(epstopdf)             Output file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-24 22:13:09
-(epstopdf)                    size: 6184 bytes
-(epstopdf)             Command: <repstopdf --outfile=speedup-eps-converted-to.p
-df speedup.eps>
-(epstopdf)             \includegraphics on input line 133.
-runsystem(repstopdf --outfile=speedup-eps-converted-to.pdf speedup.eps)...execu
-ted safely (allowed).
+(./mono.tex
+Package epstopdf Info: Source file: <mono.eps>
+(epstopdf)                    date: 2015-08-26 23:14:25
+(epstopdf)                    size: 35527 bytes
+(epstopdf)             Output file: <mono-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-26 23:14:34
+(epstopdf)                    size: 10206 bytes
+(epstopdf)             Command: <repstopdf --outfile=mono-eps-converted-to.pdf 
+mono.eps>
+(epstopdf)             \includegraphics on input line 249.
+Package epstopdf Info: Output file is already uptodate.
+ <mono-eps-converted-to.pdf, id=1, 426.59375pt x 284.06125pt>
+File: mono-eps-converted-to.pdf Graphic file (type pdf)
 
-Package epstopdf Info: Result file: <speedup-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-24 22:15:14
-(epstopdf)                    size: 5250 bytes.
- <speedup-eps-converted-to.pdf, id=1, 426.59375pt x 198.7425pt>
-File: speedup-eps-converted-to.pdf Graphic file (type pdf)
-
-<use speedup-eps-converted-to.pdf>
-Package pdftex.def Info: speedup-eps-converted-to.pdf used on input line 133.
-(pdftex.def)             Requested size: 426.5927pt x 198.742pt.
+<use mono-eps-converted-to.pdf>
+Package pdftex.def Info: mono-eps-converted-to.pdf used on input line 249.
+(pdftex.def)             Requested size: 426.5927pt x 284.06053pt.
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./speedup-eps-converted-to
-.pdf>] (./test.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./mono-eps-converted-to.pd
+f>] (./test.aux) ) 
 Here is how much of TeX's memory you used:
  3020 strings out of 493304
- 39872 string characters out of 6139871
- 107999 words of memory out of 5000000
+ 39851 string characters out of 6139871
+ 111999 words of memory out of 5000000
  6428 multiletter control sequences out of 15000+600000
  4136 words of font info for 15 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,24p,230b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
-}</usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
-Output written on test.pdf (1 page, 15571 bytes).
+ 38i,8n,24p,230b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc}</
+usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
+Output written on test.pdf (1 page, 21093 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream

@@ -34,9 +34,9 @@ Możemy wyróżnić kilka wariantów modelu PRAM w zależności od wymagań jaki
 
 Jeśli nie poczyni się żadnych dodatkowych założeń, to nie jest jasno określone, co zostanie zapisane w komórce pamięci w wyniku jednoczesnego zapisywania do niej przez wiele procesorów w algorytmie typu CRCW. W literaturze można spotkać wiele typów maszyny PRAM, które różnią się sposobami rozwiązywania konfliktów zapisu. Można wśród nich wyróżnić\cite{Cormen94}:
 \begin{enumerate}
-\item jednolity (ang. common) – procesory muszą zapisać do tej samej komórki pamięci jednolitą wartość
-\item dowolny (ang. arbitrary) – zapamiętywana jest dowolna wartość z wartości zapisywanych do tej samej komórki pamięci
-\item priorytetowy (ang. priority) – zapamiętywana jest wartość zapisywana przez procesor o najmniejszym numerze
-\item (ang. combining) – zapamiętywana jest wartość jest pewną, jednak ściśle określoną kombinacją zapisywanych wartości
+\item jednolity (ang. \emph{common}) – procesory muszą zapisać do tej samej komórki pamięci jednolitą wartość.
+\item dowolny (ang. \emph{arbitrary}) – zapamiętywana jest dowolna wartość z wartości zapisywanych do tej samej komórki pamięci.
+\item priorytetowy (ang. \emph{priority}) – zapamiętywana jest wartość zapisywana przez procesor o najmniejszym numerze.
+\item mieszany (ang. \emph{combining}) – zapamiętywana wartość jest pewną, jednak ściśle określoną kombinacją zapisywanych wartości.
 \end{enumerate}
 

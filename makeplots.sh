@@ -2,7 +2,8 @@
 #rm ./debug/*
 i=3;
 for((n=4; n<=$1; i++)); do
-    make cannon NPROC=$n
+    export OMP_NUM_THREADS=1
+    make cannon NPROC=$n OMP_THREADS=1
     echo "make cannon NPROC=$n"   
     n=$(($i*$i))
     echo $n;
@@ -34,27 +35,23 @@ for((n=4; n<=$1; i++)); do
 done
 
 for((j=0; j<3; j++)); do
-    make seq
+    make seq OMP_THREADS=1 NPROC=1
     sleep 1;
     echo "make seq"   
 done
 
-for((j=0; j<3; j++)); do
-    for((t=1; t<=24; t++)); do
-        export OMP_NUM_THREADS=$t
-        make mkl OMP_THREADS=$t
-        sleep 1;
-        echo "make mkl"
-    done
+for((t=1; t<=24; t++)); do
+    export OMP_NUM_THREADS=$t
+    make mkl OMP_THREADS=$t
+    sleep 1;
+    echo "make mkl"
 done
 
-for((j=0; j<3; j++)); do
-    for((t=1; t<=24; t++)); do
-        export OMP_NUM_THREADS=$t
-        make omp OMP_THREADS=$t
-        sleep 1;
-        echo "make omp"
-    done
+for((t=1; t<=24; t++)); do
+    export OMP_NUM_THREADS=$t
+    make omp OMP_THREADS=$t
+    sleep 1;
+    echo "make omp"
 done
 
 ./data.sh

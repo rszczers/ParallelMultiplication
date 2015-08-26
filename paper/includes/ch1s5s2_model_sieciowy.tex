@@ -1,4 +1,4 @@
-Sposób łączenia układu procesorów w sieć nazywamy topologią sieci. Topologię sieci modelowować jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory (rys. \ref{fig:model_net}). Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
+Sposób łączenia układu procesorów w sieć nazywamy topologią sieci. Topologię sieci można przedstawić jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza procesor, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między procesorami \(i\) i \(j\). Przyjmujemy, że każdy procesor ma swoją lokalną pamięć i nie ma żadnej pamięci współdzielonej przez procesory (rys. \ref{fig:model_net}). Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
 
 \begin{figure}[b]
 \centering
@@ -23,7 +23,7 @@ Procesory pracujące w sieci asynchronicznej zarządzają swoimi zadaniami przez
 %Proces dostarczania każdego komunikatu od źródła do przeznaczenia nazywmy routingiem.
 %\end{definicja}
 
-Charakterysuje ją kilka parametrów:
+Charakteryzuje ją kilka parametrów:
 
 \begin{enumerate}
  \item średnica – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej.
