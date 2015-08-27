@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -N pmm
 #PBS -l nodes=40:ppn=1
-#PBS -l walltime=04:00:00
+#PBS -l walltime=08:00:00
 #PBS -q default 
 #PBS -M rafal.szczerski@gmail.com
 #PBS -m abe
