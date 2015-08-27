@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  26 AUG 2015 23:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  27 AUG 2015 17:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -522,38 +522,43 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(./mono.tex
-Package epstopdf Info: Source file: <mono.eps>
-(epstopdf)                    date: 2015-08-26 23:14:25
-(epstopdf)                    size: 35527 bytes
-(epstopdf)             Output file: <mono-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-26 23:14:34
-(epstopdf)                    size: 10206 bytes
-(epstopdf)             Command: <repstopdf --outfile=mono-eps-converted-to.pdf 
-mono.eps>
-(epstopdf)             \includegraphics on input line 249.
-Package epstopdf Info: Output file is already uptodate.
- <mono-eps-converted-to.pdf, id=1, 426.59375pt x 284.06125pt>
-File: mono-eps-converted-to.pdf Graphic file (type pdf)
+(./cannon_omp.tex
+Package epstopdf Info: Source file: <cannon_omp.eps>
+(epstopdf)                    date: 2015-08-27 17:19:01
+(epstopdf)                    size: 22425 bytes
+(epstopdf)             Output file: <cannon_omp-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=cannon_omp-eps-converted-t
+o.pdf cannon_omp.eps>
+(epstopdf)             \includegraphics on input line 135.
+runsystem(repstopdf --outfile=cannon_omp-eps-converted-to.pdf cannon_omp.eps)..
+.executed safely (allowed).
 
-<use mono-eps-converted-to.pdf>
-Package pdftex.def Info: mono-eps-converted-to.pdf used on input line 249.
+Package epstopdf Info: Result file: <cannon_omp-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-27 17:30:01
+(epstopdf)                    size: 4747 bytes.
+
+<cannon_omp-eps-converted-to.pdf, id=1, 426.59375pt x 284.06125pt>
+File: cannon_omp-eps-converted-to.pdf Graphic file (type pdf)
+
+<use cannon_omp-eps-converted-to.pdf>
+Package pdftex.def Info: cannon_omp-eps-converted-to.pdf used on input line 135
+.
 (pdftex.def)             Requested size: 426.5927pt x 284.06053pt.
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./mono-eps-converted-to.pd
-f>] (./test.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./cannon_omp-eps-converted
+-to.pdf>] (./test.aux) ) 
 Here is how much of TeX's memory you used:
  3020 strings out of 493304
- 39851 string characters out of 6139871
- 111999 words of memory out of 5000000
+ 39893 string characters out of 6139871
+ 107999 words of memory out of 5000000
  6428 multiletter control sequences out of 15000+600000
  4136 words of font info for 15 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,24p,230b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc}</
-usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
-Output written on test.pdf (1 page, 21093 bytes).
+ 38i,8n,24p,230b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.
+enc}</usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb>
+Output written on test.pdf (1 page, 14974 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream
