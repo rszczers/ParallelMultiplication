@@ -1,3 +1,0 @@
-METHOD:	MKL
-ETA:	6.717971
-ARGS:	m=4096, k=4096, n=4096, nprocs=1, threads=2

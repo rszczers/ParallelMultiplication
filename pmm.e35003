@@ -1,0 +1,118 @@
+manpath: can't set the locale; make sure $LC_* and $LANG are correct
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff047798d8, periods=0x7fff047798e0, reorder=1, comm_cart=0x7fff04779908) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 274
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff01e55c98, periods=0x7fff01e55ca0, reorder=1, comm_cart=0x7fff01e55cc8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 276
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff929dd598, periods=0x7fff929dd5a0, reorder=1, comm_cart=0x7fff929dd5c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff32f0bce8, periods=0x7fff32f0bcf0, reorder=1, comm_cart=0x7fff32f0bd18) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 279
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff5fbacdf8, periods=0x7fff5fbace00, reorder=1, comm_cart=0x7fff5fbace28) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 79
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff02004a48, periods=0x7fff02004a50, reorder=1, comm_cart=0x7fff02004a78) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 352
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff0c534628, periods=0x7fff0c534630, reorder=1, comm_cart=0x7fff0c534658) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 113
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8fbdf3e8, periods=0x7fff8fbdf3f0, reorder=1, comm_cart=0x7fff8fbdf418) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 354
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff376ad2b8, periods=0x7fff376ad2c0, reorder=1, comm_cart=0x7fff376ad2e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 117
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffcc22a5d8, periods=0x7fffcc22a5e0, reorder=1, comm_cart=0x7fffcc22a608) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 189
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffef1e5f78, periods=0x7fffef1e5f80, reorder=1, comm_cart=0x7fffef1e5fa8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 191
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff65381f88, periods=0x7fff65381f90, reorder=1, comm_cart=0x7fff65381fb8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 193
+make[1]: *** [cannon] Error 1
+=>> PBS: job killed: walltime 28827 exceeded limit 28800
+[mpiexec@g38] HYD_pmcd_pmiserv_send_signal (./pm/pmiserv/pmiserv_cb.c:221): assert (!closed) failed
+[mpiexec@g38] ui_cmd_cb (./pm/pmiserv/pmiserv_pmci.c:128): unable to send SIGUSR1 downstream
+[mpiexec@g38] HYDT_dmxu_poll_wait_for_event (./tools/demux/demux_poll.c:77): callback returned error status
+[mpiexec@g38] HYD_pmci_wait_for_completion (./pm/pmiserv/pmiserv_pmci.c:388): error waiting for event
+[mpiexec@g38] main (./ui/mpich/mpiexec.c:718): process manager error waiting for completion
+make[1]: *** [cannon_dgemm] Terminated
+make: *** [test] Terminated

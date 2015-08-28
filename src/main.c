@@ -173,7 +173,6 @@ int main(int argc, char *argv[]) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
     double t0, t1;
-    double tc = 0.0, tc0 = 0.0, tc1 = 0.0, tmp_tc = 0.0;
 
     int pid;
     int numprocs;
@@ -1225,13 +1224,6 @@ int main(int argc, char *argv[]) {
     }
 
     /* comunication time collecting */
-    if(pid == ROOT) {
-        MPI_Recv(tmp_tc, 1, MPI_DOUBLE, 1, COMMUNICATION_TIME, cartcom,
-                &status);
-    } else if (pid == 1) {
-        MPI_Send(tmp_tc, 1, MPI_DOUBLE, ROOT, COMMUNICATION_TIME, cartcom);
-    }
-
     if(pid == ROOT) {    
         switch(arguments.mode) {
             case VERBOSE: {
