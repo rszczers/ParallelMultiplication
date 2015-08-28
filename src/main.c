@@ -158,8 +158,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             break;
         case ARGP_KEY_END:
 	          if(state->arg_num > 0)
-							if(arguments->node == ROOT) 
-		              argp_usage(state);
+	            argp_usage(state);
             break;
         default: return ARGP_ERR_UNKNOWN;
     }   
@@ -196,8 +195,6 @@ int main(int argc, char *argv[]) {
     MPI_Cart_create(MPI_COMM_WORLD, 2, dims, period, 1, &cartcom);
     MPI_Cart_coords(cartcom, pid, 2, coord);
     MPI_Comm_rank(cartcom, &pid);
-
-		arguments.node = pid;
 
     double *A;
     double *B;
