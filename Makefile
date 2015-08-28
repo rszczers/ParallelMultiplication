@@ -165,12 +165,6 @@ omp:
 	-d$(DEBUG_DIR) \
 	--omp_threads=$(OMP_THREADS)
 
-help:
-	@mpirun \
-	$(MPI_OPT) \
-	$(BUILD_PATH_PMM) \
-	--help
-
 #generates test data
 data:
 ifeq ($(wildcard $(BUILD_PATH_PMM) $(BUILD_PATH_GEN)),)
