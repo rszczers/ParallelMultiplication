@@ -1,3 +1,0 @@
-METHOD:	CANNON_DGEMM
-ETA:	13.035455
-ARGS:	m=4096, k=4096, n=4096, nprocs=144, threads=14

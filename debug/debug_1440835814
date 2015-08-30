@@ -1,3 +1,0 @@
-METHOD:	CANNON
-ETA:	6.988025
-ARGS:	m=4096, k=4096, n=4096, nprocs=256, threads=1
