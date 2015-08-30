@@ -1,6 +1,6 @@
 SIZE = 4096 #size of randomly generated test square matrix
 NPROC = 144 #number of MPI threads
-OMP_THREADS = 12
+OMP_THREADS = 1
 ###############################################################################
 
 PROJECT = pmm
