@@ -1,10 +1,11 @@
-W sieciowym modelu obliczeń przyjmujemy, że każdy węzeł wyposażony jest w pamięć lokalną i wykonuje własne operacje. Węzeł może przetwarzać dane w swojej pamięci lokalnej oraz wsyłać i odbierać dane od innych węzłów sieci w postaci \emph{komunikatów}.  współdzielona przez węzły (rys. \ref{fig:model_net}) nie istnieje. Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne.\\
+W sieciowym modelu obliczeń przyjmujemy, że każdy węzeł wyposażony jest w pamięć lokalną i wykonuje własne operacje niezależnie od pozostałych. Węzeł może przetwarzać dane w swojej pamięci lokalnej oraz wsyłać i odbierać dane od innych węzłów sieci w postaci \emph{komunikatów}.  Pamięć współdzielona przez węzły (rys. \ref{fig:model_net}) nie istnieje w modelu sieciowym. 
 
 Do każdego węzła sieci przypisany jest numer identyfikacyjny (\emph{pid}). \(\mu\)-ty węzeł oznaczamy przez \(P_\mu\). Powiemy, że \(P_\lambda\) jest \emph{sąsiadem} \(P_\mu\), jeśli istnieje bezpośrednie fizyczne połączenie między nimi.\cite{Golub}
 
+
 Sposób łączenia układu jednostek obliczeniowych (procesorów) w sieć nazywamy \emph{topologią sieci}. Topologię sieci można przedstawić jako graf \(G=(N,E)\), gdzie każdy węzeł \(i\in N\) oznacza jednostkę obliczeniową, a każda krawędź \((i, j) \in E\) – dwukierunkową komunikację między jednostkami obliczeniowymi \(i\) i \(j\). 
 
-Procesory pracujące w sieci asynchronicznej zarządzają swoimi zadaniami przez wymianę komunikatów. Schemat taki nazywamy modelem wymiany komunikatów. Procesory te niekoniecznie muszą być ze sobą sąsiadujące. 
+Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być synchroniczne lub asynchroniczne. Procesory pracujące w sieci asynchronicznej zarządzają swoimi zadaniami przez wymianę komunikatów. Schemat taki nazywamy \emph{modelem wymiany komunikatów}. Procesory te niekoniecznie muszą być ze sobą sąsiadujące. 
 
 \begin{figure}[h]
 \centering
@@ -17,10 +18,10 @@ Charakteryzuje ją kilka parametrów:
 
 \begin{enumerate}
  \item średnica – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej.
- \item maksymalny stopień wierzchołka – maksymalna liczba łączy do dane procesora
+ \item maksymalny stopień wierzchołka – maksymalna liczba łączy do danego węzła
  \item szerokość połowienia sieci – minimalna liczba krawędzi, które muszą zostać usunięty, aby podzielić ją na dwie równe podsieci
  \item spójność krawędziowa – minimalna liczba krawędzi, które muszą ulec awarii, aby sieć stała się niespójna
- \item koszt sieci – koszt wykonania, zarządzania i utrzymania połączeń między procesorami; w najprostrzym przypadku mierzony liczbą krawędzi
+ \item koszt sieci – koszt wykonania, zarządzania i utrzymania połączeń między węzłami; w najprostrzym przypadku mierzony liczbą krawędzi
 \end{enumerate}
 
 
@@ -33,7 +34,7 @@ W opisie algorytmów mnożenia macierzy dla modelu sieciowego potrzebujemy zdefi
 Jeśli \(P_\mu\) wykonuje instrukcję \texttt{\textbf{send}(}\(V_{loc},\:\lambda\)\texttt{)}, wówczas wysyłana jest kopia macierzy \(V_{loc}\) z pamięci lokalnej \(P_\mu\) do węzła \(P_\lambda\) i wykonanie kolejnych instrukcji \(P_\mu\) jest natychmiast kontynuowane \footnote{Dla interfejsu MPI odpowiednikiem jest nieblokująca funkcja \texttt{MPI\_Isend}.}. Węzeł może również wysłać komunikaty do samego siebie.
 
 
-Jeśli \(P_\mu\) wykona instrukcję \texttt{recv(\(U_{loc}\), \(\lambda\))}, wówczas wykonywanie kolejnych instrukcji na tym węźle jest zatrzymane dopóki komunikat od \(P_\lambda\) nie zostanie odebrany\footnote{W interfejsie MPI odpowiednim tej funkcji jest \texttt{MPI\_Recv()}.}. Jeśli odbieranie jest zakończone, komunikat jest zapisywany w pamięci lokalnej, a węzeł \(P_\mu\) kontynuuje wykonywane programu.
+Jeśli \(P_\mu\) wykona instrukcję \texttt{recv(\(U_{loc}\), \(\lambda\))}, wówczas wykonywanie kolejnych instrukcji na tym węźle jest zatrzymane dopóki komunikat od \(P_\lambda\) nie zostanie odebrany\footnote{W interfejsie MPI odpowiednikiem tej funkcji jest \texttt{MPI\_Recv}.}. Jeśli odbieranie jest zakończone, komunikat jest zapisywany w pamięci lokalnej, a węzeł \(P_\mu\) kontynuuje wykonywane programu.
 
 \begin{uwaga}
 Zaproponowana notacja nie uwzględnia pewnych istotnych detali:
@@ -45,29 +46,49 @@ Zaproponowana notacja nie uwzględnia pewnych istotnych detali:
 
 \subsubsection{Wybrane typy danych dla obliczeń rozproszonych}
 
-Niech \(x\in\mathbb{R}^n\) będzie rozdystrybuowane między pamięci lokalne sieci składającej się z \(p\) węzłów. Załóżmy roboczo, że \(n=rp\). Możemy wyróżnić dwa najczęstsze podejścia do reprezentacji wektora \(x\) w sieci: zapis kolumnowy i zapis wierszowy.
+Niech \(x\in\mathbb{R}^n\) będzie rozdystrybuowane między pamięci lokalne sieci składającej się z \(p\) węzłów. Załóżmy roboczo, że \(n=rp\). Możemy wyróżnić dwa najczęstsze podejścia do reprezentacji wektora \(x\) w sieci: zapis kolumnowy (ang. \emph{store-by-column}) i zapis wierszowy (ang. \emph{store-by-row}).
 
 W pierwszym z nich, zapisie kolumnowym, rozpatrujemy wektor \(x\) jako macierz \(r\times p\)
-
 \begin{align*}
 x_{r\times p} = \left[x(1:r)\quad x(r+1:2r) \dots x(1+(p-1)r:n)\right],
 \end{align*}
-Każda \emph{kolumna} zapisana jest w osobnym węźle, tj. \( x (1+(\mu-1)r\colon \mu r) \in P_{\mu}\). (W tym kontekście predykat \,,\(x\in y\)\'' oznacza ,,\(x\) jest zapisany w \(y\).'')
+Każda \emph{kolumna} zapisana jest w osobnym węźle, tj. \( x (1+(\mu-1)r\colon \mu r) \in P_{\mu}\). (W tym kontekście predykat ,,\(x\in y\)'' oznacza ,,\(x\) jest zapisany w \(y\).'') Zauważmy, że każdy węzeł zawiera \emph{ciągłą} część wektora \(x\).
 
 
-W zapisie wierszowym \(x\) traktujemy jak macierz wymiaru \(p\times r\)
-
+W zapisie wierszowym \(x\) traktujemy jako macierz wymiaru \(p\times r\)
 \begin{align*}
 x_{p\times r} = \left[x(1:p)\quad x(p+1:2p) \dots x((r-1)p:n)\right],
 \end{align*}
 
-Każdy \emph{wiersz} jest wówczas zapisany w odpowiednim węźle, tj. \(x (\mu \colon p \colon n)\in P_{\mu}\)
+Każdy \emph{wiersz} jest wówczas zapisany w odpowiednim węźle, tj. \(x (\mu \colon p \colon n)\in P_{\mu}\). Podejście to przypomina \emph{rozdawanie} (ang. \emph{wrap method}) danych węzłom sieci przez analogię do rozdawania kart graczom przy stole.
 
 Jeśli \(n\) nie jest wielokrotnością \(p\) wówczas powyższe podejścia stosuje się z niewielką modyfikacją. Rozważmy zapis kolumnowy dla \(n=14\) i \(p=4\):
 \begin{equation}
-x^r=[\underbrace{x_1 x_2 x_3 x_4}_{P_0} | \underbrace{x_5 x_6 x_8}_{P_1} | \underbrace{x_9 x_{10} x_{11}}_{P_2} | \underbrace{x_{12} x_{13} x_{14}}_{P_3}]
+x^r=[\underbrace{x_1 x_2 x_3 x_4}_{P_0} | \underbrace{x_5 x_6 x_7 x_8}_{P_1} | \underbrace{x_9 x_{10} x_{11}}_{P_2} | \underbrace{x_{12} x_{13} x_{14}}_{P_3}]
 \end{equation} 
 
+Ogólniej, jeśli \(n = pr + q\), gdzie \(0\leq q < p-1\), to \(P_0, P_1, \dots, P_q\) mogą zgromadzić po \(r+1\) elementów, zaś \(P_{q+1}, P_{q+2}, \dots, P_{p-1}\) --- \(r\) elementów. Metoda wierszowa pozwala zgromadzić węzłowi \(P_{\mu}\) wektor \(x(\mu\colon p \colon n)\).
+
+W podobny sposób możemy podejść do dystrybucji macierzy. Jeśli \(A\in\mathbb{R^{n\times n}}\) i \(n = rp\) możemy wyróżnić cztery podejścia:
+
+\begin{table}[H]\label{tab:network_datatype}
+\centering
+\caption{Sposoby reprezentacji macierzy w sieci z \(q\) węzłami}
+\begin{tabular}{ l | l | l }
+  Orientacja & Styl & Zawartość węzła \\
+  \hline
+  Kolumnowy & Ciągły & \(A(\colon,\: 1+(\mu-1)r\colon \mu r)\) \\
+  % \hline
+  Kolumnowy & Rozdawany & \(A(\colon,\: \mu\colon p\colon n)\) \\
+ % \hline
+  Wierszowy & Ciągły & \(A(1+(\mu -1) r\colon\mu r,\: \colon)\) \\
+  % \hline
+  Wierszowy & Rozdawany & \(A(\mu \colon p\colon n,\: \colon)\) \\
+  % \hline
+ \end{tabular} 
+ \end{table}
+
+Metody dla macierzy blokowych są analogiczne do tych z tabeli \ref{tab:network_datatype}.
 
 % Procesor \(P\) wykonujący instrukcję \textbf{send} wysyła kopię \(X\) do procesora \(P_i\), następnie natychmiast przechodzi do wykonywania kolejnej instrukcji.\\
 % Procesor \(P\) wykonujący instrukcję \textbf{receive} zatrzymuje wykonanie programu aż do chwili, gdy otrzyma dane z procesora \(P_j\), a następnie przechowuje dane w \(Y\) i kontynuuje wykonanie programu.\\
@@ -78,15 +99,16 @@ x^r=[\underbrace{x_1 x_2 x_3 x_4}_{P_0} | \underbrace{x_5 x_6 x_8}_{P_1} | \unde
 %Proces dostarczania każdego komunikatu od źródła do przeznaczenia nazywmy routingiem.
 %\end{definicja}
 
+\subsubsection{Przykłady}
 
 \begin{przyklad}[Sieć liniowa]
 \begin{figure}[h]
 \centering
 \includegraphics[width=9.5cm]{images/mesh1d}
-\caption{Sieć jednowymiarowa}
+\caption{Sieć jednowymiarowa (liniowa)}
 \label{fig:model_mesh1d}
 \end{figure}
-Model składa się z \(p\) węzłów \(P_1, P_2, \dots, P_p\) połączonych ze sobą w ciąg, tj. węzeł \(P_i\) połączony jest z węzłem \(P_{i-1}\) i \(P_{i+1}\), o ile takie istnieją. Średnica takiej sieci wynosi \(p-1\), jej maksymalny stopień wynosi \(2\).\\
+Model składa się z \(p\) węzłów \(P_1, P_2, \dots, P_p\) połączonych ze sobą w ciąg, tj. węzeł \(P_i\) połączony jest z węzłem \(P_{i-1}\) i \(P_{i+1}\), o ile takie istnieją (rys. \ref{fig:model_mesh1d}). Średnica takiej sieci wynosi \(p-1\), jej maksymalny stopień wynosi \(2\).\\
 \end{przyklad}
 
 \begin{przyklad}[Torus]
