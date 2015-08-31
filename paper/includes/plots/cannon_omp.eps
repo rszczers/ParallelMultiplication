@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: cannon_dgemm.tex
+%%Title: cannon_omp.tex
 %%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Thu Aug 27 17:19:01 2015
+%%CreationDate: Mon Aug 31 14:15:16 2015
 %%DocumentFonts: 
 %%BoundingBox: 50 50 475 333
 %%EndComments
@@ -427,13 +427,13 @@ systemdict /pdfmark known not {
   userdict /pdfmark systemdict /cleartomark get put
 } if
 SDict begin [
-  /Title (cannon_dgemm.tex)
+  /Title (cannon_omp.tex)
   /Subject (gnuplot plot)
   /Creator (gnuplot 4.6 patchlevel 4)
   /Author (rszczers)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Thu Aug 27 17:19:01 2015)
+  /CreationDate (Mon Aug 31 14:15:16 2015)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -453,117 +453,100 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 751 M
-7112 0 V
+0.75 0.75 0.75 C 1125 751 M
+6980 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 751 M
+0.50 0.50 0.50 C 1125 751 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 1139 M
+0.50 0.50 0.50 C 1125 1216 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 1526 M
-7112 0 V
+0.75 0.75 0.75 C 1125 1681 M
+6980 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 1526 M
+0.50 0.50 0.50 C 1125 1681 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 1914 M
+0.50 0.50 0.50 C 1125 2147 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 2302 M
-7112 0 V
+0.75 0.75 0.75 C 1125 2612 M
+6980 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 2302 M
+0.50 0.50 0.50 C 1125 2612 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 2689 M
+0.50 0.50 0.50 C 1125 3077 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 3077 M
-7112 0 V
+0.75 0.75 0.75 C 1125 3542 M
+6980 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 3077 M
+0.50 0.50 0.50 C 1125 3542 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 3465 M
+0.50 0.50 0.50 C 1125 4007 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 3852 M
-7112 0 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 993 3852 M
--47 0 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 993 4240 M
--23 0 V
-stroke
-1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 993 4628 M
-2825 0 V
-4155 0 R
+0.75 0.75 0.75 C 1125 4473 M
+2957 0 V
+3891 0 R
 132 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 4628 M
+0.50 0.50 0.50 C 1125 4473 M
 -47 0 V
 stroke
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 5015 M
+0.50 0.50 0.50 C 1125 4938 M
 -23 0 V
 stroke
 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 5403 M
-7112 0 V
+0.75 0.75 0.75 C 1125 5403 M
+6980 0 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 5403 M
+0.50 0.50 0.50 C 1125 5403 M
 -47 0 V
 stroke
 LT0
@@ -571,13 +554,13 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 993 751 M
+0.75 0.75 0.75 C 1125 751 M
 0 4652 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 751 M
+0.50 0.50 0.50 C 1125 751 M
 0 -47 V
 stroke
 LT0
@@ -585,13 +568,13 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 1882 751 M
+0.75 0.75 0.75 C 2870 751 M
 0 4652 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 1882 751 M
+0.50 0.50 0.50 C 2870 751 M
 0 -47 V
 stroke
 LT0
@@ -599,35 +582,7 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 2771 751 M
-0 4652 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 2771 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 3660 751 M
-0 4652 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 3660 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 4549 751 M
+0.75 0.75 0.75 C 4615 751 M
 0 3269 V
 0 1320 R
 0 63 V
@@ -635,7 +590,7 @@ stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 4549 751 M
+0.50 0.50 0.50 C 4615 751 M
 0 -47 V
 stroke
 LT0
@@ -643,7 +598,7 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 5438 751 M
+0.75 0.75 0.75 C 6360 751 M
 0 3269 V
 0 1320 R
 0 63 V
@@ -651,39 +606,7 @@ stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 5438 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 6327 751 M
-0 3269 V
-0 1320 R
-0 63 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 6327 751 M
-0 -47 V
-stroke
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 1.000 UL
-LT2
-LC2 setrgbcolor
-0.75 0.75 0.75 C 7216 751 M
-0 3269 V
-0 1320 R
-0 63 V
-stroke
-1.500 UL
-LT0
-LC0 setrgbcolor
-0.50 0.50 0.50 C 7216 751 M
+0.50 0.50 0.50 C 6360 751 M
 0 -47 V
 stroke
 LT0
@@ -705,11 +628,11 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 993 5403 M
-993 751 L
-7112 0 V
+0.50 0.50 0.50 C 1125 5403 M
+0 -4652 V
+6980 0 V
 0 4652 R
--7112 0 R
+-6980 0 R
 stroke
 LCb setrgbcolor
 LTb
@@ -721,250 +644,130 @@ LC0 setrgbcolor
 4.000 UL
 LT0
 LC0 setrgbcolor
-0.21 0.36 0.49 C LCb setrgbcolor
-LT0
-LC0 setrgbcolor
-0.21 0.36 0.49 C 7250 5230 M
-591 0 V
-993 2963 M
-889 1116 V
-889 719 V
-889 -892 V
-889 104 V
-5438 2481 L
-889 1215 V
-889 -735 V
-889 41 V
-993 2963 Circle
-1882 4079 Circle
-2771 4798 Circle
-3660 3906 Circle
-4549 4010 Circle
-5438 2481 Circle
-6327 3696 Circle
-7216 2961 Circle
-8105 3002 Circle
-7545 5230 Circle
-2.000 UP
+0.21 0.36 0.49 C 2.000 UP
 4.000 UL
 LT1
 LC1 setrgbcolor
-0.42 0.36 0.48 C LCb setrgbcolor
-LT1
-LC1 setrgbcolor
-0.42 0.36 0.48 C 7250 5010 M
-591 0 V
-993 3146 M
-889 1588 V
-889 141 V
-889 113 V
-4549 3111 L
-889 -874 V
-889 479 V
-889 790 V
-8105 2198 L
-993 3146 Crs
-1882 4734 Crs
-2771 4875 Crs
-3660 4988 Crs
-4549 3111 Crs
-5438 2237 Crs
-6327 2716 Crs
-7216 3506 Crs
-8105 2198 Crs
-7545 5010 Crs
-2.000 UP
+0.42 0.36 0.48 C 2.000 UP
 4.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.42 0.52 C LCb setrgbcolor
-LT2
-LC2 setrgbcolor
-0.75 0.42 0.52 C 7250 4790 M
-591 0 V
-993 2912 M
-889 1278 V
-889 354 V
-889 -862 V
-889 -616 V
-889 15 V
-889 -510 V
-889 199 V
-889 -762 V
-993 2912 Star
-1882 4190 Star
-2771 4544 Star
-3660 3682 Star
-4549 3066 Star
-5438 3081 Star
-6327 2571 Star
-7216 2770 Star
-8105 2008 Star
-7545 4790 Star
-2.000 UP
+0.75 0.42 0.52 C 2.000 UP
 4.000 UL
 LT3
 LC3 setrgbcolor
-0.96 0.45 0.50 C LCb setrgbcolor
-LT3
-LC3 setrgbcolor
-0.96 0.45 0.50 C 7250 4570 M
-591 0 V
-993 3340 M
-889 290 V
-889 -322 V
-889 193 V
-4549 2241 L
-889 222 V
-889 -329 V
-889 -128 V
-889 -299 V
-993 3340 Box
-1882 3630 Box
-2771 3308 Box
-3660 3501 Box
-4549 2241 Box
-5438 2463 Box
-6327 2134 Box
-7216 2006 Box
-8105 1707 Box
-7545 4570 Box
-2.000 UP
+0.96 0.45 0.50 C 2.000 UP
 4.000 UL
 LT4
 LC4 setrgbcolor
-0.97 0.69 0.58 C LCb setrgbcolor
-LT4
-LC4 setrgbcolor
-0.97 0.69 0.58 C 7250 4350 M
-591 0 V
-993 1118 M
-889 -103 V
-889 65 V
-889 -4 V
-889 298 V
-889 -187 V
-889 152 V
-889 509 V
-889 -72 V
-993 1118 BoxF
-1882 1015 BoxF
-2771 1080 BoxF
-3660 1076 BoxF
-4549 1374 BoxF
-5438 1187 BoxF
-6327 1339 BoxF
-7216 1848 BoxF
-8105 1776 BoxF
-7545 4350 BoxF
-6.000 UL
+0.97 0.69 0.58 C 6.000 UL
 LT7
 LC7 setrgbcolor
 0.00 0.00 0.00 C LCb setrgbcolor
 LT7
 LC7 setrgbcolor
-0.00 0.00 0.00 C 7250 4130 M
+0.00 0.00 0.00 C 7250 5230 M
 591 0 V
-993 906 M
-72 0 V
-72 0 V
-72 0 V
+1125 5403 M
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
 71 0 V
-72 0 V
-72 0 V
-72 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
+70 0 V
+71 0 V
 1.000 UP
 stroke
 1.500 UL
