@@ -23,3 +23,15 @@
 % Podłoga, sufit
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% algorithm -> Algorytm
+\floatname{algorithm}{Algorytm}
+
+% declaration of the new block
+\algblock{ParFor}{EndParFor}
+% customising the new block
+\algnewcommand\algorithmicparfor{\textbf{parfor}}
+\algnewcommand\algorithmicpardo{\textbf{do}}
+\algnewcommand\algorithmicendparfor{\textbf{end\ parfor}}
+\algrenewtext{ParFor}[1]{\algorithmicparfor\ #1\ \algorithmicpardo}
+\algrenewtext{EndParFor}{\algorithmicendparfor}
