@@ -17,9 +17,9 @@ Tak jak w przypadku modelu z pamięcią wspólną, operacje w sieci mogą być s
 Charakteryzuje ją kilka parametrów:
 
 \begin{enumerate}
- \item średnica – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej.
+ \item średnica (ang. \emph{diameter}) – maksymalna odległość (krawędziowa) między dowolną parą węzłów; im miejsza, tym lepiej, ponieważ w najgorszym przypadku wiadomość musi zostać przesłana przez liczbę łączy równą średnicy sieci
  \item maksymalny stopień wierzchołka – maksymalna liczba łączy do danego węzła
- \item szerokość połowienia sieci – minimalna liczba krawędzi, które muszą zostać usunięty, aby podzielić ją na dwie równe podsieci
+ \item szerokość połowienia sieci (ang. \emph{bisection width}) – minimalna liczba krawędzi, które muszą zostać usunięte, aby podzielić ją na dwie równe podsieci z dokładnością do jednego węzła
  \item spójność krawędziowa – minimalna liczba krawędzi, które muszą ulec awarii, aby sieć stała się niespójna
  \item koszt sieci – koszt wykonania, zarządzania i utrzymania połączeń między węzłami; w najprostrzym przypadku mierzony liczbą krawędzi
 \end{enumerate}
@@ -71,10 +71,10 @@ Ogólniej, jeśli \(n = pr + q\), gdzie \(0\leq q < p-1\), to \(P_0, P_1, \dots,
 
 W podobny sposób możemy podejść do dystrybucji macierzy. Jeśli \(A\in\mathbb{R^{n\times n}}\) i \(n = rp\) możemy wyróżnić cztery podejścia:
 
-\begin{table}[H]\label{tab:network_datatype}
+\begin{table}[H]
 \centering
 \caption{Sposoby reprezentacji macierzy w sieci z \(q\) węzłami}
-\begin{tabular}{ l | l | l }
+\begin{tabular}{ l | l | l }\label{tab:network_datatype}
   Orientacja & Styl & Zawartość węzła \\
   \hline
   Kolumnowy & Ciągły & \(A(\colon,\: 1+(\mu-1)r\colon \mu r)\) \\
@@ -100,42 +100,54 @@ Metody dla macierzy blokowych są analogiczne do tych z tabeli \ref{tab:network_
 %\end{definicja}
 
 \subsubsection{Przykłady}
-
 \begin{przyklad}[Sieć liniowa]
 \begin{figure}[h]
 \centering
 \includegraphics[width=9.5cm]{images/mesh1d}
-\caption{Sieć jednowymiarowa (liniowa)}
+\caption{Siatka jednowymiarowa (liniowa)}
 \label{fig:model_mesh1d}
 \end{figure}
 Model składa się z \(p\) węzłów \(P_1, P_2, \dots, P_p\) połączonych ze sobą w ciąg, tj. węzeł \(P_i\) połączony jest z węzłem \(P_{i-1}\) i \(P_{i+1}\), o ile takie istnieją (rys. \ref{fig:model_mesh1d}). Średnica takiej sieci wynosi \(p-1\), jej maksymalny stopień wynosi \(2\).\\
 \end{przyklad}
 
 \begin{przyklad}[Torus]
-Siecią w topologii torusa nazywamy sieć liniowa z połączonymi końcami (rys. \ref{fig:model_torus1d}).
+Siecią w topologii torusa nazywamy siatkę liniowa z połączonymi końcami (rys. \ref{fig:model_torus1d}).
 \begin{figure}[h]
 \centering
 \includegraphics[width=10.5cm]{images/torus1d}
 \caption{Torus jednowymiarowy}
 \label{fig:model_torus1d}
 \end{figure}
-
 \end{przyklad}
 
-\begin{przyklad}[Sieć dwuwymiarowa]
-Dwuwymiarowa sieć jest dwuwymiarową wersją sieci liniowej. Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) taką, że procesor \(P_{i,j}\) jest połączony z procesorem \(P_{i\pm 1, j}\) i \(P_{i, j\pm 1}\).\\
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Wybrane parametry charakteryzujące przykładowe sieci połączeń}
+\begin{tabular}{l | r r r r r}
+Rodzaj sieci & Średnica & \pbox{5em}{Maksymalny stopień} & \pbox{5em}{Szerokośc połowienia} & \pbox{4em}{Spójność krawędziowa\vspace{1mm}} & Koszt \\
+\hline
+Siatka jednowymiarowa & \(p-1\) & \(2\) & \(1\) & \(1\) & \(p-1\) \\
+Torus jednowymiarowy & \(\floor*{p/2}\) & \(2\) & \(2\) & \(2\) & \(p\) \\
+Siatka dwuwymiarowa & \(2\sqrt{p}-1\) & \(4\) & \(\sqrt{p}\) & \(2\) & \(2(p-\sqrt{p})\) \\
+Torus dwuwymiarowy & \(2\floor*{\sqrt{p}/2}\) & \(4\) & \(2\sqrt{p}\) & \(4\) & \(2p\) \\
+Hipersześcian & \(\log{p}\) & \(\log{p}\) & \(p/2\) & \(\log{p}\) & \(\frac{p\log{p}}{2}\) \\
+\end{tabular}
+\end{table}
+
+\begin{przyklad}[Siatka dwuwymiarowa]
+Dwuwymiarowa siatka jest dwuwymiarową wersją sieci liniowej. Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) taką, że procesor \(P_{i,j}\) jest połączony z procesorem \(P_{i\pm 1, j}\) i \(P_{i, j\pm 1}\).\\
 Średnica takiej sieci złożonej z \(p=m^2\) procesorów wynos \(\sqrt{p}\) a jej maksymalny stopień \(4\)
 \begin{figure}[h]
 \centering
 \includegraphics[width=5.5cm]{images/mesh2d}
-\caption{Sieć dwuwymiarowa}
+\caption{Siatka dwuwymiarowa}
 \label{fig:model_mesh2d}
 \end{figure}
 \end{przyklad}
 
 \begin{przyklad}[Dwuwymiarowy torus]
-Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) (rys. \ref{fig:model_torus2d}) taką, że procesor \(P_{i,j}\) jest połączony z procesorem \(P_{i+1, j}\) i \(P_{i, j\pm 1}\).\\
-Średnica takiej sieci złożonej z \(p=m^2\) procesorów wynos \(\sqrt{p}\) a jej maksymalny stopień \(4\)
+Siatka, której skrajne procesory są połączone ze sobą \(ang. \emph{wraparound connections}\).
 \begin{figure}[h]
 \centering
 \includegraphics[width=7cm]{images/torus2d}
@@ -148,17 +160,18 @@ Składa się ona z \(p=m^2\) procesorów ułożonych w siatkę \(m\times m\) (ry
 \begin{definicja}[Kostka Boola]
 Niech \(i_{d-1}i_{d-2}\dots i_{0}\), gdzie \(0\leq i \leq p-1\) będzie binarną reprezentacją \(i\). Wówczas węzeł \({i}\) jest połaczony z węzłem \(P_{i^(j)}\), gdzie \(i^{(j)}=i_{d-1}\dots \overline{i_j} \dots i_0\) i \(\overline{i_j} = 1 - i_j\). Innymi słowy, dwa węzły są ze sobą połączone wtedy i tylko wtedy, gdy ich wskaźniki różnią się tylko jednym bitem.\\
 \end{definicja}
+\begin{przyklad}[Siatka hipersześcienna]
+Sieć w topologii hipersześcianu skłąda się z \(p=2^d\) węzłów połączonych w d-wymiarową kostkę Boola.
 
-\begin{przyklad}[Sieć hipersześcienna]
-Sieć w topologii hipersześcianu skłąda się z \(p=2^d\) węzłów połączonych w d-wymiarową kostkę Boola.\\
-
-Hipersześcian ma strukurę rekursywną. Kostkę \(d\)-wymiarową możemy rozszerzyć do \(d+1\) wymiarów przez połączenie poszczególnych węzłów do \(d\)-wymiarowych kostek.\\
+Hipersześcian ma strukurę rekursywną. Kostkę \(d\)-wymiarową możemy rozszerzyć do \(d+1\) wymiarów przez połączenie poszczególnych węzłów do \(d\)-wymiarowych kostek.
 
 Średnica d-wymiarowego hipersześcianu wynosi \(d=\log{p}\). Jest tak ponieważ odległośc w grafie między dwoma węzłami \(P_i\) i \(P_j\) jest równa liczbie pozycji bitów, którymi wskaźniki \(i\) i \(j\) różnią się między sobą. Stąd jest ona mniejsza lub równa \(d\), a ponadto odległość między \(P_0\) a \(P_{2^d-1}\) wynosi d. Każdy węzeł jest stopnia \(d=\log{p}\).
-\end{przyklad}	
+
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=32em]{images/systolic.eps}
 \caption{Sieć w topologii hipersześcianu}
 \label{fig:systolic}
 \end{figure}
+\end{przyklad}	

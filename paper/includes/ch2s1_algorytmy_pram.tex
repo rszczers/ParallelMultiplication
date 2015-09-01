@@ -67,3 +67,33 @@
 % \begin{uwaga}
 % Algorytm \ref{alg:crew_pram_multiplication} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (1) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (1) wszystkie wymagają dostępu do \(A(i,l)\).
 % \end{uwaga}
+
+\subsection{Blokowa procedura \texttt{gaxpy}}
+Załóżmy, że \(A, B, C \in \mathbb{R}^{n\times n}\), gdzie \(B\) jest macierzą górnie trójkątną oraz obliczenie wielokrotnie nadpisuje dane
+\begin{align}
+D=C+AB
+\end{align}
+na komputerze z pamięcią współdzieloną przez \(p\) węzły. Załóżmy ponadto, że \(n=rkp\)
+
+\begin{align}
+[D_1, D_2, \dots, D_{kp}] = [C_1, C_2, \dots, C_{k*p}] + [A_1, A_2, \dots, A_{kp}] [B_1, B_2, \dots, B_{kp}]
+\end{align}
+gdzie każdy blok ma szerekość \(r=n/(kp)\). Jeśli
+\begin{align*}
+B_j=
+\begin{pmatrix}
+B_{1j}\\
+\vdots\\
+B_{jj}\\
+0\\
+\vdots\\
+0\\
+\end{pmatrix},
+\quad
+B_{ij}\in\mathbb{R}^{r*r}
+\end{align*}
+wówczas
+\begin{align}
+D_j = C_j + AB_j = C_j + \sum_{r=1}^{j}A_r B_{rj}.
+\end{align}
+
