@@ -1,0 +1,652 @@
+./makeplots.sh 144 
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=4 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=9 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=16 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=25 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=36 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=49 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=64 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=81 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=100 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=121 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=144 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=169 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=196 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=225 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=256 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=289 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=324 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=361 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=400 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon NPROC=441 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=4 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=4 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=4 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=4 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=9 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=9 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=9 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=9 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=16 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=16 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=16 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=16 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=25 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=25 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=25 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=25 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=36 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=36 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=36 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=36 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=49 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=49 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=49 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=49 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=64 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=64 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=64 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=64 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=81 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=81 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=81 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=81 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=100 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=100 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=100 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=100 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=121 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=121 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=121 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=121 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=144 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=144 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=144 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_dgemm NPROC=144 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=4 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=4 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=4 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=4 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=9 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=9 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=9 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=9 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=16 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=16 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=16 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=16 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=25 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=25 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=25 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=25 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=36 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=36 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=36 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=36 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=49 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=49 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=49 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=49 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=64 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=64 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=64 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=64 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=81 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=81 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=81 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=81 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=100 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=100 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=100 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=100 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=121 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=121 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=121 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=121 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=144 OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=144 OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=144 OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make cannon_omp NPROC=144 OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make seq OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make seq OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make seq OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=3
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=5
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=6
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=7
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=8
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=9
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=10
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=11
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=13
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=14
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=15
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=16
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=17
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=18
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=19
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=20
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=21
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=22
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=23
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make mkl OMP_THREADS=24
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=1
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=2
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=3
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=4
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=5
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=6
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=7
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=8
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=9
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=10
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=11
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=12
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=13
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=14
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=15
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=16
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=17
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=18
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=19
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=20
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=21
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=22
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=23
+make[1]: Entering directory `/home/rszczers/ParallelMultiplication'
+make[1]: Leaving directory `/home/rszczers/ParallelMultiplication'
+make omp OMP_THREADS=24

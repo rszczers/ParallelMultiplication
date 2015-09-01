@@ -12,24 +12,24 @@ done
 
 i=3;
 for((n=4; n<=$1; i++)); do
-    for t in 1 2 4 12 do
+    for t in 1 2 4 12; do
         export OMP_NUM_THREADS=$t
         make cannon_dgemm NPROC=$n OMP_THREADS=$t
         echo "make cannon_dgemm NPROC=$n OMP_THREADS=$t"   
-        n=$(($i*$i))
         sleep 1;
     done
+    n=$(($i*$i))
 done
 
 i=3;
 for((n=4; n<=$1; i++)); do
-    for t in 1 2 4 12 do
+    for t in 1 2 4 12; do
         export OMP_NUM_THREADS=$t
         make cannon_omp NPROC=$n OMP_THREADS=$t
         echo "make cannon_omp NPROC=$n OMP_THREADS=$t"   
-        n=$(($i*$i))
         sleep 1;
     done
+    n=$(($i*$i))
 done
 
 for((j=0; j<3; j++)); do
