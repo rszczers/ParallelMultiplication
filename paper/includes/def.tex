@@ -27,6 +27,10 @@
 % algorithm -> Algorytm
 \floatname{algorithm}{Algorytm}
 
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\algrenewcommand\alglinenumber[1]{
+    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
+
 % declaration of the new block
 \algblock{ParFor}{EndParFor}
 % customising the new block

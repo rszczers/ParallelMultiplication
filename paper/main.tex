@@ -21,9 +21,11 @@
 \usepackage{pdfpages}
 \usepackage{import}
 
+\usepackage{algorithmicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-\usepackage{algpascal}
+%\usepackage{algpascal}
+
 
 \usepackage{pbox}
 
@@ -35,7 +37,8 @@
 \subimport{includes/}{strona_tytulowa.tex}
 \tableofcontents
 
-\chapter{Wstęp}
+\chapter*{Wstęp}
+\addcontentsline{toc}{chapter}{Wstęp}
 \subimport{includes/}{ch0_wstep.tex}
 
 \chapter{Wiadomości wstępne}

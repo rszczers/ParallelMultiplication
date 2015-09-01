@@ -1,19 +1,22 @@
 W swojej pracy \emph{,,Gaussian Elimination is not Optimal''} z 1969 roku \textsc{Volker Strassen} pokazał rekursyjny algorytm mnożenia macierzy kwadratowych wymiaru \(m2^k\) o złożoności \(\mathcal{O}(n^{2,81})\)\cite{Strassen68}. W przypadku macierzy \(2\times 2\) oznaczało to, że mnożenie można wykonać już za pomocą 7 mnożeń i 18 dodawań. Algorytm za sprawą \textsc{Shmuela Winograda} został zoptymalizowany\cite{Winograd}\cite{Loeckx1974} do najczęściej implementowanej dzisiaj postaci algorytmu \textsc{Strassena-Winograda} (implementacja zawiera się na przykład w bibliotece GEMMW\cite{Douglas94gemmw}). W przypadku macierzy \(2\times 2\) wykonuje on 7 operacji mnożenia i 15 dodawań\cite{DBLP:journals/corr/abs-1202-3173}.
-\section{Algorytm naiwny}
+
+\subsubsection{Algorytm naiwny}
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm sekwencyjny wyznaczania macierzy \(\mathbf{C}=\mathbf{AB}\) o złożoności \(\mathcal{O}(n^3)\).
 
+% \alglanguage{pascal}
 % \begin{algorithm}
-% \For{\(i\in\{1,2,\dots,n\}\)}{
-% \For{\(j\in\{1,2,\dots,n\}\)}{
-% \(\mathbf{C}(i,j)=0\)\;
-% \For{\(k\in\{1,2,\dots,n\}\)}{
-% \(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\;
-% }}}
+% \begin{algorithmic}
+% \For{i = 1}{n}
+% 	\For{j = 1}{n}
+% 		\For{k = 1}{n}
+% 		\State \(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\
+% \end{algorithmic}
 % \caption{Sekwencyjny algorytm mnożenia macierzy}
+% \label{alg:sekwencyjny}
 % \end{algorithm}
 
 \newpage
-\section{Algorytm ,,dziel i rządź''}
+\subsubsection{Algorytm ,,dziel i rządź''}
 Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\in\mathbb{R}^{n\times n}\) oraz macierzy wyjściowej \(\mathbf{C}\in\mathbb{R}^{n\times n}\) mamy:
 \begin{align*}
 \mathbf{A}& = \begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22} \end{bmatrix}&
@@ -64,7 +67,8 @@ Z powyższych konstatacji nasuwa się łatwy algorytm rekurencyjny.
 % \end{algorithm}
 % \section{Algorytm Cannona}
 % \cite{Cannon:1969:CCI:905686}
-\section{Algorytm Strassena}
+
+\subsubsection{Algorytm Strassena}
 Niech \(A\) i \(B\) będą macierzami \(m2^k\times m2^k\). Definiując następujące macierze pomocnicze
 \begin{align*}
 H_1 &= (A_{11}+A_{22})(B_{11}+B_{22})&
@@ -83,7 +87,7 @@ H_2+H_4& H_1+H_3-H_2+H_6
 \end{bmatrix}
 \end{align}
 
-\section{Algorytm Strassena-Winograda}
+\subsubsection{Algorytm Strassena-Winograda}
 Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\) oraz macierzy wyjściowej \(\mathbf{C}\) mamy
 \begin{align*}
 \mathbf{A}& = \begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22} \end{bmatrix}&

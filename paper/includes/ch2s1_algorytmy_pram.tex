@@ -48,20 +48,19 @@
 \subsubsection{Algorytm mnożenia}
 Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny PRAM. Wówczas dla każdej pary \((i, j)\), n procesorów \(P_{i,j,l}\), gdzie \(1\leq l \leq n\), oblicza sumę \(\sum_{l=1}^{n}A(i,l)B(l,j)\) w myśl algorytmu \ref{alg:pram_sum}.\\
 
-\alglanguage{pascal}
+\alglanguage{pseudocode}
 \begin{algorithm}
 \centering
 \begin{algorithmic}
 \ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j, \, k \leq n\)}
-\State \Comment{Obliczanie składowych iloczynów skalarnych}
-\State \(t[i,j,k] := a[i,k]*b[k,j]\)
+\State \(t[i,j,k] := a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
 \EndParFor
-\For{l = 1}{\log{n}} \Comment{Sumowanie składowych iloczynów skalarnych}
-\Begin
-\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, 1 \leq k \leq n/2^l \)}
-\State \(t[i,j,k] := T[i,j,2*k-1]+t[i,j,2*k]\)
+\For{\(l \gets 1, \log{n}\)} \Comment{Sumowanie składowych iloczynów skalarnych}
+	\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, 1 \leq k \leq n/2^l \)}
+	\State \(t[i,j,k] := T[i,j,2*k-1]+t[i,j,2*k]\)
 \EndParFor
-\End
+\EndFor
+
 \ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, k = 1 \)}
 \State \(c[i,j] := t[i,j,1] \)
 \EndParFor
