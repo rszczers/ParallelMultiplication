@@ -43,7 +43,7 @@ BUILD_PATH_GEN = $(BUILD_DIR)gen
 
 MPI_OPT = -env I_MPI_DEVICE sock 
 
-.PHONY: clean
+.PHONY: clean paper
 
 all: pmm gen
 
@@ -193,6 +193,9 @@ endif
 
 test:
 	./makeplots.sh $(NPROC)
+
+paper:
+	cd paper; make
 
 clean:
 ifneq ($(wildcard $(BUILD_PATH_PMM)),)
