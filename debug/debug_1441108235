@@ -1,3 +1,0 @@
-METHOD:	SEQUENTIAL
-ETA:	79.420181
-ARGS:	m=4096, k=4096, n=4096, nprocs=1, threads=1
