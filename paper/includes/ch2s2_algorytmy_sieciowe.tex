@@ -172,3 +172,14 @@
 % \cite{communication_efficient}
 % \subsection{Równoległy algorytm Strassena CAPS}
 % \cite{DBLP:journals/corr/abs-1202-3173}
+
+\subsection{Algorytm Cannona w dwuwymiarowym torusie}
+Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\in\mathbb{R}^{n\times n}\) w dwuwymiarowym torusie o rozmiarach \(p_1 \times p_1\) oraz, że \(n=rp_1\). Macierze \(A=(A_{ij})\), \(B=(B_{ij})\), \(C=(C_{ij})\) możemy rozpatrywać jako macierze blokowe, gdzie \(A_{ij}\), \(B_{ij}\), \(C_{ij}\) są macierzami \(r\times r\). Przyjmijmy, że węzeł \(P_{i,j}\) zawiera blok \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\) oraz, że jego zadanie polega na nadpisywaniu macierzy \(C_{ij}\) poprzez
+\begin{align*}
+D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
+\end{align*}
+
+
+Poniżej pokażemy jak przebiega algorytm dla przypadku \(p_1 = 3\).
+
+

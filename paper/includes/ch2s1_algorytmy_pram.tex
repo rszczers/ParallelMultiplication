@@ -46,12 +46,16 @@
 
 
 \subsubsection{Algorytm mnożenia}
-Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^k\), dla pewnego \(k\in\mathbf{N}\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny PRAM. Wówczas dla każdej pary \((i, j)\), n procesorów \(P_{i,j,l}\), gdzie \(1\leq l \leq n\), oblicza sumę \(\sum_{l=1}^{n}A(i,l)B(l,j)\) w myśl algorytmu \ref{alg:pram_sum}.\\
+Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^r\), dla pewnego \(r\in\mathbb{Z},\, r>0\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny CREW PRAM. 
 
 \alglanguage{pseudocode}
 \begin{algorithm}
 \centering
-\begin{algorithmic}
+\begin{algorithmic}[1]
+\Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
+\Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
+\Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+\item[]
 \ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j, \, k \leq n\)}
 \State \(t[i,j,k] := a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
 \EndParFor
@@ -65,7 +69,7 @@ Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A
 \State \(c[i,j] := t[i,j,1] \)
 \EndParFor
 \end{algorithmic}
-\caption{Algorytm mnożenia macierzy w siatce trójwymiarowej}
+\caption{Algorytm mnożenia macierzy w siatce trójwymiarowej\cite{Czech}}
 \label{alg:pram_sum}
 \end{algorithm}
 
@@ -86,9 +90,9 @@ Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A
 % \caption{Algorytm mnożenia macierzy w modelu PRAM\label{alg:pram_pseudokod}}
 % \end{algorithm}
 
-\begin{uwaga}
-Algorytm \ref{alg:crew_pram_multiplication} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (1) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (1) wszystkie wymagają dostępu do \(A(i,l)\).
-\end{uwaga}
+% \begin{uwaga}
+% Algorytm \ref{alg:crew_pram_multiplication} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (1) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (1) wszystkie wymagają dostępu do \(A(i,l)\).
+% \end{uwaga}
 
 % \subsection{Blokowa procedura \texttt{gaxpy}}
 % Załóżmy, że \(A, B, C \in \mathbb{R}^{n\times n}\), gdzie \(B\) jest macierzą górnie trójkątną oraz obliczenie wielokrotnie nadpisuje dane

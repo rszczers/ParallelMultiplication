@@ -27,9 +27,6 @@
 % algorithm -> Algorytm
 \floatname{algorithm}{Algorytm}
 
-\newcommand*\Let[2]{\State #1 $\gets$ #2}
-\algrenewcommand\alglinenumber[1]{
-    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
 
 % declaration of the new block
 \algblock{ParFor}{EndParFor}
@@ -39,3 +36,10 @@
 \algnewcommand\algorithmicendparfor{\textbf{end\ parfor}}
 \algrenewtext{ParFor}[1]{\algorithmicparfor\ #1\ \algorithmicpardo}
 \algrenewtext{EndParFor}{\algorithmicendparfor}
+
+\algnewcommand\algorithmicinput{\textbf{Wejście:}}
+\algnewcommand\Input{\item[\algorithmicinput]}
+\algnewcommand\algorithmictmp{\textbf{Dane pomocnicze:}}
+\algnewcommand\Tmp{\item[\algorithmictmp]}
+\algnewcommand\algorithmicoutput{\textbf{Wyjście:}}
+\algnewcommand\Output{\item[\algorithmicoutput]}

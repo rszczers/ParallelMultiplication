@@ -37,8 +37,7 @@ fit f(x) 'sequential.dat' u 5:1 via mean_seq
 
 plot 'cannon_dgemm_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 1 wątek' ls 1, \
 'cannon_dgemm_2.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 2 wątki' ls 2, \
-'cannon_dgemm_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 4 wątków' ls 3, \
-'cannon_dgemm_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 12 wątków' ls 4, \
+'cannon_dgemm_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 12 wątków' ls 3, \
 'cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
 

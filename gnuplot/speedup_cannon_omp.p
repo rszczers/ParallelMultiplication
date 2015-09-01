@@ -37,10 +37,10 @@ set mytics 2
 f(x) = mean_seq
 fit f(x) 'sequential.dat' u 5:1 via mean_seq
 
+
 plot 'cannon_omp_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
-'cannon_omp_2.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 2 wątki' ls 2, \
-'cannon_omp_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 4 wątków' ls 3, \
-'cannon_omp_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 12 wątków' ls 4, \
+'cannon_omp_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 4 wątków' ls 2, \
+'cannon_omp_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
 'cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
 
