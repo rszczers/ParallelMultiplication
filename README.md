@@ -1,6 +1,6 @@
-Parallel multiplication
+Parallel Matrix Multiplication
 ========================
-The implementation of parallel Fox-Cannon's matrix multiplication hybrid algorithm over 2D Torus with MPI and Intel Math Kernel Library/OpenMP.
+Implementation of the parallel Fox-Cannon's matrix multiplication hybrid algorithm over 2D Torus with MPI and Intel Math Kernel Library/OpenMP.
 
 ##Usage
 <pre>
