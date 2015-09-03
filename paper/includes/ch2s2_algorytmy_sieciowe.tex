@@ -175,9 +175,9 @@
 
 \subsection{Algorytm Cannona w dwuwymiarowym torusie}
 Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\in\mathbb{R}^{n\times n}\) w dwuwymiarowym torusie o rozmiarach \(p_1 \times p_1\) oraz, że \(n=rp_1\). Macierze \(A=(A_{ij})\), \(B=(B_{ij})\), \(C=(C_{ij})\) możemy rozpatrywać jako macierze blokowe, gdzie \(A_{ij}\), \(B_{ij}\), \(C_{ij}\) są macierzami \(r\times r\). Przyjmijmy, że węzeł \(P_{ij}\) zawiera blok \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\) oraz, że jego zadanie polega na nadpisywaniu macierzy \(C_{ij}\) poprzez
-\begin{align*}
+\begin{align}\label{eq:cannon_per_node}
 D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
-\end{align*}
+\end{align}
 
 Zanim przejdziemy do przypadku ogólnego, pokażemy algorytm dla przypadku \(p_1 = 3\). Rozważmy sieć w topologii dwuwymiarowego torusa \(3\times 3\) (rys. \ref{fig:cannon_torus1}).
 
@@ -267,7 +267,7 @@ D_{11}=C_{11}+A_{11}B_{11} + A_{12}B_{21} + A_{13}B_{31}.
 \end{tabular} &
 \hspace{1cm}\(C_{loc}=C_{loc}+A_{11}B_{11}\)
 \end{tabular}
-\caption{Rozmieszczenie danych po wykonaniu trzech kroków metody Cannona z uwzględnienem danych koniecznych do obliczeń tylko na węźle \(P_{11}\)}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona z uwzględnienem danych koniecznych do obliczeń tylko na węźle \(P_{11}\)}
 \label{fig:cannon_torus3}
 \end{figure}
 
@@ -291,7 +291,7 @@ Przepływ danych został zorganizowany w taki sposób, że bloki \(A_{ij}\) prze
 \State \(C_{loc} = C_{loc} + A_{loc}B_{loc}\)
 \EndFor
 \end{algorithmic}
-\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\)}
+\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\).}
 \label{alg:cannon_1}
 \end{algorithm}
 
@@ -313,7 +313,7 @@ Przepływ danych został zorganizowany w taki sposób, że bloki \(A_{ij}\) prze
 \State \(C_{loc} = C_{loc} + A_{loc}B_{loc}\)
 \EndFor
 \end{algorithmic}
-\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\)}
+\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\).}
 \label{alg:cannon_2}
 \end{algorithm}
 
@@ -328,7 +328,25 @@ Rozumując podobnie, węzeł \(P_{13}\) mógłby obliczać wyrażenie
 \begin{align*}
 D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 \end{align*}
-\noindent o ile \(B_{13}\), \(B_{23}\) i \(B_{33}\) znajdowałyby się na węźle odpowiednio dla kroków \(t=1, 2, 3\).
+\noindent o ile \(B_{13}\), \(B_{23}\) i \(B_{33}\) znajdowałyby się na węźle odpowiednio dla kroków \(t=1, 2, 3\). Uwzględniając obliczenia na węzłach \(P_{12}\) i \(P_{13}\) możemy zainicjalizować sieć jak na rys. \ref{}
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(B_{32}\) & \(-\) & \(B_{13}\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(B_{12}\) & \(-\) & \(B_{23}\) \\
+\hline
+\end{tabular}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) koniecznych do wykonania obliczeń na węzłach \(P_{11}\), \(P_{12}\) i \(P_{13}\).}
+\label{fig:cannon_torus_init}
+\end{figure}
+
+Zastosowanie odpowiednich przesunięć w algorytmie Cannona ilustruje rys. \ref{fig:cannon_torus4}.
+
 \begin{figure}[h]
 \centering
 \begin{tabular}{lr}
@@ -373,14 +391,13 @@ D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 \end{tabular} &
 \hspace{1cm}\(t=3\)
 \end{tabular}
-\caption{Cośtam}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona z uwzględnienem danych koniecznych do obliczeń na węzłach \(P_{11}\), \(P_{12}\) i \(P_{13}\).}
+\label{fig:cannon_torus4}
 \end{figure}
 
+Widać, że jeśli macierz \(B\) jest wstępnie rozmieszczona z zastosowaniem jednego przesunięcia, to po zakończeniu obliczeń w węzłąch \(P_{11}\), \(P_{12}\), \(P_{13}\) otrzymujemy pierwszy wiersz macierzy \(C\).
 
-
-
-
-%syf syf syf
+Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy, że rozmieszczamy dane w sieci tak jak przedstawiono na rys. \ref{fig:cannon_init_2}.
 
 \begin{figure}[h]
 \centering
@@ -396,10 +413,11 @@ D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 \end{tabular} &
 \hspace{1cm}
 \end{tabular}
-\caption{Cośtam}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) w dwuwymiarowym torusie \(3\times 3\).}
+\label{fig:cannon_init_2}
 \end{figure}
 
-%syf 2
+Jeśli wstępnie przesuniemy drugi wiersz o jedną kolumnę w lewo i trzeci wiersz -- o dwie, wówczas możemy przeprowadzić odpowiednie dodawania i mnożenia występujące w wyrażeniu \eqref{eq:cannon_per_node} dla każdego węzła sieci w każdym kroku algorytmu. 
 
 \begin{figure}[H]
 \centering
@@ -443,6 +461,7 @@ D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 \end{tabular} &
 \hspace{1cm}\(t=3\)
 \end{tabular}
-
-\caption{Cośtam}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona w dwuwymiarowym torusie \(3\times 3\).}
+\label{fig:cannon_last_one}
 \end{figure}
+
