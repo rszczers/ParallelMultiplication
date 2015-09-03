@@ -44,8 +44,6 @@
 % \label{fig:pram_sum}
 % \end{figure}
 
-
-\subsubsection{Algorytm mnożenia}
 Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^r\), dla pewnego \(r\in\mathbb{Z},\, r>0\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny CREW PRAM. 
 
 \alglanguage{pseudocode}
@@ -55,13 +53,13 @@ Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A
 \Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
 \Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
 \Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
-\item[]
+% \item[]
 \ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j, \, k \leq n\)}
-\State \(t[i,j,k] := a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
+\State \(t[i,j,k] \gets a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
 \EndParFor
 \For{\(l \gets 1, \log{n}\)} \Comment{Sumowanie składowych iloczynów skalarnych}
 	\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, 1 \leq k \leq n/2^l \)}
-	\State \(t[i,j,k] := T[i,j,2*k-1]+t[i,j,2*k]\)
+	\State \(t[i,j,k] \gets T[i,j,2*k-1]+t[i,j,2*k]\)
 \EndParFor
 \EndFor
 
@@ -69,8 +67,8 @@ Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A
 \State \(c[i,j] := t[i,j,1] \)
 \EndParFor
 \end{algorithmic}
-\caption{Algorytm mnożenia macierzy.\cite{Czech}}
-\label{alg:pram_sum}
+\caption{Algorytm mnożenia macierzy dla \(n^3\) procesorów.\cite{Czech}}
+\label{alg:pram_multiply_1}
 \end{algorithm}
 
 
@@ -83,8 +81,45 @@ C(n) &= \mathcal{O}(n^3 \log{n}), \\
 E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
 \end{align*}
 
+\noindent Zgodnie z def. \ref{def:cost-optimal} algorytm \emph{nie} jest optymalny względem kosztu.
 
-Zgodnie z def. \ref{def:cost-optimal} algorytm \emph{nie} jest optymalny względem kosztu.
+\alglanguage{pseudocode}
+\begin{algorithm}
+\centering
+\begin{algorithmic}[1]
+\Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
+\Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
+\Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+% \item[]
+\ParFor{\(P_{i}, 1\leq i \leq n\)}
+	\For{\(j\gets 1, n\)}
+		\For{\(k\gets 1, n\)}
+			\State \(t[i,j,k] \gets a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
+		\EndFor
+	\EndFor
+\EndParFor
+\For{\(l \gets 1, \log{n}\)} \Comment{Sumowanie składowych iloczynów skalarnych}
+	\ParFor{\(P_{i}, 1\leq i \leq n\)}
+		\For{\(j\gets 1, n\)}
+			\For{\(k\gets 1, n/2^l\)}
+				\State \(t[i,j,k] \gets T[i,j,2*k-1]+t[i,j,2*k]\)
+			\EndFor
+		\EndFor
+	\EndParFor
+\EndFor
+
+\ParFor{\(P_{i}, 1\leq i \leq n\)}
+	\For{\(j\gets 1, n\)}
+		\State \(c[i,j] := t[i,j,1] \)
+	\EndFor
+\EndParFor
+\end{algorithmic}
+\caption{Algorytm mnożenia macierzy dla \(n\) procesorów.\cite{Czech}}
+\label{alg:pram_multiply_2}
+\end{algorithm}
+
+
+% W algorytmie \ref{alg:pram_multiply_1} między \(n^3\) węzłów zostało rozdzielone 
 % \label{alg:crew_pram_multiplication}
 % \begin{algorithm}[H]
 % \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
