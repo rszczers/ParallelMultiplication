@@ -1,4 +1,4 @@
-\begin{definicja}[Koszt algorytmu\cite{Czech}]
+\begin{definicja}[Koszt algorytmu\cite{Czech}]\label{def:cost}
 Niech \(T_{p}(n)\) będzie pędzie pesymistyczną złożonością obliczeniową algorytmu \(R\) dla \(p\) procesorów. Wówczas funkcję
 \begin{align}
 C_{p}(n) = p T_{p}(n)
@@ -21,5 +21,12 @@ Różnicę
 \begin{align}
 C_{p}^{O}(n) = C_{p}(n) - T^{*}(n) = pT_{p}(n) - T^{*}(n)
 \end{align}
-nazywamy kosztem ogranizacji obliczeń równoległych algorytmu \(R\) dla problemu \(P\) o rozmiarze \(n\)
+nazywamy \emph{kosztem ogranizacji obliczeń równoległych} algorytmu \(R\) dla problemu \(P\) o rozmiarze \(n\)
+\end{definicja}
+
+\begin{definicja}[Koszt optymalny]\label{def:cost-optimal}
+Mówimy, że koszt algorytmu \(R\) jest \emph{optymalny}, jeśli koszt obliczeń równoległych \(C_{p}(n)\) jest asymptotycznie równy minimalnemu kosztowi obliczeń sekwencyjnych \(T^{*}(n)\), czyli:
+\begin{align}
+C_{p}(n) = \Theta(T^{*}(n))
+\end{align}
 \end{definicja}

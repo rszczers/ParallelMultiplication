@@ -505,14 +505,14 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 \EndFor
 \end{algorithmic}
 \caption{Algorytm Cannona\cite{Golub}}
-\label{alg:canon_algorithm}
+\label{alg:cannon_algorithm}
 \end{algorithm}
 
 Złożoność, przyspieszenie, koszt i efektywność algorytmu są następujące\cite{Czech}:
-\begin{align}
+\begin{align*}
 T_p(n)|_{p=n^2} = T(n) &= \mathcal{O}(n), \\
 S(n) &= \mathcal{O}(\frac{n^3}{n}) = \mathcal{O}(n^2), \\
 C(n) &= \mathcal{O}(n^2n)=\Theta(n^3), \\
 E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
-
-\end{align}
+\end{align*}
+Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.

@@ -69,11 +69,22 @@ Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A
 \State \(c[i,j] := t[i,j,1] \)
 \EndParFor
 \end{algorithmic}
-\caption{Algorytm mnożenia macierzy w siatce trójwymiarowej\cite{Czech}}
+\caption{Algorytm mnożenia macierzy.\cite{Czech}}
 \label{alg:pram_sum}
 \end{algorithm}
 
 
+Obliczenia w wierszach 2-4 i 10-12 wykonywane są w czasie \(\mathcal{O}(1)\), a sumowanie skłądowych iloczynów skalarnych w wierszach 5-9 – w czasie \(\mathcal{O}(\log{n})\). łożoność, przyspieszenie, koszt i efektywność algorytmu są następujące\cite{Czech}:
+
+\begin{align*}
+T_p(n)|_{p=n^3} = T(n) &= \mathcal{O}(\log{n}), \\
+S(n) &= \mathcal{O}(\frac{n^3}{\log{n}}), \\
+C(n) &= \mathcal{O}(n^3 \log{n}), \\
+E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
+\end{align*}
+
+
+Zgodnie z def. \ref{def:cost-optimal} algorytm \emph{nie} jest optymalny względem kosztu.
 % \label{alg:crew_pram_multiplication}
 % \begin{algorithm}[H]
 % \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}

@@ -3,17 +3,20 @@ W swojej pracy \emph{,,Gaussian Elimination is not Optimal''} z 1969 roku \texts
 \subsubsection{Algorytm naiwny}
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm sekwencyjny wyznaczania macierzy \(\mathbf{C}=\mathbf{AB}\) o złożoności \(\mathcal{O}(n^3)\).
 
-% \alglanguage{pascal}
-% \begin{algorithm}
-% \begin{algorithmic}
-% \For{i = 1}{n}
-% 	\For{j = 1}{n}
-% 		\For{k = 1}{n}
-% 		\State \(\mathbf{C}(i,j)=\mathbf{C}(i,j)+\mathbf{A}(i,k) \mathbf{B}(k,j)\)\
-% \end{algorithmic}
-% \caption{Sekwencyjny algorytm mnożenia macierzy}
-% \label{alg:sekwencyjny}
-% \end{algorithm}
+\alglanguage{pseudocode}
+\begin{algorithm}
+\begin{algorithmic}
+\For{\(i \gets 1, n\)}
+	\For{\(j \gets 1, n\)}
+		\For{\(k \gets 1, n\)}
+			\State \(C(i,j)=C(i,j)+A(i,k) B(k,j)\)\
+		\EndFor
+	\EndFor
+\EndFor
+\end{algorithmic}
+\caption{Sekwencyjny algorytm mnożenia macierzy.}
+\label{alg:sekwencyjny}
+\end{algorithm}
 
 \newpage
 \subsubsection{Algorytm ,,dziel i rządź''}
@@ -24,12 +27,12 @@ Dla danych macierzy wejściowych \(\mathbf{A}, \mathbf{B}\in\mathbb{R}^{n\times 
 \mathbf{C}& = \begin{bmatrix} C_{11}& C_{12} \\ C_{21}& C_{22} \end{bmatrix}
 \end{align*}
 gdzie
-\begin{align}\label{eq:divide&conquer}
+\begin{align}\label{eq:divideconquer}
 \begin{bmatrix} C_{11}& C_{12} \\ C_{21}& C_{22}\end{bmatrix}=
 \begin{bmatrix} A_{11}& A_{12} \\ A_{21}& A_{22}\end{bmatrix}
 \begin{bmatrix} B_{11}& B_{12} \\ B_{21}& B_{22}\end{bmatrix}
 \end{align}
-\eqref{eq:divide&conquer} możemy wyrazić inaczej:
+\eqref{eq:divideconquer} możemy wyrazić inaczej:
 
 \begin{equation}
 \begin{split}
@@ -67,6 +70,28 @@ Z powyższych konstatacji nasuwa się łatwy algorytm rekurencyjny.
 % \end{algorithm}
 % \section{Algorytm Cannona}
 % \cite{Cannon:1969:CCI:905686}
+
+
+\alglanguage{pseudocode}
+\begin{algorithm}[h]
+\centering
+\begin{algorithmic}[1]
+\Function{multiply}{A, B}
+\If{\(n=1\)}
+\State \(C_11\gets A_{11}B_{11}\)
+\Else
+\State \Call{chuj}{wuj}
+% \State \(C_{11}\) = \Call{multiply}{\(A_{11}B_{11}\)} + \Call{multiply}{\(A_{12}B_{21}\)}
+% \State \(C_{12}\) = \Call{multiply}{\(A_{11}B_{12}\)} + \Call{multiply}{\(A_{12}B_{22}\)}
+% \State \(C_{21}\) = \Call{multiply}{\(A_{21}B_{11}\)} + \Call{multiply}{\(A_{22}B_{21}\)}
+% \State \(C_{22}\) = \Call{multiply}{\(A_{21}B_{12}\)} + \Call{multiply}{\(A_{22}B_{22}\)}
+\EndIf
+\State \Return \(C\)
+\EndFunction
+\end{algorithmic}
+\caption{Algorytm ,,dziel i zwyciężaj''.}
+\label{alg:divideconquer}
+\end{algorithm}
 
 \subsubsection{Algorytm Strassena}
 Niech \(A\) i \(B\) będą macierzami \(m2^k\times m2^k\). Definiując następujące macierze pomocnicze
