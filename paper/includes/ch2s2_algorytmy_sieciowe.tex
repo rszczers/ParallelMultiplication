@@ -319,16 +319,16 @@ Przepływ danych został zorganizowany w taki sposób, że bloki \(A_{ij}\) prze
 
 Wykonanie algorytm \ref{alg:cannon_2} trwa nieco dłużej ze względu zatrzymanie wykonania programu dopóki macierz \(A_{loc}\) nie zostanie wysłana\footnote{W interfejsie MPI obydwa algorytmy traktowane literalnie wywołują zazębienie (ang. \emph{deadlock}) ze względu na blokującą funkcję MPI\_Send; istnieje szereg metod nieblokujących pozwalających na implementację obydwu algorytmów.}.
 
-Rozważymy teraz aktywność węzłów \(P_{12}\), \(P_{13}\), \(P_{21}\), \(P_{31}\). W dotychczasowych roważaniach odpowiednio pomagały one jedynie w przesuwaniu bloków \(A_{11}\), \(A_{12}\), \(A_{13}\) oraz \(B_{11}\), \(B_{21}\) i \(A_{31}\). Gdyby \(B_{32}\), \(B_{12}\), \(B_{22}\) przechodziły przez węzeł \(P_{12}\) w trakcie wykonywania algorytmu, wówczas moglibyśmy na węźle \(P_{12}\) otrzymać wartość wyrażenia
+Rozważymy teraz aktywność węzłów \(P_{12}\), \(P_{13}\), \(P_{21}\), \(P_{31}\). W dotychczasowych roważaniach odpowiednio pomagały one jedynie w przesuwaniu bloków \(A_{11}\), \(A_{12}\), \(A_{13}\) oraz \(B_{11}\), \(B_{21}\) i \(A_{31}\). Gdyby \(B_{32}\), \(B_{12}\), \(B_{22}\) przechodziły przez węzeł \(P_{12}\) w trakcie wykonywania algorytmu, wówczas moglibyśmy na węźle \(P_{12}\) otrzymać wartość wyrażenia:
 \begin{align*}
 D_{12} = C_{12} + A_{13}B_{32} + A_{11}B_{12} + A_{12}B_{22}.
 \end{align*}
 
-Rozumując podobnie, węzeł \(P_{13}\) mógłby obliczać wyrażenie
+\noindent Rozumując podobnie widzimy, że węzeł \(P_{13}\) mógłby obliczać wyrażenie:
 \begin{align*}
 D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 \end{align*}
-\noindent o ile \(B_{13}\), \(B_{23}\) i \(B_{33}\) znajdowałyby się na węźle odpowiednio dla kroków \(t=1, 2, 3\). Uwzględniając obliczenia na węzłach \(P_{12}\) i \(P_{13}\) możemy zainicjalizować sieć jak na rys. \ref{}
+\noindent o ile \(B_{13}\), \(B_{23}\) i \(B_{33}\) znajdowałyby się na węźle odpowiednio dla kroków \(t=1, 2, 3\). Uwzględniając obliczenia na węzłach \(P_{12}\) i \(P_{13}\) możemy zainicjalizować sieć jak na rys. \ref{fig:cannon_torus_init}
 
 \begin{figure}[h]
 \centering
@@ -347,7 +347,7 @@ D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
 
 Zastosowanie odpowiednich przesunięć w algorytmie Cannona ilustruje rys. \ref{fig:cannon_torus4}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{tabular}{lr}
 \begin{tabular}{|cc|cc|cc|}
@@ -395,11 +395,11 @@ Zastosowanie odpowiednich przesunięć w algorytmie Cannona ilustruje rys. \ref{
 \label{fig:cannon_torus4}
 \end{figure}
 
-Widać, że jeśli macierz \(B\) jest wstępnie rozmieszczona z zastosowaniem jednego przesunięcia, to po zakończeniu obliczeń w węzłąch \(P_{11}\), \(P_{12}\), \(P_{13}\) otrzymujemy pierwszy wiersz macierzy \(C\).
+\noindent Widać, że jeśli macierz \(B\) jest wstępnie rozmieszczona z zastosowaniem jednego przesunięcia, to po zakończeniu obliczeń w węzłąch \(P_{11}\), \(P_{12}\), \(P_{13}\) otrzymujemy pierwszy wiersz macierzy \(C\).
 
 Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy, że rozmieszczamy dane w sieci tak jak przedstawiono na rys. \ref{fig:cannon_init_2}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{tabular}{lr}
 \begin{tabular}{|cc|cc|cc|}
@@ -417,7 +417,7 @@ Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy
 \label{fig:cannon_init_2}
 \end{figure}
 
-Jeśli wstępnie przesuniemy drugi wiersz o jedną kolumnę w lewo i trzeci wiersz -- o dwie, wówczas możemy przeprowadzić odpowiednie dodawania i mnożenia występujące w wyrażeniu \eqref{eq:cannon_per_node} dla każdego węzła sieci w każdym kroku algorytmu. 
+\noindent Jeśli wstępnie przesuniemy drugi wiersz o jedną kolumnę w lewo i trzeci wiersz -- o dwie, wówczas możemy przeprowadzić odpowiednie dodawania i mnożenia występujące w wyrażeniu \eqref{eq:cannon_per_node} dla każdego węzła sieci w każdym kroku algorytmu. 
 
 \begin{figure}[H]
 \centering
@@ -465,3 +465,54 @@ Jeśli wstępnie przesuniemy drugi wiersz o jedną kolumnę w lewo i trzeci wie
 \label{fig:cannon_last_one}
 \end{figure}
 
+Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Założymy, że węzły \(P_{ij}\) mają w pamięci lokalnej macierze \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\). Żeby wstępnie przesunąć bloki macierzy \(A\) zauważmy, że \(i\)-ty wiersz węzłów sieci powinien przesłać macierze \(A_{ij}\) w lewo o \(i-1\) pozycji\footnote{Numerację elementów zaczynamy od 1.}. Podobnie, \(j\)-tą kolumnę węzłów przesuwamy w górę o \(j-1\) pozycji. Powyższe rozważania prowadzą do sformułowania algorytmu \ref{alg:cannon_algorithm}.
+
+
+
+\alglanguage{pseudocode}
+\begin{algorithm}
+\centering
+\begin{algorithmic}[1]
+%\Input{}
+\Tmp{
+\(p_1\),
+\((\mu, \lambda)\) (współrzędne węzła w sieci),
+\( \mathit{góra}\),
+\( \mathit{dół}\),
+\( \mathit{lewo}\),
+\(\mathit{prawo}\) (identyfikatory sąsiadujących węzłów),
+\( \mathit{wiersz} = 1 + (mu-1)r : \mu r\),
+\(\mathit{kolumna} = 1 + (\lambda -1)r:\lambda r\),
+\(B_{loc}=B(wiersz, kolumna)\),
+\(A_{loc}=A(wiersz, kolumna)\),
+\(C_{loc}=B(wiersz, kolumna)\)}
+% \Output{}
+\item[]
+\For{\(k \gets 1, \mu - 1\)} \Comment{Wstępne przesunięcie \(A_{\mu j}\) i \(B_{i \lambda}\).}
+\Send{\(A_{loc}\), lewo}
+\Recv{\(A_{loc}\), prawo}
+\EndFor
+\For{\(k \gets 1, \lambda - 1\)}
+\Send{\(B_{loc}\), góra}
+\Recv{\(B_{loc}\), dół}
+\EndFor
+\For{\(k \gets 1, p_1\)} \Comment{Obliczanie iloczynu macierzy \(A_{loc}B_{loc}\)}
+\State \(C_{loc}=C_{loc} + A_{loc}B_{loc}\)
+\Send{\(A_{loc}\), lewo}
+\Send{\(B_{loc}\), góra}
+\Recv{\(A_{loc}\), prawo}
+\Recv{\(B_{loc}\), dół}
+\EndFor
+\end{algorithmic}
+\caption{Algorytm Cannona\cite{Golub}}
+\label{alg:canon_algorithm}
+\end{algorithm}
+
+Złożoność, przyspieszenie, koszt i efektywność algorytmu są następujące\cite{Czech}:
+\begin{align}
+T_p(n)|_{p=n^2} = T(n) &= \mathcal{O}(n), \\
+S(n) &= \mathcal{O}(\frac{n^3}{n}) = \mathcal{O}(n^2), \\
+C(n) &= \mathcal{O}(n^2n)=\Theta(n^3), \\
+E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
+
+\end{align}
