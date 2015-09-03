@@ -1,6 +1,6 @@
 Parallel multiplication
 ========================
-An implementation of parallel Cannon's matrix multiplication algorithm over n*n grid with MPI and Intel Math Kernel Library.
+An implementation of parallel hybrid Cannon's matrix multiplication algorithm over n*n grid with MPI and Intel Math Kernel Library/OpenMP.
 
 ##Usage
 <pre>
