@@ -468,7 +468,6 @@ Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy
 Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Założymy, że węzły \(P_{ij}\) mają w pamięci lokalnej macierze \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\). Żeby wstępnie przesunąć bloki macierzy \(A\) zauważmy, że \(i\)-ty wiersz węzłów sieci powinien przesłać macierze \(A_{ij}\) w lewo o \(i-1\) pozycji\footnote{Numerację elementów zaczynamy od 1.}. Podobnie, \(j\)-tą kolumnę węzłów przesuwamy w górę o \(j-1\) pozycji. Powyższe rozważania prowadzą do sformułowania algorytmu \ref{alg:cannon_algorithm}.
 
 
-
 \alglanguage{pseudocode}
 \begin{algorithm}
 \centering

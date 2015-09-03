@@ -80,11 +80,10 @@ Z powyższych konstatacji nasuwa się łatwy algorytm rekurencyjny.
 \If{\(n=1\)}
 \State \(C_11\gets A_{11}B_{11}\)
 \Else
-\State \Call{chuj}{wuj}
-% \State \(C_{11}\) = \Call{multiply}{\(A_{11}B_{11}\)} + \Call{multiply}{\(A_{12}B_{21}\)}
-% \State \(C_{12}\) = \Call{multiply}{\(A_{11}B_{12}\)} + \Call{multiply}{\(A_{12}B_{22}\)}
-% \State \(C_{21}\) = \Call{multiply}{\(A_{21}B_{11}\)} + \Call{multiply}{\(A_{22}B_{21}\)}
-% \State \(C_{22}\) = \Call{multiply}{\(A_{21}B_{12}\)} + \Call{multiply}{\(A_{22}B_{22}\)}
+\State \(C_{11}\) = \Call{multiply}{$A_{11}B_{11}$} $+$ \Call{multiply}{$A_{12}B_{21}$}
+\State \(C_{12}\) = \Call{multiply}{$A_{11}B_{12}$} $+$ \Call{multiply}{$A_{12}B_{22}$}
+\State \(C_{21}\) = \Call{multiply}{$A_{21}B_{11}$} $+$ \Call{multiply}{$A_{22}B_{21}$}
+\State \(C_{22}\) = \Call{multiply}{$A_{21}B_{12}$} $+$ \Call{multiply}{$A_{22}B_{22}$}
 \EndIf
 \State \Return \(C\)
 \EndFunction
