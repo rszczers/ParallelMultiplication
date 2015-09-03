@@ -179,8 +179,53 @@ Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\i
 D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
 \end{align*}
 
+Zanim przejdziemy do przypadku ogólnego, pokażemy algorytm dla przypadku \(p_1 = 3\). Rozważmy sieć w topologii dwuwymiarowego torusa \(3\times 3\) (rys. \ref{fig:cannon_torsus1}).
 
-Poniżej pokażemy jak przebiega algorytm dla przypadku \(p_1 = 3\).
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+\hline
+\(P_{11}\) & \(P_{12}\) & \(P_{13}\) \\
+\hline
+\(P_{21}\) & \(P_{22}\) & \(P_{23}\) \\
+\hline
+\(P_{31}\) & \(P_{32}\) & \(P_{33}\) \\
+\hline
+\end{tabular}
+\caption{Węzły w dwuwymiarowym torusie \(3\times 3\)}
+\label{fig:cannon_torus1}
+\end{figure}
+
+\noindent Na potrzeby przykładu weźmy pod uwagę wyłącznie węzeł \(P_{11}\). Wykonuje on obliczenie
+
+\begin{align}\label{eq:cannon_torus1}
+D_{11}=C_{11}+A_{11}B_{11} + A_{12}B_{21} + A_{13}B_{31}.
+\end{align}
+
+\noindent Załóżmy, że rozmieściliśmy sześć podmacierzy \(A\) i \(B\) tak jak na rysunku \ref{fig:cannon_torus2}.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(-\) & \(A_{13}\) & \(-\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\end{tabular}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) koniecznych do wykonania algorytmu tylko na węźle \(P_{11}\). Miejsca oznaczone znakiem ,,\(-\)'' w ogólności są przeznaczone dla pozostałych danych. Rozmieszczenie danych w sieci odpowiada rysunkowi 
+\ref{fig:cannon_torus1}}
+\label{fig:cannon_torus2}
+\end{figure}
+
+\noindent Algorytm polega na przesuwaniu wierszy powstałych z bloków macierzy zapisanych w węzłach sieci. W każdym kroku na wybranym dla przykładu węźle \(P_{11}\) wykonujemy lokalne obliczenia prowadzące do otrzymania wartości wyrażenia \eqref{eq:cannon_torus1}. Kolejne kroki algorytmu przedstawione są na rysunku \ref{fig:cannon_torus3}.
+
+
+
+
 
 \begin{figure}[h]
 \centering
