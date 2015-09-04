@@ -32,23 +32,32 @@ f = \frac{1/S_{p}(n) - 1/p}{1 - 1/p}
 \end{align}
 \end{definicja}
 
-\begin{przyklad}
-Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy następujące przyspieszenia i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f:
+\begin{przyklad}\label{ex:karp1}
+Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy pewne przyspieszenia w zależności od ilości procesów i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f. Dane zebrane są w tablicy \ref{tab:karp_flat1}.
+
+\begin{table}[H]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
 \(p\) & \(2\) & \(3\) & \(4\) & \(5\) & \(6\) & \(7\) & \(8\) \\
-
 \hline
 \(S_p(n)\) & \(1,82\) & \(2,50\) & \(3,08\) & \(3,57\) & \(4,00\) & \(4,38\) & \(4,71\) \\
 \hline
 \(f\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) \\
 \hline
 \end{tabular}
+\caption{Dane dla przykładu \ref{ex:karp1}.}
+\label{tab:karp_flat1}
+\end{table}
+
 Ponieważ eksperymentalnie wyznaczona część sekwencyjna algorytmu nie rośnie wraz z ilością procesorów, możemy wnioskować, że zbyt duża część obliczeń jest inherentnie sekwencyjna.
 \end{przyklad}
 
-\begin{przyklad}
-Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy następujące przyspieszenia i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f:
+\begin{przyklad}\label{ex:karp2}
+Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy pewne przyspieszenia w zależności od ilości procesów i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f. Dane zebrane są w tablicy \ref{tab:karp_flat2}.
+
+\begin{table}[H]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
 \(p\) & \(2\) & \(3\) & \(4\) & \(5\) & \(6\) & \(7\) & \(8\) \\
@@ -58,5 +67,8 @@ Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach
 \(f\) & \(0,070\) & \(0,075\) & \(0,080\) & \(0,085\) & \(0,090\) & \(0,095\) & \(0,10\) \\
 \hline
 \end{tabular}
+\caption{Dane dla przykładu \ref{ex:karp2}.}
+\label{tab:karp_flat2}
+\end{table}
 Ponieważ eksperymentalnie wyznaczona część sekwencyjna algorytmu rośnie wraz z ilością procesorów, możemy wnioskować, że przyczyną niskiego przyspieszenia jest organizacja obliczeń równoległych, tj. czas poświęcony uruchomieniu procesów, komunikacji między nimi, synchronizacji lub ograniczenia samej architektury.
 \end{przyklad}
