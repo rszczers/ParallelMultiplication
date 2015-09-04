@@ -1,0 +1,779 @@
+Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\in\mathbb{R}^{n\times n}\) w dwuwymiarowym torusie o rozmiarach \(p_1 \times p_1\) oraz, że \(n=rp_1\). Macierze \(A=(A_{ij})\), \(B=(B_{ij})\), \(C=(C_{ij})\) możemy rozpatrywać jako macierze blokowe, gdzie \(A_{ij}\), \(B_{ij}\), \(C_{ij}\) są macierzami \(r\times r\). Przyjmijmy, że węzeł \(P_{ij}\) zawiera blok \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\) oraz, że jego zadanie polega na nadpisywaniu macierzy \(C_{ij}\) poprzez
+\begin{align}\label{eq:cannon_per_node}
+D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
+\end{align}
+
+Zanim przejdziemy do przypadku ogólnego, pokażemy algorytm dla przypadku \(p_1 = 3\). Rozważmy sieć w topologii dwuwymiarowego torusa \(3\times 3\) (rys. \ref{fig:cannon_torus1}).
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+\hline
+\(P_{11}\) & \(P_{12}\) & \(P_{13}\) \\
+\hline
+\(P_{21}\) & \(P_{22}\) & \(P_{23}\) \\
+\hline
+\(P_{31}\) & \(P_{32}\) & \(P_{33}\) \\
+\hline
+\end{tabular}
+\caption{Węzły w dwuwymiarowym torusie \(3\times 3\)}
+\label{fig:cannon_torus1}
+\end{figure}
+
+\noindent Weźmy pod uwagę wyłącznie aktywność na węźle \(P_{11}\). Wykonuje on obliczenie
+
+\begin{align}\label{eq:cannon_torus1}
+D_{11}=C_{11}+A_{11}B_{11} + A_{12}B_{21} + A_{13}B_{31}.
+\end{align}
+
+\noindent Załóżmy, że rozmieściliśmy sześć podmacierzy \(A\) i \(B\) tak jak na rysunku \ref{fig:cannon_torus2}.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(-\) & \(A_{13}\) & \(-\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\end{tabular}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) koniecznych do wykonania algorytmu tylko na węźle \(P_{11}\). Miejsca oznaczone znakiem ,,\(-\)'' w ogólności są przeznaczone dla pozostałych danych. Rozmieszczenie danych w sieci odpowiada rysunkowi 
+\ref{fig:cannon_torus1}}
+\label{fig:cannon_torus2}
+\end{figure}
+
+\noindent Algorytm polega na przesuwaniu wierszy powstałych z bloków macierzy zapisanych w węzłach sieci. W każdym kroku na wybranym dla przykładu węźle \(P_{11}\) wykonujemy lokalne obliczenia prowadzące do otrzymania wartości wyrażenia \eqref{eq:cannon_torus1}. Kolejne kroki algorytmu przedstawione są na rysunku \ref{fig:cannon_torus3}.
+
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{12}\) & \(B_{21}\) & \(A_{13}\) & \(-\) & \(A_{11}\) & \(-\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\(-\) & \(B_{11}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(C_{loc}=C_{loc}+A_{12}B_{21}\)
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{13}\) & \(B_{31}\) & \(A_{11}\) & \(-\) & \(A_{12}\) & \(-\) \\
+\hline
+\(-\) & \(B_{11}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(C_{loc}=C_{loc}+A_{13}B_{31}\)
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(-\) & \(A_{13}\) & \(-\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(-\) & \(-\) & \(-\) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(C_{loc}=C_{loc}+A_{11}B_{11}\)
+\end{tabular}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona z uwzględnienem danych koniecznych do obliczeń tylko na węźle \(P_{11}\)}
+\label{fig:cannon_torus3}
+\end{figure}
+
+\noindent Po wykonaniu trzech kroków węzeł \(P_{11}\) ma w pamięci lokalnej macierz \(D_{11}\).
+
+Przepływ danych został zorganizowany w taki sposób, że bloki \(A_{ij}\) przesuwanę są w siatce z prawej na lewą, zaś bloki \(B_{ij}\) --- z dołu na górę. Widać, że węzeł \(P_{11}\) musi wykonywać algorytm \ref{alg:cannon_1}.
+
+\alglanguage{pseudocode}
+\begin{algorithm}[H]
+\centering
+\begin{algorithmic}[1]
+% \Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
+% \Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
+% \Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+% \item[]
+\For{\(i \gets 1, 3\)}
+\Send{\(A_{loc}\), lewo}
+\Send{\(B_{loc}\), góra}
+\Recv{\(A_{loc}\), prawo}
+\Recv{\(B_{loc}\), dół}
+\State \(C_{loc} = C_{loc} + A_{loc}B_{loc}\)
+\EndFor
+\end{algorithmic}
+\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\).}
+\label{alg:cannon_1}
+\end{algorithm}
+
+\noindent W przyjętym modelu obliczeń zadziała również algorytm \ref{alg:cannon_2}:
+
+\alglanguage{pseudocode}
+\begin{algorithm}[H]
+\centering
+\begin{algorithmic}[1]
+% \Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
+% \Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
+% \Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+% \item[]
+\For{\(i \gets 1, 3\)}
+\Send{\(A_{loc}\), lewo}
+\Recv{\(A_{loc}\), prawo}
+\Send{\(B_{loc}\), góra}
+\Recv{\(B_{loc}\), dół}
+\State \(C_{loc} = C_{loc} + A_{loc}B_{loc}\)
+\EndFor
+\end{algorithmic}
+\caption{Algorytm Cannona dla dwuwymiarowego torusa \(3\times 3\).}
+\label{alg:cannon_2}
+\end{algorithm}
+
+Wykonanie algorytm \ref{alg:cannon_2} trwa nieco dłużej ze względu zatrzymanie wykonania programu dopóki macierz \(A_{loc}\) nie zostanie wysłana\footnote{W interfejsie MPI obydwa algorytmy traktowane literalnie wywołują zazębienie (ang. \emph{deadlock}) ze względu na blokującą funkcję MPI\_Send; istnieje szereg metod nieblokujących pozwalających na implementację obydwu algorytmów.}.
+
+Rozważymy teraz aktywność węzłów \(P_{12}\), \(P_{13}\), \(P_{21}\), \(P_{31}\). W dotychczasowych roważaniach odpowiednio pomagały one jedynie w przesuwaniu bloków \(A_{11}\), \(A_{12}\), \(A_{13}\) oraz \(B_{11}\), \(B_{21}\) i \(A_{31}\). Gdyby \(B_{32}\), \(B_{12}\), \(B_{22}\) przechodziły przez węzeł \(P_{12}\) w trakcie wykonywania algorytmu, wówczas moglibyśmy na węźle \(P_{12}\) otrzymać wartość wyrażenia:
+\begin{align*}
+D_{12} = C_{12} + A_{13}B_{32} + A_{11}B_{12} + A_{12}B_{22}.
+\end{align*}
+
+\noindent Rozumując podobnie widzimy, że węzeł \(P_{13}\) mógłby obliczać wyrażenie:
+\begin{align*}
+D_{13} = C_{13} + A_{11}B_{13} + A_{12}B_{23} + A_{13}B_{33}.
+\end{align*}
+\noindent o ile \(B_{13}\), \(B_{23}\) i \(B_{33}\) znajdowałyby się na węźle odpowiednio dla kroków \(t=1, 2, 3\). Uwzględniając obliczenia na węzłach \(P_{12}\) i \(P_{13}\) możemy zainicjalizować sieć jak na rys. \ref{fig:cannon_torus_init}
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(B_{32}\) & \(-\) & \(B_{13}\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(B_{12}\) & \(-\) & \(B_{23}\) \\
+\hline
+\end{tabular}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) koniecznych do wykonania obliczeń na węzłach \(P_{11}\), \(P_{12}\) i \(P_{13}\).}
+\label{fig:cannon_torus_init}
+\end{figure}
+
+Zastosowanie odpowiednich przesunięć w algorytmie Cannona ilustruje rys. \ref{fig:cannon_torus4}.
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{12}\) & \(B_{21}\) & \(A_{13}\) & \(B_{32}\) & \(A_{11}\) & \(B_{13}\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(B_{12}\) & \(-\) & \(B_{23}\) \\
+\hline
+\(-\) & \(B_{11}\) & \(-\) & \(B_{22}\) & \(-\) & \(B_{33} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=1\)
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{13}\) & \(B_{31}\) & \(A_{11}\) & \(B_{12}\) & \(A_{12}\) & \(B_{23}\) \\
+\hline
+\(-\) & \(B_{11}\) & \(-\) & \(B_{22}\) & \(-\) & \(B_{33}\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(B_{32}\) & \(-\) & \(B_{13} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=2\)
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(-\) & \(B_{21}\) & \(-\) & \(B_{32}\) & \(-\) & \(B_{13}\) \\
+\hline
+\(-\) & \(B_{31}\) & \(-\) & \(B_{12}\) & \(-\) & \(B_{23} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=3\)
+\end{tabular}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona z uwzględnienem danych koniecznych do obliczeń na węzłach \(P_{11}\), \(P_{12}\) i \(P_{13}\).}
+\label{fig:cannon_torus4}
+\end{figure}
+
+\noindent Widać, że jeśli macierz \(B\) jest wstępnie rozmieszczona z zastosowaniem jednego przesunięcia, to po zakończeniu obliczeń w węzłąch \(P_{11}\), \(P_{12}\), \(P_{13}\) otrzymujemy pierwszy wiersz macierzy \(C\).
+
+Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy, że rozmieszczamy dane w sieci tak jak przedstawiono na rys. \ref{fig:cannon_init_2}.
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(A_{22}\) & \(B_{21}\) & \(A_{23}\) & \(B_{32}\) & \(A_{21}\) & \(B_{13}\) \\
+\hline
+\(A_{33}\) & \(B_{31}\) & \(A_{31}\) & \(B_{12}\) & \(A_{32}\) & \(B_{23} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}
+\end{tabular}
+\caption{Wstępne rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\) w dwuwymiarowym torusie \(3\times 3\).}
+\label{fig:cannon_init_2}
+\end{figure}
+
+\noindent Jeśli wstępnie przesuniemy drugi wiersz o jedną kolumnę w lewo i trzeci wiersz -- o dwie, wówczas możemy przeprowadzić odpowiednie dodawania i mnożenia występujące w wyrażeniu \eqref{eq:cannon_per_node} dla każdego węzła sieci w każdym kroku algorytmu. 
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{12}\) & \(B_{21}\) & \(A_{13}\) & \(B_{32}\) & \(A_{11}\) & \(B_{13}\) \\
+\hline
+\(A_{23}\) & \(B_{31}\) & \(A_{23}\) & \(B_{12}\) & \(A_{22}\) & \(B_{23}\) \\
+\hline
+\(A_{31}\) & \(B_{11}\) & \(A_{32}\) & \(B_{22}\) & \(A_{33}\) & \(B_{33} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=1\)
+\end{tabular}
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{13}\) & \(B_{31}\) & \(A_{11}\) & \(B_{12}\) & \(A_{12}\) & \(B_{23}\) \\
+\hline
+\(A_{21}\) & \(B_{11}\) & \(A_{22}\) & \(B_{22}\) & \(A_{23}\) & \(B_{33}\) \\
+\hline
+\(A_{32}\) & \(B_{21}\) & \(A_{33}\) & \(B_{32}\) & \(A_{31}\) & \(B_{13} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=2\)
+\end{tabular}
+\vspace{0.5cm}
+
+\begin{tabular}{lr}
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(A_{22}\) & \(B_{21}\) & \(A_{23}\) & \(B_{32}\) & \(A_{21}\) & \(B_{13}\) \\
+\hline
+\(A_{33}\) & \(B_{31}\) & \(A_{31}\) & \(B_{12}\) & \(A_{32}\) & \(B_{23} \) \\
+\hline
+\end{tabular} &
+\hspace{1cm}\(t=3\)
+\end{tabular}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona w dwuwymiarowym torusie \(3\times 3\).}
+\label{fig:cannon_last_one}
+\end{figure}
+
+Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Założymy, że węzły \(P_{ij}\) mają w pamięci lokalnej macierze \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\). Żeby wstępnie przesunąć bloki macierzy \(A\) zauważmy, że \(i\)-ty wiersz węzłów sieci powinien przesłać macierze \(A_{ij}\) w lewo o \(i-1\) pozycji\footnote{Numerację elementów zaczynamy od 1.}. Podobnie, \(j\)-tą kolumnę węzłów przesuwamy w górę o \(j-1\) pozycji. Powyższe rozważania prowadzą do sformułowania algorytmu \ref{alg:cannon_algorithm}.
+
+
+\alglanguage{pseudocode}
+\begin{algorithm}[h]
+\centering
+\begin{algorithmic}[1]
+%\Input{}
+\Tmp{
+\(p_1\),
+\((\mu, \lambda)\) (współrzędne węzła w sieci),
+\( \mathit{góra}\),
+\( \mathit{dół}\),
+\( \mathit{lewo}\),
+\(\mathit{prawo}\) (identyfikatory sąsiadujących węzłów),
+\( \mathit{wiersz} = 1 + (mu-1)r : \mu r\),
+\(\mathit{kolumna} = 1 + (\lambda -1)r:\lambda r\),
+\(B_{loc}=B(wiersz, kolumna)\),
+\(A_{loc}=A(wiersz, kolumna)\),
+\(C_{loc}=B(wiersz, kolumna)\)}
+% \Output{}
+\item[]
+\For{\(k \gets 1, \mu - 1\)} \Comment{Wstępne przesunięcie \(A_{\mu j}\) i \(B_{i \lambda}\).}
+	\Send{\(A_{loc}\), lewo}
+	\Recv{\(A_{loc}\), prawo}
+\EndFor
+\For{\(k \gets 1, \lambda - 1\)}
+	\Send{\(B_{loc}\), góra}
+	\Recv{\(B_{loc}\), dół}
+\EndFor
+\algstore{cannon}
+\end{algorithmic}
+\caption{Algorytm Cannona\cite{Golub} (cz. I)}
+%\label{alg:cannon_algorithm}
+\end{algorithm}
+
+%\alglanguage{pseudocode}
+\begin{algorithm}[h]
+\ContinuedFloat
+\centering
+\begin{algorithmic}[1]
+\algrestore{cannon}
+\For{\(k \gets 1, p_1\)} \Comment{Obliczanie iloczynu macierzy \(A_{loc}B_{loc}\)}
+	\State \(C_{loc}=C_{loc} + A_{loc}B_{loc}\)
+	\Send{\(A_{loc}\), lewo}
+	\Send{\(B_{loc}\), góra}
+	\Recv{\(A_{loc}\), prawo}
+	\Recv{\(B_{loc}\), dół}
+\EndFor
+\For{\(k \gets 1, \mu -1\)} \Comment{Doprowadzanie rozkładu podmacierzy}
+	\Send{\(A_{loc}\), prawo} \Comment{do stanu początkowego}
+	\Recv{\(A_{loc}\), lewo}
+\EndFor
+\For{\(k \gets 1, \lambda -1\)}
+	\Send{\(B_{loc}\), dół}
+	\Recv{\(B_{loc}\), góra}
+\EndFor
+\end{algorithmic}
+\caption{Algorytm Cannona\cite{Golub} (cz. II)}
+\label{alg:cannon_algorithm}
+\end{algorithm}
+
+Złożoność, przyspieszenie, koszt i efektywność algorytmu \ref{alg:cannon_algorithm} są następujące\cite{Czech}:
+\begin{align*}
+T_p(n)|_{p=n^2} = T(n) &= \mathcal{O}(n), \\
+S(n) &= \mathcal{O}(\frac{n^3}{n}) = \mathcal{O}(n^2), \\
+C(n) &= \mathcal{O}(n^2n)=\Theta(n^3), \\
+E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
+\end{align*}
+Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.
+
+Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
+
+\begin{przyklad}
+Obliczmy iloczyn dwóch macierzy metodą Cannona w torusie \(3\times 3\) procesorów. Niech:
+\begin{align*}
+A=
+\begin{pmatrix}
+        8 & 5 & 6 & 1 & 2 & 3 \\
+        3 & 3 & 1 & 5 & 3 & 9 \\ 
+        9 & 2 & 9 & 0 & 4 & 9 \\ 
+        2 & 0 & 8 & 8 & 3 & 4 \\ 
+        6 & 7 & 6 & 7 & 5 & 0 \\ 
+        2 & 5 & 7 & 8 & 7 & 1 \\
+\end{pmatrix} & \quad 
+B=
+\begin{pmatrix}
+        5 & 9 & 2 & 6 & 8 & 8 \\
+        1 & 6 & 0 & 1 & 6 & 7 \\ 
+        2 & 2 & 4 & 9 & 6 & 1 \\ 
+        6 & 8 & 5 & 4 & 4 & 5 \\ 
+        7 & 2 & 3 & 1 & 0 & 9 \\ 
+        1 & 8 & 0 & 6 & 6 & 8 \\
+\end{pmatrix}.\\
+\end{align*}
+
+Wówczas mamy:
+
+
+
+
+
+
+
+\begin{figure}[H]
+\scriptsize
+\centering
+\begin{tabular}{l}
+\normalsize{\(t=1\)} \\
+\begin{tabular}{|lll|lll|lll|}
+\hline
+\(\begin{pmatrix}
+        5 & 9 \\
+        1 & 6 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        8 & 5 \\
+        3 & 3 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        67 & 52 \\
+        26 & 23 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 6 \\
+        0 & 1 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 0 \\
+        8 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        66 & 48 \\
+        8 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        8 & 8 \\
+        6 & 7 \\    
+\end{pmatrix}\) &
+ \(\begin{pmatrix}
+        5 & 0 \\
+        7 & 1 \\    
+\end{pmatrix}\) & 
+\(\begin{pmatrix}
+        96 & 8 \\
+        79 & 7 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        4 & 9 \\
+        5 & 4 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 2 \\
+        2 & 0 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        54 & 8 \\
+        53 & 10 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 1 \\
+        4 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 9 \\
+        7 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        43 & 50 \\
+        59 & 68 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 2 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 3 \\
+        3 & 9 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        10 & 24 \\
+        36 & 90 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        0 & 9 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 7 \\
+        2 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        18 & 45 \\
+        52 & 82 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        7 & 2 \\
+        1 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 1 \\
+        1 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        44 & 17 \\
+        14 & 41 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        3 & 1 \\
+        0 & 6 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        4 & 9 \\
+        3 & 4 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        15 & 31 \\
+        18 & 24 \\    
+\end{pmatrix}\) \\
+\hline
+\end{tabular} 
+\end{tabular}
+\vspace{0.5cm}
+
+
+
+
+
+
+
+
+
+\begin{tabular}{l}
+\normalsize{\(t=2\)} \\
+\begin{tabular}{|lll|lll|lll|}
+\hline
+\(\begin{pmatrix}
+        2 & 6 \\
+        0 & 1 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 2 \\
+        2 & 0 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        97 & 56 \\
+        28 & 23 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        8 & 8 \\
+        6 & 7 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 7 \\
+        7 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        170 & 168 \\
+        93 & 106 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        5 & 9 \\
+        1 & 6 \\    
+\end{pmatrix}\) &
+ \(\begin{pmatrix}
+        2 & 3 \\
+        3 & 9 \\    
+\end{pmatrix}\) & 
+\(\begin{pmatrix}
+        133 & 104 \\
+        99 & 64 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        6 & 1 \\
+        4 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 7 \\
+        2 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        92 & 55 \\
+        87 & 63 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 2 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 1 \\
+        1 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        57 & 62 \\
+        103 & 114 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        4 & 9 \\
+        5 & 4 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        4 & 9 \\
+        3 & 4 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        53 & 96 \\
+        68 & 151 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        7 & 2 \\
+        1 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        8 & 5 \\
+        3 & 3 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        80 & 86 \\
+        84 & 111 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        3 & 1 \\
+        0 & 6 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 0 \\
+        8 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        79 & 25 \\
+        62 & 89 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        0 & 9 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        5 & 0 \\
+        7 & 1 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        78 & 40 \\
+        104 & 32 \\    
+\end{pmatrix}\) \\
+\hline
+\end{tabular} 
+\end{tabular}
+\vspace{0.5cm}
+
+
+
+
+
+
+
+
+\begin{tabular}{l}
+\normalsize{\(t=3\)} \\
+\begin{tabular}{|lll|lll|lll|}
+\hline
+\(\begin{pmatrix}
+        8 & 8 \\
+        6 & 7 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 7 \\
+        2 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+       161 & 152 \\
+        78 & 100 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        5 & 9 \\
+        1 & 6 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 1 \\
+        1 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        209 & 218 \\
+        105 & 137 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 6 \\
+        0 & 1 \\    
+\end{pmatrix}\) &
+ \(\begin{pmatrix}
+        4 & 9 \\
+        3 & 4 \\    
+\end{pmatrix}\) & 
+\(\begin{pmatrix}
+        159 & 146 \\
+        102 & 68 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        2 & 2 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        8 & 5 \\
+        3 & 3 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        114 & 71 \\
+        159 & 117 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        4 & 9 \\
+        5 & 4 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 0 \\
+        8 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        165 & 134 \\
+        180 & 146 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 1 \\
+        4 & 5 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        5 & 0 \\
+        7 & 1 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        90 & 97 \\
+        123 & 156 \\    
+\end{pmatrix}\) \\
+\hline
+\(\begin{pmatrix}
+        3 & 1 \\
+        0 & 6 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        9 & 2 \\
+        2 & 0 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        109 & 92 \\
+        96 & 111 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        0 & 9 \\
+        6 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        6 & 7 \\
+        7 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        142 & 97 \\
+        154 & 195 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        7 & 2 \\
+        1 & 8 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        2 & 3 \\
+        3 & 9 \\    
+\end{pmatrix}\) &
+\(\begin{pmatrix}
+        98 & 79 \\
+        130 & 107 \\    
+\end{pmatrix}\) \\
+\hline
+\end{tabular} 
+\end{tabular}
+\vspace{0.5cm}
+
+
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona w dwuwymiarowym torusie \(3\times 3\).}
+\label{fig:cannon_last_one}
+\end{figure}
+
+
+
+
+\end{przyklad}
