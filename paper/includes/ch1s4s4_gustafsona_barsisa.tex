@@ -14,3 +14,11 @@ Dla danego algorytmu \(R\) rozwiązującego problem \(P\) ustalonego rozmiaru \(
 \begin{uwaga}
 Prawo Gustafsona i Barsisa określa tzw. \textbf{skalowane przyspieszenie}, ponieważ wraz ze zmianą liczby procesorów skaluje się odpowiednio rozmiar problemu, tak aby utrzymać stały czas obliczeń równoległych (z założenia \(\sigma + \rho = 1\)\cite{Czech}.
 \end{uwaga}
+
+\begin{przyklad}
+Powiedzmy, że pewien program wykonany na 64 procesorach wykonuje się w czasie 220 sekund. Testy pokazują, że 5\% czasu wykonania przeznaczone jest na obliczenia sekwencyjne. Skalowane przyspieszenie tego programu wynosi:
+
+\begin{align*}
+\Psi_{64}(n) \leq 64 + (1-64)(0.05) = 64 - 3,15 = 60,85.
+\end{align*}
+\end{przyklad}

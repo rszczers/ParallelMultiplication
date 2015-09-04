@@ -26,8 +26,37 @@ f=\frac{\frac{1}{S_{p}(n)}-\frac{1}{p}}{1-\frac{1}{p}}
 Wyrażenie \eqref{eq:karp_flatt_3} nazywamy \textbf{miarą Karpa-Flatta}.
 
 \begin{definicja}[Miara Karpa-Flatta]
-Dla danego algorytmu równoległego \(R\) rozwiązującego problem \(P\) o rozmiarze \(n\) przy pomocy \(p>1\) procesorów, doświadczalnie wyznaczona część sekwencyjna obliczeń \(f\) można wyraża się przez
+Dla danego algorytmu równoległego \(R\) rozwiązującego problem \(P\) o rozmiarze \(n\) przy pomocy \(p>1\) procesorów, doświadczalnie wyznaczona część sekwencyjna obliczeń \(f\) wyraża się przez
 \begin{align}
 f = \frac{1/S_{p}(n) - 1/p}{1 - 1/p}
 \end{align}
 \end{definicja}
+
+\begin{przyklad}
+Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy następujące przyspieszenia i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f:
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\(p\) & \(2\) & \(3\) & \(4\) & \(5\) & \(6\) & \(7\) & \(8\) \\
+
+\hline
+\(S_p(n)\) & \(1,82\) & \(2,50\) & \(3,08\) & \(3,57\) & \(4,00\) & \(4,38\) & \(4,71\) \\
+\hline
+\(f\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) & \(0,10\) \\
+\hline
+\end{tabular}
+Ponieważ eksperymentalnie wyznaczona część sekwencyjna algorytmu nie rośnie wraz z ilością procesorów, możemy wnioskować, że zbyt duża część obliczeń jest inherentnie sekwencyjna.
+\end{przyklad}
+
+\begin{przyklad}
+Powiedzmy, że testując algorytm równoległy na \(1, 2, \dots, 8\) procesorach otrzymaliśmy następujące przyspieszenia i z wyrażenia \ref{eq:karp_flatt_3} obliczyliśmy eksperymentalnie wyznaczoną część sekwencyjną f:
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\(p\) & \(2\) & \(3\) & \(4\) & \(5\) & \(6\) & \(7\) & \(8\) \\
+\hline
+\(S_p(n)\) & \(1,87\) & \(2,61\) & \(3,23\) & \(3,73\) & \(4,14\) & \(4,46\) & \(4,71\) \\
+\hline
+\(f\) & \(0,070\) & \(0,075\) & \(0,080\) & \(0,085\) & \(0,090\) & \(0,095\) & \(0,10\) \\
+\hline
+\end{tabular}
+Ponieważ eksperymentalnie wyznaczona część sekwencyjna algorytmu rośnie wraz z ilością procesorów, możemy wnioskować, że przyczyną niskiego przyspieszenia jest organizacja obliczeń równoległych, tj. czas poświęcony uruchomieniu procesów, komunikacji między nimi, synchronizacji lub ograniczenia samej architektury.
+\end{przyklad}

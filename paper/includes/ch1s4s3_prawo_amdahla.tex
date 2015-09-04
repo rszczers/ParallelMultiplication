@@ -56,11 +56,10 @@ Przypuśćmy, że 25\% operacji w algorytmie równoległym musi być wykonanych
 \end{align*}
 \end{przyklad}
 
-\begin{przyklad}
-Powiedzmy, że zaimplementowaliśmy równoległą wersję pewnego algorytmu sekwencyjnego o złożoności czasowej \(\Theta(n^2)\), gdzie \(n\) to rozmiar danych.
-Sekwencyjna część programu potrzebuje do samego załadowania danych oraz wyświetlenia wyniku obliczeń czasu \((18000+n) \; \mu s\). Część obliczeniowa jest równoległa i potrzebuje czasu \((n^2/100)\;\mu s\). Dla danych o rozmiarze \(10\,000\) stosując prawo Amdahla możemy ocenić maksymalne przyspieszenie jakie uzyskamy rozwiązując problem równolegle:
-\begin{align*}
-S_{p}(n) \leq \frac{(28\,000 + 1\,000\,000) \mu s}{(28\,000 + 1\,000\,000/p) \mu s}
-\end{align*}
-
-\end{przyklad}
+% \begin{przyklad}
+% Powiedzmy, że zaimplementowaliśmy równoległą wersję pewnego algorytmu sekwencyjnego o złożoności czasowej \(\Theta(n^2)\), gdzie \(n\) to rozmiar danych.
+% Sekwencyjna część programu potrzebuje do samego załadowania danych oraz wyświetlenia wyniku obliczeń czasu \((18000+n) \; \mu s\). Część obliczeniowa jest równoległa i potrzebuje czasu \((n^2/100)\;\mu s\). Dla danych o rozmiarze \(10\,000\) stosując prawo Amdahla możemy ocenić maksymalne przyspieszenie jakie uzyskamy rozwiązując problem równolegle:
+% \begin{align*}
+% S_{p}(n) \leq \frac{(28\,000 + 1\,000\,000) \mu s}{(28\,000 + 1\,000\,000/p) \mu s}
+% \end{align*}
+% \end{przyklad}
