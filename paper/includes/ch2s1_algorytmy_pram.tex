@@ -47,32 +47,45 @@
 Rozważmy problem obliczenia iloczynu \(\mathbf{C}\) dwóch macierzy \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\), gdzie \(n=2^r\), dla pewnego \(r\in\mathbb{Z},\, r>0\). Załóżmy, że dysponujemy \(n^3\) procesorami \(P_{i,j,l}\), \(1\leq i, j, l \leq n\) maszyny CREW PRAM. 
 
 \alglanguage{pseudocode}
-\begin{algorithm}
+\begin{algorithm}[h]
 \centering
 \begin{algorithmic}[1]
-\Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
-\Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
-\Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+\Input{Macierze \(A\) i \(B\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\).}
+\Tmp{Macierz \(T\) wymiaru \(n\times n\times n\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
+\Output{Iloczyn macierzy \(C=AB\) w pamięci współdzielonej.}
 % \item[]
 \ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j, \, k \leq n\)}
-\State \(t[i,j,k] \gets a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
+\State \(T_{i,j,k} \gets A_{i,k}B_{k,j}\)\Comment{Obliczanie składowych iloczynów skalarnych}
 \EndParFor
 \For{\(l \gets 1, \log{n}\)} \Comment{Sumowanie składowych iloczynów skalarnych}
 	\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, 1 \leq k \leq n/2^l \)}
-	\State \(t[i,j,k] \gets T[i,j,2*k-1]+t[i,j,2*k]\)
-\EndParFor
-\EndFor
-
-\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, k = 1 \)}
-\State \(c[i,j] := t[i,j,1] \)
-\EndParFor
+\algstore{pramn3}
 \end{algorithmic}
-\caption{Algorytm mnożenia macierzy dla \(n^3\) procesorów.\cite{Czech}}
+\caption{Algorytm mnożenia macierzy dla \(n^3\) procesorów.\cite{Czech} (cz. I)}
 \label{alg:pram_multiply_1}
 \end{algorithm}
 
+\begin{algorithm}[h]
+\ContinuedFloat
+\centering
+\begin{algorithmic}[1]
+\algrestore{pramn3}
+	\State \(T_{i,j,k} \gets T_{i,j,2k-1}+T_{i,j,2k}\)
+\EndParFor
+\EndFor
+\ParFor{\(P_{i,j,k}, \: 1 \leq i, \, j \leq n, \, k = 1 \)}
+\State \(C_{i,j} \gets T_{i,j,1} \)
+\EndParFor
+\end{algorithmic}
+\caption{Algorytm mnożenia macierzy dla \(n^3\) procesorów.\cite{Czech} (cz. II)}
+\label{alg:pram_multiply_1}
+\end{algorithm}
 
-Obliczenia w wierszach 2-4 i 10-12 wykonywane są w czasie \(\mathcal{O}(1)\), a sumowanie skłądowych iloczynów skalarnych w wierszach 5-9 – w czasie \(\mathcal{O}(\log{n})\). łożoność, przyspieszenie, koszt i efektywność algorytmu są następujące\cite{Czech}:
+\begin{uwaga}
+Algorytm \ref{alg:pram_multiply_1} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (3) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (3) wszystkie wymagają dostępu do elementu \(A_{il}\).
+\end{uwaga}
+
+Obliczenia w wierszach (2-4) i (10-12) wykonywane są w czasie \(\mathcal{O}(1)\), a sumowanie składowych iloczynów skalarnych w wierszach (5-9) -- w czasie \(\mathcal{O}(\log{n})\). Złożoność, przyspieszenie, koszt i efektywność algorytmu są następujące\cite{Czech}:
 
 \begin{align*}
 T_p(n)|_{p=n^3} = T(n) &= \mathcal{O}(\log{n}), \\
@@ -81,20 +94,32 @@ C(n) &= \mathcal{O}(n^3 \log{n}), \\
 E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
 \end{align*}
 
-\noindent Zgodnie z def. \ref{def:cost-optimal} algorytm \emph{nie} jest optymalny względem kosztu.
+\noindent Zgodnie z def. \ref{def:cost-optimal} algorytm \emph{nie} jest optymalny względem kosztu. Zaprezentujemy poniżej algorytm \ref{alg:pram_multiply_2} będący modyfikacją powyższego algorytmu wykonaną na \(n\) procesorach. Jak pokażemy poźniej, jego koszt jest optymalny.
+
 
 \alglanguage{pseudocode}
-\begin{algorithm}
+\begin{algorithm}[H]
 \centering
 \begin{algorithmic}[1]
-\Input{macierze \(a[1\dots n, 1\dots n]\) i \(b[1\dots n, 1 \dots n]\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\)}
-\Tmp{macierz \(t[1\dots n, 1\dots, n, 1\dots, n]\) umieszczona w pamięci wspólnej; zmienna lokalna \(l\)}
-\Output{iloczyn macierzy \(c=ab\) w pamięci współdzielonej}
+\Input{Macierze \(A\) i \(B\) umieszczone w pamięci wspólnej modelu CREW PRAM o \(n^3\) procesorach; zmienne lokalne służące do przechowywania rozmiaru \(n\), gdzie (\(n=2^r\) dla pewnego \(0<r\in \mathbb{Z}\)); numer procesora w postaci zmiennych \(i\), \(j\) oraz \(k\).}
+\Tmp{Macierz \(T\) wymiaru \(n\times n\times n\); zmienna lokalna \(l\).}
+\Output{Iloczyn macierzy \(C=AB\) w pamięci współdzielonej.}
 % \item[]
 \ParFor{\(P_{i}, 1\leq i \leq n\)}
 	\For{\(j\gets 1, n\)}
 		\For{\(k\gets 1, n\)}
-			\State \(t[i,j,k] \gets a[i,k]*b[k,j]\)\Comment{Obliczanie składowych iloczynów skalarnych}
+		\algstore{pramn}
+\end{algorithmic}
+\caption{Algorytm mnożenia macierzy dla \(n\) procesorów.\cite{Czech} (cz. I)}
+\label{alg:pram_multiply_2}
+\end{algorithm}
+
+\alglanguage{pseudocode}
+\begin{algorithm}[H]
+\centering
+\begin{algorithmic}[1]		
+\algrestore{pramn}
+			\State \(T_{i,j,k} \gets A_{i,k}B_{k,j}\)\Comment{Obliczanie składowych iloczynów skalarnych}
 		\EndFor
 	\EndFor
 \EndParFor
@@ -102,7 +127,7 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
 	\ParFor{\(P_{i}, 1\leq i \leq n\)}
 		\For{\(j\gets 1, n\)}
 			\For{\(k\gets 1, n/2^l\)}
-				\State \(t[i,j,k] \gets T[i,j,2*k-1]+t[i,j,2*k]\)
+				\State \(T_{i,j,k} \gets T_{i,j,2k-1}+T_{i,j,2k}\)
 			\EndFor
 		\EndFor
 	\EndParFor
@@ -110,16 +135,22 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
 
 \ParFor{\(P_{i}, 1\leq i \leq n\)}
 	\For{\(j\gets 1, n\)}
-		\State \(c[i,j] := t[i,j,1] \)
+		\State \(C_{i,j} \gets T_{i,j,1} \)
 	\EndFor
 \EndParFor
 \end{algorithmic}
-\caption{Algorytm mnożenia macierzy dla \(n\) procesorów.\cite{Czech}}
+\caption{Algorytm mnożenia macierzy dla \(n\) procesorów.\cite{Czech} (cz. II)}
 \label{alg:pram_multiply_2}
 \end{algorithm}
 
 
-% W algorytmie \ref{alg:pram_multiply_1} między \(n^3\) węzłów zostało rozdzielone 
+W algorytmie \ref{alg:pram_multiply_2} między \(n\) procesorów zostało rozdzielone \(n^3\) iloczynów \(A_{ik}B_{kj}\) tak, że w wierszach (2-8) procesor \(P_i\) oblicza elementy składowe iloczynów skalarnych \(i-tego\) wiersza macierzy \(A\) oraz wszystkich kolumn macierzy \(B\).
+
+Najpierw każdy procesor \(P_i,\:(1\leq i \leq n)\) pobiera \(n\) elementów \(i\)-tego wiersza macierzy \(A\) oraz \(n^2\) elementów macierzy \(B\) i zapisuje do pamięci wspólnej \(n^2\) iloczynów \(t[i,j,k]\). Instrukcja w wierszu \(12\) wykonuje się na każdym procesorze \(n^2/2^l\) razy, gdzie \(l\) przebiega od \(1\) do \(\log{n}\). Łącznie daje to \(2n^2(1-\frac{1}{2r}\) wykonań wiersza \(12\) na procesor, przy czym każde wykonanie wymaga dwukrotnego odczytania danych z pamięci wspólnej, wykonania sumowania skalarów i zapisu wyniku. W wierszach (18-22) każdy z procesorów wykonuje \(n\) odczytów i zapisów do pamięci współdzielonej. Wynika stąd, że złożoność czasowa algorytmu \ref{alg:pram_multiply_2} to \(\mathcal{O}(n^2)\) i odpowiednio koszt algorytmu wynosi \(\mathcal{O}(n^3)\).
+
+ W myśl definicji \ref{def:communication_complexity} i na podstawie powyższych rozważań złożoność komunikacyjna będzie równa  \(n + n^2 + n^2 + 3(2n^2(1-\frac{1}{2r})) + 2n = \mathcal{O}(n^2)\).
+
+
 % \label{alg:crew_pram_multiplication}
 % \begin{algorithm}[H]
 % \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
@@ -135,10 +166,6 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3 \log{n}})=\mathcal{O}(\frac{1}{\log{n}}.
 % \end{enumerate}
 % \caption{Algorytm mnożenia macierzy w modelu PRAM\label{alg:pram_pseudokod}}
 % \end{algorithm}
-
-% \begin{uwaga}
-% Algorytm \ref{alg:crew_pram_multiplication} wymaga równoległego odczytu ponieważ w trakcie wykonania kroku (1) procesory \(P_{i,l,k}\) mogą równocześnie odczytywać te same dane. Przykładowo procesory \(P_{i,1,l},P_{i,2,l},\dots,P_{i,n,l}\) w trakcie wykonywania kroku (1) wszystkie wymagają dostępu do \(A(i,l)\).
-% \end{uwaga}
 
 % \subsection{Blokowa procedura \texttt{gaxpy}}
 % Załóżmy, że \(A, B, C \in \mathbb{R}^{n\times n}\), gdzie \(B\) jest macierzą górnie trójkątną oraz obliczenie wielokrotnie nadpisuje dane

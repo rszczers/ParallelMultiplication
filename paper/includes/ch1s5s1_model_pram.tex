@@ -1,5 +1,8 @@
 Model wspólnej pamięci składa się z pewnej liczby procesorów, z których każdy posiada własną pamięć i może lokalnie wykonywać programy. Wszystkie procesory mogą komunikować się za pomocą wspólnej globalnej pamięci (rys. \ref{fig:model_shared}).
 
+\begin{definicja}[Złożoność komunikacyjna\cite{Czech}]\label{def:communication_complexity}
+Maksymalny rozmiar danych przesłanych w trakcie wykonywania algorytmu PRAM między pamięcią wspólną, a pamięcią lokalną dowolnego procesora nazywamy \emph{złożonością komunikacyjną}.
+\end{definicja}
 
 Każdemu procesorowi przypożądkowana jest niepowtarzająca się liczba naturalna. Jest to lokalnie dostępny indeks, numer procesora lub jego identyfikator.
 
@@ -10,12 +13,14 @@ Każdemu procesorowi przypożądkowana jest niepowtarzająca się liczba natural
 \label{fig:model_shared}
 \end{figure}
 
+
 W modelu wspólnej pamięci wyróżniamy dwa podstawowe tryby operacji.
-\paragraph{Tryb synchroniczny.} Wszystkie procesory działają synchronicznie według wspólnego zegara. Model ten nazywamy równoległą maszyną o dostepie swobodnym (PRAM, parallel random-access machine).
+\begin{itemize}
+\item Tryb synchroniczny. Wszystkie procesory działają synchronicznie według wspólnego zegara. Model ten nazywamy równoległą maszyną o dostepie swobodnym (PRAM, parallel random-access machine).
 
 
-\paragraph{Tryb asynchroniczny.} Każdy procesor pracuje według osobnego zegara. W tym trybie programista jest odpowiedzialny za odpowiednią synchronizację procesorów, jeśli zachodzi taka potrzeba. Dokładniej mówiąc, jeśli procesor ma pobrać dane, to odpowiedzialnością programisty jest upewnienie się, że odpowiednie dane są już uzyskane, ponieważ wartości wspólnych zmiennych są określane dynamicznie w trakcie wykonania programu na różnych procesorach.
-
+\item Tryb asynchroniczny. Każdy procesor pracuje według osobnego zegara. W tym trybie programista jest odpowiedzialny za odpowiednią synchronizację procesorów, jeśli zachodzi taka potrzeba. Dokładniej mówiąc, jeśli procesor ma pobrać dane, to odpowiedzialnością programisty jest upewnienie się, że odpowiednie dane są już uzyskane, ponieważ wartości wspólnych zmiennych są określane dynamicznie w trakcie wykonania programu na różnych procesorach.
+\end{itemize}
 
 Ponieważ każdy procesor może uruchomić swój program lokalnie, ten model jest typu MIMD w klasyfikacji Flynna. Znaczy to tyle, że każdy procesor może wykonać pewną instrukcję lub operację na danych niezależnie od tych wykonanych na jakimkolwiek innym procesorze w trakcie danej jednostki czasu.
 

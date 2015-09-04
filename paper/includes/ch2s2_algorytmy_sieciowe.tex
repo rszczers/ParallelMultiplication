@@ -173,7 +173,7 @@
 % \subsection{Równoległy algorytm Strassena CAPS}
 % \cite{DBLP:journals/corr/abs-1202-3173}
 
-\subsection{Algorytm Cannona w dwuwymiarowym torusie}
+\subsection{Algorytm Cannona}
 Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\in\mathbb{R}^{n\times n}\) w dwuwymiarowym torusie o rozmiarach \(p_1 \times p_1\) oraz, że \(n=rp_1\). Macierze \(A=(A_{ij})\), \(B=(B_{ij})\), \(C=(C_{ij})\) możemy rozpatrywać jako macierze blokowe, gdzie \(A_{ij}\), \(B_{ij}\), \(C_{ij}\) są macierzami \(r\times r\). Przyjmijmy, że węzeł \(P_{ij}\) zawiera blok \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\) oraz, że jego zadanie polega na nadpisywaniu macierzy \(C_{ij}\) poprzez
 \begin{align}\label{eq:cannon_per_node}
 D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
@@ -495,7 +495,7 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 	\Send{\(B_{loc}\), góra}
 	\Recv{\(B_{loc}\), dół}
 \EndFor
-\algstore{myacan}
+\algstore{cannon}
 \end{algorithmic}
 \caption{Algorytm Cannona\cite{Golub} (częśc pierwsza)}
 %\label{alg:cannon_algorithm}
@@ -506,7 +506,7 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 \ContinuedFloat
 \centering
 \begin{algorithmic}[1]
-\algrestore{myacan}
+\algrestore{cannon}
 \For{\(k \gets 1, p_1\)} \Comment{Obliczanie iloczynu macierzy \(A_{loc}B_{loc}\)}
 	\State \(C_{loc}=C_{loc} + A_{loc}B_{loc}\)
 	\Send{\(A_{loc}\), lewo}
@@ -536,4 +536,4 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
 \end{align*}
 Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.
 
-Operacje 16-23 algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
+Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
