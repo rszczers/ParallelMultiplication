@@ -1,3 +1,4 @@
+\subsubsection{Wprowadzenie}
 Powiedzmy, że chcemy przeprowadzić obliczenie \(D = C + AB\) gdzie \(A, B, C\in\mathbb{R}^{n\times n}\) w dwuwymiarowym torusie o rozmiarach \(p_1 \times p_1\) oraz, że \(n=rp_1\). Macierze \(A=(A_{ij})\), \(B=(B_{ij})\), \(C=(C_{ij})\) możemy rozpatrywać jako macierze blokowe, gdzie \(A_{ij}\), \(B_{ij}\), \(C_{ij}\) są macierzami \(r\times r\). Przyjmijmy, że węzeł \(P_{ij}\) zawiera blok \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\) oraz, że jego zadanie polega na nadpisywaniu macierzy \(C_{ij}\) poprzez
 \begin{align}\label{eq:cannon_per_node}
 D_{ij}=C_{ij} + \sum_{k=1}^{p_1} A_{ik}B_{kj}.
@@ -289,11 +290,14 @@ Rozważmy teraz aktywność na wszystkich dziewięciu węzłach sieci. Powiedzmy
 \label{fig:cannon_last_one}
 \end{figure}
 
-Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Założymy, że węzły \(P_{ij}\) mają w pamięci lokalnej macierze \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\). Żeby wstępnie przesunąć bloki macierzy \(A\) zauważmy, że \(i\)-ty wiersz węzłów sieci powinien przesłać macierze \(A_{ij}\) w lewo o \(i-1\) pozycji\footnote{Numerację elementów zaczynamy od 1.}. Podobnie, \(j\)-tą kolumnę węzłów przesuwamy w górę o \(j-1\) pozycji. Powyższe rozważania prowadzą do sformułowania algorytmu \ref{alg:cannon_algorithm}.
+Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. 
+
+\subsubsection{Uogólnienie}
+Założymy, że węzły \(P_{ij}\) mają w pamięci lokalnej macierze \(A_{ij}\), \(B_{ij}\) i \(C_{ij}\). Żeby wstępnie przesunąć bloki macierzy \(A\) zauważmy, że \(i\)-ty wiersz węzłów sieci powinien przesłać macierze \(A_{ij}\) w lewo o \(i-1\) pozycji\footnote{Numerację elementów zaczynamy od 1.}. Podobnie, \(j\)-tą kolumnę węzłów przesuwamy w górę o \(j-1\) pozycji. Powyższe rozważania prowadzą do sformułowania algorytmu \ref{alg:cannon_algorithm}.
 
 
 \alglanguage{pseudocode}
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 \centering
 \begin{algorithmic}[1]
 %\Input{}
@@ -314,11 +318,6 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 \For{\(k \gets 1, \mu - 1\)} \Comment{Wstępne przesunięcie \(A_{\mu j}\) i \(B_{i \lambda}\).}
 	\Send{\(A_{loc}\), lewo}
 	\Recv{\(A_{loc}\), prawo}
-\EndFor
-\For{\(k \gets 1, \lambda - 1\)}
-	\Send{\(B_{loc}\), góra}
-	\Recv{\(B_{loc}\), dół}
-\EndFor
 \algstore{cannon}
 \end{algorithmic}
 \caption{Algorytm Cannona\cite{Golub} (cz. I)}
@@ -326,11 +325,16 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 \end{algorithm}
 
 %\alglanguage{pseudocode}
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 \ContinuedFloat
 \centering
 \begin{algorithmic}[1]
 \algrestore{cannon}
+\EndFor
+\For{\(k \gets 1, \lambda - 1\)}
+	\Send{\(B_{loc}\), góra}
+	\Recv{\(B_{loc}\), dół}
+\EndFor
 \For{\(k \gets 1, p_1\)} \Comment{Obliczanie iloczynu macierzy \(A_{loc}B_{loc}\)}
 	\State \(C_{loc}=C_{loc} + A_{loc}B_{loc}\)
 	\Send{\(A_{loc}\), lewo}
@@ -351,7 +355,34 @@ Teraz jesteśmy gotowi do przedstawienia ogólnej wersji algorytmu Cannona. Zał
 \label{alg:cannon_algorithm}
 \end{algorithm}
 
-Złożoność, przyspieszenie, koszt i efektywność algorytmu \ref{alg:cannon_algorithm} są następujące\cite{Czech}:
+\subsubsection{Analiza algorytmu}
+Powiedzmy, że \(A, B\) i \(C\) są macierzami wymiaru \(n\times n\) oraz \(n\) jest wielokrotnością \(\sqrt{p}\). Wówczas każdy proces odpowiada za obliczenie części macierzy wynikowej \(C\) o wymiarach \((n/\sqrt{p}) \times (n/\sqrt{p})\).
+
+W trakcie każdej interacji algorytmu każdy proces mnoży blok wymiaru \((n/\sqrt{p}) \times (n/\sqrt{p})\) macierzy \(A\) z blokiem \((n/\sqrt{p}) \times (n/\sqrt{p})\) macierzy \(B\). Wynik takiego mnożenia jest dodawany jako iloczyn częściowy do bloku wynikowego macierzy \(C\). Jeśli przez \(\chi\) oznaczymi czas potrzebny do wykonania jednej operacji dodawania i mnożenia w jednym węźle, wówczas złoność czasowa każdej iteracji wynosi:
+\[
+\chi (n/\sqrt{p})^3 = \chi n^3 / p^{3/2}
+\]
+\noindent Algorytm kończy się po \(p\) iteracjach. Stąd czas wykonania powinien wynosić:
+\begin{align}\label{eq:timecomplexity_cannon}
+T_p(n) = \sqrt{p} \chi n^3 / p^{3/2} = \chi n^3 / p
+\end{align}
+\noindent Jeśli \(p=n^2\), wówczas algorytm wykonuje się w czasie liniowym.
+
+Przed każdą iteracją proces musi wysłać blok macierzy \(A\) i blok macierzy \(B\) do odpowiedniego procesu i odebrać blok macierzy \(A\) i \(B\). Oznaczmy przez \(1/\beta\) czas potrzebny do przesłanai jednego elementu macierzy. Czas potrzebny do wstepnej dystrybucji macierzy w sieci możemy oszacować przez:
+\begin{align}\label{eq:communicationtime_cannon1}
+2\left(\lambda + \frac{n^2}{p\beta}\right)
+\end{align}
+Poprzez \(\sqrt{p}\) iteracji każdy proces musi wysłać swoje bloki macierzy \(A\) i \(B\) oraz odebrać nowe bloki, które później pomnoży. Całkowity czas potrzebny do komunikacji między procesami w takcie wykonywania algorytmu możemy oszacować przez:
+\begin{align}\label{eq:communicationtime_cannon2}
+2\sqrt{p}\left(\lambda + \frac{n^2}{p\beta}\right)
+\end{align}
+
+\noindent Dodając do siebie wyrażenia \eqref{eq:timecomplexity_cannon}, \eqref{eq:communicationtime_cannon1}, \eqref{eq:communicationtime_cannon2} możemy oszacować całkowity czas wykonania algorytmu Cannona:
+\[
+\chi n^3 / p^{3/2} + 2(\sqrt{p}+1)\left(\lambda + \frac{n^2}{p\beta}\right)
+\]
+
+Podsumowująć: złożoność, przyspieszenie, koszt i efektywność algorytmu \ref{alg:cannon_algorithm} są następujące\cite{Czech}:
 \begin{align*}
 T_p(n)|_{p=n^2} = T(n) &= \mathcal{O}(n), \\
 S(n) &= \mathcal{O}(\frac{n^3}{n}) = \mathcal{O}(n^2), \\
@@ -361,6 +392,9 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
 Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.
 
 Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
+
+
+
 \clearpage
 \begin{przyklad}
 Pokażmy iloczyn dwóch macierzy wymiaru \(6 \times 6\) metodą Cannona w torusie \(3\times 3\) procesorów. Niech:
