@@ -1355,7 +1355,6 @@ int main(int argc, char *argv[]) {
 
             if (pid == ROOT) {
                 total_t1 = MPI_Wtime();
-                t1 = MPI_Wtime();
             }
 
             break;
