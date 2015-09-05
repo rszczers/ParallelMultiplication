@@ -407,10 +407,17 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
+                bool resize = true;
+                if(arguments.m == max &&
+                    arguments.n == max &&
+                    arguments.k == max) {
+                    resize = false;
+                }
+
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        true);
+                        resize);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        true);
+                        resize);
                 
                 /* debug dump */
                 if(arguments.steps) {
@@ -747,11 +754,17 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
-                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        true);
-                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        true);
+                bool resize = true;
+                if(arguments.m == max &&
+                    arguments.n == max &&
+                    arguments.k == max) {
+                    resize = false;
+                }
 
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
+                        resize);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
+                        resize);
 
                 /* debug dump */
                 if(arguments.steps) {
@@ -1072,10 +1085,17 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
+                bool resize = true;
+                if(arguments.m == max &&
+                    arguments.n == max &&
+                    arguments.k == max) {
+                    resize = false;
+                }
+
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        true);
+                        resize);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        true);
+                        resize);
 
                 /* debug dump */
                 if(arguments.steps) {
@@ -1381,14 +1401,17 @@ int main(int argc, char *argv[]) {
                     printf("\nETA: %lf\n", t1-t0);
 
                 if (arguments.pathC != NULL) {
-                    if(arguments.method == CANNON)
-                        save_matrix(arguments.pathC, C,
+                    if(arguments.method == CANNON || 
+                        arguments.method == CANNON_DGEMM ||
+                        arguments.method == CANNON_OMP) {
+                            save_matrix(arguments.pathC, C,
                                 arguments.m, arguments.n, max, 
                                 false, false);
-                    else
+                    } else {
                         save_matrix(arguments.pathC, C,
                                 arguments.m,  arguments.n, arguments.n, 
                                 false, false);
+                    }
                 }
 
                 if(arguments.debugDir != NULL) {
