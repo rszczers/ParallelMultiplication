@@ -171,6 +171,8 @@ int main(int argc, char *argv[]) {
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
     double t0, t1;
+    double total_t0 = 0.0, total_t1 = 0.0, total_elap = 0.0;
+    double seq_t0 = 0.0, seq_t1 = 0.0, seq_tmp = 0.0;
 
     int pid;
     int numprocs;
@@ -206,10 +208,18 @@ int main(int argc, char *argv[]) {
     unsigned int max; // placed here for verbose mode purproses; indices new line;
     MPI_Datatype MPI_SUBMATRIX;
 
-    switch (arguments.method) {
+    switch (arguments.method) {        
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
         case SEQUENTIAL:
         {
+            total_t0 = MPI_Wtime();
             if (pid == ROOT) {
+                total_t0 = MPI_Wtime();
+
                 A = (double *) mkl_malloc(arguments.m * arguments.k * 
                         sizeof(double), 64);
                 B = (double *) mkl_malloc(arguments.k * arguments.n * 
@@ -240,11 +250,20 @@ int main(int argc, char *argv[]) {
                     }
                 }
                 t1 = MPI_Wtime();
+                total_t1 = MPI_Wtime();
             }
             break;
         }
-        case MKL:
+
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
+
+        case MKL:            
             if (pid == ROOT) {
+                total_t0 = MPI_Wtime();
                 A = (double *) mkl_malloc(arguments.m * arguments.k * 
                         sizeof(double), 64);
                 B = (double *) mkl_malloc(arguments.k * arguments.n * 
@@ -270,11 +289,22 @@ int main(int argc, char *argv[]) {
                         arguments.m, arguments.k, arguments.n, 1.0, A, 
                         arguments.k, B, arguments.n, 0.0, C, arguments.n);
                 t1 = MPI_Wtime();
+                total_t1 = MPI_Wtime();
             }
             break;
+
+
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
+
+
         case OMP:
         {
             if (pid == ROOT) {
+                total_t0 = MPI_Wtime();
                 A = (double *) mkl_malloc(arguments.m * arguments.k * 
                         sizeof(double), 64);
                 B = (double *) mkl_malloc(arguments.k * arguments.n * 
@@ -310,11 +340,21 @@ int main(int argc, char *argv[]) {
                     }
                 }            
                 t1 = MPI_Wtime();
+                total_t1 = MPI_Wtime();
             }
             break;
         }
+
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
+
+
         case CANNON:
         {
+            if (pid == ROOT) total_t0 = MPI_Wtime();
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
@@ -370,7 +410,7 @@ int main(int argc, char *argv[]) {
                         true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
                         true);
-
+                
                 /* debug dump */
                 if(arguments.steps) {
                     char *dump_path = (char *)malloc(
@@ -392,7 +432,7 @@ int main(int argc, char *argv[]) {
                 }
 
                 t0 = MPI_Wtime();
-
+                seq_t0 = MPI_Wtime();
                 /* initial shift with procesor ranks */                
                 int proclA[numprocs];
                 for (int i = 0; i < dims[0]; i++) {
@@ -406,7 +446,12 @@ int main(int argc, char *argv[]) {
                     }
                 }
 
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
+
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
+
                     int displacements[sz];
                     int start = (proc % dims[1]) * sz + 
                         (proc / dims[1]) * (dims[1] * blockSz);
@@ -423,11 +468,15 @@ int main(int argc, char *argv[]) {
                         }
                     }
 
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
+
                     if(proc != ROOT) {
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
                                 DISTRIBUTION_A, cartcom);
                     }
                 }
+
             } else {
                 MPI_Recv(pA, 1, MPI_SUBMATRIX, ROOT, 
                         DISTRIBUTION_A, cartcom, &status);
@@ -436,6 +485,7 @@ int main(int argc, char *argv[]) {
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
                 int proclB[numprocs];
                 for (int j = 0; j < dims[1]; j++) {
                     for (int i = 0; i < dims[0]; i++) {
@@ -449,7 +499,11 @@ int main(int argc, char *argv[]) {
                     }
                 }
 
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
+
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
                     /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
                     int displacements[sz]; 
                     int start = (proc % dims[1]) * sz + 
@@ -466,6 +520,9 @@ int main(int argc, char *argv[]) {
                             k++;
                         }
                     }
+
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], 
@@ -556,7 +613,11 @@ int main(int argc, char *argv[]) {
                 }
 
             }
-            t1 = MPI_Wtime();
+
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
+            }
 
             MPI_Barrier(cartcom);
 
@@ -609,11 +670,19 @@ int main(int argc, char *argv[]) {
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
-
             break;
         }
+
+
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
+
         case CANNON_DGEMM:
-        {            
+        {
+            if (pid == ROOT) total_t0 = MPI_Wtime();            
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
@@ -673,6 +742,7 @@ int main(int argc, char *argv[]) {
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
                         true);
 
+
                 /* debug dump */
                 if(arguments.steps) {
                     char *dump_path = (char *)malloc(
@@ -693,6 +763,7 @@ int main(int argc, char *argv[]) {
                     free(dump_path);
                 }
 
+                seq_t0 = MPI_Wtime();                
                 t0 = MPI_Wtime();
 
                 /* initial shift with procesor ranks */                
@@ -707,8 +778,12 @@ int main(int argc, char *argv[]) {
                         }
                     }
                 }
+                seq_t1 = MPI_Wtime();
+                total_elap = seq_t1 - seq_t0;
 
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
+
                     int displacements[sz];
                     int start = (proc % dims[1]) * sz + 
                         (proc / dims[1]) * (dims[1] * blockSz);
@@ -724,6 +799,9 @@ int main(int argc, char *argv[]) {
                             k++;
                         }
                     }
+
+                    seq_t1 = MPI_Wtime();
+                    total_elap = seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
@@ -853,7 +931,10 @@ int main(int argc, char *argv[]) {
 
             }
 
-            t1 = MPI_Wtime();
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
+            }
 
             MPI_Barrier(cartcom);
 
@@ -906,12 +987,20 @@ int main(int argc, char *argv[]) {
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
-            mkl_free(tmp_pC);
-
+            mkl_free(tmp_pC);            
             break;
         }
-       case CANNON_OMP:
+
+
+/*############################################################################*/
+/*############################################################################*/            
+/*############################################################################*/
+/*############################################################################*/
+/*############################################################################*/
+
+        case CANNON_OMP:
         {
+            if (pid == ROOT) total_t0 = MPI_Wtime();
             //lets assume that dims[0] = dims[1]
             if (dims[0] != dims[1]) {
                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
@@ -989,6 +1078,7 @@ int main(int argc, char *argv[]) {
                     free(dump_path);
                 }
 
+                total_t0 = MPI_Wtime();
                 t0 = MPI_Wtime();
 
                 /* initial shift with procesor ranks */                
@@ -1004,7 +1094,12 @@ int main(int argc, char *argv[]) {
                     }
                 }
 
+                seq_t1 = MPI_Wtime();
+                total_elap = seq_t1 - seq_t0;
+
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
+
                     int displacements[sz];
                     int start = (proc % dims[1]) * sz + 
                         (proc / dims[1]) * (dims[1] * blockSz);
@@ -1020,6 +1115,9 @@ int main(int argc, char *argv[]) {
                             k++;
                         }
                     }
+
+                    seq_t1 = MPI_Wtime();
+                    total_elap = seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
@@ -1161,7 +1259,10 @@ int main(int argc, char *argv[]) {
 
             }
 
-            t1 = MPI_Wtime();
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
+            }
 
             MPI_Barrier(cartcom);
 
@@ -1214,7 +1315,6 @@ int main(int argc, char *argv[]) {
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
-
             break;
         }
     }
@@ -1291,9 +1391,9 @@ int main(int argc, char *argv[]) {
                         }
                     }
 
-                    save_info(filename, t1-t0, method, 
+                    save_info(filename, t1 - t0, method, 
                             arguments.m, arguments.k, arguments.n, numprocs, 
-                            arguments.omp_threads);
+                            arguments.omp_threads, total_t1 - total_t0, seq_elap);
                 }
                 break;
             }

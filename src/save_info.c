@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 int save_info(const char *filename, double elapsedTime, const char *method, 
-        int m, int k, int n, int nproc, int nthreads) {
+        int m, int k, int n, int nproc, int nthreads,
+        int total, int seqt) {
 
     FILE *file = fopen(filename, "wb");
     if(file == NULL)     {
@@ -10,7 +11,8 @@ int save_info(const char *filename, double elapsedTime, const char *method,
         exit(EXIT_FAILURE);
     }
     fprintf(file, "METHOD:\t%s\nETA:\t%lf\nARGS:\tm=%d, k=%d, n=%d, \
-nprocs=%d, threads=%d\n", method, elapsedTime, m, k, n, nproc, nthreads);
+nprocs=%d, threads=%d, seq=%d, total=%d\n", 
+method, elapsedTime, m, k, n, nproc, nthreads, seqt, total);
 
     fclose(file);
     return(EXIT_SUCCESS);
