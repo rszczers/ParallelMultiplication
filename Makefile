@@ -1,6 +1,6 @@
 SIZE = 4096 #size of randomly generated test square matrix
-NPROC = 169 #number of MPI threads
-OMP_THREADS = 1
+NPROC = 256 #number of MPI threads
+OMP_THREADS = 1 
 ###############################################################################
 
 PROJECT = pmm
@@ -45,7 +45,7 @@ MPI_OPT = -env I_MPI_DEVICE sock
 
 .PHONY: clean paper
 
-all: pmm gen
+all: rebuild_dirtree pmm gen
 
 pmm:
 	@$(CC) $(CFLAGS) $(SRC_PMM) $(LIBS) -o $(BUILD_PATH_PMM)
