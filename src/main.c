@@ -170,9 +170,10 @@ int main(int argc, char *argv[]) {
     struct arguments arguments;
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
-    double t0, t1;
+    double t0, t1; /* run-time with data already loaded */
     double total_t0 = 0.0, total_t1 = 0.0, total_elap = 0.0;
     double seq_t0 = 0.0, seq_t1 = 0.0, seq_elap = 0.0;
+    double tmp_time0, tmp_time1;
 
     int pid;
     int numprocs;
@@ -614,10 +615,6 @@ int main(int argc, char *argv[]) {
 
             }
 
-            if (pid == ROOT) {
-                t1 = MPI_Wtime();
-            }
-
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
@@ -680,6 +677,7 @@ int main(int argc, char *argv[]) {
 
             if (pid == ROOT) {
                 total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
             }
 
             break;
@@ -947,10 +945,6 @@ int main(int argc, char *argv[]) {
 
             }
 
-            if (pid == ROOT) {                
-                t1 = MPI_Wtime();
-            }
-
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
@@ -1011,6 +1005,7 @@ int main(int argc, char *argv[]) {
 
             if (pid == ROOT) {
                 total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
             }
             break;
         }
@@ -1291,10 +1286,6 @@ int main(int argc, char *argv[]) {
 
             }
 
-            if (pid == ROOT) {
-                t1 = MPI_Wtime();
-            }
-
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
@@ -1355,6 +1346,7 @@ int main(int argc, char *argv[]) {
 
             if (pid == ROOT) {
                 total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
             }
 
             break;
