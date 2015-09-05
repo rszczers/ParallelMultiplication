@@ -1,35 +1,38 @@
 #!/bin/bash
 #rm ./debug/*
 export MV2_ENABLE_AFFINITY=0
-i=3;
-for((n=4; n<=$1; i++)); do
+i=4
+for((n=4; n<=$1; i=i+2)); do
     export OMP_NUM_THREADS=1
     make cannon NPROC=$n OMP_THREADS=1
     echo "make cannon NPROC=$n OMP_THREADS=1"
-    n=$(($i*$i))
+    #n=$(echo $(($i*$i)))
+    n=$(echo 2^$i | bc)
     sleep 1;
 done
 
-i=3;
-for((n=4; n<=$1; i++)); do
+i=4;
+for((n=4; n<=$1; i=i+2)); do
     for t in 1 2 4 12; do
         export OMP_NUM_THREADS=$t
         make cannon_dgemm NPROC=$n OMP_THREADS=$t
         echo "make cannon_dgemm NPROC=$n OMP_THREADS=$t"   
         sleep 1;
     done
-    n=$(($i*$i))
+    #n=$(($i*$i))
+    n=$(echo 2^$i | bc)
 done
 
-i=3;
-for((n=4; n<=$1; i++)); do
+i=4;
+for((n=4; n<=$1; i=i+2)); do
     for t in 1 2 4 12; do
         export OMP_NUM_THREADS=$t
         make cannon_omp NPROC=$n OMP_THREADS=$t
         echo "make cannon_omp NPROC=$n OMP_THREADS=$t"   
         sleep 1;
     done
-    n=$(($i*$i))
+    #n=$(($i*$i))
+    n=$(echo 2^$i | bc)
 done
 
 for((j=0; j<3; j++)); do
@@ -40,14 +43,14 @@ done
 
 export MV2_ENABLE_AFFINITY=1
 export KMP_AFFINITY=balanced
-for((t=1; t<=24; t++)); do
+for((t=1; t<=144; t++)); do
     export OMP_NUM_THREADS=$t
     make mkl OMP_THREADS=$t
     sleep 1;
     echo "make mkl OMP_THREADS=$t"
 done
 
-for((t=1; t<=24; t++)); do
+for((t=1; t<=144; t++)); do
     export OMP_NUM_THREADS=$t
     make omp OMP_THREADS=$t
     sleep 1;
