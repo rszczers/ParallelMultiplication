@@ -36,7 +36,7 @@ set mytics 2
 f(x) = mean_seq
 fit f(x) 'sequential.dat' u 5:1 via mean_seq
 
-plot 'cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 1, \
+plot 'cannon_seq.dat' u (mean_seq/$7):xticlabel(5) w linesp t 'Cannon' ls 1, \
 1 ls 8 t 'Naiwny'
 
 set output

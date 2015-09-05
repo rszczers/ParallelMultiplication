@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
     
     double t0, t1;
     double total_t0 = 0.0, total_t1 = 0.0, total_elap = 0.0;
-    double seq_t0 = 0.0, seq_t1 = 0.0, seq_tmp = 0.0;
+    double seq_t0 = 0.0, seq_t1 = 0.0, seq_elap = 0.0;
 
     int pid;
     int numprocs;
@@ -801,7 +801,7 @@ int main(int argc, char *argv[]) {
                     }
 
                     seq_t1 = MPI_Wtime();
-                    total_elap = seq_t1 - seq_t0;
+                    total_elap += seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
@@ -816,6 +816,7 @@ int main(int argc, char *argv[]) {
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
                 int proclB[numprocs];
                 for (int j = 0; j < dims[1]; j++) {
                     for (int i = 0; i < dims[0]; i++) {
@@ -828,8 +829,10 @@ int main(int argc, char *argv[]) {
                         }
                     }
                 }
-
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
                     /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
                     int displacements[sz]; 
                     int start = (proc % dims[1]) * sz + 
@@ -846,7 +849,8 @@ int main(int argc, char *argv[]) {
                             k++;
                         }
                     }
-
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
                     if(proc != ROOT) {
                         MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], 
                                 DISTRIBUTION_B, cartcom);
@@ -1117,7 +1121,7 @@ int main(int argc, char *argv[]) {
                     }
 
                     seq_t1 = MPI_Wtime();
-                    total_elap = seq_t1 - seq_t0;
+                    total_elap += seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pA, 1, MPI_SUBMATRIX, proclA[proc], 
@@ -1132,6 +1136,8 @@ int main(int argc, char *argv[]) {
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
+
                 int proclB[numprocs];
                 for (int j = 0; j < dims[1]; j++) {
                     for (int i = 0; i < dims[0]; i++) {
@@ -1144,8 +1150,11 @@ int main(int argc, char *argv[]) {
                         }
                     }
                 }
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
 
                 for (int proc = numprocs - 1; proc >= 0; proc--) {
+                    seq_t0 = MPI_Wtime();
                     /* indeks w macierzy A/B pierwszego elementu z k-tego wiersza */
                     int displacements[sz]; 
                     int start = (proc % dims[1]) * sz + 
@@ -1162,6 +1171,9 @@ int main(int argc, char *argv[]) {
                             k++;
                         }
                     }
+
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
 
                     if(proc != ROOT) {
                         MPI_Send(pB, 1, MPI_SUBMATRIX, proclB[proc], 
@@ -1393,7 +1405,7 @@ int main(int argc, char *argv[]) {
 
                     save_info(filename, t1 - t0, method, 
                             arguments.m, arguments.k, arguments.n, numprocs, 
-                            arguments.omp_threads, total_t1 - total_t0, seq_elap);
+                            arguments.omp_threads, seq_elap, total_t1 - total_t0);
                 }
                 break;
             }
