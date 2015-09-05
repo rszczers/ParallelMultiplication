@@ -1,5 +1,5 @@
-SIZE = 4096 #size of randomly generated test square matrix
-NPROC = 361 #number of MPI threads
+SIZE = 6 #size of randomly generated test square matrix
+NPROC = 9 #number of MPI threads
 OMP_THREADS = 1
 ###############################################################################
 
@@ -79,7 +79,8 @@ cannon:
 	--method=cannon \
 	-q \
 	-d$(DEBUG_DIR) \
-	--omp_threads=$(OMP_THREADS)
+	--omp_threads=$(OMP_THREADS) \
+	-s
 
 #runs cannon's algorithm
 cannon_dgemm:
