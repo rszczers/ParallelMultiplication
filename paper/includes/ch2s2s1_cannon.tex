@@ -361,9 +361,9 @@ E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
 Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.
 
 Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
-
+\clearpage
 \begin{przyklad}
-Obliczmy iloczyn dwóch macierzy metodą Cannona w torusie \(3\times 3\) procesorów. Niech:
+Pokażmy iloczyn dwóch macierzy wymiaru \(6 \times 6\) metodą Cannona w torusie \(3\times 3\) procesorów. Niech:
 \begin{align*}
 A=
 \begin{pmatrix}
@@ -385,12 +385,8 @@ B=
 \end{pmatrix}.\\
 \end{align*}
 
-Wówczas mamy:
 
-
-
-
-
+\noindent Poszczególne kroki algorytmu pokazane są na rysunku \ref{fig:cannon_example1}.
 
 
 \begin{figure}[H]
@@ -766,14 +762,8 @@ Wówczas mamy:
 \hline
 \end{tabular} 
 \end{tabular}
-\vspace{0.5cm}
-
-
-\caption{Rozmieszczenie danych dla trzech kroków metody Cannona w dwuwymiarowym torusie \(3\times 3\).}
-\label{fig:cannon_last_one}
+\caption{Rozmieszczenie danych dla trzech kroków metody Cannona w dwuwymiarowym torusie \(3\times 3\). W każdej komórce pokazano zawartość zmiennych lokalnych odpowiednio \(A_{loc}\), \(B_{loc}\) i \(C_{loc}\).}
+\label{fig:cannon_example1}
 \end{figure}
-
-
-
 
 \end{przyklad}
