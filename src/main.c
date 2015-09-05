@@ -615,13 +615,13 @@ int main(int argc, char *argv[]) {
             }
 
             if (pid == ROOT) {
-                total_t1 = MPI_Wtime();
                 t1 = MPI_Wtime();
             }
 
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
                 /* displacement for root process */
                 int displacements[sz];
                 displacements[0] = 0; 
@@ -634,7 +634,8 @@ int main(int argc, char *argv[]) {
                         C[displacements[i] + j] = pC[i * sz + j];                        
                     }
                 }
-
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;                
             }
             /* sending computed data from all over the grid to root process*/
             for(int proc = 1; proc < numprocs; proc++) {
@@ -646,6 +647,9 @@ int main(int argc, char *argv[]) {
                 if (pid == ROOT) {
                     MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, 
                             COLLECTING, cartcom, &status);
+
+                    seq_t0 = MPI_Wtime();
+
                     // przesunięcia wierszy dla pozostałych procesów
                     int displacements[sz];
                     /*  proc % dims[1] * sz - first column */
@@ -665,11 +669,19 @@ int main(int argc, char *argv[]) {
                             C[displacements[i] + j] = pC[i * sz + j];
                         }
                     }
+
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
                 }
             }
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
+
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+            }
+
             break;
         }
 
@@ -935,14 +947,14 @@ int main(int argc, char *argv[]) {
 
             }
 
-            if (pid == ROOT) {
-                total_t1 = MPI_Wtime();
+            if (pid == ROOT) {                
                 t1 = MPI_Wtime();
             }
 
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
                 /* displacement for root process */
                 int displacements[sz];
                 displacements[0] = 0; 
@@ -955,7 +967,8 @@ int main(int argc, char *argv[]) {
                         C[displacements[i] + j] = pC[i * sz + j];                        
                     }
                 }
-
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
             }
             /* sending computed data from all over the grid to root process*/
             for(int proc = 1; proc < numprocs; proc++) {
@@ -967,6 +980,7 @@ int main(int argc, char *argv[]) {
                 if (pid == ROOT) {
                     MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, 
                             COLLECTING, cartcom, &status);
+                    seq_t0 = MPI_Wtime();
                     // przesunięcia wierszy dla pozostałych procesów
                     int displacements[sz];
                     /*  proc % dims[1] * sz - first column */
@@ -986,12 +1000,18 @@ int main(int argc, char *argv[]) {
                             C[displacements[i] + j] = pC[i * sz + j];
                         }
                     }
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
                 }
             }
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
             mkl_free(tmp_pC);            
+
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+            }
             break;
         }
 
@@ -1279,6 +1299,7 @@ int main(int argc, char *argv[]) {
             MPI_Barrier(cartcom);
 
             if(pid == ROOT) {
+                seq_t0 = MPI_Wtime();
                 /* displacement for root process */
                 int displacements[sz];
                 displacements[0] = 0; 
@@ -1291,7 +1312,8 @@ int main(int argc, char *argv[]) {
                         C[displacements[i] + j] = pC[i * sz + j];                        
                     }
                 }
-
+                seq_t1 = MPI_Wtime();
+                seq_elap += seq_t1 - seq_t0;
             }
             /* sending computed data from all over the grid to root process*/
             for(int proc = 1; proc < numprocs; proc++) {
@@ -1304,6 +1326,8 @@ int main(int argc, char *argv[]) {
                     MPI_Recv(pC, 1, MPI_SUBMATRIX, proc, 
                             COLLECTING, cartcom, &status);
                     // przesunięcia wierszy dla pozostałych procesów
+                    seq_t0 = MPI_Wtime();
+
                     int displacements[sz];
                     /*  proc % dims[1] * sz - first column */
                     /*  of first line of submatrix stored in p-process */
@@ -1322,6 +1346,8 @@ int main(int argc, char *argv[]) {
                             C[displacements[i] + j] = pC[i * sz + j];
                         }
                     }
+                    seq_t1 = MPI_Wtime();
+                    seq_elap += seq_t1 - seq_t0;
                 }
             }
             mkl_free(pA);
