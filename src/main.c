@@ -1292,7 +1292,6 @@ int main(int argc, char *argv[]) {
             }
 
             if (pid == ROOT) {
-                total_t1 = MPI_Wtime();
                 t1 = MPI_Wtime();
             }
 
@@ -1353,6 +1352,12 @@ int main(int argc, char *argv[]) {
             mkl_free(pA);
             mkl_free(pB);
             mkl_free(pC);
+
+            if (pid == ROOT) {
+                total_t1 = MPI_Wtime();
+                t1 = MPI_Wtime();
+            }
+
             break;
         }
     }
