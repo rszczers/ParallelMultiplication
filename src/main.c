@@ -373,7 +373,7 @@ int main(int argc, char *argv[]) {
                 max = sz * dims[0];
             }
 
-            int blockSz = sz * sz;            
+            int blockSz = sz * sz;
 
             MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
             MPI_Type_commit(&MPI_SUBMATRIX);
@@ -407,19 +407,10 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
-                bool resize = false;
-                if (arguments.m == max &&
-                 arguments.n == max &&
-                 arguments.k == max &&                 
-                 arguments.m == arguments.n &&
-                 arguments.m == arguments.k) {
-                    resize = true;
-                }
-
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        resize);
+                        true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        resize);
+                        true);
                 
                 /* debug dump */
                 if(arguments.steps) {
@@ -756,19 +747,11 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
-                bool resize = false;
-                if (arguments.m == max &&
-                 arguments.n == max &&
-                 arguments.k == max &&                 
-                 arguments.m == arguments.n &&
-                 arguments.m == arguments.k) {
-                    resize = true;
-                }
-
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        resize);
+                        true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        resize);
+                        true);
+
 
                 /* debug dump */
                 if(arguments.steps) {
@@ -1089,19 +1072,10 @@ int main(int argc, char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
 
-                bool resize = false;
-                if (arguments.m == max &&
-                 arguments.n == max &&
-                 arguments.k == max &&                 
-                 arguments.m == arguments.n &&
-                 arguments.m == arguments.k) {
-                    resize = true;
-                }
-
                 load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        resize);
+                        true);
                 load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        resize);
+                        true);
 
                 /* debug dump */
                 if(arguments.steps) {
