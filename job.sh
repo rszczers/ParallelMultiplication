@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -N pmm
-#PBS -l nodes=16:ppn=1
+#PBS -l nodes=32
 #PBS -l walltime=12:00:00
 #PBS -q default 
 #PBS -M rafal.szczerski@gmail.com
@@ -9,4 +9,10 @@
 #export MV2_ENABLE_AFFINITY=0
 #export KMP_AFFINITY=balanced
 cd $PBS_O_WORKDIR
-make test
+
+for s in 2048 4096 8192 16384; do
+    make data SIZE=$s
+    echo "make data SIZE=$s"
+    sleep 1
+    make test SIZE=$s
+done
