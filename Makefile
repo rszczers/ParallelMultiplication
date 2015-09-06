@@ -1,5 +1,5 @@
-SIZE = 4096 #size of randomly generated test square matrix
-NPROC = 1024 #number of MPI threads
+SIZE = 1024 #size of randomly generated test square matrix
+NPROC = 256 #number of MPI threads
 OMP_THREADS = 1 
 ###############################################################################
 
@@ -192,7 +192,7 @@ endif
 	./makeplots.sh $(NPROC)
 
 test:
-	./makeplots.sh $(NPROC)
+	./makeplots.sh $(NPROC) $(SIZE)
 
 paper:
 	cd paper; make
