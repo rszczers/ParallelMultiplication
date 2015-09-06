@@ -30,13 +30,13 @@
 \usepackage{pbox}
 \usepackage{array}
 
-
-
 %\usepackage{xcolor}
 %\usepackage{listings}
 \usepackage[outputdir="temp"]{minted}
 
 \usepackage{hyperref}
+
+\usepackage{appendix}
 
 \subimport{includes/}{def.tex}
 
@@ -55,9 +55,18 @@
 \chapter{Mnożenie macierzy}
 \subimport{includes/}{ch2_algorytmy_rownolegle.tex}
 
-\chapter{Implementacja}
-\subimport{includes/}{ch3_implementacja}
+\chapter{Rezultaty doświadczalne}
+\subimport{includes/}{ch3_doswiadczalne}
 
+\begin{appendices}
+\chapter{Implementacja}
+\section{Opis programu}
+\subimport{includes/}{app_opis_programu}
+\section{Omówienie kodu źródłowego}
+\subimport{includes/}{app_omowienie_kodu_zrodlowego}
+\chapter{Załącznik}
+\subimport{includes/}{app_zalacznik}
+\end{appendices}
 \bibliographystyle{unsrt}
 \bibliography{bibdb}
 

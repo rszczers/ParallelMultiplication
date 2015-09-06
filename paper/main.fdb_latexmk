@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1441540940 "main.tex" "temp/main.pdf" "main" 1441549194
+["pdflatex"] 1441553103 "main.tex" "main.pdf" "main" 1441553154
   "/dev/null" 1441441327 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/etc/texmf/web2c/texmf.cnf" 1424030679 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -77,15 +77,9 @@
   "/usr/share/texmf/tex/latex/xcolor/xcolor.sty" 1339578534 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1392645748 31083 1dfd8bf685ce0009c40532fedf8a7c53 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1424030870 3822874 2d47f30a2927dbd0e63beedccd0768b1 ""
-  "main.tex" 1441540968 1364 24aeb2414b2c015aff5020e2088b172b ""
+  "main.aux" 1441553094 8 a94a2480d3289e625eea47cd1b285758 ""
+  "main.tex" 1441552890 1364 24aeb2414b2c015aff5020e2088b172b ""
   "main.w18" 0 -1 0 ""
-  "temp/main.aux" 1441540630 19976 6455cd8c99f846e5a7c459f7a5cff2eb ""
   (generated)
-  "temp/main.log"
-  "temp//main.log"
-  "temp//main.aux"
-  "temp//main.pdf"
-  "temp/main.aux"
-  "temp//main.out"
-  "temp/main.pdf"
-  "temp//main.toc"
+  "main.log"
+  "main.pdf"

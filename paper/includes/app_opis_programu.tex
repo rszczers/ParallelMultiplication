@@ -1,0 +1,84 @@
+W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzy. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Program używa interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}). Program pozwala na wykonanie:
+\begin{enumerate}
+\item Naiwnego algorytmu sekwencyjnego (opcja \texttt{--method=SEQUENTIAL}),
+\item Mnożenia z operacją \texttt{parfor} (opcja \texttt{--method=OMP}),
+\item Mnożenia z wykorzystaniem operacji \texttt{cblas\_dgemm} z biblioteki Intel MKL (opcja \texttt{--method=MKL})
+\item Klasycznego algorytmu Cannona (opcja \texttt{--method=CANNON}),
+\item Algorytmów hybrydowych:
+\begin{enumerate}
+\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{parfor} \\ (opcja \texttt{--method=CANNON\_OMP}), 
+\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{cblas\_dgemm} z biblioteki Intel MKL, (opcja \texttt{--method=CANNON\_DGEMM}).
+\end{enumerate}
+\end{enumerate}
+
+
+
+\subsubsection{Testowanie}
+Proces testowania został całkowicie zautomatyzowany ze względu przeprowadzenia dużej liczby testów dla różnych grup danych wejściowych i na potrzeby graficznej prezentacji wydajności obliczeń dla różnej ilości procesów i wątków. Całość zarządzania jest zestawem domyślnie zdefiniowanych celów zdefiniowanych w pliku \texttt{Makefile} i realizowanych przez narzędzie Make. 
+
+Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w formacie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Istnieje również opcja zapisywania danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pozwala to prześledzić wszystkie etapy obliczeń.
+
+
+
+% Zestaw skryptów w językach Perl i Bash analizują pliki wynikowe z katalogu ./debug/ i przetwarzają je na pliki danych programu Gnuplot. Odpowiednie wykresy generują się po wykonaniu testów.
+
+
+% Program jest elastyczny. Pozwala użytkownikowi mnożyć dowolne dwie wybrane macierze zapisane w pliku w formacie wierszowym i zapisać wynik w wybranym przez użytkownika położeniu. 
+
+
+W ramach pracy powstał mały program \texttt{gen} do szybkiego generowania przykładowych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:pmm_help}). 
+
+
+% Implementacja algorytmu Cannona, chociaż sam algorytm w oryginalnej wersji pracuje tylko na macierzach kwadratowych o rozmiarze wielokrotności szerokości lub długości siatki procesow, pozwala pracować na macierzach dowolnych rozmiarów. Program przed wykonaniem obliczeń skaluje macierze do wymiarów wymaganych przez wybrany algorytm. 
+
+
+Program rozwijany jest w serwisie github pod adresem \url{http://github.com/rszczers/ParallelMultiplication}.
+
+\begin{listing}[h]
+\usemintedstyle{vim}
+\begin{minted}[fontsize=\footnotesize]{console}
+rszczers@solaris:~/ParallelMultiplication/build$ mpirun -np 1 ./pmm --help
+Usage: pmm [OPTION...] -A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
+Parallel Matrix Multiplication.
+
+  -a, --method=METHOD        Algorithm used
+  -A, --inputA=FILE          Path to input FILE containing matrix A data
+  -B, --inputB=FILE          Path to input FILE containing matrix B data
+  -d, --debug[=DIR]          Path to debug directory
+  -k NUM                     Number of rows of B
+  -l, --list                 Show list of available algorithms
+  -m NUM                     Number of rows of A
+  -n NUM                     Number of columns of B
+  -o, -C, --output[=FILE]    Path to output FILE containing matrix C=A*B data
+  -q, --quiet                Do not show any computations
+  -s, --steps                Dump data from each node for every step
+  -t, --time                 Show elapsed time
+  -v, --verbose              Show all computations
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+  -V, --version              Print program version
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+
+Report bugs to <rafal.szczerski@gmail.com>.
+\end{minted}
+\begin{minted}[fontsize=\footnotesize]{console}
+rszczers@solaris:~/ParallelMultiplication/build$ ./gen --help
+Usage: gen [OPTION...] -l NUM
+
+  -f, --float                Generate floating point numbers
+  -l, --length=NUM           Lenght of array to generate
+  -m, --min=NUM              Lower boundary of generated elements
+  -M, --max=NUM              Upper boundary of generated elements
+  -p, --path[=FILE]          Output file
+  -v, --verbose              Verbose mode
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+\end{minted}
+\caption{Ekran pomocy programów \texttt{pmm} i \texttt{gen}.}
+\label{ls:pmm_help}
+\end{listing}

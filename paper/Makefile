@@ -14,4 +14,4 @@ all:
 	make clean 
 
 clean:
-	rm $(OUTPUT_DIR)*	
+	rm -rf $(OUTPUT_DIR)*	

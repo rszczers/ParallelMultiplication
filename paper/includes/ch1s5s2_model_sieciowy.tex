@@ -44,51 +44,7 @@ Zaproponowana notacja nie uwzględnia pewnych istotnych detali:
 \paragraph{Interpretacja.} W praktyce przejście od komunikatu zawierającego macierz do zapisania macierzy w pamięci lokalnej zabiera pewien czas. Jest tak ze względu na czas potrzebny na interpretację informacji o wymiarach macierzy lub typ danych.
 \end{uwaga}
 
-\subsubsection{Wybrane typy danych dla obliczeń rozproszonych}
 
-Niech \(x\in\mathbb{R}^n\) będzie rozdystrybuowane między pamięci lokalne sieci składającej się z \(p\) węzłów. Załóżmy roboczo, że \(n=rp\). Możemy wyróżnić dwa najczęstsze podejścia do reprezentacji wektora \(x\) w sieci: zapis kolumnowy (ang. \emph{store-by-column}) i zapis wierszowy (ang. \emph{store-by-row}).
-
-W pierwszym z nich, zapisie kolumnowym, rozpatrujemy wektor \(x\) jako macierz \(r\times p\)
-\begin{align*}
-x_{r\times p} = \left[x(1:r)\quad x(r+1:2r) \dots x(1+(p-1)r:n)\right],
-\end{align*}
-Każda \emph{kolumna} zapisana jest w osobnym węźle, tj. \( x (1+(\mu-1)r\colon \mu r) \in P_{\mu}\). (W tym kontekście predykat ,,\(x\in y\)'' oznacza ,,\(x\) jest zapisany w \(y\).'') Zauważmy, że każdy węzeł zawiera \emph{ciągłą} część wektora \(x\).
-
-
-W zapisie wierszowym \(x\) traktujemy jako macierz wymiaru \(p\times r\)
-\begin{align*}
-x_{p\times r} = \left[x(1:p)\quad x(p+1:2p) \dots x((r-1)p:n)\right],
-\end{align*}
-
-Każdy \emph{wiersz} jest wówczas zapisany w odpowiednim węźle, tj. \(x (\mu \colon p \colon n)\in P_{\mu}\). Podejście to przypomina \emph{rozdawanie} (ang. \emph{wrap method}) danych węzłom sieci przez analogię do rozdawania kart graczom przy stole.
-
-Jeśli \(n\) nie jest wielokrotnością \(p\) wówczas powyższe podejścia stosuje się z niewielką modyfikacją. Rozważmy zapis kolumnowy dla \(n=14\) i \(p=4\):
-\begin{equation}
-x^r=[\underbrace{x_1 x_2 x_3 x_4}_{P_0} | \underbrace{x_5 x_6 x_7 x_8}_{P_1} | \underbrace{x_9 x_{10} x_{11}}_{P_2} | \underbrace{x_{12} x_{13} x_{14}}_{P_3}]
-\end{equation} 
-
-Ogólniej, jeśli \(n = pr + q\), gdzie \(0\leq q < p-1\), to \(P_0, P_1, \dots, P_q\) mogą zgromadzić po \(r+1\) elementów, zaś \(P_{q+1}, P_{q+2}, \dots, P_{p-1}\) --- \(r\) elementów. Metoda wierszowa pozwala zgromadzić węzłowi \(P_{\mu}\) wektor \(x(\mu\colon p \colon n)\).
-
-W podobny sposób możemy podejść do dystrybucji macierzy. Jeśli \(A\in\mathbb{R^{n\times n}}\) i \(n = rp\) możemy wyróżnić cztery podejścia:
-
-\begin{table}[H]
-\centering
-\caption{Sposoby reprezentacji macierzy w sieci z \(q\) węzłami}
-\begin{tabular}{ l | l | l }\label{tab:network_datatype}
-  Orientacja & Styl & Zawartość węzła \\
-  \hline
-  Kolumnowy & Ciągły & \(A(\colon,\: 1+(\mu-1)r\colon \mu r)\) \\
-  % \hline
-  Kolumnowy & Rozdawany & \(A(\colon,\: \mu\colon p\colon n)\) \\
- % \hline
-  Wierszowy & Ciągły & \(A(1+(\mu -1) r\colon\mu r,\: \colon)\) \\
-  % \hline
-  Wierszowy & Rozdawany & \(A(\mu \colon p\colon n,\: \colon)\) \\
-  % \hline
- \end{tabular} 
- \end{table}
-
-Metody dla macierzy blokowych są analogiczne do tych z tabeli \ref{tab:network_datatype}.
 
 % Procesor \(P\) wykonujący instrukcję \textbf{send} wysyła kopię \(X\) do procesora \(P_i\), następnie natychmiast przechodzi do wykonywania kolejnej instrukcji.\\
 % Procesor \(P\) wykonujący instrukcję \textbf{receive} zatrzymuje wykonanie programu aż do chwili, gdy otrzyma dane z procesora \(P_j\), a następnie przechowuje dane w \(Y\) i kontynuuje wykonanie programu.\\
