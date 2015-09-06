@@ -5,7 +5,7 @@ OUTPUT_DIR=./temp/
 all:
 	latexmk -pdf \
 	-bibtex \
-	-pdflatex="pdflatex -interactive=nonstopmode" \
+	-pdflatex="pdflatex --shell-escape -interactive=nonstopmode" \
 	-use-make \
 	-output-directory=$(OUTPUT_DIR) \
 	-aux-directory=$(OUTPUT_DIR) \

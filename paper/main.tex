@@ -27,9 +27,16 @@
 \usepackage{caption}% http://ctan.org/pkg/caption
 %\usepackage{algpascal}
 
-
 \usepackage{pbox}
 \usepackage{array}
+
+
+
+%\usepackage{xcolor}
+%\usepackage{listings}
+\usepackage[outputdir="temp"]{minted}
+
+\usepackage{hyperref}
 
 \subimport{includes/}{def.tex}
 
@@ -45,7 +52,7 @@
 \chapter{Wiadomości wstępne}
 \subimport{includes/}{ch1_ustalenia_wstepne.tex}
 
-\chapter{Równoległe algorytmy mnożenia macierzy}
+\chapter{Mnożenie macierzy}
 \subimport{includes/}{ch2_algorytmy_rownolegle.tex}
 
 \chapter{Implementacja}

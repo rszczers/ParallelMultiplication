@@ -1,0 +1,24 @@
+\BOOKMARK [0][-]{chapter*.2}{Wstep}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Wiadomosci wstepne}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Ustalenia terminologiczne}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Klasyfikacja algorytm\363w}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Architektury r\363wnoleg\233e}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.4}{Reprezentacja algorytm\363w}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.5}{Ocena algorytm\363w}{chapter.1}% 7
+\BOOKMARK [2][-]{subsection.1.5.1}{Z\233ozonosc czasowa}{section.1.5}% 8
+\BOOKMARK [2][-]{subsection.1.5.2}{Przyspieszenie}{section.1.5}% 9
+\BOOKMARK [2][-]{subsection.1.5.3}{Koszt}{section.1.5}% 10
+\BOOKMARK [2][-]{subsection.1.5.4}{Efektywnosc}{section.1.5}% 11
+\BOOKMARK [2][-]{subsection.1.5.5}{Prawo Amdahla}{section.1.5}% 12
+\BOOKMARK [2][-]{subsection.1.5.6}{Prawo Gustafsona i Barsisa}{section.1.5}% 13
+\BOOKMARK [2][-]{subsection.1.5.7}{Miara Karpa-Flatta}{section.1.5}% 14
+\BOOKMARK [1][-]{section.1.6}{Teoretyczne modele obliczen}{chapter.1}% 15
+\BOOKMARK [2][-]{subsection.1.6.1}{Model RAM}{section.1.6}% 16
+\BOOKMARK [2][-]{subsection.1.6.2}{Model PRAM}{section.1.6}% 17
+\BOOKMARK [2][-]{subsection.1.6.3}{Model sieciowy}{section.1.6}% 18
+\BOOKMARK [0][-]{chapter.2}{Mnozenie macierzy}{}% 19
+\BOOKMARK [1][-]{section.2.1}{Przeglad algorytm\363w klasycznych}{chapter.2}% 20
+\BOOKMARK [1][-]{section.2.2}{Algorytmy w modelu z pamiecia wsp\363lna}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.3}{Algorytm Cannona}{chapter.2}% 22
+\BOOKMARK [0][-]{chapter.3}{Implementacja}{}% 23
+\BOOKMARK [1][-]{section.3.1}{Opis programu}{chapter.3}% 24

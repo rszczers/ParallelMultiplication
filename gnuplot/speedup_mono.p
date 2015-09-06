@@ -30,14 +30,16 @@ set style line 5 lc rgb "#F8B195" pt 5 ps 1 lt 5 lw 3
 set style line 8 lt 8 lw 6 lc rgb 'black'
 
 set yrange [0:*]
+set xrange [0:144]
 #set ytics 1,1
 set ytics auto
+set xtics auto
 set mytics 2
 f(x) = mean_seq
 fit f(x) 'sequential.dat' u 5:1 via mean_seq
 
-plot 'omp.dat' u (mean_seq/$1):xticlabel(6) w linesp t 'OMP parfor' ls 1, \
-'mkl.dat' u (mean_seq/$1):xticlabel(6) w linesp t 'MKL DGEMM' ls 2, \
+plot 'omp.dat' u 6:(mean_seq/$1) w linesp t 'OMP parfor' ls 1, \
+'mkl.dat' u 6:(mean_seq/$1) w linesp t 'MKL DGEMM' ls 2, \
 1 ls 8 t 'Naiwny'
 
 set output
