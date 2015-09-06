@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: cannon_dgemm.tex
-%%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Sat Sep  5 22:48:39 2015
+%%Creator: gnuplot 4.6 patchlevel 0
+%%CreationDate: Sun Sep  6 16:21:01 2015
 %%DocumentFonts: 
 %%BoundingBox: 50 50 446 361
 %%EndComments
@@ -47,7 +47,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.6 (September 2012)
+% Gnuplot Prolog Version 4.4 (August 2010)
 %
 %/SuppressPDFMark true def
 %
@@ -314,8 +314,7 @@ gnudict begin
 /PatternFill {gsave /PFa [ 9 2 roll ] def
   PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
   PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
-  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
-  clip
+  gsave 1 setgray fill grestore clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
   0 0 M PFa 5 get rotate PFs -2 div dup translate
@@ -429,11 +428,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (cannon_dgemm.tex)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 4)
+  /Creator (gnuplot 4.6 patchlevel 0)
   /Author (rszczers)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sat Sep  5 22:48:39 2015)
+  /CreationDate (Sun Sep  6 16:21:01 2015)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -585,13 +584,13 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 3028 751 M
+0.75 0.75 0.75 C 2465 751 M
 0 5220 V
 stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 3028 751 M
+0.50 0.50 0.50 C 2465 751 M
 0 -47 V
 stroke
 LT0
@@ -599,7 +598,7 @@ LC0 setrgbcolor
 0.50 0.50 0.50 C 1.000 UL
 LT2
 LC2 setrgbcolor
-0.75 0.75 0.75 C 5284 751 M
+0.75 0.75 0.75 C 4156 751 M
 0 4057 V
 0 1100 R
 0 63 V
@@ -607,7 +606,23 @@ stroke
 1.500 UL
 LT0
 LC0 setrgbcolor
-0.50 0.50 0.50 C 5284 751 M
+0.50 0.50 0.50 C 4156 751 M
+0 -47 V
+stroke
+LT0
+LC0 setrgbcolor
+0.50 0.50 0.50 C 1.000 UL
+LT2
+LC2 setrgbcolor
+0.75 0.75 0.75 C 5848 751 M
+0 4057 V
+0 1100 R
+0 63 V
+stroke
+1.500 UL
+LT0
+LC0 setrgbcolor
+0.50 0.50 0.50 C 5848 751 M
 0 -47 V
 stroke
 LT0
@@ -650,14 +665,16 @@ LT0
 LC0 setrgbcolor
 0.21 0.36 0.49 C 6684 5798 M
 591 0 V
-773 3517 M
-3028 5294 L
-5284 3331 L
-7539 2297 L
-773 3517 Circle
-3028 5294 Circle
-5284 3331 Circle
-7539 2297 Circle
+773 3205 M
+2465 5292 L
+4156 4052 L
+5848 2269 L
+7539 842 L
+773 3205 Circle
+2465 5292 Circle
+4156 4052 Circle
+5848 2269 Circle
+7539 842 Circle
 6979 5798 Circle
 1.000 UP
 3.000 UL
@@ -668,14 +685,16 @@ LT1
 LC1 setrgbcolor
 0.42 0.36 0.48 C 6684 5578 M
 591 0 V
-773 5600 M
-3028 5095 L
-5284 3266 L
-7539 2188 L
-773 5600 Crs
-3028 5095 Crs
-5284 3266 Crs
-7539 2188 Crs
+773 4917 M
+1692 269 V
+4156 4284 L
+5848 2101 L
+7539 839 L
+773 4917 Crs
+2465 5186 Crs
+4156 4284 Crs
+5848 2101 Crs
+7539 839 Crs
 6979 5578 Crs
 1.000 UP
 3.000 UL
@@ -686,14 +705,16 @@ LT2
 LC2 setrgbcolor
 0.75 0.42 0.52 C 6684 5358 M
 591 0 V
-773 4885 M
-3028 3876 L
-5284 2228 L
-7539 1190 L
-773 4885 Star
-3028 3876 Star
-5284 2228 Star
-7539 1190 Star
+773 4124 M
+2465 3827 L
+4156 2324 L
+5848 1085 L
+7539 799 L
+773 4124 Star
+2465 3827 Star
+4156 2324 Star
+5848 1085 Star
+7539 799 Star
 6979 5358 Star
 1.000 UP
 3.000 UL
@@ -704,14 +725,16 @@ LT4
 LC4 setrgbcolor
 0.97 0.69 0.58 C 6684 5138 M
 591 0 V
-773 1177 M
-2255 164 V
-2256 288 V
-2255 285 V
-773 1177 BoxF
-3028 1341 BoxF
-5284 1629 BoxF
-7539 1914 BoxF
+773 1165 M
+1692 -68 V
+1691 216 V
+1692 588 V
+7539 846 L
+773 1165 BoxF
+2465 1097 BoxF
+4156 1313 BoxF
+5848 1901 BoxF
+7539 846 BoxF
 6979 5138 BoxF
 6.000 UL
 LT7

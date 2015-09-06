@@ -1,6 +1,6 @@
 #!/bin/bash
 #rm ./debug/*
-export MV2_ENABLE_AFFINITY=0
+#export MV2_ENABLE_AFFINITY=0
 i=4
 for((n=4; n<=$1; i=i+2)); do
     export OMP_NUM_THREADS=1
