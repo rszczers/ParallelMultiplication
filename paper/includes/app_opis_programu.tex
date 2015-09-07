@@ -13,6 +13,10 @@ W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrz
 \end{enumerate}
 
 Program \texttt{gen} powstał na potrzeby szybkiego generowania dużych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:pmm_help}). 
+Implementacja algorytmu Cannona, chociaż sam algorytm w oryginalnej wersji pracuje tylko na macierzach kwadratowych o rozmiarze wielokrotności szerokości lub długości siatki procesow, pozwala pracować na macierzach dowolnych rozmiarów. Jeśli zachodzi taka potrzeba, program przed wykonaniem obliczeń skaluje macierze do wymiarów wymaganych przez wybrany algorytm\footnote{O ile \(n>\sqrt{p}\), gdzie \(n\) to rozmiar problemu, a \(p\) -- liczba procesów.}
+
+
+Program rozwijany jest w serwisie github pod adresem \url{http://github.com/rszczers/ParallelMultiplication}.
 
 
 \subsection{Testowanie}
@@ -20,7 +24,7 @@ Na potrzeby pracy proces testowania został całkowicie zautomatyzowany ze wzgl�
 \vspace{5mm}
 
 
-\noindent\begin{tabular}{p{4cm}p{9cm}}
+\noindent\begin{tabular}{L{4cm}L{9cm}}
 \texttt{make} & Odbudowuje drzewo katalogów i kompiluje programy do katalogu \texttt{./build/}. \\
 \texttt{make data} & Generuje przykładowe macierze kwadratowe \texttt{\$(PATH\_A)} i \texttt{\$(PATH\_B)} o szerokości \texttt{\$(SIZE)}. \\
 \texttt{make seq} & Wykonanie mnożenia algorytmem sekwencyjnym. \\
@@ -35,10 +39,35 @@ Na potrzeby pracy proces testowania został całkowicie zautomatyzowany ze wzgl�
 \vspace{5mm}
 Dla obliczeń równoległych istotne są dwie zmienne: \texttt{NPROCS} oraz \texttt{OMP\_THR\-EADS}. Pierwsza z nich określa liczbę procesów do uruchomienia, druga --- liczbę wątków.
 
-Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w formacie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Opcja \texttt{-s} pozwala na zapis danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pliki zapisywane są w czytelnej postawi do katalogu \texttt{./debug/} pod nazwą \texttt{XXXX\_YYYY\_Z}, gdzie \texttt{XXXX} identyfikuje proces z którego zapisano dane, \texttt{YYYY} --- krok algorytmu, \texttt{Z} --- macierz \(A\), \(B\) lub \(C\), której fragment zapisano. Pozwala to łatwo prześledzić wszystkie etapy obliczeń.
 
+Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w czasie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Opcja \texttt{-s} pozwala na zapis danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pliki zapisywane są w czytelnej postawi do katalogu \texttt{./debug/} pod nazwą \texttt{XXXX\_YYYY\_Z}, gdzie \texttt{XXXX} identyfikuje proces z którego zapisano dane, \texttt{YYYY} --- krok algorytmu, \texttt{Z} --- macierz \(A\), \(B\) lub \(C\), której fragment zapisano. Pozwala to łatwo prześledzić wszystkie etapy obliczeń.
 
+\begin{table}[H]
+\footnotesize
+\begin{tabular}{|L{4cm}|L{9cm}|}
+ \hline
+\texttt{SIZE} & Rozmiar macierzy testowej macierzy kwadratowej.\\ \hline
+\texttt{NPROC} & Liczba procesów do uruchomienia.\\ \hline
+\texttt{DEBUG\_DIR} & Ścieżka do katalogu z danymi do testowania algorytmów. \\ \hline
+\texttt{RESOURCES\_DIR} & Ścieżka do katalogu z danymi wejściowymi. \\ \hline
+\texttt{BUILD\_DIR} & Ścieżka do katalogu wyjściowego kompilacji. \\ \hline
+\texttt{OMP\_THREADS} & Liczba wątków do uruchomienia. \\ \hline
+\texttt{OUTPUT\_SRUN} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla algorytmu sekwencyjnego. \\ \hline
+\texttt{OUTPUT\_CRUN} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla algorytmu Cannona. \\ \hline
+\texttt{OUTPUT\_MRUN} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla procedury MKL \texttt{cblas\_dgemm}. \\ \hline
+\texttt{OUTPUT\_OMP} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla algorytmu z procedurą \texttt{parfor}. \\ \hline
+\texttt{OUTPUT\_CANNON\_OMP} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla algorytmu Cannona z procedurą \texttt{parfor}. \\ \hline
+\texttt{OUTPUT\_CANNON\_MKL} & Ścieżka do pliku wyjściowego zawierającego macierz \(C\) dla algorytmu Cannona z metodą \texttt{cblas\_dgemm}. \\ \hline
+\texttt{PATH\_A} & Ścieżka do pliku wejściowego zawierającego macierz \(A\) w zapisie wierszowym. \\ \hline
+\texttt{PATH\_B} & Ścieżka do pliku wejściowego zawierającego macierz \(B\) w zapisie wierszowym. \\ \hline
+\texttt{MIN} & Kres dolny elementów macierzy do wygenrowania. \\ \hline
+\texttt{MAX} & Kres górny elementów macierzy do wygenerowania. \\ \hline
+\end{tabular}
+\caption{Krótkie zestawienie zmiennych w pliku \texttt{Makefile}}
+\label{tab:makefile_vars}
+\end{table}
 
+\subsection{Przebieg testów na klastrze Solaris}
 
 % Zestaw skryptów w językach Perl i Bash analizują pliki wynikowe z katalogu ./debug/ i przetwarzają je na pliki danych programu Gnuplot. Odpowiednie wykresy generują się po wykonaniu testów.
 
@@ -48,10 +77,10 @@ Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{.
 
 
 
-% Implementacja algorytmu Cannona, chociaż sam algorytm w oryginalnej wersji pracuje tylko na macierzach kwadratowych o rozmiarze wielokrotności szerokości lub długości siatki procesow, pozwala pracować na macierzach dowolnych rozmiarów. Program przed wykonaniem obliczeń skaluje macierze do wymiarów wymaganych przez wybrany algorytm. 
 
 
-Program rozwijany jest w serwisie github pod adresem \url{http://github.com/rszczers/ParallelMultiplication}.
+
+
 
 \begin{listing}[h]
 \usemintedstyle{vim}
