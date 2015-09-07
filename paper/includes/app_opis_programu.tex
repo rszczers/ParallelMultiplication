@@ -67,23 +67,8 @@ Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{.
 \label{tab:makefile_vars}
 \end{table}
 
-\subsection{Przebieg testów na klastrze Solaris}
-
-% Zestaw skryptów w językach Perl i Bash analizują pliki wynikowe z katalogu ./debug/ i przetwarzają je na pliki danych programu Gnuplot. Odpowiednie wykresy generują się po wykonaniu testów.
-
-
-% Program jest elastyczny. Pozwala użytkownikowi mnożyć dowolne dwie wybrane macierze zapisane w pliku w formacie wierszowym i zapisać wynik w wybranym przez użytkownika położeniu. 
-
-
-
-
-
-
-
-
-
 \begin{listing}[h]
-\usemintedstyle{vim}
+\usemintedstyle{bw}
 \begin{minted}[fontsize=\footnotesize]{console}
 rszczers@solaris:~/ParallelMultiplication/build$ mpirun -np 1 ./pmm --help
 Usage: pmm [OPTION...] -A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
@@ -130,3 +115,10 @@ for any corresponding short options.
 \caption{Ekran pomocy programów \texttt{pmm} i \texttt{gen}.}
 \label{ls:pmm_help}
 \end{listing}
+
+\subsection{Przebieg testów na klastrze Solaris}
+
+% Zestaw skryptów w językach Perl i Bash analizują pliki wynikowe z katalogu ./debug/ i przetwarzają je na pliki danych programu Gnuplot. Odpowiednie wykresy generują się po wykonaniu testów.
+
+
+% Program jest elastyczny. Pozwala użytkownikowi mnożyć dowolne dwie wybrane macierze zapisane w pliku w formacie wierszowym i zapisać wynik w wybranym przez użytkownika położeniu. 
