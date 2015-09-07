@@ -1,4 +1,5 @@
-W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzy. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Program używa interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}). Program pozwala na wykonanie:
+\subsection{Wprowadzenie}
+W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzowego. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Użyto interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}). Możliwe jest wykonanie:
 \begin{enumerate}
 \item Naiwnego algorytmu sekwencyjnego (opcja \texttt{--method=SEQUENTIAL}),
 \item Mnożenia z operacją \texttt{parfor} (opcja \texttt{--method=OMP}),
@@ -11,12 +12,31 @@ W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrz
 \end{enumerate}
 \end{enumerate}
 
+Program \texttt{gen} powstał na potrzeby szybkiego generowania dużych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:pmm_help}). 
 
 
-\subsubsection{Testowanie}
-Proces testowania został całkowicie zautomatyzowany ze względu przeprowadzenia dużej liczby testów dla różnych grup danych wejściowych i na potrzeby graficznej prezentacji wydajności obliczeń dla różnej ilości procesów i wątków. Całość zarządzania jest zestawem domyślnie zdefiniowanych celów zdefiniowanych w pliku \texttt{Makefile} i realizowanych przez narzędzie Make. 
+\subsection{Testowanie}
+Na potrzeby pracy proces testowania został całkowicie zautomatyzowany ze względu przeprowadzenia dużej liczby testów dla różnych grup danych wejściowych i na potrzeby graficznej prezentacji wydajności obliczeń dla różnej ilości procesów i wątków. Całość zarządzania jest zestawem domyślnie zdefiniowanych celów zdefiniowanych w pliku \texttt{Makefile} i realizowanych przez narzędzie Make. Najważniejsze z nich to:
+\vspace{5mm}
 
-Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w formacie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Istnieje również opcja zapisywania danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pozwala to prześledzić wszystkie etapy obliczeń.
+
+\noindent\begin{tabular}{p{4cm}p{9cm}}
+\texttt{make} & Odbudowuje drzewo katalogów i kompiluje programy do katalogu \texttt{./build/}. \\
+\texttt{make data} & Generuje przykładowe macierze kwadratowe \texttt{\$(PATH\_A)} i \texttt{\$(PATH\_B)} o szerokości \texttt{\$(SIZE)}. \\
+\texttt{make seq} & Wykonanie mnożenia algorytmem sekwencyjnym. \\
+\texttt{make omp} & Wykonanie mnożenia z operacją \texttt{parfor}. \\
+\texttt{make mkl} & Wykonanie mnożenia z operacją \texttt{cblas\_dgemm}. \\
+\texttt{make cannon} & Wykonanie algorytm Cannona.\\
+\texttt{make cannon\_omp} & Wykonanie algorytm Cannona z operacją \texttt{parfor}.\\ 
+\texttt{make cannon\_dgemm} & wykonuje algorytm Cannona z operacją MKL \texttt{cblas\_dgemm}
+\end{tabular}
+
+
+\vspace{5mm}
+Dla obliczeń równoległych istotne są dwie zmienne: \texttt{NPROCS} oraz \texttt{OMP\_THR\-EADS}. Pierwsza z nich określa liczbę procesów do uruchomienia, druga --- liczbę wątków.
+
+Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w formacie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Opcja \texttt{-s} pozwala na zapis danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pliki zapisywane są w czytelnej postawi do katalogu \texttt{./debug/} pod nazwą \texttt{XXXX\_YYYY\_Z}, gdzie \texttt{XXXX} identyfikuje proces z którego zapisano dane, \texttt{YYYY} --- krok algorytmu, \texttt{Z} --- macierz \(A\), \(B\) lub \(C\), której fragment zapisano. Pozwala to łatwo prześledzić wszystkie etapy obliczeń.
+
 
 
 
@@ -26,7 +46,6 @@ Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{.
 % Program jest elastyczny. Pozwala użytkownikowi mnożyć dowolne dwie wybrane macierze zapisane w pliku w formacie wierszowym i zapisać wynik w wybranym przez użytkownika położeniu. 
 
 
-W ramach pracy powstał mały program \texttt{gen} do szybkiego generowania przykładowych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:pmm_help}). 
 
 
 % Implementacja algorytmu Cannona, chociaż sam algorytm w oryginalnej wersji pracuje tylko na macierzach kwadratowych o rozmiarze wielokrotności szerokości lub długości siatki procesow, pozwala pracować na macierzach dowolnych rozmiarów. Program przed wykonaniem obliczeń skaluje macierze do wymiarów wymaganych przez wybrany algorytm. 
