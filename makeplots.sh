@@ -43,14 +43,14 @@ done
 
 export MV2_ENABLE_AFFINITY=1
 export KMP_AFFINITY=balanced
-for((t=1; t<=144; t++)); do
+for((t=1; t<=72; t++)); do
     export OMP_NUM_THREADS=$t
     make mkl OMP_THREADS=$t SIZE=$2
     sleep 1;
     echo "make mkl OMP_THREADS=$t SIZE=$2"
 done
 
-for((t=1; t<=144; t++)); do
+for((t=1; t<=72; t++)); do
     export OMP_NUM_THREADS=$t
     make omp OMP_THREADS=$t SIZE=$2
     sleep 1;
