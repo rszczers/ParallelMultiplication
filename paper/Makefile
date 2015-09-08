@@ -1,6 +1,6 @@
 PROJECT=parallel_multiplication_algorithms
 SOURCE=main
-OUTPUT_DIR=./temp/
+OUTPUT_DIR=./.temp/
 
 all:
 	latexmk -pdf \

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYGdefault{n+nv}{\PYGdefaultZdl{} }qsub job.sh
+  \PYGdefault{n+nv}{\PYGdefaultZdl{} }qsub job\PYGdefaultZus{}seq.sh
+\end{Verbatim}

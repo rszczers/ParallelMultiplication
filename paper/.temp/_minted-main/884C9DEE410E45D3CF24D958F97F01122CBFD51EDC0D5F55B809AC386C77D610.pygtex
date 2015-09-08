@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYGdefault{n+nv}{\PYGdefaultZdl{} }git clone git@github.com:rszczers/ParallelMultiplication.git
+  \PYGdefault{n+nv}{\PYGdefaultZdl{} }make all
+\end{Verbatim}

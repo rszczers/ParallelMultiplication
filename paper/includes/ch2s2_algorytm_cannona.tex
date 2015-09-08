@@ -382,6 +382,10 @@ Poprzez \(\sqrt{p}\) iteracji każdy proces musi wysłać swoje bloki macierzy \
 \chi n^3 / p^{3/2} + 2(\sqrt{p}+1)\left(\lambda + \frac{n^2}{p\beta}\right)
 \]
 
+
+Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
+
+
 Podsumowująć: złożoność, przyspieszenie, koszt i efektywność algorytmu \ref{alg:cannon_algorithm} są następujące\cite{Czech}:
 \begin{align*}
 T_p(n)|_{p=n^2} = T(n) &= \mathcal{O}(n), \\
@@ -390,9 +394,6 @@ C(n) &= \mathcal{O}(n^2n)=\Theta(n^3), \\
 E(n) &= \mathcal{O}(\frac{n^3}{n^3})=\Theta(1).
 \end{align*}
 Zgodnie z def. \ref{def:cost-optimal} algorytm jest optymalny względem kosztu.
-
-Operacje (16-23) algorytmu \ref{alg:cannon_algorithm} nie są istotne dla samego mnożenia macierzy. Ich zadaniem jest doprowadzenie rozkładu podmacierzy \(A_{ij}, B_{ij}\) w torusie do stanu początkowego. Operacja taka daje możliwość wykorzystanie początkowego rozkładu danych do dalszych operacji na macierzach \(A\) i \(B\).
-
 
 
 \clearpage

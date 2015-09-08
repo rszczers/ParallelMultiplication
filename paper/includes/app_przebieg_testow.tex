@@ -1,0 +1,42 @@
+Wyniki przedstawione w pracy można odtworzyć za pomocą zadań obliczeniowych systemu kolejkowego Torque zdefiniowanych w plikach \texttt{job.sh} i \texttt{job\_seq.sh} (patrz listing \ref{l:torque_jobs}). Poniżej pokażemy przykładową sesję pracy z programem. Zaczniemy od procesu kompilacji i skończymy na generowaniu wykresów.\\
+
+Aktualną wersję programu pobieramy z repozytorium i kompilujemy źródła:
+\begin{minted}{bash}
+  $ git clone git@github.com:rszczers/ParallelMultiplication.git
+  $ make all
+\end{minted}
+
+\noindent W katalogu \texttt{./build/} powstały pliki \texttt{pmm} i \texttt{gen}. Pierwszy z nich implementuje wybrane algorytmy i przeprowadza ich testy, drugi służy do generowania przykładowych macierzy na potrzeby testów.
+
+Aby dodać zdefiniowane zadania obliczeniowe do systemu kolejkowania wykonujemy komendy:
+\begin{minted}{bash}
+  $ qsub job.sh
+  $ qsub job_seq.sh
+\end{minted}
+
+Aby ocenić status wykonania naszego zadania używamy komendy \mintinline{bash}{qstat}. Szacowany czas wykonania możemy odczytać dzięki wywołaniu komendy\\ \mintinline{bash}{showstart id}, gdzie \texttt{id} to identyfikator zadania nadany przez system kolejkowy.
+
+
+W katalogu \texttt{./debug/} po wykonaniu znajdują się wszystkie mierzone parametry wykonania algorytmów dla każdego wywołania zdefiniowanego w zadaniu. Przeanalizowane dane na potrzeby wykresów umieszczane są w katalogu \texttt{./gnuplot/data/}, gdzie ulegają dalszej obróbce. Wynik końcowy w postaci wykresów umieszczany jest w katalogu \texttt{./paper/includes/plots/} skąd są importowane do niniejszej pracy.
+
+\begin{listing}[H]
+\footnotesize
+\inputminted{bash}{includes/listings/job.sh}
+\caption{Plik \texttt{job.sh}}
+\label{l:torque_jobs}
+\end{listing}
+
+\begin{listing}[H]
+\footnotesize
+\inputminted{bash}{includes/listings/job_seq.sh}
+\caption{Plik \texttt{job\_seq.sh}}
+\label{l:torque_jobs}
+\end{listing}
+
+% \begin{listing}
+% \footnotesize
+% \caption{Przykładowa sesja pracy z programem}
+% \label{l:sample_session}
+% \end{listing}
+
+
