@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -N pmm_seqpart
-#PBS -l nodes=10,mem=8GB,walltime=04:00:00:00
+#PBS -l nodes=8,walltime=:04:00:00
 #PBS -q default 
 #PBS -m abe
 #PBS -M rafal.szczerski@gmail.com

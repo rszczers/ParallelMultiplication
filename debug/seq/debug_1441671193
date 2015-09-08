@@ -1,3 +1,0 @@
-METHOD:	CANNON_OMP
-ETA:	57.410329
-ARGS:	m=4096, k=4096, n=4096, nprocs=16, threads=1, seq_elap=0.131369, total=57.410330
