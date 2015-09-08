@@ -28,17 +28,17 @@ set style line 5 lc rgb "#F8B195" pt 5 ps 2 lt 5 lw 4
 
 set style line 8 lt 8 lw 6 lc rgb 'black'
 set title "Zestawienie algorytmów"
-set yrange [0:*]
+set yrange [0:55]
 #set ytics 1,1
 set ytics auto
 set mytics 2
 f(x) = mean_seq
 fit f(x) 'data/8192_sequential.dat' u 5:1 via mean_seq
-
-plot 'data/8192_cannon_dgemm_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 1 wątek' ls 1, \
-'data/8192_cannon_dgemm_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 4 wątki' ls 2, \
-'data/8192_cannon_dgemm_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 12 wątków' ls 3, \
-'data/8192_cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
+set logscale x 2
+plot 'data/8192_cannon_dgemm_1.dat' u 5:(mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 1 wątek' ls 1, \
+'data/8192_cannon_dgemm_4.dat' u 5:(mean_seq/$1) w linesp t 'Cannon-DGEMM, 4 wątki' ls 2, \
+'data/8192_cannon_dgemm_12.dat' u 5:(mean_seq/$1) w linesp t 'Cannon-DGEMM, 12 wątków' ls 3, \
+'data/8192_cannon_seq.dat' u 5:(mean_seq/$1) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
 
 set output

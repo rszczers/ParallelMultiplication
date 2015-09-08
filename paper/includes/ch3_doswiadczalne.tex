@@ -1,4 +1,4 @@
-Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu Matematyki UMCS. Każdy węzeł sieci składa się z dwóch procesorów Intel Xeon Processor X5650. W trakcie testów używano tylko jednego procesora przypadającego na węzeł. Wykresy \ref{pl:cannon_seq_diff}, \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}, \ref{pl:cannon_omp}, \ref{pl:mono} prezentują uzyskane przyspieszenia względem naiwnego algorytmu sekwencyjnego o złożoności \(\mathcal{O}(n^3)\).
+Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu Matematyki UMCS. Każdy węzeł sieci składa się z dwóch procesorów Intel Xeon Processor X5650. W trakcie testów używano tylko jednego procesora przypadającego na węzeł. Wykresy \ref{pl:cannon_seq_diff}, \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}, \ref{pl:cannon_omp}, \ref{pl:mono} prezentują uzyskane przyspieszenia względem naiwnego algorytmu sekwencyjnego o złożoności \(\mathcal{O}(n^3)\) dla \(p=2^k,\,k=2,4,6,8\) procesów.
 
 \begin{figure}[hb]
 \centering
@@ -40,18 +40,24 @@ Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu M
 \label{pl:mono}
 \end{figure}
 
-\begin{figure}[hb]
+\clearpage
+
+Wykresy \ref{pl:scal_cannon_dgemm} i \ref{pl:scal_cannon_omp} przedstawiają przyspieszenia uzyskane dla obliczeń w topologi torusa \((2\times 2)\), \((3\times 3)\), \((4\times 4)\), \(\dots\), \((16\times 16)\). Ze względu na specyfikę algorytmu Cannona macierze wejściowe są wstępnie skalowane przed rozesłaniem do węzłów sieci. Zmienia to początkowy rozmiar poblemu \(n\) do \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\).
+
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{scal_cannon_dgemm.tex}
-\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
-\label{pl:mono}
+\caption{Przyspieszenie hybrydowego algorytmu Cannona z operacją \texttt{cblas\_dgemm} (na wykresie Cannon-DGEMM) dla macierzy \(4096\times 4096\) wykonany na sysemie równoległym złożonym z 8 węzłów.}
+\label{pl:scal_cannon_dgemm}
 \end{figure}
 
-\begin{figure}[hb]
+
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{scal_cannon_omp.tex}
-\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
-\label{pl:mono}
+\caption{Przyspieszenie hybrydowego algorytmu Cannona z operacją \texttt{parfor} (na wykresie Cannon-OMP) dla macierzy \(4096\times 4096\) wykonany na sysemie równoległym złożonym z 8 węzłów. Rozmiar problemu ze wzlędu na wstępne skalowanie macierzy jest zmienny i wynosi \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\). }
+\label{pl:scal_cannon_omp}
 \end{figure}
+

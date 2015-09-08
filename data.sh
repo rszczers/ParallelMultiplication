@@ -1,4 +1,5 @@
 #!/bin/bash
+./parse.pl sequential ./debug/seq | sort -t$'\t' -k5 -n > gnuplot/data/scal_sequential.dat
 ./parse.pl cannon ./debug/seq | sort -t$'\t' -k5 -n > gnuplot/data/scal_cannon_seq.dat
 ./parse.pl cannon_omp ./debug/seq | sort -t$'\t' -k5 -n > gnuplot/data/scal_cannon_omp.dat
 ./parse.pl cannon_dgemm ./debug/seq | sort -t$'\t' -k5 -n > gnuplot/data/scal_cannon_dgemm.dat

@@ -11,7 +11,7 @@ all:
 	-aux-directory=$(OUTPUT_DIR) \
 	$(SOURCE).tex
 	mv $(OUTPUT_DIR)$(SOURCE).pdf ./$(PROJECT).pdf
-	make clean 
+	sleep 1
 
 clean:
 	rm -rf $(OUTPUT_DIR)*	
