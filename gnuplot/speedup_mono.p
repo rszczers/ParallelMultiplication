@@ -28,7 +28,7 @@ set style line 4 lc rgb "#F67280" pt 4 ps 1 lt 4 lw 3
 set style line 5 lc rgb "#F8B195" pt 5 ps 1 lt 5 lw 3
 
 set style line 8 lt 8 lw 6 lc rgb 'black'
-
+set title "Zestawienie algorytmów"
 set yrange [0:100]
 set xrange [0:48]
 #set ytics 1,1

@@ -40,7 +40,7 @@ set logscale x
 f(x) = mean_seq_2048
 g(x) = mean_seq_4096
 h(x) = mean_seq_8192
-
+set title "Klasyczny algorytm Cannona"
 set key left top
 
 fit f(x) 'data/2048_sequential.dat' u 5:1 via mean_seq_2048

@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGbw{g+gp}{rszczers@solaris:\PYGbwZti{}/ParallelMultiplication/build\PYGbwZdl{}} mpirun \PYGbwZhy{}np 1 ./pmm \PYGbwZhy{}\PYGbwZhy{}help
+\PYGbw{g+go}{Usage: pmm [OPTION...] \PYGbwZhy{}A matrixA\PYGbwZus{}path \PYGbwZhy{}B matrixB\PYGbwZus{}path \PYGbwZhy{}m NUM \PYGbwZhy{}k NUM \PYGbwZhy{}n NUM}
+\PYGbw{g+go}{Parallel Matrix Multiplication.}
+
+\PYGbw{g+go}{  \PYGbwZhy{}a, \PYGbwZhy{}\PYGbwZhy{}method=METHOD        Algorithm used}
+\PYGbw{g+go}{  \PYGbwZhy{}A, \PYGbwZhy{}\PYGbwZhy{}inputA=FILE          Path to input FILE containing matrix A data}
+\PYGbw{g+go}{  \PYGbwZhy{}B, \PYGbwZhy{}\PYGbwZhy{}inputB=FILE          Path to input FILE containing matrix B data}
+\PYGbw{g+go}{  \PYGbwZhy{}d, \PYGbwZhy{}\PYGbwZhy{}debug[=DIR]          Path to debug directory}
+\PYGbw{g+go}{  \PYGbwZhy{}k NUM                     Number of rows of B}
+\PYGbw{g+go}{  \PYGbwZhy{}l, \PYGbwZhy{}\PYGbwZhy{}list                 Show list of available algorithms}
+\PYGbw{g+go}{  \PYGbwZhy{}m NUM                     Number of rows of A}
+\PYGbw{g+go}{  \PYGbwZhy{}n NUM                     Number of columns of B}
+\PYGbw{g+go}{  \PYGbwZhy{}o, \PYGbwZhy{}C, \PYGbwZhy{}\PYGbwZhy{}output[=FILE]    Path to output FILE containing matrix C=A*B data}
+\PYGbw{g+go}{  \PYGbwZhy{}q, \PYGbwZhy{}\PYGbwZhy{}quiet                Do not show any computations}
+\PYGbw{g+go}{  \PYGbwZhy{}s, \PYGbwZhy{}\PYGbwZhy{}steps                Dump data from each node for every step}
+\PYGbw{g+go}{  \PYGbwZhy{}t, \PYGbwZhy{}\PYGbwZhy{}time                 Show elapsed time}
+\PYGbw{g+go}{  \PYGbwZhy{}v, \PYGbwZhy{}\PYGbwZhy{}verbose              Show all computations}
+\PYGbw{g+go}{  \PYGbwZhy{}?, \PYGbwZhy{}\PYGbwZhy{}help                 Give this help list}
+\PYGbw{g+go}{      \PYGbwZhy{}\PYGbwZhy{}usage                Give a short usage message}
+\PYGbw{g+go}{  \PYGbwZhy{}V, \PYGbwZhy{}\PYGbwZhy{}version              Print program version}
+
+\PYGbw{g+go}{Mandatory or optional arguments to long options are also mandatory or optional}
+\PYGbw{g+go}{for any corresponding short options.}
+
+\PYGbw{g+go}{Report bugs to \PYGbwZlt{}rafal.szczerski@gmail.com\PYGbwZgt{}.}
+\end{Verbatim}

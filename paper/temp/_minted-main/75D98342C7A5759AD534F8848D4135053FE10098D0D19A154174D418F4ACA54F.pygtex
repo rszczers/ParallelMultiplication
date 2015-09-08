@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGbw{g+gp}{rszczers@solaris:\PYGbwZti{}/ParallelMultiplication/build\PYGbwZdl{}} ./gen \PYGbwZhy{}\PYGbwZhy{}help
+\PYGbw{g+go}{Usage: gen [OPTION...] \PYGbwZhy{}l NUM}
+
+\PYGbw{g+go}{  \PYGbwZhy{}f, \PYGbwZhy{}\PYGbwZhy{}float                Generate floating point numbers}
+\PYGbw{g+go}{  \PYGbwZhy{}l, \PYGbwZhy{}\PYGbwZhy{}length=NUM           Lenght of array to generate}
+\PYGbw{g+go}{  \PYGbwZhy{}m, \PYGbwZhy{}\PYGbwZhy{}min=NUM              Lower boundary of generated elements}
+\PYGbw{g+go}{  \PYGbwZhy{}M, \PYGbwZhy{}\PYGbwZhy{}max=NUM              Upper boundary of generated elements}
+\PYGbw{g+go}{  \PYGbwZhy{}p, \PYGbwZhy{}\PYGbwZhy{}path[=FILE]          Output file}
+\PYGbw{g+go}{  \PYGbwZhy{}v, \PYGbwZhy{}\PYGbwZhy{}verbose              Verbose mode}
+\PYGbw{g+go}{  \PYGbwZhy{}?, \PYGbwZhy{}\PYGbwZhy{}help                 Give this help list}
+\PYGbw{g+go}{      \PYGbwZhy{}\PYGbwZhy{}usage                Give a short usage message}
+
+\PYGbw{g+go}{Mandatory or optional arguments to long options are also mandatory or optional}
+\PYGbw{g+go}{for any corresponding short options.}
+\end{Verbatim}
