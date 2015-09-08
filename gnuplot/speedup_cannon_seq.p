@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 15cm,10cm color colortext header \
+set terminal epslatex size 12cm,8cm  color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_seq.tex"
@@ -16,7 +16,7 @@ set border 3 back ls 11
 set tics nomirror out scale 0.75
 
 set xlabel "Liczba procesów"
-set ylabel "Przyspieszenie S"
+set ylabel "Przyspieszenie"
 set style fill solid 1.0 border rgb 'black'
 
 set border linewidth 1.5 
@@ -34,9 +34,9 @@ set yrange [0:*]
 set ytics auto
 set mytics 2
 f(x) = mean_seq
-fit f(x) 'sequential.dat' u 5:1 via mean_seq
+fit f(x) 'data/sequential.dat' u 5:1 via mean_seq
 
-plot 'cannon_seq.dat' u (mean_seq/$7):xticlabel(5) w linesp t 'Cannon' ls 1, \
+plot 'data/cannon_seq.dat' u (mean_seq/$7):xticlabel(5) w linesp t 'Cannon' ls 1, \
 1 ls 8 t 'Naiwny'
 
 set output

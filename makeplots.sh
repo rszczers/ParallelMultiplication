@@ -2,7 +2,7 @@
 #rm ./debug/*
 #export MV2_ENABLE_AFFINITY=0
 i=4
-for((n=4; n<=$1; i=i+2)); do
+for((n=4; n<=1024; i=i+2)); do
     export OMP_NUM_THREADS=1
     make cannon NPROC=$n OMP_THREADS=1 SIZE=$2
     echo "make cannon NPROC=$n OMP_THREADS=1 SIZE=$2"

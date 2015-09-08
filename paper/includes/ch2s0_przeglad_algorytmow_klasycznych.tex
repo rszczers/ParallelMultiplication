@@ -1,6 +1,6 @@
 W swojej pracy \emph{,,Gaussian Elimination is not Optimal''} z 1969 roku \textsc{Volker Strassen} pokazał rekursyjny algorytm mnożenia macierzy kwadratowych wymiaru \(m2^k\) o złożoności \(\mathcal{O}(n^{2,81})\)\cite{Strassen68}. W przypadku macierzy \(2\times 2\) oznaczało to, że mnożenie można wykonać już za pomocą 7 mnożeń i 18 dodawań. Algorytm za sprawą \textsc{Shmuela Winograda} został zoptymalizowany\cite{Winograd}\cite{Loeckx1974} do najczęściej implementowanej dzisiaj postaci algorytmu \textsc{Strassena-Winograda} (implementacja zawiera się na przykład w bibliotece GEMMW\cite{Douglas94gemmw}). W przypadku macierzy \(2\times 2\) wykonuje on 7 operacji mnożenia i 15 dodawań\cite{DBLP:journals/corr/abs-1202-3173}.
 
-\subsubsection{Algorytm naiwny}
+\subsubsection{Algorytm naiwny}\label{subsub:alg_naive}
 Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm sekwencyjny wyznaczania macierzy \(\mathbf{C}=\mathbf{AB}\) o złożoności \(\mathcal{O}(n^3)\).
 
 \alglanguage{pseudocode}

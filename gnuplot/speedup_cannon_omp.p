@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 14cm,11cm color colortext header \
+set terminal epslatex size 12cm,8cm  color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_omp.tex"
@@ -16,7 +16,7 @@ set border 3 back ls 11
 set tics nomirror out scale 0.75
 
 set xlabel "Liczba procesów"
-set ylabel "Przyspieszenie S" offset 2
+set ylabel "Przyspieszenie" offset 2
 set style fill solid 1.0 border rgb 'black'
 
 set border linewidth 1.5 
@@ -35,13 +35,13 @@ set yrange [0:*]
 set ytics auto
 set mytics 2
 f(x) = mean_seq
-fit f(x) 'sequential.dat' u 5:1 via mean_seq
+fit f(x) 'data/8192_sequential.dat' u 5:1 via mean_seq
 
 
-plot 'cannon_omp_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
-'cannon_omp_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 4 wątków' ls 2, \
-'cannon_omp_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
-'cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
+plot 'data/8192_cannon_omp_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
+'data/8192_cannon_omp_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 4 wątków' ls 2, \
+'data/8192_cannon_omp_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
+'data/8192_cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
 
 set output
