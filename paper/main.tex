@@ -1,6 +1,7 @@
 \documentclass[a4paper,oneside,leqno,12pt]{book}
 \usepackage[a4paper,left=4cm,right=3cm,top=3cm,bottom=3cm,head=0cm,headsep=0cm]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -30,7 +31,6 @@
 \usepackage{pbox}
 \usepackage{array}
 
-%\usepackage{xcolor}
 %\usepackage{listings}
 \usepackage[outputdir=".temp"]{minted}
 
@@ -55,7 +55,7 @@
 \chapter{Mnożenie macierzy}
 \subimport{includes/}{ch2_algorytmy_rownolegle.tex}
 
-\chapter{Rezultaty doświadczalne}
+\chapter{Rezultaty doświadczalne}\label{ch:performance}
 \subimport{includes/}{ch3_doswiadczalne}
 
 \begin{appendices}

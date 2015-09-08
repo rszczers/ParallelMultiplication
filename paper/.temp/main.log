@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  8 SEP 2015 21:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 00:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -275,6 +275,13 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
@@ -466,51 +473,7 @@ Package: polski 2008/02/24 v1.3.3 Polish language package
 
 Document language package `polski' v1.3.3 <2008/02/24>
    Inputenc package detected. Catcodes not changed.
-   Switching to Polish text encoding and Polish maths fonts.
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot4enc.def
-File: ot4enc.def 2005/09/27 v1.99g Standard LaTeX file
-Now handling font encoding OT4 ...
-... no UTF-8 mapping file for font encoding OT4
-)
-LaTeX Font Info:    Try loading font information for OT4+cmr on input line 346.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmr.fd
-File: ot4cmr.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-)
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT4/cmr/bx/n on input line 346.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT4/cmss/m/n on input line 346.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT4/cmr/m/it on input line 346.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT4/cmtt/m/n on input line 346.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT4/cmss/bx/n on input line 346.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT4/cmr/bx/it on input line 346.
-LaTeX Font Info:    Encoding `OT1' has changed to `OT4' for symbol font
-(Font)              `operators' in the math version `normal' on input line 346.
-
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT4/cmr/m/n on input line 346.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/plm/m/it on input line 346.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/plsy/m/n on input line 346.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/plex/m/n on input line 346.
-LaTeX Font Info:    Encoding `OT1' has changed to `OT4' for symbol font
-(Font)              `operators' in the math version `bold' on input line 346.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT4/cmr/bx/n on input line 346.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/plm/b/it on input line 346.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/plsy/b/n on input line 346.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count108
 \float@exts=\toks29
@@ -734,11 +697,11 @@ LaTeX Info: Redefining \\ on input line 3056.
 \FV@BreakSymbolSepLeft=\dimen155
 \FV@BreakSymbolSepRight=\dimen156
 \FV@BreakSymbolIndentLeft=\dimen157
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 677
-.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 677.
 
-(/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
-File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 \FV@BreakSymbolIndentRight=\dimen158
 \c@FancyVerbLineBreakLast=\count145
@@ -875,6 +838,9 @@ LaTeX Warning: Label `alg:pram_multiply_2' multiply defined.
 
 LaTeX Warning: Label `l:torque_jobs' multiply defined.
 
+
+LaTeX Warning: Label `l:torque_jobs' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -889,8 +855,6 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
@@ -965,27 +929,6 @@ LaTeX Info: Redefining \nameref on input line 43.
 \openout6 = `main.out'.
 
  (./includes/strona_tytulowa.tex
-LaTeX Font Info:    Try loading font information for OML+plm on input line 2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/polski/omlplm.fd
-File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-)
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/polski/omsplsy.fd
-File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-)
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/polski/omxplex.fd
-File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-)
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <12> on input line 2.
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 2.
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 2.
 LaTeX Font Info:    Try loading font information for U+msa on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1003,7 +946,7 @@ File: includes/images/logoumcs.png Graphic file (type png)
 Package pdftex.def Info: includes/images/logoumcs.png used on input line 4.
 (pdftex.def)             Requested size: 330.10747pt x 125.15477pt.
 
-Overfull \hbox (53.5649pt too wide) in paragraph at lines 2--35
+Overfull \hbox (60.4754pt too wide) in paragraph at lines 2--35
 [][] 
  []
 
@@ -1037,7 +980,7 @@ nverted-to.pdf includes/images/Rys2.eps>
 (epstopdf)             \includegraphics on input line 34.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys2-eps-converted-to.pdf, id=220, 793.96625pt x 158.5925pt>
+<includes/images/Rys2-eps-converted-to.pdf, id=223, 793.96625pt x 158.5925pt>
 File: includes/images/Rys2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys2-eps-converted-to.pdf>
@@ -1062,7 +1005,7 @@ nverted-to.pdf includes/images/Rys1.eps>
 (epstopdf)             \includegraphics on input line 53.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys1-eps-converted-to.pdf, id=240, 537.00626pt x 245.91875pt>
+<includes/images/Rys1-eps-converted-to.pdf, id=243, 537.00626pt x 245.91875pt>
 File: includes/images/Rys1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys1-eps-converted-to.pdf>
@@ -1072,12 +1015,6 @@ t line 53.
 )
 (./includes/ch1s2_architektury.tex [8 <./includes/images/Rys1-eps-converted-to.
 pdf>]
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10> on input line 18.
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <7> on input line 18.
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <5> on input line 18.
 Package epstopdf Info: Source file: <includes/images/flynn.eps>
 (epstopdf)                    date: 2015-08-26 12:43:02
 (epstopdf)                    size: 455524 bytes
@@ -1090,13 +1027,13 @@ onverted-to.pdf includes/images/flynn.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/flynn-eps-converted-to.pdf, id=259, 232.87pt x 200.75pt>
+<includes/images/flynn-eps-converted-to.pdf, id=262, 232.87pt x 200.75pt>
 File: includes/images/flynn-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/flynn-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/flynn-eps-converted-to.pdf used on inp
 ut line 23.
-(pdftex.def)             Requested size: 281.99707pt x 243.12572pt.
+(pdftex.def)             Requested size: 281.93115pt x 243.07059pt.
  [9 <./includes/images/flynn-eps-converted-to.pdf>]) (./includes/ch1s3_reprezen
 tacja_algorytmow.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--2
@@ -1119,15 +1056,15 @@ Package epstopdf Info: Source file: <includes/images/Rys3.eps>
 nverted-to.pdf includes/images/Rys3.eps>
 (epstopdf)             \includegraphics on input line 32.
 Package epstopdf Info: Output file is already uptodate.
-<includes/images/Rys3-eps-converted-to.pdf, id=289, 863.225pt x 351.3125pt>
+<includes/images/Rys3-eps-converted-to.pdf, id=293, 863.225pt x 351.3125pt>
 File: includes/images/Rys3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys3-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys3-eps-converted-to.pdf used on inpu
 t line 32.
-(pdftex.def)             Requested size: 399.49585pt x 162.58133pt.
+(pdftex.def)             Requested size: 399.40247pt x 162.54381pt.
 
-Overfull \hbox (1.15726pt too wide) in paragraph at lines 32--33
+Overfull \hbox (1.06387pt too wide) in paragraph at lines 32--33
  [][] 
  []
 
@@ -1156,7 +1093,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys_Neumann-eps-converted-to.pdf, id=421, 1210.5225pt x 929.47
+<includes/images/Rys_Neumann-eps-converted-to.pdf, id=427, 1210.5225pt x 929.47
 25pt>
 File: includes/images/Rys_Neumann-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/Rys_Neumann-eps-converted-to.pdf>
@@ -1164,7 +1101,7 @@ Package pdftex.def Info: includes/images/Rys_Neumann-eps-converted-to.pdf used
 on input line 20.
 (pdftex.def)             Requested size: 256.0748pt x 196.61325pt.
 
-Overfull \hbox (32.0691pt too wide) in paragraph at lines 39--56
+Overfull \hbox (31.00153pt too wide) in paragraph at lines 39--56
  [] 
  []
 
@@ -1182,12 +1119,12 @@ nverted-to.pdf includes/images/Rys4.eps>
 (epstopdf)             \includegraphics on input line 11.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys4-eps-converted-to.pdf, id=438, 1034.86626pt x 579.16376pt>
+<includes/images/Rys4-eps-converted-to.pdf, id=444, 1034.86626pt x 579.16376pt>
 File: includes/images/Rys4-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/Rys4-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys4-eps-converted-to.pdf used on inpu
 t line 11.
-(pdftex.def)             Requested size: 234.99756pt x 131.51692pt.
+(pdftex.def)             Requested size: 234.94263pt x 131.48158pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1211,22 +1148,20 @@ df>
 (epstopdf)             \includegraphics on input line 12.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys_net-eps-converted-to.pdf, id=456, 1029.8475pt x 622.325pt>
+<includes/images/Rys_net-eps-converted-to.pdf, id=462, 1029.8475pt x 622.325pt>
 File: includes/images/Rys_net-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/Rys_net-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys_net-eps-converted-to.pdf used on i
 nput line 12.
-(pdftex.def)             Requested size: 258.49731pt x 156.19809pt.
+(pdftex.def)             Requested size: 258.43689pt x 156.1696pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [23]
-
-LaTeX Font Warning: Font shape `OT4/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT4/cmtt/m/n' tried instead on input line 30.
-
-[24 <./includes/images/Rys_net-eps-converted-to.pdf>]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 30.
+ [24 <./includes/images/Rys_net-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <includes/images/mesh1d.eps>
 (epstopdf)                    date: 2015-08-31 17:06:52
 (epstopdf)                    size: 43735 bytes
@@ -1239,7 +1174,7 @@ converted-to.pdf includes/images/mesh1d.eps>
 (epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/mesh1d-eps-converted-to.pdf, id=485, 528.97626pt x 70.2625pt>
+<includes/images/mesh1d-eps-converted-to.pdf, id=491, 528.97626pt x 70.2625pt>
 File: includes/images/mesh1d-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/mesh1d-eps-converted-to.pdf>
@@ -1263,7 +1198,7 @@ df>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/torus1d-eps-converted-to.pdf, id=488, 590.205pt x 107.40125pt>
+<includes/images/torus1d-eps-converted-to.pdf, id=494, 590.205pt x 107.40125pt>
 File: includes/images/torus1d-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/torus1d-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/torus1d-eps-converted-to.pdf used on i
@@ -1274,23 +1209,23 @@ nput line 73.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (5.33342pt too wide) in paragraph at lines 84--84
-[]\OT4/cmr/m/n/10 Maksymalny
+Overfull \hbox (5.33203pt too wide) in paragraph at lines 84--84
+[]\T1/cmr/m/n/10 Maksymalny
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 84--84
-[]\OT4/cmr/m/n/10 Szeroko±c
+[]\T1/cmr/m/n/10 Szeroko±c
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 84--84
-[]\OT4/cmr/m/n/10 Spójno±¢
+[]\T1/cmr/m/n/10 Spójno±¢
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 84--84
-\OT4/cmr/m/n/10 kra-w¦-
+\T1/cmr/m/n/10 kra-w¦-
  []
 
 [25 <./includes/images/mesh1d-eps-converted-to.pdf>]
@@ -1306,7 +1241,7 @@ converted-to.pdf includes/images/mesh2d.eps>
 (epstopdf)             \includegraphics on input line 99.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/mesh2d-eps-converted-to.pdf, id=506, 308.15125pt x 304.13625pt
+<includes/images/mesh2d-eps-converted-to.pdf, id=512, 308.15125pt x 304.13625pt
 >
 File: includes/images/mesh2d-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/mesh2d-eps-converted-to.pdf>
@@ -1325,7 +1260,7 @@ df>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/torus2d-eps-converted-to.pdf, id=507, 396.48125pt x 391.4625pt
+<includes/images/torus2d-eps-converted-to.pdf, id=513, 396.48125pt x 391.4625pt
 >
 File: includes/images/torus2d-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/torus2d-eps-converted-to.pdf>
@@ -1355,12 +1290,12 @@ s-converted-to.pdf includes/images/systolic.eps>
 (epstopdf)             \includegraphics on input line 129.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/systolic-eps-converted-to.pdf, id=525, 411.5375pt x 172.645pt>
+<includes/images/systolic-eps-converted-to.pdf, id=533, 411.5375pt x 172.645pt>
 File: includes/images/systolic-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/systolic-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/systolic-eps-converted-to.pdf used on 
 input line 129.
-(pdftex.def)             Requested size: 375.9961pt x 157.73679pt.
+(pdftex.def)             Requested size: 375.9082pt x 157.6999pt.
 ))
 (./includes/ch1s6_wybrane_typy_danych.tex [27 <./includes/images/torus2d-eps-co
 nverted-to.pdf> <./includes/images/systolic-eps-converted-to.pdf>] [28]))
@@ -1373,9 +1308,9 @@ put line 17.
  [30
 
 ] [31] [32])
-Overfull \hbox (12.57112pt too wide) in paragraph at lines 146--3
-[]\OT4/cmr/m/n/12 W prak-ty-ce sto-su-je si¦ tyl-ko kil-ka kro-ków al-go-ryt-mu
- Strassena-Winegrada[[]].
+Overfull \hbox (12.47897pt too wide) in paragraph at lines 146--3
+[]\T1/cmr/m/n/12 W prak-ty-ce sto-su-je si¦ tyl-ko kil-ka kro-ków al-go-ryt-mu 
+Strassena-Winegrada[[]].
  []
 
 (./includes/ch2s1_algorytmy_pram.tex
@@ -1383,10 +1318,10 @@ Overfull \hbox (12.57112pt too wide) in paragraph at lines 146--3
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [33]
-Overfull \hbox (27.24864pt too wide) in paragraph at lines 88--89
-\OMS/plsy/m/n/12 O\OT4/cmr/m/n/12 ([] \OML/plm/m/it/12 n\OT4/cmr/m/n/12 )$. Zªo
--»o-no±¢, przy-spie-sze-nie, koszt i efek-tyw-no±¢ al-go-ryt-mu s¡ nast¦puj¡ce[
-[]]: 
+Overfull \hbox (27.15904pt too wide) in paragraph at lines 88--89
+\OMS/cmsy/m/n/12 O\OT1/cmr/m/n/12 ([] \OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )$\T1/c
+mr/m/n/12 . Zªo-»o-no±¢, przy-spie-sze-nie, koszt i efek-tyw-no±¢ al-go-ryt-mu 
+s¡ nast¦puj¡ce[[]]: 
  []
 
 [34pdfTeX warning (ext4): destination with the same identifier (name{algorithm.
@@ -1403,12 +1338,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: Command \' invalid in math mode on input line 307.
 
+Missing character: There is no ó in font cmti12!
 
 LaTeX Warning: Command \' invalid in math mode on input line 308.
 
 
 LaTeX Warning: Command \l invalid in math mode on input line 308.
 
+Missing character: There is no ó in font cmti12!
+Missing character: There is no ª in font cmti12!
 [40] [41pdfTeX warning (ext4): destination with the same identifier (name{algor
 ithm.8}) has been already used, duplicate ignored
 
@@ -1447,7 +1385,7 @@ n-eps-converted-to.pdf includes/plots/cannon_diff_n.eps>
 (epstopdf)             \includegraphics on input line 118.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_diff_n-eps-converted-to.pdf, id=708, 369.38pt x 226.8475
+<includes/plots/cannon_diff_n-eps-converted-to.pdf, id=718, 369.38pt x 226.8475
 pt>
 File: includes/plots/cannon_diff_n-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1469,7 +1407,7 @@ iff_n-eps-converted-to.pdf includes/plots/cannon_mkl_diff_n.eps>
 (epstopdf)             \includegraphics on input line 192.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf, id=709, 426.59375pt x 3
+<includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf, id=719, 426.59375pt x 3
 41.275pt>
 File: includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1495,7 +1433,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 116.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=710, 369.38pt x 226.8475p
+<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=720, 369.38pt x 226.8475p
 t>
 File: includes/plots/cannon_dgemm-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/plots/cannon_dgemm-eps-converted-to.pdf>
@@ -1516,7 +1454,7 @@ ps-converted-to.pdf includes/plots/cannon_omp.eps>
 (epstopdf)             \includegraphics on input line 126.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_omp-eps-converted-to.pdf, id=715, 369.38pt x 226.8475pt>
+<includes/plots/cannon_omp-eps-converted-to.pdf, id=725, 369.38pt x 226.8475pt>
 File: includes/plots/cannon_omp-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/plots/cannon_omp-eps-converted-to.pdf>
 Package pdftex.def Info: includes/plots/cannon_omp-eps-converted-to.pdf used on
@@ -1535,7 +1473,7 @@ verted-to.pdf includes/plots/mono.eps>
 (epstopdf)             \includegraphics on input line 130.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/mono-eps-converted-to.pdf, id=716, 369.38pt x 255.95625pt>
+<includes/plots/mono-eps-converted-to.pdf, id=726, 369.38pt x 255.95625pt>
 File: includes/plots/mono-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/plots/mono-eps-converted-to.pdf>
@@ -1560,7 +1498,7 @@ dgemm-eps-converted-to.pdf includes/plots/scal_cannon_dgemm.eps>
 (epstopdf)             \includegraphics on input line 135.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/scal_cannon_dgemm-eps-converted-to.pdf, id=746, 397.485pt x 284
+<includes/plots/scal_cannon_dgemm-eps-converted-to.pdf, id=756, 397.485pt x 284
 .06125pt>
 File: includes/plots/scal_cannon_dgemm-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1582,7 +1520,7 @@ omp-eps-converted-to.pdf includes/plots/scal_cannon_omp.eps>
 (epstopdf)             \includegraphics on input line 143.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/scal_cannon_omp-eps-converted-to.pdf, id=747, 397.485pt x 284.0
+<includes/plots/scal_cannon_omp-eps-converted-to.pdf, id=757, 397.485pt x 284.0
 6125pt>
 File: includes/plots/scal_cannon_omp-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1591,15 +1529,15 @@ Package pdftex.def Info: includes/plots/scal_cannon_omp-eps-converted-to.pdf us
 ed on input line 143.
 (pdftex.def)             Requested size: 397.48402pt x 284.06053pt.
 )
-Underfull \hbox (badness 1337) in paragraph at lines 60--60
-[]\OT4/cmr/m/n/12 Rysunek 3.7: |Przy-spie-sze-nie hy-bry-do-we-go al-go-ryt-mu 
-Can-no-na z ope-ra-
+Underfull \hbox (badness 1348) in paragraph at lines 60--60
+[]\T1/cmr/m/n/12 Rysunek 3.7: |Przy-spie-sze-nie hy-bry-do-we-go al-go-ryt-mu C
+an-no-na z ope-ra-
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 60--60
-\OT4/cmr/m/n/12 mu ze wzl¦-du na wst¦p-ne ska-lo-wa-nie ma-cie-rzy jest zmien-n
-y i wy-no-si
+Underfull \hbox (badness 1292) in paragraph at lines 60--60
+\T1/cmr/m/n/12 mu ze wzl¦-du na wst¦p-ne ska-lo-wa-nie ma-cie-rzy jest zmien-ny
+ i wy-no-si
  []
 
 [47
@@ -1607,7 +1545,13 @@ y i wy-no-si
  <./includes/plots/scal_cannon_dgemm-eps-converted-to.pdf>]) [48 <./includes/pl
 ots/scal_cannon_omp-eps-converted-to.pdf>]
 Dodatek A.
-(./includes/app_opis_programu.tex [49
+(./includes/app_opis_programu.tex
+Overfull \hbox (0.99008pt too wide) in paragraph at lines 6--7
+[]\T1/cmr/m/n/12 Mno»enia z wy-ko-rzy-sta-niem ope-ra-cji \T1/cmtt/m/n/12 cblas
+_dgemm \T1/cmr/m/n/12 z bi-blio-te-ki In-tel MKL
+ []
+
+[49
 
 ] [50] (./.temp/_minted-main/bw.pygstyle)
 \openout3 = `main.pyg'.
@@ -1615,10 +1559,8 @@ Dodatek A.
 
 (./.temp/_minted-main/739248BCF8DF0DDD388D80D1F9E1967BFC2DD9750FFC39DE1B7642CA9
 8DFFE87.pygtex
-
-LaTeX Font Warning: Font shape `OT4/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT4/cmtt/m/n' tried instead on input line 2.
-
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
 )
 \openout3 = `main.pyg'.
 
@@ -1628,9 +1570,9 @@ LaTeX Font Warning: Font shape `OT4/cmtt/bx/n' in size <10> not available
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 115.
  [51]) (./includes/app_przebieg_testow.tex
-Overfull \hbox (10.23477pt too wide) in paragraph at lines 1--2
-\OT4/cmr/m/n/12 wych sys-te-mu ko-lej-ko-we-go To-rque zde-fi-nio-wa-nych w pli
--kach \OT4/cmtt/m/n/12 job.sh \OT4/cmr/m/n/12 i \OT4/cmtt/m/n/12 job[]seq.sh
+Overfull \hbox (11.86671pt too wide) in paragraph at lines 1--2
+\T1/cmr/m/n/12 wych sys-te-mu ko-lej-ko-we-go To-rque zde-fi-nio-wa-nych w pli-
+kach \T1/cmtt/m/n/12 job.sh \T1/cmr/m/n/12 i \T1/cmtt/m/n/12 job_seq.sh
  []
 
 
@@ -1662,77 +1604,89 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 (./.temp/_minted-main/1273FFC1795D27A653900CD888E84EBE4AFF4D7D7BC9EEF431B0262B3
 5741A83.pygtex) [53]
 (./.temp/_minted-main/C666E722EC50D88CD2D6EFDF61C7B32332B4880480ACBAF6B70701E28
-168ADB0.pygtex)) (./includes/app_omowienie_kodu_zrodlowego.tex) [54]
+168ADB0.pygtex)) (./includes/app_omowienie_kodu_zrodlowego.tex [54]
+\openout3 = `main.pyg'.
+
+
+(./.temp/_minted-main/577C4A7202F38084E208569809C1EF541421FB63EB05E7DED93EAD6DD
+138FA7C.pygtex)
+(./.temp/_minted-main/1273FFC1795D27A653900CD888E84EBE4AFF4D7D7BC9EEF431B0262B3
+5741A83.pygtex)) [55] [56]
 Dodatek B.
 (./includes/app_zalacznik.tex
-Overfull \hbox (1.16576pt too wide) in paragraph at lines 4--5
-\OT4/cmr/m/n/12 (plik \OT4/cmtt/m/n/12 ./paper/parallel[]matrix[]multiplication
-.pdf\OT4/cmr/m/n/12 ; kom-pi-la-cj¦ mo»-
+Overfull \hbox (4.53354pt too wide) in paragraph at lines 4--5
+\T1/cmr/m/n/12 (plik \T1/cmtt/m/n/12 ./paper/parallel_matrix_multiplication.pdf
+\T1/cmr/m/n/12 ; kom-pi-la-cj¦ mo»-
  []
 
 
-Overfull \hbox (4.41093pt too wide) in paragraph at lines 6--7
-\OT4/cmtt/m/n/12 makeplots.sh\OT4/cmr/m/n/12 , \OT4/cmtt/m/n/12 makeplots[]seq.
-sh\OT4/cmr/m/n/12 , \OT4/cmtt/m/n/12 job.sh\OT4/cmr/m/n/12 , \OT4/cmtt/m/n/12 j
-ob[]seq.sh \OT4/cmr/m/n/12 w ka-ta-lo-gu gªów-
+Overfull \hbox (7.77791pt too wide) in paragraph at lines 6--7
+\T1/cmtt/m/n/12 makeplots.sh\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 makeplots_seq.sh\T
+1/cmr/m/n/12 , \T1/cmtt/m/n/12 job.sh\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 job_seq.s
+h \T1/cmr/m/n/12 w ka-ta-lo-gu gªów-
  []
 
-) (.temp//main.bbl [55
+) (.temp//main.bbl [57
 
-] [56
+] [58
 
 ])
 runsystem(rm "".temp"//main.pyg")...executed.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 76.
- [57]
+ [59]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
  (.temp//main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 76.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8E0607C47F6722DAD10E3176F7BE3468;2122.
+(rerunfilecheck)             Checksum: E180F2E987D57CF43B338BBBC38008F3;2123.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13344 strings out of 493304
- 213692 string characters out of 6139871
- 369181 words of memory out of 5000000
- 16074 multiletter control sequences out of 15000+600000
- 24232 words of font info for 68 fonts, out of 8000000 for 9000
+ 13442 strings out of 493304
+ 214235 string characters out of 6139871
+ 368548 words of memory out of 5000000
+ 16164 multiletter control sequences out of 15000+600000
+ 27525 words of font info for 72 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,24n,47p,937b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plitt.enc}{/usr/share/texli
-ve/texmf-dist/fonts/enc/dvips/pl/plsc.enc}{/usr/share/texlive/texmf-dist/fonts/
-enc/dvips/pl/plrm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plmi.en
-c}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texliv
-e/texmf-dist/fonts/enc/dvips/pl/plme.enc}{/usr/share/texlive/texmf-dist/fonts/e
-nc/dvips/pl/plit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plms.enc
-}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/pl/plcsc10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/pl/plex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/pl/plitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/pl/plmi6.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/pl/plmi7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/pl/plmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/pl/plr17.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/pl/plr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/pl/plr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr8.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/pl/plsy8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/pl/plti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/pl/plti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt12.pfb>
-Output written on .temp//main.pdf (57 pages, 656959 bytes).
+ 42i,24n,47p,1244b,695s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfcc1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/s
+hare/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+fti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sftt1200.pfb>
+Output written on .temp//main.pdf (59 pages, 992935 bytes).
 PDF statistics:
- 969 PDF objects out of 1000 (max. 8388607)
- 846 compressed objects within 9 object streams
- 296 named destinations out of 1000 (max. 500000)
+ 1026 PDF objects out of 1200 (max. 8388607)
+ 890 compressed objects within 9 object streams
+ 303 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 

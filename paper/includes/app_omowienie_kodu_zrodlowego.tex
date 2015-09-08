@@ -1,0 +1,59 @@
+Rozwiązania dostarczone z niniejszą pracą stanowią konglomerat kilku technologii programistycznych, których celem jest dostarczenie narzędza służącego przeprowadzaniu rozproszonych operacji szybkiego mnożenia macierzy dla dużych danych wejściowych oraz prezentacji wydajności takich operacji w dokumentach \LaTeX \, (rozdział \ref{ch:performance}). 
+
+\subsubsection{Program \texttt{pmm}}
+
+Trzon projektu stanowi program \texttt{pmm}. Dostarcza on wygodny interfejs użytkownika pozwalający na przeprowadzenie operacji mnożenia macierzy na dowolnych dwóch plikach reprezentujących macierz w zapisie wierszowym. W zależności od wyboru metody mnożenia operacje przebiegają sekwencyjne lub równolegle.
+
+Istotna z puntku widzenia obliczeń równoległych jest implementacja algorytmów Cannona\footnote{Odnosząc się do listingu \ref{ls:pmm_help} mowa o algorytmach: \texttt{cannon}, \texttt{cannon\_dgemm}, \texttt{cannon\_omp}}. Ich działanie zasadza się na wyborze jednego wyróżnionego węzła nadzorcy, którego zadaniem jest inicjalizacja obliczeń oraz zebranie wyników po ich zakończeniu. Proces inicjalizowania polega na wczytaniu do pamięci lokalnej węzła danych wejściowych\footnote{Rozwiązanie to ma swoje wady i swoje zalety. Przede wszystkim wymaga wiele pamięci lokalnej w węźle. Rozwiązaniem alternatywnym byłoby mapowanie plików (\texttt{mmap}) i rozsyładnie ich po fragmencie do innych węzłów bezpośrednio po zbuforowaniu. Wadą tego rozwiązania jest utrudnione wstępne przetwarzanie (skalowanie macierzy, interpretacja szerokości i długości).} (plików zawierających elementy macierzu). Nadzorca decyduje o skalowaniu macierzy w zależności od wymiarów torusa\footnote{Szerokośc i wysokość torusa muszą być takie same; w przeciwnym wypadku obliczenie jest przerywane.}, na którym przeprowadzane są obliczenia. 
+
+
+\begin{listing}
+\begin{minted}[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=6,firstline=12,lastline=31]{c}
+            if (dims[0] != dims[1]) {
+                printf("\nProcess mesh is not appropriate. Aborting.\n\n");
+                exit(EXIT_FAILURE);
+            }
+
+            max = arguments.m;
+            (max < arguments.k) && (max = arguments.k); 
+            (max < arguments.n) && (max = arguments.n);
+
+            int sz = max/dims[0];  // row length per block 
+
+            if(max > sz * dims[0]) { 
+                sz += 1;
+                max = sz * dims[0];
+            }
+
+            int blockSz = sz * sz;
+
+            MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
+            MPI_Type_commit(&MPI_SUBMATRIX);
+
+
+
+                bool resize = true;
+                if(arguments.m == max &&
+                    arguments.n == max &&
+                    arguments.k == max) {
+                    resize = false;
+                }
+\end{minted}
+\end{listing}
+
+
+
+
+
+
+Poniżej omówimy wybrane najistotniejsze fragmenty kodu źródłowego programu \texttt{pmm}, który zawiera implementacje algorytmów których wydajność zaprezentowano w rozdziale \ref{ch:performance} oraz idee, które stały za poszczególnymi rozwiązaniami. 
+
+
+
+
+\begin{listing}[H]
+\footnotesize
+\inputminted{bash}{includes/listings/job.sh}
+\caption{Plik \texttt{job.sh}}
+\label{l:torque_jobs}
+\end{listing}
