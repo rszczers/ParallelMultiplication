@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 12cm,8cm  color colortext header \
+set terminal epslatex size 13cm,8cm  color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_dgemm.tex"
@@ -36,7 +36,7 @@ f(x) = mean_seq
 fit f(x) 'data/8192_sequential.dat' u 5:1 via mean_seq
 
 plot 'data/8192_cannon_dgemm_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 1 wątek' ls 1, \
-'data/8192_cannon_dgemm_2.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 2 wątki' ls 2, \
+'data/8192_cannon_dgemm_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 4 wątki' ls 2, \
 'data/8192_cannon_dgemm_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-DGEMM, 12 wątków' ls 3, \
 'data/8192_cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
