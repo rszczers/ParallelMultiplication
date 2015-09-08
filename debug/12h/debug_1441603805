@@ -1,3 +1,0 @@
-METHOD:	OMP
-ETA:	217.313101
-ARGS:	m=8192, k=8192, n=8192, nprocs=1, threads=103, seq_elap=0.000000, total=227.504399

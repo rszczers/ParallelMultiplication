@@ -1,0 +1,3067 @@
+make data SIZE=4096
+make cannon NPROC=4 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=9 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=16 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=25 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=36 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=49 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=64 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=81 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=100 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=121 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=144 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=169 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=196 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=225 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=256 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=289 OMP_THREADS=1 SIZE=4096
+make cannon NPROC=324 OMP_THREADS=1 SIZE=4096
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make cannon NPROC=361 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=4 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=4 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=4 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=4 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=9 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=9 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=9 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=9 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=16 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=16 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=16 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=16 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=25 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=25 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=25 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=25 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=36 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=36 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=36 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=36 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=49 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=49 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=49 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=49 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=64 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=64 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=64 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=64 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=81 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=81 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=81 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=81 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=100 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=100 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=100 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=100 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=121 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=121 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=121 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=121 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=144 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=144 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=144 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=144 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=169 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=169 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=169 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=169 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=196 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=196 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=196 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=196 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=225 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=225 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=225 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=225 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=256 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=256 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=256 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=256 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=289 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=289 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=289 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=289 OMP_THREADS=12 SIZE=4096
+make cannon_dgemm NPROC=324 OMP_THREADS=1 SIZE=4096
+make cannon_dgemm NPROC=324 OMP_THREADS=2 SIZE=4096
+make cannon_dgemm NPROC=324 OMP_THREADS=4 SIZE=4096
+make cannon_dgemm NPROC=324 OMP_THREADS=12 SIZE=4096
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make cannon_dgemm NPROC=361 OMP_THREADS=1 SIZE=4096
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make cannon_dgemm NPROC=361 OMP_THREADS=2 SIZE=4096
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make cannon_dgemm NPROC=361 OMP_THREADS=4 SIZE=4096
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+
+Process mesh is not appropriate. Aborting.
+
+make cannon_dgemm NPROC=361 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=4 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=4 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=4 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=4 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=9 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=9 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=9 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=9 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=16 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=16 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=16 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=16 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=25 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=25 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=25 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=25 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=36 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=36 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=36 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=36 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=49 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=49 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=49 OMP_THREADS=4 SIZE=4096
+make cannon_omp NPROC=49 OMP_THREADS=12 SIZE=4096
+make cannon_omp NPROC=64 OMP_THREADS=1 SIZE=4096
+make cannon_omp NPROC=64 OMP_THREADS=2 SIZE=4096
+make cannon_omp NPROC=64 OMP_THREADS=4 SIZE=4096

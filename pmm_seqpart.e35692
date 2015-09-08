@@ -1,0 +1,1099 @@
+manpath: can't set the locale; make sure $LC_* and $LANG are correct
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd509a6c0, periods=0x7fffd509a6c8, reorder=1, comm_cart=0x7fffd509a708) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 249
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff676fd1e0, periods=0x7fff676fd1e8, reorder=1, comm_cart=0x7fff676fd228) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 258
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff97894740, periods=0x7fff97894748, reorder=1, comm_cart=0x7fff97894788) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 269
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffe81affc0, periods=0x7fffe81affc8, reorder=1, comm_cart=0x7fffe81b0008) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8c319250, periods=0x7fff8c319258, reorder=1, comm_cart=0x7fff8c319298) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 288
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd017b880, periods=0x7fffd017b888, reorder=1, comm_cart=0x7fffd017b8c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 289
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff01167b60, periods=0x7fff01167b68, reorder=1, comm_cart=0x7fff01167ba8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 309
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff82b77660, periods=0x7fff82b77668, reorder=1, comm_cart=0x7fff82b776a8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff7ab93100, periods=0x7fff7ab93108, reorder=1, comm_cart=0x7fff7ab93148) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 319
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff40ecd3c0, periods=0x7fff40ecd3c8, reorder=1, comm_cart=0x7fff40ecd408) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 329
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffcc1f8470, periods=0x7fffcc1f8478, reorder=1, comm_cart=0x7fffcc1f84b8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 69
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff26bffa30, periods=0x7fff26bffa38, reorder=1, comm_cart=0x7fff26bffa78) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 109
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff7f488380, periods=0x7fff7f488388, reorder=1, comm_cart=0x7fff7f4883c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 359
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff61d0d070, periods=0x7fff61d0d078, reorder=1, comm_cart=0x7fff61d0d0b8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff9ba0c940, periods=0x7fff9ba0c948, reorder=1, comm_cart=0x7fff9ba0c988) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff2692af80, periods=0x7fff2692af88, reorder=1, comm_cart=0x7fff2692afc8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 319
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffde7436b0, periods=0x7fffde7436b8, reorder=1, comm_cart=0x7fffde7436f8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 69
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff46da30a0, periods=0x7fff46da30a8, reorder=1, comm_cart=0x7fff46da30e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 249
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffc1fe4ca0, periods=0x7fffc1fe4ca8, reorder=1, comm_cart=0x7fffc1fe4ce8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 109
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffaa3966d0, periods=0x7fffaa3966d8, reorder=1, comm_cart=0x7fffaa396718) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 139
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff336d54a0, periods=0x7fff336d54a8, reorder=1, comm_cart=0x7fff336d54e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 149
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff0ed474a0, periods=0x7fff0ed474a8, reorder=1, comm_cart=0x7fff0ed474e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 249
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff56bf9b60, periods=0x7fff56bf9b68, reorder=1, comm_cart=0x7fff56bf9ba8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 199
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd334e250, periods=0x7fffd334e258, reorder=1, comm_cart=0x7fffd334e298) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 289
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffdfbcbe60, periods=0x7fffdfbcbe68, reorder=1, comm_cart=0x7fffdfbcbea8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff56905090, periods=0x7fff56905098, reorder=1, comm_cart=0x7fff569050d8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 219
+make: *** [cannon] Error 1
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8028a8c0, periods=0x7fff8028a8c8, reorder=1, comm_cart=0x7fff8028a908) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 239
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd33f5fa0, periods=0x7fffd33f5fa8, reorder=1, comm_cart=0x7fffd33f5fe8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 259
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff09387b20, periods=0x7fff09387b28, reorder=1, comm_cart=0x7fff09387b68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 268
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff722b7500, periods=0x7fff722b7508, reorder=1, comm_cart=0x7fff722b7548) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 288
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff49556d50, periods=0x7fff49556d58, reorder=1, comm_cart=0x7fff49556d98) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 9
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8d7aa190, periods=0x7fff8d7aa198, reorder=1, comm_cart=0x7fff8d7aa1d8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 19
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8bc05580, periods=0x7fff8bc05588, reorder=1, comm_cart=0x7fff8bc055c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff834a7b20, periods=0x7fff834a7b28, reorder=1, comm_cart=0x7fff834a7b68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 59
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff26a6eaa0, periods=0x7fff26a6eaa8, reorder=1, comm_cart=0x7fff26a6eae8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffdd62ef50, periods=0x7fffdd62ef58, reorder=1, comm_cart=0x7fffdd62ef98) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 9
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff73a5fd40, periods=0x7fff73a5fd48, reorder=1, comm_cart=0x7fff73a5fd88) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff6faf15c0, periods=0x7fff6faf15c8, reorder=1, comm_cart=0x7fff6faf1608) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff28ef6660, periods=0x7fff28ef6668, reorder=1, comm_cart=0x7fff28ef66a8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 59
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff514f8940, periods=0x7fff514f8948, reorder=1, comm_cart=0x7fff514f8988) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff6bb28f50, periods=0x7fff6bb28f58, reorder=1, comm_cart=0x7fff6bb28f98) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 139
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff4f87ba60, periods=0x7fff4f87ba68, reorder=1, comm_cart=0x7fff4f87baa8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 149
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff7a41a270, periods=0x7fff7a41a278, reorder=1, comm_cart=0x7fff7a41a2b8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff4ff72b10, periods=0x7fff4ff72b18, reorder=1, comm_cart=0x7fff4ff72b58) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 169
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffe73043a0, periods=0x7fffe73043a8, reorder=1, comm_cart=0x7fffe73043e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 189
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffff5a89f0, periods=0x7fffff5a89f8, reorder=1, comm_cart=0x7fffff5a8a38) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff4ae10930, periods=0x7fff4ae10938, reorder=1, comm_cart=0x7fff4ae10978) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 19
+make: *** [cannon_dgemm] Error 1
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff86f88bb0, periods=0x7fff86f88bb8, reorder=1, comm_cart=0x7fff86f88bf8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 238
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd9dc6800, periods=0x7fffd9dc6808, reorder=1, comm_cart=0x7fffd9dc6848) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 258
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 179
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff239decc0, periods=0x7fff239decc8, reorder=1, comm_cart=0x7fff239ded08) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 189
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff9dad43c0, periods=0x7fff9dad43c8, reorder=1, comm_cart=0x7fff9dad4408) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 268
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff5310ca00, periods=0x7fff5310ca08, reorder=1, comm_cart=0x7fff5310ca48) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff17be09e0, periods=0x7fff17be09e8, reorder=1, comm_cart=0x7fff17be0a28) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 279
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffdac55b20, periods=0x7fffdac55b28, reorder=1, comm_cart=0x7fffdac55b68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 288
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff70bd7bb0, periods=0x7fff70bd7bb8, reorder=1, comm_cart=0x7fff70bd7bf8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 289
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8522b700, periods=0x7fff8522b708, reorder=1, comm_cart=0x7fff8522b748) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff21449de0, periods=0x7fff21449de8, reorder=1, comm_cart=0x7fff21449e28) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff86e8cec0, periods=0x7fff86e8cec8, reorder=1, comm_cart=0x7fff86e8cf08) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 318
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff22161a40, periods=0x7fff22161a48, reorder=1, comm_cart=0x7fff22161a88) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 328
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff04fab830, periods=0x7fff04fab838, reorder=1, comm_cart=0x7fff04fab878) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd6154830, periods=0x7fffd6154838, reorder=1, comm_cart=0x7fffd6154878) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 358
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffc8ac1bf0, periods=0x7fffc8ac1bf8, reorder=1, comm_cart=0x7fffc8ac1c38) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff816243a0, periods=0x7fff816243a8, reorder=1, comm_cart=0x7fff816243e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 9
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff7cd29090, periods=0x7fff7cd29098, reorder=1, comm_cart=0x7fff7cd290d8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 19
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff16e1b700, periods=0x7fff16e1b708, reorder=1, comm_cart=0x7fff16e1b748) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffceaec0d0, periods=0x7fffceaec0d8, reorder=1, comm_cart=0x7fffceaec118) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 29
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff110a0510, periods=0x7fff110a0518, reorder=1, comm_cart=0x7fff110a0558) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 39
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffff2ad2e20, periods=0x7ffff2ad2e28, reorder=1, comm_cart=0x7ffff2ad2e68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 318
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff5c652f00, periods=0x7fff5c652f08, reorder=1, comm_cart=0x7fff5c652f48) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 328
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffeef03d70, periods=0x7fffeef03d78, reorder=1, comm_cart=0x7fffeef03db8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 69
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff018b9a60, periods=0x7fff018b9a68, reorder=1, comm_cart=0x7fff018b9aa8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 89
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffff6c46b70, periods=0x7ffff6c46b78, reorder=1, comm_cart=0x7ffff6c46bb8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffffeaae2c0, periods=0x7ffffeaae2c8, reorder=1, comm_cart=0x7ffffeaae308) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 109
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff52631770, periods=0x7fff52631778, reorder=1, comm_cart=0x7fff526317b8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 358
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff54a24800, periods=0x7fff54a24808, reorder=1, comm_cart=0x7fff54a24848) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd5e09e00, periods=0x7fffd5e09e08, reorder=1, comm_cart=0x7fffd5e09e48) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff6a02cd30, periods=0x7fff6a02cd38, reorder=1, comm_cart=0x7fff6a02cd78) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 179
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff6b568a00, periods=0x7fff6b568a08, reorder=1, comm_cart=0x7fff6b568a48) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff4b678380, periods=0x7fff4b678388, reorder=1, comm_cart=0x7fff4b6783c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 189
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffa08a1030, periods=0x7fffa08a1038, reorder=1, comm_cart=0x7fffa08a1078) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff74a72fb0, periods=0x7fff74a72fb8, reorder=1, comm_cart=0x7fff74a72ff8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff3250cc30, periods=0x7fff3250cc38, reorder=1, comm_cart=0x7fff3250cc78) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 318
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffff8c89830, periods=0x7ffff8c89838, reorder=1, comm_cart=0x7ffff8c89878) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 328
+make: *** [cannon_dgemm] Error 1
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff147d8700, periods=0x7fff147d8708, reorder=1, comm_cart=0x7fff147d8748) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 238
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff9daf0510, periods=0x7fff9daf0518, reorder=1, comm_cart=0x7fff9daf0558) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 258
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff54fb7840, periods=0x7fff54fb7848, reorder=1, comm_cart=0x7fff54fb7888) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff3da41b20, periods=0x7fff3da41b28, reorder=1, comm_cart=0x7fff3da41b68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 288
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffc7c2f230, periods=0x7fffc7c2f238, reorder=1, comm_cart=0x7fffc7c2f278) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff52bbff60, periods=0x7fff52bbff68, reorder=1, comm_cart=0x7fff52bbffa8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 308
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff324d7e10, periods=0x7fff324d7e18, reorder=1, comm_cart=0x7fff324d7e58) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 319
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff17d4ad20, periods=0x7fff17d4ad28, reorder=1, comm_cart=0x7fff17d4ad68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 348
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffa13ed1e0, periods=0x7fffa13ed1e8, reorder=1, comm_cart=0x7fffa13ed228) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 358
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffff0af1ff0, periods=0x7ffff0af1ff8, reorder=1, comm_cart=0x7ffff0af2038) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff732fa1c0, periods=0x7fff732fa1c8, reorder=1, comm_cart=0x7fff732fa208) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff9ede33f0, periods=0x7fff9ede33f8, reorder=1, comm_cart=0x7fff9ede3438) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffeadb7000, periods=0x7fffeadb7008, reorder=1, comm_cart=0x7fffeadb7048) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff74b90580, periods=0x7fff74b90588, reorder=1, comm_cart=0x7fff74b905c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 129
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff6a16c8e0, periods=0x7fff6a16c8e8, reorder=1, comm_cart=0x7fff6a16c928) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 199
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 268
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffc7f74190, periods=0x7fffc7f74198, reorder=1, comm_cart=0x7fffc7f741d8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 209
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffb4d6fd00, periods=0x7fffb4d6fd08, reorder=1, comm_cart=0x7fffb4d6fd48) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 278
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8f3379f0, periods=0x7fff8f3379f8, reorder=1, comm_cart=0x7fff8f337a38) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 229
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff0b807ea0, periods=0x7fff0b807ea8, reorder=1, comm_cart=0x7fff0b807ee8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 268
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 199
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffcff70850, periods=0x7fffcff70858, reorder=1, comm_cart=0x7fffcff70898) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 318
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff976fa150, periods=0x7fff976fa158, reorder=1, comm_cart=0x7fff976fa198) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 89
+make: *** [cannon_dgemm] Error 1
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff81597510, periods=0x7fff81597518, reorder=1, comm_cart=0x7fff81597558) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 248
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffa48632f0, periods=0x7fffa48632f8, reorder=1, comm_cart=0x7fffa4863338) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffcc5e6a20, periods=0x7fffcc5e6a28, reorder=1, comm_cart=0x7fffcc5e6a68) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 299
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff8d9c4da0, periods=0x7fff8d9c4da8, reorder=1, comm_cart=0x7fff8d9c4de8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 9
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7ffff0733030, periods=0x7ffff0733038, reorder=1, comm_cart=0x7ffff0733078) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 49
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffb52f61b0, periods=0x7fffb52f61b8, reorder=1, comm_cart=0x7fffb52f61f8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 339
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff2779ffa0, periods=0x7fff2779ffa8, reorder=1, comm_cart=0x7fff2779ffe8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 298
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff65d86780, periods=0x7fff65d86788, reorder=1, comm_cart=0x7fff65d867c8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 9
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff9e3be950, periods=0x7fff9e3be958, reorder=1, comm_cart=0x7fff9e3be998) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 49
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff90ed8770, periods=0x7fff90ed8778, reorder=1, comm_cart=0x7fff90ed87b8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 328
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffd0b32610, periods=0x7fffd0b32618, reorder=1, comm_cart=0x7fffd0b32658) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 139
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff05ba6030, periods=0x7fff05ba6038, reorder=1, comm_cart=0x7fff05ba6078) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 159
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff92019c70, periods=0x7fff92019c78, reorder=1, comm_cart=0x7fff92019cb8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 169
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fffe20ca5d0, periods=0x7fffe20ca5d8, reorder=1, comm_cart=0x7fffe20ca618) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 179
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff124e83a0, periods=0x7fff124e83a8, reorder=1, comm_cart=0x7fff124e83e8) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 189
+Fatal error in PMPI_Cart_create: Other MPI error, error stack:
+PMPI_Cart_create(332).........: MPI_Cart_create(MPI_COMM_WORLD, ndims=2, dims=0x7fff10204200, periods=0x7fff10204208, reorder=1, comm_cart=0x7fff10204248) failed
+MPIR_Cart_create_impl(189)....: 
+MPIR_Cart_create(110).........: 
+MPIR_Comm_split_impl(241).....: 
+MPIR_Get_contextid_sparse(741): 
+MPIR_Allreduce_impl(1166).....: 
+MPIR_Allreduce_intra(794).....: 
+dequeue_and_set_error(628)....: Communication error with rank 229
+make: *** [cannon_dgemm] Error 1
+=>> PBS: job killed: node 1 (g02) requested job terminate, 'EOF' (code 1099) - received SISTER_EOF attempting to communicate with sister MOM's
+[mpiexec@g38] HYD_pmcd_pmiserv_send_signal (./pm/pmiserv/pmiserv_cb.c:221): assert (!closed) failed
+[mpiexec@g38] ui_cmd_cb (./pm/pmiserv/pmiserv_pmci.c:128): unable to send SIGUSR1 downstream
+[mpiexec@g38] HYDT_dmxu_poll_wait_for_event (./tools/demux/demux_poll.c:77): callback returned error status
+[mpiexec@g38] HYD_pmci_wait_for_completion (./pm/pmiserv/pmiserv_pmci.c:388): error waiting for event
+[mpiexec@g38] main (./ui/mpich/mpiexec.c:718): process manager error waiting for completion
+make: *** [cannon_omp] Terminated
