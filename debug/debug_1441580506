@@ -1,0 +1,3 @@
+METHOD:	MKL
+ETA:	10.173516
+ARGS:	m=8192, k=8192, n=8192, nprocs=1, threads=38, seq_elap=0.000000, total=21.039619
