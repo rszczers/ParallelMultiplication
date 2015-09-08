@@ -6,7 +6,8 @@ use feature "switch";
 $ARGV[0] = "CANNON" unless defined $ARGV[0];
 my $method = shift;
 
-my $dir = './debug';
+my $dir = shift;
+#my $dir = './debug';
 
 foreach my $fp (glob("$dir/debug_*")) {
     open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";

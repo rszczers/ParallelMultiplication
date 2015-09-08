@@ -1,34 +1,57 @@
+Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu Matematyki UMCS. Każdy węzeł sieci składa się z dwóch procesorów Intel Xeon Processor X5650. W trakcie testów używano tylko jednego procesora przypadającego na węzeł. Wykresy \ref{pl:cannon_seq_diff}, \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}, \ref{pl:cannon_omp}, \ref{pl:mono} prezentują uzyskane przyspieszenia względem naiwnego algorytmu sekwencyjnego o złożoności \(\mathcal{O}(n^3)\).
+
 \begin{figure}[hb]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_diff_n.tex}
-\caption{test}
+\caption{Przyspieszenie algorytmu Cannona na systemie równoległym składającym się z 22 fizycznych węzłów sieci. Wykres uwzględnia testy przeprowadzone na trzech zestawach danych różnego rozmiaru.}
+\label{pl:cannon_seq_diff}
 \end{figure}
 
 \begin{figure}[hb]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_mkl_diff_n.tex}
-\caption{test}
+\caption{Przyspieszenie względne hybrydowego algorytmu Cannona z procedurą \texttt{cblas\_dgemm} uzyskane na systemie równoległym składającym się z 22 fizycznych węzłów sieci dla trzech zestawów danych różnego rozmiaru.}
+\label{pl:cannon_dgemm_diff}
 \end{figure}
 
 \begin{figure}[hb]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_dgemm.tex}
-\caption{test}
+\caption{Zestawienie porównawcze przyspieszeń z wykresów \ref{pl:cannon_seq_diff} i \ref{pl:cannon_dgemm_diff}.} 
+\label{pl:compar_dgemm}
 \end{figure}
 
 \begin{figure}[hb]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_omp.tex}
-\caption{test}
+\caption{Porównanie wydajności klasycznego algorytmu Cannona oraz wersji hybrydowej dla różne liczby wątków w systemie równoległym składającym się z 22 fizycznych węzłów.}
+\label{pl:cannon_omp}
 \end{figure}
 
 \begin{figure}[hb]
 \centering
 \footnotesize
 \subimport{plots/}{mono.tex}
-\caption{test}
+\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
+\label{pl:mono}
+\end{figure}
+
+\begin{figure}[hb]
+\centering
+\footnotesize
+\subimport{plots/}{scal_cannon_dgemm.tex}
+\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
+\label{pl:mono}
+\end{figure}
+
+\begin{figure}[hb]
+\centering
+\footnotesize
+\subimport{plots/}{scal_cannon_omp.tex}
+\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
+\label{pl:mono}
 \end{figure}

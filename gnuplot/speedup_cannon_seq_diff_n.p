@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 12cm,8cm color colortext header \
+set terminal epslatex size 13cm,8cm color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_diff_n.tex"
@@ -40,7 +40,7 @@ set logscale x
 f(x) = mean_seq_2048
 g(x) = mean_seq_4096
 h(x) = mean_seq_8192
-
+set title "Klasyczny algorytm Cannona"
 set key left top
 
 fit f(x) 'data/2048_sequential.dat' u 5:1 via mean_seq_2048

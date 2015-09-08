@@ -10,7 +10,7 @@ set terminal epslatex size 15cm,12cm color colortext header \
 set output "cannon_mkl_diff_n.tex"
 
 
-set multiplot layout 2,2
+set multiplot layout 2,2 title "Hybrydowy algorytm Cannona"
 
 set grid xtics ytics ls 3 lw 1 lc rgb 'gray'
 
@@ -52,7 +52,7 @@ fit h(x) 'data/8192_sequential.dat' u 5:1 via mean_seq_8192
 set style fill pattern border
 
 
-set ylabel "Przyspieszenie S" offset 1
+set ylabel "Przyspieszenie" offset 1
 set key off
 set title "1 wątek"
 plot 'data/8192_cannon_dgemm_1.dat' u 5:(mean_seq_8192/$1):xtic(5) w boxes ls 2 lt -1 t '$n = 8192\times 8192$', \
@@ -66,7 +66,7 @@ plot 'data/8192_cannon_dgemm_2.dat' u 5:(mean_seq_8192/$1):xtic(5) w boxes ls 2 
 'data/4096_cannon_dgemm_2.dat' u ($5*1.25):(mean_seq_4096/$1) w boxes ls 3 lt -1 t '$n = 4096\times 4096$', \
 'data/2048_cannon_dgemm_2.dat' u ($5*1.5):(mean_seq_2048/$1) w boxes ls 4 lt -1 t '$n = 2048\times 2048$'
 
-set ylabel "Przyspieszenie S" offset 1
+set ylabel "Przyspieszenie" offset 1
 set xlabel "Liczba procesów"
 set key off
 set title "4 wątki"

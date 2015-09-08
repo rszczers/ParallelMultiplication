@@ -1,6 +1,6 @@
-Niech wektor \(x\in\mathbb{R}^n\) będzie rozdystrybuowany między pamięci lokalne sieci składającej się z \(p\) węzłów. Załóżmy wstępnie, że \(n=rp\). Do reprezentacji wektora \(x\) rozdystrybuowanego w sieci stosuje się najczęściej dwa następujące podejścia: zapis kolumnowy (ang. \emph{store-by-column}) oraz zapis wierszowy (ang. \emph{store-by-row}).
+Powiedzmy, że wektor \(x\in\mathbb{R}^n\) jest rozdystrybuowany między pamięci lokalne sieci składającej się z \(p\) węzłów. Załóżmy wstępnie, że \(n=rp\). Do reprezentacji wektora \(x\) rozdystrybuowanego w sieci stosuje się najczęściej dwa następujące podejścia: zapis kolumnowy (ang. \emph{store-by-column}) oraz zapis wierszowy (ang. \emph{store-by-row}).
 
-\noindent W pierwszym z nich, zapisie kolumnowym, rozpatrujemy wektor \(x\) jako macierz \(r\times p\):
+\noindent W pierwszym z nich\footnote{Używamy tutaj notacji programu Matlab; więcej informacji można znaleźć w \cite{Matlab}}, zapisie kolumnowym, rozpatrujemy wektor \(x\) jako macierz \(r\times p\):
 \begin{align*}
 x_{r\times p} = \left[x(1:r)\quad x(r+1:2r) \dots x(1+(p-1)r:n)\right],
 \end{align*}
