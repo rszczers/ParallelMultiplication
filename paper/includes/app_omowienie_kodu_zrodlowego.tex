@@ -150,12 +150,12 @@ W kodzie wybrano szereg punktów pomiarowych, w których z pomocą procedury \te
 \noindent Za zapisywanie danych pomiarowych odpowiada procedura \texttt{save\_info}.
 
 \subsubsection{Przetwarzanie danych pomiarowych}
-Przetwarzanie danych pomiarowych polega na wyciąganiu sekwencji interesujących danych potrzebnych później w procesie generowania wykresów programem \texttt{gnuplot}. Dane programu \texttt{gnuplot} są w formacie kolumn danych odzielonych tabulacją. Przetwarzaniem danych wynikowych programu \texttt{pmm} do postaci danych \texttt{gnuplot} zajmuje się skrypt \texttt{data.sh} będący w istocie ciągiem instrukcji sortujących i selekcjonujących dane (listing \ref{l:potok}) otrzymane dzięki skryptowi \texttt{parse.pl}. Skrypt ten wyciąga wszystkie ciągi liczbowe z danych pomiarowych i układa je w linię danych odzielonych separatorem (listing \ref{l:parsepl}.
+Przetwarzanie danych pomiarowych polega na wyciąganiu sekwencji interesujących danych potrzebnych później w procesie generowania wykresów programem \texttt{gnuplot}. Dane programu \texttt{gnuplot} są w formacie kolumn danych odzielonych tabulacją. Przetwarzaniem danych wynikowych programu \texttt{pmm} do postaci danych \texttt{gnuplot} zajmuje się skrypt \texttt{data.sh}. Jest on w istocie ciągiem instrukcji sortujących i selekcjonujących dane (listing \ref{l:potok}) otrzymane dzięki skryptowi \texttt{parse.pl}. Skrypt ten wyciąga wszystkie ciągi liczbowe z danych pomiarowych i układa je w linię danych odzielonych separatorem (listing \ref{l:parsepl}).
 
 \begin{listing}[H]
 \inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=4,firstline=4,lastline=9,breaklines]{bash}{includes/listings/data.sh}
 \caption{Fragment skryptu data.sh}
-\label{l:collecting_cannon}
+\label{l:potok}
 \end{listing}
 
 \begin{listing}
