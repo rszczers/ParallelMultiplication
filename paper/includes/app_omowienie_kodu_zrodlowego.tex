@@ -1,4 +1,4 @@
-Rozwiązania dostarczone z niniejszą pracą stanowią konglomerat kilku technologii programistycznych, których celem jest dostarczenie narzędza służącego przeprowadzaniu rozproszonych operacji szybkiego mnożenia macierzy dla dużych danych wejściowych oraz prezentacji wydajności takich operacji w dokumentach \LaTeX \, (rozdział \ref{ch:performance}). 
+Rozwiązania dostarczone z niniejszą pracą stanowią konglomerat kilku technologii programistycznych, których celem jest dostarczenie narzędza służącego przeprowadzaniu równoległych operacji szybkiego mnożenia macierzy dla dużych danych wejściowych oraz prezentacji wydajności takich operacji w dokumentach \LaTeX \, (rozdział \ref{ch:performance}). 
 
 \subsubsection{Program \texttt{pmm}}
 
@@ -57,7 +57,7 @@ Na tym etapie rozpoczynamy właściwą część algorytmu polegającą na rozdys
 \label{fig:cannon_src2}
 \end{figure}
 
-Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia podmacierzy w sieci takiego jak na rys. \ref{fig:cannon_src2}. Rozpatrzmy kod zamieszczony na listingu \ref{l:start_dist_cannon}. Zawarte w nim instrukcje wykonywane są tylko przez nadzorcę. 
+Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia podmacierzy w sieci takiego jak na rys. \ref{fig:cannon_src2}. Rozpatrzmy kod zamieszczony na listingu \ref{l:start_dist_cannon}. Zawarte w nim instrukcje wykonywane są tylko przez nadzorcę i dotyczą wyłącznie dystrybucji macierzy \(A\).
 
 % Instrukcje w liniach \(455,\456,\,459,\,477,\,478\) służą pomiarow czasu wykonania wybranych części kodu i nie są istotne dla omówianego zagadnienia.
 
@@ -66,6 +66,23 @@ Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia pod
 \caption{Plik \texttt{main.c}; wstępne rozmieszczanie macierzy}
 \label{l:start_dist_cannon}
 \end{listing}
+
+Pomocnica tablica \texttt{proclA} zdefiniowana w liniach \(443-453\) zawiera identyfikatory procesorów do których kolejno będą wysyłane bloki macierzy \(A\). Obrazowo dla obliczeń w torusie \(3\times 3\) przedstawia ją rysunek \ref{fig:proclA}
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+0 & 1 & 2 \\
+\hline
+4 & 5 & 3 \\
+\hline
+8 & 6 & 7 \\
+\hline
+\end{tabular}
+\caption{Tablica pomocnicza \texttt{proclA}}
+\label{fig:proclA}
+\end{figure}
 
 
 % \begin{listing}
