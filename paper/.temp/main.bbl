@@ -27,6 +27,13 @@ Grey Ballard, James Demmel, Olga Holtz, Benjamin Lipshitz, and Oded Schwartz.
   multiplication.
 \newblock {\em CoRR}, abs/1202.3173, 2012.
 
+\bibitem{Ching-TienHo1991}
+{Ching-Tien Ho}, S.L. Johnsson, and A.~Edelman.
+\newblock {Matrix Multiplication on Hypercubes Using Full Bandwith and Constant
+  Storage}.
+\newblock In {\em The Sixth Distributed Memory Computing Conference, 1991.
+  Proceedings}, pages 447--451. IEEE, 1991.
+
 \bibitem{IEEE}
 Ed~J.~Radatz.
 \newblock {\em Standards Coordinating Committee 10, Terms and Definitions. The

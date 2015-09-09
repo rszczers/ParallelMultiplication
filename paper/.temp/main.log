@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  10 SEP 2015 00:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  10 SEP 2015 01:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -955,14 +955,14 @@ Overfull \hbox (60.4754pt too wide) in paragraph at lines 2--35
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- [3] (./includes/ch0_wstep.tex) [4
+ [3] (./includes/ch0_wstep.tex [4
 
-]
+]) [5]
 Rozdzia\PlPrIeC {\l } 1.
 (./includes/ch1_ustalenia_wstepne.tex
-(./includes/ch1s0_ustalenia_terminologiczne.tex [5
+(./includes/ch1s0_ustalenia_terminologiczne.tex [6
 
-]) [6]
+]) [7]
 (./includes/ch1s1_klasyfikacja_algorytmow.tex
 Package epstopdf Info: Source file: <includes/images/Rys2.eps>
 (epstopdf)                    date: 2015-09-01 20:54:37
@@ -976,7 +976,7 @@ nverted-to.pdf includes/images/Rys2.eps>
 (epstopdf)             \includegraphics on input line 34.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys2-eps-converted-to.pdf, id=233, 793.96625pt x 158.5925pt>
+<includes/images/Rys2-eps-converted-to.pdf, id=243, 793.96625pt x 158.5925pt>
 File: includes/images/Rys2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys2-eps-converted-to.pdf>
@@ -988,7 +988,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--49
 
  []
 
-[7 <./includes/images/Rys2-eps-converted-to.pdf>]
+[8 <./includes/images/Rys2-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <includes/images/Rys1.eps>
 (epstopdf)                    date: 2015-09-01 21:04:43
 (epstopdf)                    size: 221804 bytes
@@ -1001,7 +1001,7 @@ nverted-to.pdf includes/images/Rys1.eps>
 (epstopdf)             \includegraphics on input line 53.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys1-eps-converted-to.pdf, id=253, 537.00626pt x 245.91875pt>
+<includes/images/Rys1-eps-converted-to.pdf, id=262, 537.00626pt x 245.91875pt>
 File: includes/images/Rys1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys1-eps-converted-to.pdf>
@@ -1009,7 +1009,7 @@ Package pdftex.def Info: includes/images/Rys1-eps-converted-to.pdf used on inpu
 t line 53.
 (pdftex.def)             Requested size: 284.52756pt x 130.29878pt.
 )
-(./includes/ch1s2_architektury.tex [8 <./includes/images/Rys1-eps-converted-to.
+(./includes/ch1s2_architektury.tex [9 <./includes/images/Rys1-eps-converted-to.
 pdf>]
 Package epstopdf Info: Source file: <includes/images/flynn.eps>
 (epstopdf)                    date: 2015-08-26 12:43:02
@@ -1023,20 +1023,20 @@ onverted-to.pdf includes/images/flynn.eps>
 (epstopdf)             \includegraphics on input line 19.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/flynn-eps-converted-to.pdf, id=272, 232.87pt x 200.75pt>
+<includes/images/flynn-eps-converted-to.pdf, id=281, 232.87pt x 200.75pt>
 File: includes/images/flynn-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/flynn-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/flynn-eps-converted-to.pdf used on inp
 ut line 19.
 (pdftex.def)             Requested size: 281.93115pt x 243.07059pt.
- [9 <./includes/images/flynn-eps-converted-to.pdf>]) (./includes/ch1s3_reprezen
-tacja_algorytmow.tex
+ [10 <./includes/images/flynn-eps-converted-to.pdf>]) (./includes/ch1s3_repreze
+ntacja_algorytmow.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
  []
 
-[10]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
@@ -1052,7 +1052,7 @@ Package epstopdf Info: Source file: <includes/images/Rys3.eps>
 nverted-to.pdf includes/images/Rys3.eps>
 (epstopdf)             \includegraphics on input line 32.
 Package epstopdf Info: Output file is already uptodate.
-<includes/images/Rys3-eps-converted-to.pdf, id=304, 863.225pt x 351.3125pt>
+<includes/images/Rys3-eps-converted-to.pdf, id=313, 863.225pt x 351.3125pt>
 File: includes/images/Rys3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys3-eps-converted-to.pdf>
@@ -1064,17 +1064,17 @@ Overfull \hbox (1.06387pt too wide) in paragraph at lines 32--33
  [][] 
  []
 
-[11]) (./includes/ch1s4_ocena_algorytmow.tex
+[12]) (./includes/ch1s4_ocena_algorytmow.tex
 Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
  []
 
-[12 <./includes/images/Rys3-eps-converted-to.pdf>]
-(./includes/ch1s4s0_przyspieszenie.tex [13]) (./includes/ch1s4s1_koszt.tex
-[14]) (./includes/ch1s4s2_efektywnosc.tex)
-(./includes/ch1s4s3_prawo_amdahla.tex [15] [16])
-(./includes/ch1s4s4_gustafsona_barsisa.tex [17])
-(./includes/ch1s4s5_miara_karpa_flatta.tex [18])) [19]
+[13 <./includes/images/Rys3-eps-converted-to.pdf>]
+(./includes/ch1s4s0_przyspieszenie.tex [14]) (./includes/ch1s4s1_koszt.tex
+[15]) (./includes/ch1s4s2_efektywnosc.tex)
+(./includes/ch1s4s3_prawo_amdahla.tex [16] [17])
+(./includes/ch1s4s4_gustafsona_barsisa.tex [18])
+(./includes/ch1s4s5_miara_karpa_flatta.tex [19])) [20]
 (./includes/ch1s5_teoretyczne_modele_obliczen.tex
 (./includes/ch1s5s0_model_ram.tex
 Package epstopdf Info: Source file: <includes/images/Rys_Neumann.eps>
@@ -1089,7 +1089,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys_Neumann-eps-converted-to.pdf, id=438, 1210.5225pt x 929.47
+<includes/images/Rys_Neumann-eps-converted-to.pdf, id=447, 1210.5225pt x 929.47
 25pt>
 File: includes/images/Rys_Neumann-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/Rys_Neumann-eps-converted-to.pdf>
@@ -1101,7 +1101,7 @@ Overfull \hbox (31.00153pt too wide) in paragraph at lines 39--56
  [] 
  []
 
-[20 <./includes/images/Rys_Neumann-eps-converted-to.pdf>])
+[21 <./includes/images/Rys_Neumann-eps-converted-to.pdf>])
 (./includes/ch1s5s1_model_pram.tex
 Package epstopdf Info: Source file: <includes/images/Rys4.eps>
 (epstopdf)                    date: 2015-08-25 20:47:34
@@ -1115,7 +1115,7 @@ nverted-to.pdf includes/images/Rys4.eps>
 (epstopdf)             \includegraphics on input line 11.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys4-eps-converted-to.pdf, id=456, 1034.86626pt x 579.16376pt>
+<includes/images/Rys4-eps-converted-to.pdf, id=466, 1034.86626pt x 579.16376pt>
 File: includes/images/Rys4-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/Rys4-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys4-eps-converted-to.pdf used on inpu
@@ -1125,12 +1125,12 @@ t line 11.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 31--33
 
  []
 
-[22 <./includes/images/Rys4-eps-converted-to.pdf>])
+[23 <./includes/images/Rys4-eps-converted-to.pdf>])
 (./includes/ch1s5s2_model_sieciowy.tex
 Package epstopdf Info: Source file: <includes/images/Rys_net.eps>
 (epstopdf)                    date: 2015-08-25 20:46:20
@@ -1144,7 +1144,7 @@ df>
 (epstopdf)             \includegraphics on input line 12.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/Rys_net-eps-converted-to.pdf, id=473, 1029.8475pt x 622.325pt>
+<includes/images/Rys_net-eps-converted-to.pdf, id=483, 1029.8475pt x 622.325pt>
 File: includes/images/Rys_net-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/Rys_net-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys_net-eps-converted-to.pdf used on i
@@ -1154,10 +1154,10 @@ nput line 12.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[23]
+[24]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 30.
- [24 <./includes/images/Rys_net-eps-converted-to.pdf>]
+ [25 <./includes/images/Rys_net-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <includes/images/mesh1d.eps>
 (epstopdf)                    date: 2015-08-31 17:06:52
 (epstopdf)                    size: 43735 bytes
@@ -1170,7 +1170,7 @@ converted-to.pdf includes/images/mesh1d.eps>
 (epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/mesh1d-eps-converted-to.pdf, id=501, 528.97626pt x 70.2625pt>
+<includes/images/mesh1d-eps-converted-to.pdf, id=512, 528.97626pt x 70.2625pt>
 File: includes/images/mesh1d-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/mesh1d-eps-converted-to.pdf>
@@ -1194,7 +1194,7 @@ df>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/torus1d-eps-converted-to.pdf, id=504, 590.205pt x 107.40125pt>
+<includes/images/torus1d-eps-converted-to.pdf, id=515, 590.205pt x 107.40125pt>
 File: includes/images/torus1d-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/torus1d-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/torus1d-eps-converted-to.pdf used on i
@@ -1224,7 +1224,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--84
 \T1/cmr/m/n/10 kra-w¦-
  []
 
-[25 <./includes/images/mesh1d-eps-converted-to.pdf>]
+[26 <./includes/images/mesh1d-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <includes/images/mesh2d.eps>
 (epstopdf)                    date: 2015-08-31 17:07:23
 (epstopdf)                    size: 80698 bytes
@@ -1237,7 +1237,7 @@ converted-to.pdf includes/images/mesh2d.eps>
 (epstopdf)             \includegraphics on input line 99.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/mesh2d-eps-converted-to.pdf, id=522, 308.15125pt x 304.13625pt
+<includes/images/mesh2d-eps-converted-to.pdf, id=533, 308.15125pt x 304.13625pt
 >
 File: includes/images/mesh2d-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/mesh2d-eps-converted-to.pdf>
@@ -1256,7 +1256,7 @@ df>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/torus2d-eps-converted-to.pdf, id=523, 396.48125pt x 391.4625pt
+<includes/images/torus2d-eps-converted-to.pdf, id=534, 396.48125pt x 391.4625pt
 >
 File: includes/images/torus2d-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/images/torus2d-eps-converted-to.pdf>
@@ -1272,7 +1272,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
 
-[26 <./includes/images/torus1d-eps-converted-to.pdf> <./includes/images/mesh2d-
+[27 <./includes/images/torus1d-eps-converted-to.pdf> <./includes/images/mesh2d-
 eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <includes/images/systolic.eps>
 (epstopdf)                    date: 2015-04-20 15:35:55
@@ -1286,24 +1286,24 @@ s-converted-to.pdf includes/images/systolic.eps>
 (epstopdf)             \includegraphics on input line 129.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/images/systolic-eps-converted-to.pdf, id=543, 411.5375pt x 172.645pt>
+<includes/images/systolic-eps-converted-to.pdf, id=553, 411.5375pt x 172.645pt>
 File: includes/images/systolic-eps-converted-to.pdf Graphic file (type pdf)
 <use includes/images/systolic-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/systolic-eps-converted-to.pdf used on 
 input line 129.
 (pdftex.def)             Requested size: 375.9082pt x 157.6999pt.
 ))
-(./includes/ch1s6_wybrane_typy_danych.tex [27 <./includes/images/torus2d-eps-co
-nverted-to.pdf> <./includes/images/systolic-eps-converted-to.pdf>] [28]))
-[29]
+(./includes/ch1s6_wybrane_typy_danych.tex [28 <./includes/images/torus2d-eps-co
+nverted-to.pdf> <./includes/images/systolic-eps-converted-to.pdf>] [29]))
+[30]
 Rozdzia\PlPrIeC {\l } 2.
 (./includes/ch2_algorytmy_rownolegle.tex
 (./includes/ch2s0_przeglad_algorytmow_klasycznych.tex
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 17.
- [30
+ [31
 
-] [31] [32])
+] [32] [33])
 Overfull \hbox (6.60541pt too wide) in paragraph at lines 146--3
 []\T1/cmr/m/n/12 W prak-ty-ce sto-su-je si¦ tyl-ko kil-ka kro-ków al-go-ryt-mu 
 Strassena-Winegrada[[]].
@@ -1313,24 +1313,24 @@ Strassena-Winegrada[[]].
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33]
+[34]
 Overfull \hbox (27.15904pt too wide) in paragraph at lines 88--89
 \OMS/cmsy/m/n/12 O\OT1/cmr/m/n/12 ([] \OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )$\T1/c
 mr/m/n/12 . Zªo-»o-no±¢, przy-spie-sze-nie, koszt i efek-tyw-no±¢ al-go-ryt-mu 
 s¡ nast¦puj¡ce[[]]: 
  []
 
-[34pdfTeX warning (ext4): destination with the same identifier (name{algorithm.
+[35pdfTeX warning (ext4): destination with the same identifier (name{algorithm.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.145 
-      ]) (./includes/ch2s2_algorytm_cannona.tex [35]
+      ]) (./includes/ch2s2_algorytm_cannona.tex [36]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[36] [37] [38] [39]
+[37] [38] [39] [40]
 
 LaTeX Warning: Command \' invalid in math mode on input line 307.
 
@@ -1343,13 +1343,13 @@ LaTeX Warning: Command \l invalid in math mode on input line 308.
 
 Missing character: There is no ó in font cmti12!
 Missing character: There is no ª in font cmti12!
-[40] [41pdfTeX warning (ext4): destination with the same identifier (name{algor
+[41] [42pdfTeX warning (ext4): destination with the same identifier (name{algor
 ithm.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.372 \begin{align}
-                   \label{eq:communicationtime_cannon1}] [42]
+                   \label{eq:communicationtime_cannon1}] [43]
 Overfull \hbox (35.3736pt too wide) in paragraph at lines 430--548
  [][] 
  []
@@ -1364,7 +1364,7 @@ Overfull \hbox (35.3736pt too wide) in paragraph at lines 683--800
  [][] 
  []
 
-)) [43
+)) [44
 
 ]
 Rozdzia\PlPrIeC {\l } 3.
@@ -1381,7 +1381,7 @@ n-eps-converted-to.pdf includes/plots/cannon_diff_n.eps>
 (epstopdf)             \includegraphics on input line 118.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_diff_n-eps-converted-to.pdf, id=725, 369.38pt x 226.8475
+<includes/plots/cannon_diff_n-eps-converted-to.pdf, id=735, 369.38pt x 226.8475
 pt>
 File: includes/plots/cannon_diff_n-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1403,7 +1403,7 @@ iff_n-eps-converted-to.pdf includes/plots/cannon_mkl_diff_n.eps>
 (epstopdf)             \includegraphics on input line 192.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf, id=726, 426.59375pt x 3
+<includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf, id=736, 426.59375pt x 3
 41.275pt>
 File: includes/plots/cannon_mkl_diff_n-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1429,7 +1429,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 196.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=727, 426.59375pt x 226.84
+<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=737, 426.59375pt x 226.84
 75pt>
 File: includes/plots/cannon_dgemm-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/plots/cannon_dgemm-eps-converted-to.pdf>
@@ -1454,7 +1454,7 @@ ps-converted-to.pdf includes/plots/cannon_omp.eps>
 (epstopdf)             \includegraphics on input line 184.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_omp-eps-converted-to.pdf, id=732, 426.59375pt x 226.8475
+<includes/plots/cannon_omp-eps-converted-to.pdf, id=742, 426.59375pt x 226.8475
 pt>
 File: includes/plots/cannon_omp-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/plots/cannon_omp-eps-converted-to.pdf>
@@ -1478,18 +1478,18 @@ verted-to.pdf includes/plots/mono.eps>
 (epstopdf)             \includegraphics on input line 130.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/mono-eps-converted-to.pdf, id=733, 369.38pt x 255.95625pt>
+<includes/plots/mono-eps-converted-to.pdf, id=743, 369.38pt x 255.95625pt>
 File: includes/plots/mono-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/plots/mono-eps-converted-to.pdf>
 Package pdftex.def Info: includes/plots/mono-eps-converted-to.pdf used on input
  line 130.
 (pdftex.def)             Requested size: 369.37909pt x 255.95561pt.
-) [44
+) [45
 
- <./includes/plots/cannon_diff_n-eps-converted-to.pdf>] [45 <./includes/plots/c
+ <./includes/plots/cannon_diff_n-eps-converted-to.pdf>] [46 <./includes/plots/c
 annon_mkl_diff_n-eps-converted-to.pdf> <./includes/plots/cannon_dgemm-eps-conve
-rted-to.pdf>] [46 <./includes/plots/cannon_omp-eps-converted-to.pdf> <./include
+rted-to.pdf>] [47 <./includes/plots/cannon_omp-eps-converted-to.pdf> <./include
 s/plots/mono-eps-converted-to.pdf>] (./includes/plots/scal_cannon_dgemm.tex
 Package epstopdf Info: Source file: <includes/plots/scal_cannon_dgemm.eps>
 (epstopdf)                    date: 2015-09-09 12:45:14
@@ -1503,7 +1503,7 @@ dgemm-eps-converted-to.pdf includes/plots/scal_cannon_dgemm.eps>
 (epstopdf)             \includegraphics on input line 135.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/scal_cannon_dgemm-eps-converted-to.pdf, id=763, 397.485pt x 284
+<includes/plots/scal_cannon_dgemm-eps-converted-to.pdf, id=773, 397.485pt x 284
 .06125pt>
 File: includes/plots/scal_cannon_dgemm-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1525,7 +1525,7 @@ omp-eps-converted-to.pdf includes/plots/scal_cannon_omp.eps>
 (epstopdf)             \includegraphics on input line 143.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/scal_cannon_omp-eps-converted-to.pdf, id=764, 397.485pt x 284.0
+<includes/plots/scal_cannon_omp-eps-converted-to.pdf, id=774, 397.485pt x 284.0
 6125pt>
 File: includes/plots/scal_cannon_omp-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1545,9 +1545,9 @@ Underfull \hbox (badness 1292) in paragraph at lines 60--60
  i wy-no-si
  []
 
-[47
+[48
 
- <./includes/plots/scal_cannon_dgemm-eps-converted-to.pdf>]) [48 <./includes/pl
+ <./includes/plots/scal_cannon_dgemm-eps-converted-to.pdf>]) [49 <./includes/pl
 ots/scal_cannon_omp-eps-converted-to.pdf>]
 Dodatek A.
 (./includes/app_opis_programu.tex
@@ -1556,9 +1556,9 @@ Overfull \hbox (0.99008pt too wide) in paragraph at lines 6--7
 _dgemm \T1/cmr/m/n/12 z bi-blio-te-ki In-tel MKL
  []
 
-[49
+[50
 
-] [50] (./.temp/_minted-main/bw.pygstyle)
+] [51] (./.temp/_minted-main/bw.pygstyle)
 \openout3 = `main.pyg'.
 
 
@@ -1569,7 +1569,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 )
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 99.
- [51]
+ [52]
 \openout3 = `main.pyg'.
 
 
@@ -1585,7 +1585,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
  []
 
-[52]
+[53]
 \openout3 = `main.pyg'.
 
 
@@ -1607,25 +1607,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 (./.temp/_minted-main/AD8039DC01A930165787F5A3DA9D2BA4DA7543A65D102F35576AD45B0
 231EB71.pygtex)
 (./.temp/_minted-main/1273FFC1795D27A653900CD888E84EBE4AFF4D7D7BC9EEF431B0262B3
-5741A83.pygtex) [53]
+5741A83.pygtex) [54]
 (./.temp/_minted-main/C666E722EC50D88CD2D6EFDF61C7B32332B4880480ACBAF6B70701E28
-168ADB0.pygtex)) (./includes/app_omowienie_kodu_zrodlowego.tex [54]
-(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
-E434212.pygtex) [55]
+168ADB0.pygtex)) (./includes/app_omowienie_kodu_zrodlowego.tex [55]
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
 E434212.pygtex) [56]
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
-E434212.pygtex) [57] [58] [59]
+E434212.pygtex) [57]
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex) [58] [59] [60]
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
 E434212.pygtex)
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
-E434212.pygtex) [60] [61]
+E434212.pygtex) [61] [62]
 (./.temp/_minted-main/0C08F01E6E670D6B454E01CE520B670CCEE33E496F2064343F2B5FB5F
 34E5FBA.pygtex)
 (./.temp/_minted-main/52CF6C6B7E1BDE1A6504B9AD0380EFAFE6ABC26939A99B64C0297032F
-755F978.pygtex) [62]
+755F978.pygtex) [63]
 (./.temp/_minted-main/10E477ED0D0ECC26E8C31755932D98FDEE8D59E0BA48AC90FFC61060B
-CCCD873.pygtex) [63]) [64]
+CCCD873.pygtex) [64]) [65]
 Dodatek B.
 (./includes/app_zalacznik.tex
 Overfull \hbox (4.53354pt too wide) in paragraph at lines 4--5
@@ -1640,15 +1640,15 @@ Overfull \hbox (7.77791pt too wide) in paragraph at lines 6--7
 h \T1/cmr/m/n/12 w ka-ta-lo-gu gªów-
  []
 
-) (.temp//main.bbl [65
+) (.temp//main.bbl [66
 
-] [66
+] [67
 
 ])
 runsystem(rm "".temp"//main.pyg")...executed.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
- [67]
+ [68]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
  (.temp//main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
@@ -1661,10 +1661,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13530 strings out of 493304
- 216691 string characters out of 6139871
- 370008 words of memory out of 5000000
- 16200 multiletter control sequences out of 15000+600000
+ 13537 strings out of 493304
+ 216802 string characters out of 6139871
+ 370231 words of memory out of 5000000
+ 16205 multiletter control sequences out of 15000+600000
  28847 words of font info for 79 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  42i,24n,46p,1443b,843s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1699,10 +1699,10 @@ super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fon
 ts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sftt1200.pfb>
-Output written on .temp//main.pdf (67 pages, 1039383 bytes).
+Output written on .temp//main.pdf (68 pages, 1041383 bytes).
 PDF statistics:
- 1134 PDF objects out of 1200 (max. 8388607)
- 987 compressed objects within 10 object streams
- 336 named destinations out of 1000 (max. 500000)
+ 1145 PDF objects out of 1200 (max. 8388607)
+ 997 compressed objects within 10 object streams
+ 338 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 
