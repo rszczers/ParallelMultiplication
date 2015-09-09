@@ -116,4 +116,10 @@ Pętla \texttt{for} zawarta w liniach (458-485) iteruje się po zmiennej \textt
 Tablica \texttt{displacements} definiowana w ciele pętli (linie 462-468) zawiera indeksy pierwszych elementów każdego wiersza podmacierzy tablicy \texttt{A}\footnote{Tablica \texttt{A} przechowuje wszystkie elementy macierzy \(A\) w węźle nadzorczym.}, które z kolei służą do przepisywania odpowiednich elementów do bufora \texttt{pA} (linie 471-476). Ostatecznie bufor \texttt{pA} zawierający blok \(g^{-1}(\mathtt{proc})\) jest wysyłany do węzła \(f(g(A_{ij}))\) (procedura \texttt{MPI\_Send}, linia 482). Pętla jest skonstruowana tak, że po jej wykonaniu nadzorca posiada przypadający mu blok macierzy bez zbędnego wysyłania go do siebie (warunek w lini 481). 
 
 
-Równolegle z przygotowywaniem komunikatów przez nadzorcę, pozostałe procesory przygotowują się do odebrania przeznaczonych im komunikatów. Tym sposobem otrzymujemy rozkład macierzy \(A\) przedstawiony na rysunku \ref{fig:cannon_src2}.
+Równolegle z przygotowywaniem komunikatów przez nadzorcę, pozostałe procesory przygotowują się do odebrania przeznaczonych im komunikatów zawierających odpowiednie bloki \(A_{ij}\). Tym sposobem otrzymujemy rozkład macierzy \(A\) przedstawiony na rysunku \ref{fig:cannon_src2}. 
+
+Aby zapobiec blokowaniu się komunikacji na tym etapie procesy są synchronizowane (procedura \texttt{MPI_Barrier}) i w analogiczny sposób\footnote{Z dokładnością do permutacji} dystrybuowana jest macierz \(B\).
+
+
+
+
