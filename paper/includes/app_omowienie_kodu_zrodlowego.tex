@@ -83,7 +83,7 @@ Aby zrozumieć ideę stojącą za tą częścią kodu sprowadźmy dla przykła
 \label{l:start_dist_cannon}
 \end{listing}
 
-Matematycznie rzecz ujmująć zdefiniowaliśmy w ten sposób permutację między indeksami tabeli, a zbiorem \(\{0, 1, \dots, 8\}\):
+Matematycznie rzecz ujmując zdefiniowaliśmy w ten sposób permutację między indeksami tabeli, a zbiorem \(\{0, 1, \dots, 8\}\):
 \begin{equation*}
 f\colon \left\{\begin{aligned}
 & 0\mapsto 0, & \quad 1\mapsto 1, & \quad 2\mapsto 2, \\
@@ -108,7 +108,7 @@ A_{31}&\mapsto 6, & A_{32}&\mapsto 7, & A_{33}&\mapsto 8. \\
 \end{equation*}
 
 
-Permutacja \(f\) jest nieprzypadkowa, gdyż jeśli rozważymy teraz wartość \(f(g(A_{ij})\), otrzymamy identyfikator procesu, do którego należy wysłać macierz \(A_{ij}\). Innymi słowy odwzorowanie \(f\) jest odpowiedniością między częściami macierzy (wartościami funkcji \(g\)), a identyfikatorami procesów.
+Permutacja \(f\) jest nieprzypadkowa, gdyż jeśli rozważymy teraz wartość \(f\left(g(A_{ij})\right)\), otrzymamy identyfikator procesu, do którego należy wysłać macierz \(A_{ij}\). Innymi słowy odwzorowanie \(f\) jest odpowiedniością między częściami macierzy (wartościami funkcji \(g\)), a identyfikatorami procesów.
 
 Pętla \texttt{for} zawarta w liniach (458-485) iteruje się po zmiennej \texttt{proc}, która odpowiada wyżej zdefiniowanym wartościom funkcji \(g\). Należy rozumieć przez to, że dla \(\mathtt{proc}=i\) przetwarzamy do wysłania blok \(A_{ij}=g^{-1}(i)\).
 
