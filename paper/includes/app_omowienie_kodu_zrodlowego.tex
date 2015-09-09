@@ -59,8 +59,7 @@ Na tym etapie rozpoczynamy właściwą część algorytmu polegającą na rozdys
 
 Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia podmacierzy w sieci takiego jak na rys. \ref{fig:cannon_src2}. Rozpatrzmy kod zamieszczony na listingu \ref{l:start_dist_cannon}. Zawarte w nim instrukcje wykonywane są tylko przez nadzorcę i dotyczą wyłącznie dystrybucji macierzy \(A\).
 
-
-Pomocnicz tablica \texttt{proclA} zdefiniowana w liniach (\(443-453\)) zawiera identyfikatory procesorów do których kolejno będą wysyłane bloki macierzy \(A\). Aby zrozumieć ideę stojącą za tą częścią kodu sprowadźmy dla przykładu problem do obliczeń na torusie \(3\times 3\) i macierzy kwadratowej \(A\) złożonych z dziewięciu bloków \(A_{ij}\) równego wymiaru. Jeśli tablicę \texttt{proclA} zinterpretujemy jako macierz \(3\times 3\) w zapisie wierszowym, wówczas obrazowo przedstawia ją rysunek \ref{fig:proclA}.
+Aby zrozumieć ideę stojącą za tą częścią kodu sprowadźmy dla przykładu problem do obliczeń na torusie \(3\times 3\) i macierzy kwadratowej \(A\) złożonych z dziewięciu bloków \(A_{ij}\) równego wymiaru. Jeśli tablicę \texttt{proclA} zinterpretujemy jako macierz \(3\times 3\) w zapisie wierszowym, wówczas obrazowo przedstawia ją rysunek \ref{fig:proclA}.
 
 \begin{figure}[H]
 \centering
