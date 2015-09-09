@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 00:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 12:37
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1374,11 +1374,11 @@ Overfull \hbox (35.3736pt too wide) in paragraph at lines 683--800
 Rozdzia\PlPrIeC {\l } 3.
 (./includes/ch3_doswiadczalne.tex (./includes/plots/cannon_diff_n.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_diff_n.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
+(epstopdf)                    date: 2015-09-09 12:37:25
 (epstopdf)                    size: 20224 bytes
 (epstopdf)             Output file: <includes/plots/cannon_diff_n-eps-converted
 -to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:49
+(epstopdf)                    date: 2015-09-09 12:37:30
 (epstopdf)                    size: 10913 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_diff_
 n-eps-converted-to.pdf includes/plots/cannon_diff_n.eps>
@@ -1396,11 +1396,11 @@ Package pdftex.def Info: includes/plots/cannon_diff_n-eps-converted-to.pdf used
 )
 (./includes/plots/cannon_mkl_diff_n.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_mkl_diff_n.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
+(epstopdf)                    date: 2015-09-09 12:37:25
 (epstopdf)                    size: 29632 bytes
 (epstopdf)             Output file: <includes/plots/cannon_mkl_diff_n-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:49
+(epstopdf)                    date: 2015-09-09 12:37:30
 (epstopdf)                    size: 16413 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_mkl_d
 iff_n-eps-converted-to.pdf includes/plots/cannon_mkl_diff_n.eps>
@@ -1422,51 +1422,60 @@ Overfull \hbox (28.34412pt too wide) in paragraph at lines 194--15
 
 (./includes/plots/cannon_dgemm.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_dgemm.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
-(epstopdf)                    size: 19815 bytes
+(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    size: 29945 bytes
 (epstopdf)             Output file: <includes/plots/cannon_dgemm-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:50
-(epstopdf)                    size: 3707 bytes
+(epstopdf)                    date: 2015-09-09 12:37:31
+(epstopdf)                    size: 5439 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_dgemm
 -eps-converted-to.pdf includes/plots/cannon_dgemm.eps>
-(epstopdf)             \includegraphics on input line 116.
+(epstopdf)             \includegraphics on input line 196.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=720, 369.38pt x 226.8475p
-t>
+<includes/plots/cannon_dgemm-eps-converted-to.pdf, id=720, 426.59375pt x 226.84
+75pt>
 File: includes/plots/cannon_dgemm-eps-converted-to.pdf Graphic file (type pdf)
  <use includes/plots/cannon_dgemm-eps-converted-to.pdf>
 Package pdftex.def Info: includes/plots/cannon_dgemm-eps-converted-to.pdf used 
-on input line 116.
-(pdftex.def)             Requested size: 369.37909pt x 226.84694pt.
+on input line 196.
+(pdftex.def)             Requested size: 426.5927pt x 226.84694pt.
 )
+Overfull \hbox (28.34412pt too wide) in paragraph at lines 198--23
+ [][] 
+ []
+
 (./includes/plots/cannon_omp.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_omp.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
-(epstopdf)                    size: 20824 bytes
+(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    size: 28791 bytes
 (epstopdf)             Output file: <includes/plots/cannon_omp-eps-converted-to
 .pdf>
-(epstopdf)                    date: 2015-09-08 16:11:50
-(epstopdf)                    size: 3794 bytes
+(epstopdf)                    date: 2015-09-09 12:37:31
+(epstopdf)                    size: 5303 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_omp-e
 ps-converted-to.pdf includes/plots/cannon_omp.eps>
-(epstopdf)             \includegraphics on input line 126.
+(epstopdf)             \includegraphics on input line 184.
 Package epstopdf Info: Output file is already uptodate.
 
-<includes/plots/cannon_omp-eps-converted-to.pdf, id=725, 369.38pt x 226.8475pt>
+<includes/plots/cannon_omp-eps-converted-to.pdf, id=725, 426.59375pt x 226.8475
+pt>
 File: includes/plots/cannon_omp-eps-converted-to.pdf Graphic file (type pdf)
-<use includes/plots/cannon_omp-eps-converted-to.pdf>
+ <use includes/plots/cannon_omp-eps-converted-to.pdf>
 Package pdftex.def Info: includes/plots/cannon_omp-eps-converted-to.pdf used on
- input line 126.
-(pdftex.def)             Requested size: 369.37909pt x 226.84694pt.
+ input line 184.
+(pdftex.def)             Requested size: 426.5927pt x 226.84694pt.
 )
+Overfull \hbox (28.34412pt too wide) in paragraph at lines 186--31
+ [][] 
+ []
+
 (./includes/plots/mono.tex
 Package epstopdf Info: Source file: <includes/plots/mono.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
+(epstopdf)                    date: 2015-09-09 12:37:25
 (epstopdf)                    size: 23280 bytes
 (epstopdf)             Output file: <includes/plots/mono-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:50
+(epstopdf)                    date: 2015-09-09 12:37:31
 (epstopdf)                    size: 7714 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/mono-eps-con
 verted-to.pdf includes/plots/mono.eps>
@@ -1487,11 +1496,11 @@ annon_mkl_diff_n-eps-converted-to.pdf> <./includes/plots/cannon_dgemm-eps-conve
 rted-to.pdf>] [46 <./includes/plots/cannon_omp-eps-converted-to.pdf> <./include
 s/plots/mono-eps-converted-to.pdf>] (./includes/plots/scal_cannon_dgemm.tex
 Package epstopdf Info: Source file: <includes/plots/scal_cannon_dgemm.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
+(epstopdf)                    date: 2015-09-09 12:37:25
 (epstopdf)                    size: 22673 bytes
 (epstopdf)             Output file: <includes/plots/scal_cannon_dgemm-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:51
+(epstopdf)                    date: 2015-09-09 12:37:32
 (epstopdf)                    size: 5435 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/scal_cannon_
 dgemm-eps-converted-to.pdf includes/plots/scal_cannon_dgemm.eps>
@@ -1509,11 +1518,11 @@ used on input line 135.
 )
 (./includes/plots/scal_cannon_omp.tex
 Package epstopdf Info: Source file: <includes/plots/scal_cannon_omp.eps>
-(epstopdf)                    date: 2015-09-08 16:11:41
+(epstopdf)                    date: 2015-09-09 12:37:25
 (epstopdf)                    size: 23589 bytes
 (epstopdf)             Output file: <includes/plots/scal_cannon_omp-eps-convert
 ed-to.pdf>
-(epstopdf)                    date: 2015-09-08 16:11:51
+(epstopdf)                    date: 2015-09-09 12:37:32
 (epstopdf)                    size: 6326 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/scal_cannon_
 omp-eps-converted-to.pdf includes/plots/scal_cannon_omp.eps>
@@ -1649,7 +1658,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  13442 strings out of 493304
  214235 string characters out of 6139871
- 368548 words of memory out of 5000000
+ 368549 words of memory out of 5000000
  16164 multiletter control sequences out of 15000+600000
  27525 words of font info for 72 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1683,7 +1692,7 @@ e1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
 fti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1200.pfb>
-Output written on .temp//main.pdf (59 pages, 992935 bytes).
+Output written on .temp//main.pdf (59 pages, 996620 bytes).
 PDF statistics:
  1026 PDF objects out of 1200 (max. 8388607)
  890 compressed objects within 9 object streams

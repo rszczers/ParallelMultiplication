@@ -59,6 +59,16 @@ cat gnuplot/data/8192_cannon_dgemm.dat ./debug | awk '$6==2' > gnuplot/data/8192
 cat gnuplot/data/8192_cannon_dgemm.dat ./debug | awk '$6==4' > gnuplot/data/8192_cannon_dgemm_4.dat
 cat gnuplot/data/8192_cannon_dgemm.dat ./debug | awk '$6==12' > gnuplot/data/8192_cannon_dgemm_12.dat
 
+cat gnuplot/data/2048_cannon_omp.dat ./debug | awk '$6==1' > gnuplot/data/2048_cannon_omp_1.dat
+cat gnuplot/data/2048_cannon_omp.dat ./debug | awk '$6==2' > gnuplot/data/2048_cannon_omp_2.dat
+cat gnuplot/data/2048_cannon_omp.dat ./debug | awk '$6==4' > gnuplot/data/2048_cannon_omp_4.dat
+cat gnuplot/data/2048_cannon_omp.dat ./debug | awk '$6==12' > gnuplot/data/2048_cannon_omp_12.dat
+
+cat gnuplot/data/4096_cannon_omp.dat ./debug | awk '$6==1' > gnuplot/data/4096_cannon_omp_1.dat
+cat gnuplot/data/4096_cannon_omp.dat ./debug | awk '$6==2' > gnuplot/data/4096_cannon_omp_2.dat
+cat gnuplot/data/4096_cannon_omp.dat ./debug | awk '$6==4' > gnuplot/data/4096_cannon_omp_4.dat
+cat gnuplot/data/4096_cannon_omp.dat ./debug | awk '$6==12' > gnuplot/data/4096_cannon_omp_12.dat
+
 cat gnuplot/data/8192_cannon_omp.dat ./debug | awk '$6==1' > gnuplot/data/8192_cannon_omp_1.dat
 cat gnuplot/data/8192_cannon_omp.dat ./debug | awk '$6==2' > gnuplot/data/8192_cannon_omp_2.dat
 cat gnuplot/data/8192_cannon_omp.dat ./debug | awk '$6==4' > gnuplot/data/8192_cannon_omp_4.dat

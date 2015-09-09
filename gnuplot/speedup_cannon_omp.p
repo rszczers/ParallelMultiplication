@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 13cm,8cm  color colortext header \
+set terminal epslatex size 15cm,8cm  color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_omp.tex"
@@ -16,34 +16,66 @@ set border 3 back ls 11
 set tics nomirror out scale 0.75
 
 set xlabel "Liczba procesów"
-set ylabel "Przyspieszenie" offset 2
+set ylabel "Przyspieszenie" offset 1,-2.5
 set style fill solid 1.0 border rgb 'black'
 
 set border linewidth 1.5 
-set key right top
-set key width -6
 set style line 1 lc rgb "#355C7D" pt 6 ps 2 lt 1 lw 4 
 set style line 2 lc rgb "#6C5B7B" pt 2 ps 2 lt 2 lw 4
 set style line 3 lc rgb "#C06C84" pt 3 ps 2 lt 3 lw 4
 set style line 4 lc rgb "#F67280" pt 4 ps 2 lt 4 lw 4
 set style line 5 lc rgb "#F8B195" pt 5 ps 2 lt 5 lw 4
-set title "Hybrydowy algorytm Cannona"
-set style line 8 lt 8 lw 6 lc rgb 'black'
 
-set yrange [0:*]
+set style line 8 lt 8 lw 6 lc rgb 'black'
+set style line 9 lt 1 lw 1 lc rgb 'white'
+
+set yrange [0:15]
 #set ytics 1,1
 set ytics auto
 set mytics 2
-f(x) = mean_seq
-fit f(x) 'data/8192_sequential.dat' u 5:1 via mean_seq
+f(x) = mean_f
+g(x) = mean_g
+h(x) = mean_h
+
+set key right top
 
 
-plot 'data/8192_cannon_omp_1.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
-'data/8192_cannon_omp_4.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 4 wątków' ls 2, \
-'data/8192_cannon_omp_12.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
-'data/8192_cannon_seq.dat' u (mean_seq/$1):xticlabel(5) w linesp t 'Cannon' ls 5, \
+fit f(x) 'data/8192_sequential.dat' u 5:1 via mean_f
+fit g(x) 'data/4096_sequential.dat' u 5:1 via mean_g
+fit h(x) 'data/2048_sequential.dat' u 5:1 via mean_h
+set logscale x 2
+set multiplot layout 1,3 title "Zestawienie algorytmów"
+
+set key on
+set key outside
+set border back
+set key at 300,15 box ls 9 opaque 
+
+set title "n=$(2048\\times 2048)$"
+plot 'data/2048_cannon_omp_1.dat' u 5:(mean_h/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
+'data/2048_cannon_omp_4.dat' u 5:(mean_h/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
+'data/2048_cannon_omp_12.dat' u 5:(mean_h/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
+'data/2048_cannon_seq.dat' u 5:(mean_h/$1) w linesp t 'Cannon' ls 5, \
 1 ls 8 t 'Naiwny'
 
+set key off
+unset ylabel
+set title "n=$(4096\\times 4096)$"
+plot 'data/4096_cannon_omp_1.dat' u 5:(mean_g/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
+'data/4096_cannon_omp_4.dat' u 5:(mean_g/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
+'data/4096_cannon_omp_12.dat' u 5:(mean_g/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
+'data/4096_cannon_seq.dat' u 5:(mean_g/$1) w linesp t 'Cannon' ls 5, \
+1 ls 8 t 'Naiwny'
+
+unset ylabel
+set key off
+set title "n=$(8192\\times 8192)$"
+plot 'data/8192_cannon_omp_1.dat' u 5:(mean_f/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
+'data/8192_cannon_omp_4.dat' u 5:(mean_f/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
+'data/8192_cannon_omp_12.dat' u 5:(mean_f/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
+'data/8192_cannon_seq.dat' u 5:(mean_f/$1) w linesp t 'Cannon' ls 5, \
+1 ls 8 t 'Naiwny'
+unset multiplot
 set output
 set terminal dumb 
 replot
