@@ -367,12 +367,10 @@ int main(int argc, char *argv[]) {
             (max < arguments.n) && (max = arguments.n);
 
             int sz = max/dims[0];  // row length per block 
-
             if(max > sz * dims[0]) { 
                 sz += 1;
                 max = sz * dims[0];
             }
-
             int blockSz = sz * sz;
 
             MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
@@ -414,10 +412,10 @@ int main(int argc, char *argv[]) {
                     resize = false;
                 }
 
-                load_matrix(arguments.pathA, A, arguments.m, arguments.k, max, 
-                        resize);
-                load_matrix(arguments.pathB, B, arguments.k, arguments.n, max, 
-                        resize);
+                load_matrix(arguments.pathA, A, arguments.m, arguments.k,
+                    max, resize);
+                load_matrix(arguments.pathB, B, arguments.k, arguments.n,
+                    max, resize);
                 
                 /* debug dump */
                 if(arguments.steps) {
@@ -465,7 +463,8 @@ int main(int argc, char *argv[]) {
                         (proc / dims[1]) * (dims[1] * blockSz);
                     displacements[0] = start;
                     for (int k = 1; k < sz; k++) {              
-                        displacements[k] =  displacements[k-1] + sz * dims[1];
+                        displacements[k] =  displacements[k-1] + 
+                            sz * dims[1];
                     }
 
                     int k = 0;

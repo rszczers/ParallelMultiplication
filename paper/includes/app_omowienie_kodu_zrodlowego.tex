@@ -4,56 +4,117 @@ Rozwiązania dostarczone z niniejszą pracą stanowią konglomerat kilku technol
 
 Trzon projektu stanowi program \texttt{pmm}. Dostarcza on wygodny interfejs użytkownika pozwalający na przeprowadzenie operacji mnożenia macierzy na dowolnych dwóch plikach reprezentujących macierz w zapisie wierszowym. W zależności od wyboru metody mnożenia operacje przebiegają sekwencyjne lub równolegle.
 
-Istotna z puntku widzenia obliczeń równoległych jest implementacja algorytmów Cannona\footnote{Odnosząc się do listingu \ref{ls:pmm_help} mowa o algorytmach: \texttt{cannon}, \texttt{cannon\_dgemm}, \texttt{cannon\_omp}}. Ich działanie zasadza się na wyborze jednego wyróżnionego węzła nadzorcy, którego zadaniem jest inicjalizacja obliczeń oraz zebranie wyników po ich zakończeniu. Proces inicjalizowania polega na wczytaniu do pamięci lokalnej węzła danych wejściowych\footnote{Rozwiązanie to ma swoje wady i swoje zalety. Przede wszystkim wymaga wiele pamięci lokalnej w węźle. Rozwiązaniem alternatywnym byłoby mapowanie plików (\texttt{mmap}) i rozsyładnie ich po fragmencie do innych węzłów bezpośrednio po zbuforowaniu. Wadą tego rozwiązania jest utrudnione wstępne przetwarzanie (skalowanie macierzy, interpretacja szerokości i długości).} (plików zawierających elementy macierzu). Nadzorca decyduje o skalowaniu macierzy w zależności od wymiarów torusa\footnote{Szerokośc i wysokość torusa muszą być takie same; w przeciwnym wypadku obliczenie jest przerywane.}, na którym przeprowadzane są obliczenia. 
-
-
-\begin{listing}
-\begin{minted}[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=6,firstline=12,lastline=31]{c}
-            if (dims[0] != dims[1]) {
-                printf("\nProcess mesh is not appropriate. Aborting.\n\n");
-                exit(EXIT_FAILURE);
-            }
-
-            max = arguments.m;
-            (max < arguments.k) && (max = arguments.k); 
-            (max < arguments.n) && (max = arguments.n);
-
-            int sz = max/dims[0];  // row length per block 
-
-            if(max > sz * dims[0]) { 
-                sz += 1;
-                max = sz * dims[0];
-            }
-
-            int blockSz = sz * sz;
-
-            MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
-            MPI_Type_commit(&MPI_SUBMATRIX);
-
-
-
-                bool resize = true;
-                if(arguments.m == max &&
-                    arguments.n == max &&
-                    arguments.k == max) {
-                    resize = false;
-                }
-\end{minted}
-\end{listing}
-
-
-
-
-
-
-Poniżej omówimy wybrane najistotniejsze fragmenty kodu źródłowego programu \texttt{pmm}, który zawiera implementacje algorytmów których wydajność zaprezentowano w rozdziale \ref{ch:performance} oraz idee, które stały za poszczególnymi rozwiązaniami. 
-
-
-
+Interesująca z puntku widzenia obliczeń rozproszonych jest implementacja algorytmów Cannona\footnote{Odnosząc się do listingu \ref{ls:pmm_help} mowa o algorytmach: \texttt{cannon}, \texttt{cannon\_dgemm}, \texttt{cannon\_omp}}. Z racji, że ich implementacja jest analogicznia (z dokładnością do obliczeń drobnoziarnistych i rezerowania większej ilości pamięci na ich cele) omówimy tylko implementację klasycznego algorytmu. Ich działanie zasadza się na wyborze jednego wyróżnionego węzła nadzorcy (dalej nazywanego po prostu \emph{nadzorcą}), którego zadaniem jest inicjalizacja obliczeń oraz zebranie wyników z wszystkich węzłów sieci po ich zakończeniu. Proces inicjalizowania polega na wczytaniu do pamięci lokalnej węzła danych wejściowych\footnote{Rozwiązanie to ma swoje wady i swoje zalety. Przede wszystkim wymaga wiele pamięci lokalnej w węźle. Rozwiązaniem alternatywnym byłoby mapowanie plików (\texttt{mmap}) i rozsyładnie ich po fragmencie do innych węzłów bezpośrednio po zbuforowaniu. Wadą tego rozwiązania jest utrudnione wstępne przetwarzanie (skalowanie macierzy, interpretacja szerokości i długości) przy zachowaniu wierszowego zapisu macierzy.} (plików zawierających elementy macierzy). 
 
 \begin{listing}[H]
-\footnotesize
-\inputminted{bash}{includes/listings/job.sh}
-\caption{Plik \texttt{job.sh}}
-\label{l:torque_jobs}
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=365,firstline=365,lastline=377]{c}{includes/listings/main.c}
+\caption{Plik \texttt{main.c}; definiowanie bloków macierzy}
+\label{l:block_size}
 \end{listing}
+
+Na listingu \ref{l:block_size} zaprezentowany jest fragment kodu odpowiedzialny za wyznaczanie rozmiaru bloków macierzy wejściowych do rozesłania do innych węzłów sieci. W linijkach \((365-367)\) określany jest największy z pośród wymiarów macierzy podanych przez użytkownika\footnote{Wykorzystuje się tutaj fakt, że operator przypisania ,,\texttt{=}'' zwraca wartość przypisania.}. W linijkach \((369-374)\) określana jest szerokość bloku macierzy (zmienna \texttt{sz}), liczba elementów w bloku (zmienna \texttt{blockSz}) oraz szerokość całej macierzy po uwzględnieniu skalowania (zmienna \texttt{max}).
+
+Nadzorca decyduje o skalowaniu macierzy w zależności od wymiarów torusa\footnote{Szerokośc i wysokość torusa muszą być takie same; w przeciwnym wypadku obliczenie jest przerywane.}, na którym przeprowadzane są obliczenia. Zadanie węzła nadzorującego kończy się na tym etapie zdefiniowaniem typu \texttt{MPI\_SUBMATRIX}, który w dalszej części będzie służył do wysyłania komunikatów w sieci zawierających odpowiednie podmacierze.
+
+Wszystkie argumenty dostarczone przez użytkownika przechowywane są w strukturze \texttt{arguments}. Wspomniane skalowanie macierzy wejściowych ma miejsce wówczas, gdy wymiary macierzy dostarczone przez użytkownika nie są równe (macierze nie są kwadratowe) oraz ich szerokość nie jest wielokrotnością szerokości sieci w topologii torusa. Decydują o tym instrukcje zamieszczone w listingu \ref{l:matrix_scaleup}.
+
+\begin{listing}[H]
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=408,firstline=408,lastline=418]{c}{includes/listings/main.c}
+\caption{Plik \texttt{main.c}; warunek skalowania macierzy}
+\label{l:matrix_scaleup}
+\end{listing}
+
+Skalowanie odbywa się w trakcie wczytywania macierzy przez nadzorcę w procedurze \texttt{load\_matrix}. Decyduje o tym ostatni ostatni z argumentów formalnych.
+
+Na tym etapie rozpoczynamy właściwą część algorytmu polegającą na rozdystrybuowaniu macierzy blokowej do węzłów sieci. Na potrzebę objaśnienia dalszej części implementacji powiedzmy, że chcemy obliczyć iloczyn pewnych macierzy kwadratowych \(A\), \(B\) składających się z dziewięciu bloków \(A_{ij}\, B_{ij}\) o równych wymiarach. Klasyczna wersja algorytmu omawiana w \cite{Stpiczynski}, \cite{Czech}, \cite{Golub} zakłada wstępnie rozdystrybuowanie podmacierzy w sposób przedstawiony na rysunku \ref{fig:cannon_src1} i następnie przeprowadzenie odpowiednich przesunięć podmacierzy między węzłami sieci do stanu przedstawionego na rysunku  \ref{fig:cannon_src2}. 
+\begin{figure}[H]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{12}\) & \(A_{13}\) & \(B_{31}\) \\
+\hline
+\(A_{21}\) & \(B_{21}\) & \(A_{22}\) & \(B_{22}\) & \(A_{23}\) & \(B_{23}\) \\
+\hline
+\(A_{31}\) & \(B_{31}\) & \(A_{32}\) & \(B_{32}\) & \(A_{33}\) & \(B_{33}\) \\
+\hline
+\end{tabular}
+\caption{Klasyczne wejściowe rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\)} 
+\label{fig:cannon_src1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|cc|cc|cc|}
+\hline
+\(A_{11}\) & \(B_{11}\) & \(A_{12}\) & \(B_{22}\) & \(A_{13}\) & \(B_{33}\) \\
+\hline
+\(A_{22}\) & \(B_{21}\) & \(A_{23}\) & \(B_{32}\) & \(A_{21}\) & \(B_{21}\) \\
+\hline
+\(A_{33}\) & \(B_{31}\) & \(A_{31}\) & \(B_{12}\) & \(A_{33}\) & \(B_{32}\) \\
+\hline
+\end{tabular}
+\caption{Proponowane wejśćiowe rozmieszczenie macierzy blokowych \(A_{ij}\) i \(B_{ij}\)} 
+\label{fig:cannon_src2}
+\end{figure}
+
+Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia podmacierzy w sieci takiego jak na rys. \ref{fig:cannon_src2}. Rozpatrzmy kod zamieszczony na listingu \ref{l:start_dist_cannon}. Zawarte w nim instrukcje wykonywane są tylko przez nadzorcę. 
+
+% Instrukcje w liniach \(455,\456,\,459,\,477,\,478\) służą pomiarow czasu wykonania wybranych części kodu i nie są istotne dla omówianego zagadnienia.
+
+\begin{listing}[H]
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=443,firstline=443,lastline=485]{c}{includes/listings/main.c}
+\caption{Plik \texttt{main.c}; wstępne rozmieszczanie macierzy}
+\label{l:start_dist_cannon}
+\end{listing}
+
+
+% \begin{listing}
+% \begin{minted}[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=12,firstline=1,lastline=38]{c}
+%             if (dims[0] != dims[1]) {
+%                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
+%                 exit(EXIT_FAILURE);
+%             }
+
+%             max = arguments.m;
+%             (max < arguments.k) && (max = arguments.k); 
+%             (max < arguments.n) && (max = arguments.n);
+
+%             int sz = max/dims[0];  // row length per block 
+
+%             if(max > sz * dims[0]) { 
+%                 sz += 1;
+%                 max = sz * dims[0];
+%             }
+
+%             int blockSz = sz * sz;
+
+%             MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
+%             MPI_Type_commit(&MPI_SUBMATRIX);
+
+
+
+%                 bool resize = true;
+%                 if(arguments.m == max &&
+%                     arguments.n == max &&
+%                     arguments.k == max) {
+%                     resize = false;
+%                 }
+% \end{minted}
+% \end{listing}
+
+
+
+
+
+
+% Poniżej omówimy wybrane najistotniejsze fragmenty kodu źródłowego programu \texttt{pmm}, który zawiera implementacje algorytmów których wydajność zaprezentowano w rozdziale \ref{ch:performance} oraz idee, które stały za poszczególnymi rozwiązaniami. 
+
+
+
+
+% \begin{listing}[H]
+% \footnotesize
+% \inputminted{bash}{includes/listings/job.sh}
+% \caption{Plik \texttt{job.sh}}
+% \label{l:torque_jobs}
+% \end{listing}

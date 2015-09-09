@@ -64,4 +64,9 @@ Grey Ballard, James Demmel, Olga Holtz, Benjamin Lipshitz, and Oded Schwartz.
   multiplication.
 \newblock {\em CoRR}, abs/1202.3173, 2012.
 
+\bibitem{Stpiczynski}
+Przemysław Stpiczyński and Marcin Brzuszek.
+\newblock {\em Podstawy programowania obliczeń równoległych}.
+\newblock UMCS, 2011.
+
 \end{thebibliography}

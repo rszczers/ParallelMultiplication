@@ -1,4 +1,4 @@
-Wyniki przedstawione w pracy można odtworzyć za pomocą zadań obliczeniowych systemu kolejkowego Torque zdefiniowanych w plikach \texttt{job.sh} i \texttt{job\_seq.sh} (patrz listing \ref{l:torque_jobs}). Poniżej pokażemy przykładową sesję pracy z programem. Zaczniemy od procesu kompilacji i skończymy na generowaniu wykresów.\\
+Wyniki przedstawione w pracy można odtworzyć za pomocą zadań obliczeniowych systemu kolejkowego Torque zdefiniowanych w plikach \texttt{job.sh} i \texttt{job\_seq.sh} (patrz listing \ref{l:torque_job1}, listing \ref{l:torque_job2}). Poniżej pokażemy przykładową sesję pracy z programem. Zaczniemy od procesu kompilacji i skończymy na generowaniu wykresów.\\
 
 Aktualną wersję programu pobieramy z repozytorium i kompilujemy źródła:
 \begin{minted}{bash}
@@ -20,17 +20,16 @@ Aby ocenić status wykonania naszego zadania używamy komendy \mintinline{bash}{
 W katalogu \texttt{./debug/} po wykonaniu znajdują się wszystkie mierzone parametry wykonania algorytmów dla każdego wywołania zdefiniowanego w zadaniu. Przeanalizowane dane na potrzeby wykresów umieszczane są w katalogu \texttt{./gnuplot/data/}, gdzie ulegają dalszej obróbce. Wynik końcowy w postaci wykresów umieszczany jest w katalogu \texttt{./paper/includes/plots/} skąd są importowane do niniejszej pracy.
 
 \begin{listing}[H]
-\footnotesize
-\inputminted{bash}{includes/listings/job.sh}
+\inputminted[fontsize=\footnotesize,bgcolor=bg]{bash}{includes/listings/job.sh}
 \caption{Plik \texttt{job.sh}}
-\label{l:torque_jobs}
+\label{l:torque_job1}
 \end{listing}
 
 \begin{listing}[H]
 \footnotesize
-\inputminted{bash}{includes/listings/job_seq.sh}
+\inputminted[fontsize=\footnotesize,bgcolor=bg]{bash}{includes/listings/job_seq.sh}
 \caption{Plik \texttt{job\_seq.sh}}
-\label{l:torque_jobs}
+\label{l:torque_job2}
 \end{listing}
 
 % \begin{listing}

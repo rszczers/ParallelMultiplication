@@ -51,7 +51,7 @@ set key outside
 set border back
 set key at 300,15 box ls 9 opaque 
 
-set title "n=$(2048\\times 2048)$"
+set title "$n=(2048\\times 2048)$"
 plot 'data/2048_cannon_omp_1.dat' u 5:(mean_h/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
 'data/2048_cannon_omp_4.dat' u 5:(mean_h/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
 'data/2048_cannon_omp_12.dat' u 5:(mean_h/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
@@ -60,7 +60,7 @@ plot 'data/2048_cannon_omp_1.dat' u 5:(mean_h/$1):xticlabel(5) w linesp t 'Canno
 
 set key off
 unset ylabel
-set title "n=$(4096\\times 4096)$"
+set title "$n=(4096\\times 4096)$"
 plot 'data/4096_cannon_omp_1.dat' u 5:(mean_g/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
 'data/4096_cannon_omp_4.dat' u 5:(mean_g/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
 'data/4096_cannon_omp_12.dat' u 5:(mean_g/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \
@@ -69,7 +69,7 @@ plot 'data/4096_cannon_omp_1.dat' u 5:(mean_g/$1):xticlabel(5) w linesp t 'Canno
 
 unset ylabel
 set key off
-set title "n=$(8192\\times 8192)$"
+set title "$n=(8192\\times 8192)$"
 plot 'data/8192_cannon_omp_1.dat' u 5:(mean_f/$1):xticlabel(5) w linesp t 'Cannon-OMP, 1 wątek' ls 1, \
 'data/8192_cannon_omp_4.dat' u 5:(mean_f/$1) w linesp t 'Cannon-OMP, 4 wątki' ls 2, \
 'data/8192_cannon_omp_12.dat' u 5:(mean_f/$1) w linesp t 'Cannon-OMP, 12 wątków' ls 3, \

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 12:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 16:18
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -835,12 +835,6 @@ LaTeX Warning: Label `alg:pram_multiply_1' multiply defined.
 
 LaTeX Warning: Label `alg:pram_multiply_2' multiply defined.
 
-
-LaTeX Warning: Label `l:torque_jobs' multiply defined.
-
-
-LaTeX Warning: Label `l:torque_jobs' multiply defined.
-
 )
 \openout1 = `main.aux'.
 
@@ -1374,11 +1368,11 @@ Overfull \hbox (35.3736pt too wide) in paragraph at lines 683--800
 Rozdzia\PlPrIeC {\l } 3.
 (./includes/ch3_doswiadczalne.tex (./includes/plots/cannon_diff_n.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_diff_n.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 20224 bytes
 (epstopdf)             Output file: <includes/plots/cannon_diff_n-eps-converted
 -to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:30
+(epstopdf)                    date: 2015-09-09 14:14:05
 (epstopdf)                    size: 10913 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_diff_
 n-eps-converted-to.pdf includes/plots/cannon_diff_n.eps>
@@ -1396,11 +1390,11 @@ Package pdftex.def Info: includes/plots/cannon_diff_n-eps-converted-to.pdf used
 )
 (./includes/plots/cannon_mkl_diff_n.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_mkl_diff_n.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 29632 bytes
 (epstopdf)             Output file: <includes/plots/cannon_mkl_diff_n-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:30
+(epstopdf)                    date: 2015-09-09 14:14:06
 (epstopdf)                    size: 16413 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_mkl_d
 iff_n-eps-converted-to.pdf includes/plots/cannon_mkl_diff_n.eps>
@@ -1422,11 +1416,11 @@ Overfull \hbox (28.34412pt too wide) in paragraph at lines 194--15
 
 (./includes/plots/cannon_dgemm.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_dgemm.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 29945 bytes
 (epstopdf)             Output file: <includes/plots/cannon_dgemm-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:31
+(epstopdf)                    date: 2015-09-09 14:14:06
 (epstopdf)                    size: 5439 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_dgemm
 -eps-converted-to.pdf includes/plots/cannon_dgemm.eps>
@@ -1447,11 +1441,11 @@ Overfull \hbox (28.34412pt too wide) in paragraph at lines 198--23
 
 (./includes/plots/cannon_omp.tex
 Package epstopdf Info: Source file: <includes/plots/cannon_omp.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 28791 bytes
 (epstopdf)             Output file: <includes/plots/cannon_omp-eps-converted-to
 .pdf>
-(epstopdf)                    date: 2015-09-09 12:37:31
+(epstopdf)                    date: 2015-09-09 14:14:06
 (epstopdf)                    size: 5303 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/cannon_omp-e
 ps-converted-to.pdf includes/plots/cannon_omp.eps>
@@ -1472,10 +1466,10 @@ Overfull \hbox (28.34412pt too wide) in paragraph at lines 186--31
 
 (./includes/plots/mono.tex
 Package epstopdf Info: Source file: <includes/plots/mono.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 23280 bytes
 (epstopdf)             Output file: <includes/plots/mono-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:31
+(epstopdf)                    date: 2015-09-09 14:14:07
 (epstopdf)                    size: 7714 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/mono-eps-con
 verted-to.pdf includes/plots/mono.eps>
@@ -1496,11 +1490,11 @@ annon_mkl_diff_n-eps-converted-to.pdf> <./includes/plots/cannon_dgemm-eps-conve
 rted-to.pdf>] [46 <./includes/plots/cannon_omp-eps-converted-to.pdf> <./include
 s/plots/mono-eps-converted-to.pdf>] (./includes/plots/scal_cannon_dgemm.tex
 Package epstopdf Info: Source file: <includes/plots/scal_cannon_dgemm.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 22673 bytes
 (epstopdf)             Output file: <includes/plots/scal_cannon_dgemm-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:32
+(epstopdf)                    date: 2015-09-09 14:14:07
 (epstopdf)                    size: 5435 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/scal_cannon_
 dgemm-eps-converted-to.pdf includes/plots/scal_cannon_dgemm.eps>
@@ -1518,11 +1512,11 @@ used on input line 135.
 )
 (./includes/plots/scal_cannon_omp.tex
 Package epstopdf Info: Source file: <includes/plots/scal_cannon_omp.eps>
-(epstopdf)                    date: 2015-09-09 12:37:25
+(epstopdf)                    date: 2015-09-09 12:45:14
 (epstopdf)                    size: 23589 bytes
 (epstopdf)             Output file: <includes/plots/scal_cannon_omp-eps-convert
 ed-to.pdf>
-(epstopdf)                    date: 2015-09-09 12:37:32
+(epstopdf)                    date: 2015-09-09 14:14:07
 (epstopdf)                    size: 6326 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/plots/scal_cannon_
 omp-eps-converted-to.pdf includes/plots/scal_cannon_omp.eps>
@@ -1614,13 +1608,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 5741A83.pygtex) [53]
 (./.temp/_minted-main/C666E722EC50D88CD2D6EFDF61C7B32332B4880480ACBAF6B70701E28
 168ADB0.pygtex)) (./includes/app_omowienie_kodu_zrodlowego.tex [54]
-\openout3 = `main.pyg'.
-
-
-(./.temp/_minted-main/577C4A7202F38084E208569809C1EF541421FB63EB05E7DED93EAD6DD
-138FA7C.pygtex)
-(./.temp/_minted-main/1273FFC1795D27A653900CD888E84EBE4AFF4D7D7BC9EEF431B0262B3
-5741A83.pygtex)) [55] [56]
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex) [55]
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex) [56]
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex) [57]) [58]
 Dodatek B.
 (./includes/app_zalacznik.tex
 Overfull \hbox (4.53354pt too wide) in paragraph at lines 4--5
@@ -1635,34 +1628,34 @@ Overfull \hbox (7.77791pt too wide) in paragraph at lines 6--7
 h \T1/cmr/m/n/12 w ka-ta-lo-gu gªów-
  []
 
-) (.temp//main.bbl [57
+) (.temp//main.bbl [59
 
-] [58
+] [60
 
 ])
 runsystem(rm "".temp"//main.pyg")...executed.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 76.
- [59]
+ [61]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
  (.temp//main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 76.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E180F2E987D57CF43B338BBBC38008F3;2123.
+(rerunfilecheck)             Checksum: 50B10A86A6C5BC55EEBDAE2BD38CEC22;2115.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13442 strings out of 493304
- 214235 string characters out of 6139871
- 368549 words of memory out of 5000000
- 16164 multiletter control sequences out of 15000+600000
+ 13459 strings out of 493304
+ 214626 string characters out of 6139871
+ 369131 words of memory out of 5000000
+ 16171 multiletter control sequences out of 15000+600000
  27525 words of font info for 72 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,24n,47p,1244b,695s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,24n,47p,1443b,690s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -1692,10 +1685,10 @@ e1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
 fti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1200.pfb>
-Output written on .temp//main.pdf (59 pages, 996620 bytes).
+Output written on .temp//main.pdf (61 pages, 1006107 bytes).
 PDF statistics:
- 1026 PDF objects out of 1200 (max. 8388607)
- 890 compressed objects within 9 object streams
- 303 named destinations out of 1000 (max. 500000)
+ 1053 PDF objects out of 1200 (max. 8388607)
+ 914 compressed objects within 10 object streams
+ 311 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 
