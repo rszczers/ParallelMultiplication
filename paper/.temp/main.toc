@@ -47,4 +47,8 @@
 \contentsline {subsection}{\numberline {A.1.3}Przebieg test\IeC {\'o}w na klastrze Solaris}{53}{subsection.1.A.1.3}
 \contentsline {section}{\numberline {A.2}Om\IeC {\'o}wienie kodu \IeC {\'z}r\IeC {\'o}d\IeC {\l }owego}{54}{section.1.A.2}
 \contentsline {subsubsection}{Program \texttt {pmm}}{55}{section*.54}
-\contentsline {chapter}{\numberline {B}Za\IeC {\l }\IeC {\k a}cznik}{60}{Dodatek.1.B}
+\contentsline {subsubsection}{Dane o wydajno\IeC {\'s}ci algorytm\IeC {\'o}w}{62}{section*.58}
+\contentsline {subsubsection}{Przetwarzanie danych pomiarowych}{62}{section*.59}
+\contentsline {subsubsection}{Generowanie wykres\IeC {\'o}w}{64}{section*.60}
+\contentsline {subsubsection}{Program \texttt {gen}}{64}{section*.61}
+\contentsline {chapter}{\numberline {B}Za\IeC {\l }\IeC {\k a}cznik}{65}{Dodatek.1.B}

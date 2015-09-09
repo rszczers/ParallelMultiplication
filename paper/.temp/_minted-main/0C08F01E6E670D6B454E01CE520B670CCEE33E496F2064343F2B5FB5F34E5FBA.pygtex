@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{n+nl}{METHOD:}	\PYGdefault{n}{CANNON}
+\PYGdefault{n+nl}{ETA:}	\PYGdefault{l+m+mf}{1.012851}
+\PYGdefault{n+nl}{ARGS:}	\PYGdefault{n}{m}\PYGdefault{o}{=}\PYGdefault{l+m+mi}{2048}\PYGdefault{p}{,} \PYGdefault{n}{k}\PYGdefault{o}{=}\PYGdefault{l+m+mi}{2048}\PYGdefault{p}{,} \PYGdefault{n}{n}\PYGdefault{o}{=}\PYGdefault{l+m+mi}{2048}\PYGdefault{p}{,} \PYGdefault{n}{nprocs}\PYGdefault{o}{=}\PYGdefault{l+m+mi}{64}\PYGdefault{p}{,} \PYGdefault{n}{threads}\PYGdefault{o}{=}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{,} \PYGdefault{n}{seq\PYGdefaultZus{}elap}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{0.023992}\PYGdefault{p}{,} \PYGdefault{n}{total}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{4.427899}
+\end{Verbatim}

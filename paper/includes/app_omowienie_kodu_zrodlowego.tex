@@ -12,7 +12,7 @@ Interesująca z puntku widzenia obliczeń rozproszonych jest implementacja algor
 \label{l:block_size}
 \end{listing}
 
-Na listingu \ref{l:block_size} zaprezentowany jest fragment kodu odpowiedzialny za wyznaczanie rozmiaru bloków macierzy wejściowych do rozesłania do innych węzłów sieci. W linijkach \((365-367)\) określany jest największy Spośród wymiarów macierzy podanych przez użytkownika\footnote{Wykorzystuje się tutaj fakt, że operator przypisania ,,\texttt{=}'' zwraca wartość przypisania.}. W linijkach \((369-374)\) określana jest szerokość bloku macierzy (zmienna \texttt{sz}), liczba elementów w bloku (zmienna \texttt{blockSz}) oraz szerokość całej macierzy po uwzględnieniu skalowania (zmienna \texttt{max}).
+Na listingu \ref{l:block_size} zaprezentowany jest fragment kodu odpowiedzialny za wyznaczanie rozmiaru bloków macierzy wejściowych do rozesłania do innych węzłów sieci. W linijkach \((365-367)\) określany jest największy spośród wymiarów macierzy podanych przez użytkownika\footnote{Wykorzystuje się tutaj fakt, że operator przypisania ,,\texttt{=}'' zwraca wartość przypisania.}. W linijkach \((369-374)\) określana jest szerokość bloku macierzy (zmienna \texttt{sz}), liczba elementów w bloku (zmienna \texttt{blockSz}) oraz szerokość całej macierzy po uwzględnieniu skalowania (zmienna \texttt{max}).
 
 Nadzorca decyduje o skalowaniu macierzy w zależności od wymiarów torusa\footnote{Szerokośc i wysokość torusa muszą być takie same; w przeciwnym wypadku obliczenie jest przerywane.}, na którym przeprowadzane są obliczenia. Zadanie węzła nadzorującego kończy się na tym etapie zdefiniowaniem typu \texttt{MPI\_SUBMATRIX}, który w dalszej części będzie służył do wysyłania komunikatów w sieci zawierających odpowiednie podmacierze.
 
@@ -24,7 +24,7 @@ Wszystkie argumenty dostarczone przez użytkownika przechowywane są w strukturz
 \label{l:matrix_scaleup}
 \end{listing}
 
-Skalowanie odbywa się w trakcie wczytywania macierzy przez nadzorcę w procedurze \texttt{load\_matrix}. Decyduje o tym ostatni ostatni z argumentów formalnych.
+Skalowanie odbywa się w trakcie wczytywania macierzy przez nadzorcę w procedurze \texttt{load\_matrix}. Decyduje o tym ostatni ostatni z argumentów formalnych. Procedura polega na uzupełnieniu brakujących elementów zerami, aż do uzyskania macierzy o wymiarach wymaganych przez algorytm Cannona.
 
 Na tym etapie rozpoczynamy właściwą część algorytmu polegającą na rozdystrybuowaniu macierzy blokowej do węzłów sieci. Na potrzebę objaśnienia dalszej części implementacji powiedzmy, że chcemy obliczyć iloczyn pewnych macierzy kwadratowych \(A\), \(B\) składających się z dziewięciu bloków \(A_{ij}\, B_{ij}\) o równych wymiarach. Klasyczna wersja algorytmu omawiana w \cite{Stpiczynski}, \cite{Czech}, \cite{Golub} zakłada wstępnie rozdystrybuowanie podmacierzy w sposób przedstawiony na rysunku \ref{fig:cannon_src1} i następnie przeprowadzenie odpowiednich przesunięć podmacierzy między węzłami sieci do stanu przedstawionego na rysunku  \ref{fig:cannon_src2}. 
 \begin{figure}[H]
@@ -118,8 +118,54 @@ Tablica \texttt{displacements} definiowana w ciele pętli (linie 462-468) zawier
 
 Równolegle z przygotowywaniem komunikatów przez nadzorcę, pozostałe procesory przygotowują się do odebrania przeznaczonych im komunikatów zawierających odpowiednie bloki \(A_{ij}\). Tym sposobem otrzymujemy rozkład macierzy \(A\) przedstawiony na rysunku \ref{fig:cannon_src2}. 
 
-Aby zapobiec blokowaniu się komunikacji na tym etapie procesy są synchronizowane (procedura \texttt{MPI_Barrier}) i w analogiczny sposób\footnote{Z dokładnością do permutacji} dystrybuowana jest macierz \(B\).
+Aby zapobiec blokowaniu się komunikacji, na tym etapie procesy są synchronizowane (procedura \texttt{MPI\_Barrier}) i w analogiczny sposób\footnote{Z dokładnością do permutacji} dystrybuowana jest macierz \(B\).
 
+Kolejny etap obliczeń polega na przesyłaniu sobie przez procesy swoich bloków \(A_{ij}\) i wykonywaniu obliczen iloczynów częściowych w myśl algorytmu omówionego w części \ref{sec:algorytm_cannona}. Procesowi temu odpowiadają instrukcje pokazane na listingu \ref{l:shifting}
 
+\begin{listing}[H]
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=576,firstline=576,lastline=595]{c}{includes/listings/main.c}
+\caption{Plik \texttt{main.c}; przesyłanie podmacierzy}
+\label{l:shifting}
+\end{listing}
 
+W liniach (576-578) każdy proces równolegle znajduje identyfikatory swoich sąsiadów. W pętli zawartej między liniami (580-595) procesy wymieniają się zawartościami buforów \texttt{pA} i \texttt{pB} w komunikacji nieblokującej\footnote{Procedura \texttt{MPI\_Sendrecv\_replace}.} i przeprowadzają obliczenia częściowe\footnote{Algorytmy hybrydowe w tej części korzystają z równoległości drobnoziarnistej używając innych metod obliczania iloczynów częściowych} (linie 588-595). po wykonaniu odpowiedniej ilości iteracji wyniki częściowe znajdujące się w pamięciach lokalnych każdego z węzłów są zbierane do nadzorcy. Proces ten pokazany jest na listingu \ref{l:collecting_cannon}.
 
+\begin{listing}[H]
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=644,firstline=644,lastline=679]{c}{includes/listings/main.c}
+\caption{Plik \texttt{main.c}; odbieranie wyników częściowych}
+\label{l:collecting_cannon}
+\end{listing}
+
+W liniach (657-668) obliczane są indeksy pierwszych elementów każdego wiersza bloku wynikowego macierzy \(C\) odbieranego kolejno od każdego z procesorów. Bloki są niejako ,,wsadzane'' na swoje miejsce w macierzy \(C\) w pętli między liniami (670-674). Macierz wynikowa \(C\) znajduje się w pamięci nadzorcy. Wszystkie bufory pomocnicze są zwalniane, a macierz wynikowa ewentualnie zapisywana do pliku\footnote{Tylko o ile użytkownik określił parametr opcji \texttt{-C}, którym powinna być ścieżka do pliku wyjściowego.} lub drukowana na standardowym wyjściu.\footnote{Odpowiada za to opcja \texttt{-v.}}
+
+\subsubsection{Dane o wydajności algorytmów}
+W kodzie wybrano szereg punktów pomiarowych w których z pomocą procedury \texttt{MPI\_Wtime} mierzy się całkowity czas wykonania obliczeń (włączając w to czas wczytywania plików do węzła nadzorującego i czas na komunikację między węzłami), czas wykonywania samego algorytmu do chwili otrzymania wyników częściowych na każdym z węzłów oraz czas wykonania części sekwencyjnych. Tak uzyskane dane mogą zostać przez użytkownika zapisane w dowolnym wybranym miejscu celem przeprowadzenia późniejszej analizy\footnote{Odpowiada za to opcja -d.}. Przykładowy plik wynikowy został zamieszczony w listingu \ref{l:debug_ex}. Dane umieszczone w pliku kolejno oznaczają: nazwę metody obliczeń, czas wykonania algorytmu równoległego, rozmiary \(m\), \(k\), \(n\) podane przez użytkownika, liczbę procesów, liczbę wątków, czas wykonania części sekwencyjnej, czas całkowity obliczenia.
+
+\begin{listing}
+\inputminted[fontsize=\footnotesize,bgcolor=bg,breaklines]{c}{includes/listings/debug_1441565169}
+\caption{Przykładowy plik z danymi pomiarowymi}
+\label{l:debug_ex}
+\end{listing}
+
+\noindent Za zapisywanie danych pomiarowych odpowiada procedura \texttt{save\_info}.
+
+\subsubsection{Przetwarzanie danych pomiarowych}
+Przetwarzanie danych pomiarowych polega na wyciąganiu sekwencji interesujących danych potrzebnych później w procesie generowania wykresów programem \texttt{gnuplot}. Dane programu \texttt{gnuplot} są w formacie kolumn danych odzielonych tabulacją. Przetwarzaniem danych wynikowych programu \texttt{pmm} do postaci danych \texttt{gnuplot} zajmuje się skrypt \texttt{data.sh} będący w istocie ciągiem instrukcji sortujących i selekcjonujących dane (listing \ref{l:potok}) otrzymane dzięki skryptowi \texttt{parse.pl}. Skrypt ten wyciąga wszystkie ciągi liczbowe z danych pomiarowych i układa je w linię danych odzielonych separatorem (listing \ref{l:parsepl}.
+
+\begin{listing}[H]
+\inputminted[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=4,firstline=4,lastline=9,breaklines]{bash}{includes/listings/data.sh}
+\caption{Fragment skryptu data.sh}
+\label{l:collecting_cannon}
+\end{listing}
+
+\begin{listing}
+\inputminted[fontsize=\footnotesize,bgcolor=bg,breaklines]{perl}{includes/listings/parse.pl}
+\caption{Skrypt parse.pl}
+\label{l:parsepl}
+\end{listing}
+
+\subsubsection{Generowanie wykresów}
+Za generowanie wykresów odpowiadają pliki \texttt{*.p} w ramach których zdefiniowane są ciągi instrukcji programu \texttt{gnuplot}. Generuje on w katalogu \texttt{./gnuplot/} dane w formacie \texttt{.eps} zawierające dane graficzne oraz \texttt{.tex} zawierające wszystkie napisy pojawiające się na wykresie. Wywołaniu skryptu \texttt{data.sh} towarzyszy uruchomienie każdego ze zdefiniowanych skryptów oraz przeniesienie plików \texttt{.eps} i \texttt{.tex} do katalogu \texttt{./paper/includes/plots/}.
+
+\subsubsection{Program \texttt{gen}}
+Jako efekt uboczny pracy nad programem \texttt{pmm} powstał program do generowania długich ciągów liczb pseudolosowych za pomocą funkcji \texttt{rand}. W początkowych etapach nad pracą wykorzystywany był prosty skrypt bash generujący ciągi liczb w pętli i strumieniujący je do pliku z każdym powtórzeniem refrenu pętli. Rozwiązanie to okazało się wolne i praktycznie uniemożliwiało generowanie macierzy o wymiarach większych niż \(256\times 256\). W ten sposób pojawiła się konieczność zaimplementowania nowego rozwiązania. Jest nim program \texttt{gen} z zaimplementowanym zapisem buforowanym i szeregiem opcji (listing \ref{ls:gen_help}) ułatwiających uzyskanie macierzy o zadanych własnościach.

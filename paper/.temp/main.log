@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 20:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  9 SEP 2015 22:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -835,6 +835,9 @@ LaTeX Warning: Label `alg:pram_multiply_1' multiply defined.
 
 LaTeX Warning: Label `alg:pram_multiply_2' multiply defined.
 
+
+LaTeX Warning: Label `l:collecting_cannon' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -1565,14 +1568,14 @@ _dgemm \T1/cmr/m/n/12 z bi-blio-te-ki In-tel MKL
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
 )
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
+t line 99.
+ [51]
 \openout3 = `main.pyg'.
 
 
-(./.temp/_minted-main/75D98342C7A5759AD534F8848D413505FC2DD9750FFC39DE1B7642CA9
-8DFFE87.pygtex)
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 115.
- [51]) (./includes/app_przebieg_testow.tex
+(./.temp/_minted-main/75D98342C7A5759AD534F8848D41350562643FEB57DCA41CF8992461D
+F20E7DD.pygtex)) (./includes/app_przebieg_testow.tex
 Overfull \hbox (11.86671pt too wide) in paragraph at lines 1--2
 \T1/cmr/m/n/12 wych sys-te-mu ko-lej-ko-we-go To-rque zde-fi-nio-wa-nych w pli-
 kach \T1/cmtt/m/n/12 job.sh \T1/cmr/m/n/12 i \T1/cmtt/m/n/12 job_seq.sh
@@ -1613,7 +1616,21 @@ E434212.pygtex) [55]
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
 E434212.pygtex) [56]
 (./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
-E434212.pygtex) [57] [58]) [59]
+E434212.pygtex) [57] [58] [59]
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex)
+(./.temp/_minted-main/B12EBC8EB75A659A3D338D37DA93E853785E5AF7E730D780F1EBD6E73
+E434212.pygtex) [60] [61]
+(./.temp/_minted-main/0C08F01E6E670D6B454E01CE520B670CCEE33E496F2064343F2B5FB5F
+34E5FBA.pygtex)
+
+LaTeX Warning: Reference `l:potok' on page 62 undefined on input line 153.
+
+
+(./.temp/_minted-main/52CF6C6B7E1BDE1A6504B9AD0380EFAFE6ABC26939A99B64C0297032F
+755F978.pygtex) [62]
+(./.temp/_minted-main/10E477ED0D0ECC26E8C31755932D98FDEE8D59E0BA48AC90FFC61060B
+CCCD873.pygtex) [63]) [64]
 Dodatek B.
 (./includes/app_zalacznik.tex
 Overfull \hbox (4.53354pt too wide) in paragraph at lines 4--5
@@ -1628,15 +1645,15 @@ Overfull \hbox (7.77791pt too wide) in paragraph at lines 6--7
 h \T1/cmr/m/n/12 w ka-ta-lo-gu gªów-
  []
 
-) (.temp//main.bbl [60
+) (.temp//main.bbl [65
 
-] [61
+] [66
 
 ])
 runsystem(rm "".temp"//main.pyg")...executed.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 76.
- [62]
+ [67]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
  (.temp//main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
@@ -1645,17 +1662,20 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: E180F2E987D57CF43B338BBBC38008F3;2123.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13472 strings out of 493304
- 214777 string characters out of 6139871
- 369194 words of memory out of 5000000
- 16178 multiletter control sequences out of 15000+600000
- 28534 words of font info for 78 fonts, out of 8000000 for 9000
+ 13524 strings out of 493304
+ 216608 string characters out of 6139871
+ 369869 words of memory out of 5000000
+ 16195 multiletter control sequences out of 15000+600000
+ 28847 words of font info for 79 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,24n,47p,1443b,690s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,24n,47p,1443b,843s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -1670,26 +1690,27 @@ msfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
-1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1
-200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm08
-00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti100
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sftt1200.pfb>
-Output written on .temp//main.pdf (62 pages, 1013770 bytes).
+/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pf
+b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
+fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb><
+/usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fon
+ts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sftt1200.pfb>
+Output written on .temp//main.pdf (67 pages, 1037804 bytes).
 PDF statistics:
- 1067 PDF objects out of 1200 (max. 8388607)
- 926 compressed objects within 10 object streams
- 314 named destinations out of 1000 (max. 500000)
+ 1125 PDF objects out of 1200 (max. 8388607)
+ 978 compressed objects within 10 object streams
+ 335 named destinations out of 1000 (max. 500000)
  349 words of extra memory for PDF output out of 10000 (max. 10000000)
 

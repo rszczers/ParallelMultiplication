@@ -1,5 +1,5 @@
 \subsection{Wprowadzenie}
-W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzowego. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Użyto interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}). Możliwe jest wykonanie:
+W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzowego. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Użyto interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}, listing \ref{ls:gen_help}). Możliwe jest wykonanie:
 \begin{enumerate}
 \item Naiwnego algorytmu sekwencyjnego (opcja \texttt{--method=SEQUENTIAL}),
 \item Mnożenia z operacją \texttt{parfor} (opcja \texttt{--method=OMP}),
@@ -12,7 +12,7 @@ W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrz
 \end{enumerate}
 \end{enumerate}
 
-Program \texttt{gen} powstał na potrzeby szybkiego generowania dużych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:pmm_help}). 
+Program \texttt{gen} powstał na potrzeby szybkiego generowania dużych macierzy gęstych w zapisie wierszowym (patrz \ref{sub:datatypes}). Wygenerowane przez program pliki składają się z ciągów liczb pseudolosowych o pewnych zadanych własnościach (patrz listing \ref{ls:gen_help}). 
 Implementacja algorytmu Cannona, chociaż sam algorytm w oryginalnej wersji pracuje tylko na macierzach kwadratowych o rozmiarze wielokrotności szerokości lub długości siatki procesow, pozwala pracować na macierzach dowolnych rozmiarów. Jeśli zachodzi taka potrzeba, program przed wykonaniem obliczeń skaluje macierze do wymiarów wymaganych przez wybrany algorytm\footnote{O ile \(n>\sqrt{p}\), gdzie \(n\) to rozmiar problemu, a \(p\) -- liczba procesów.}
 
 
@@ -96,6 +96,11 @@ for any corresponding short options.
 
 Report bugs to <rafal.szczerski@gmail.com>.
 \end{minted}
+\caption{Ekran pomocy programu \texttt{pmm}.}
+\label{ls:pmm_help}
+\end{listing}
+
+\begin{listing}
 \begin{minted}[fontsize=\footnotesize]{console}
 rszczers@solaris:~/ParallelMultiplication/build$ ./gen --help
 Usage: gen [OPTION...] -l NUM
@@ -112,8 +117,8 @@ Usage: gen [OPTION...] -l NUM
 Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
 \end{minted}
-\caption{Ekran pomocy programów \texttt{pmm} i \texttt{gen}.}
-\label{ls:pmm_help}
+\caption{Ekran pomocy programu \texttt{gen}.}
+\label{ls:gen_help}
 \end{listing}
 
 

@@ -10,7 +10,7 @@ my $dir = shift;
 #my $dir = './debug';
 
 foreach my $fp (glob("$dir/debug_*")) {
-    open (my $fh, "<", $fp) or die "can't read open '$fp': $OS_ERROR";
+    open (my $fh, "<", $fp) or die "cannot open '$fp': $OS_ERROR";
     if(<$fh> =~ /\s$method$/gim) {
         my @data; 
         while (<$fh>) {
@@ -24,5 +24,5 @@ foreach my $fp (glob("$dir/debug_*")) {
         print join("\t", @data);
         print "\n";
     }
-    close $fh or die "can't read close '$fp': $OS_ERROR";
+    close $fh or die "cannot close '$fp': $OS_ERROR";
 }

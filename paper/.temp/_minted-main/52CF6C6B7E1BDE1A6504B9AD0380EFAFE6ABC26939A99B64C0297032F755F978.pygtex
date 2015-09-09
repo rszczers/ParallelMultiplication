@@ -1,0 +1,95 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c}{\PYGdefaultZsh{}!/bin/bash}
+./parse.pl sequential ./debug/seq | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}sequential.dat
+./parse.pl cannon ./debug/seq | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}seq.dat
+./parse.pl cannon\PYGdefaultZus{}omp ./debug/seq | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat
+./parse.pl cannon\PYGdefaultZus{}dgemm ./debug/seq | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat
+
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}1.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}2.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}4.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}12.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}1.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}2.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}4.dat
+cat gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}12.dat
+
+\PYGdefault{c}{\PYGdefaultZsh{} Data without matrix scaling goes down here}
+./parse.pl cannon ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}seq.dat
+./parse.pl cannon ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}seq.dat
+./parse.pl cannon ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}seq.dat
+./parse.pl cannon ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}cannon\PYGdefaultZus{}seq.dat
+
+./parse.pl mkl ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}mkl.dat
+./parse.pl mkl ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}mkl.dat
+./parse.pl mkl ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}mkl.dat
+./parse.pl mkl ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}mkl.dat
+
+./parse.pl sequential ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}sequential.dat
+./parse.pl sequential ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}sequential.dat
+./parse.pl sequential ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}sequential.dat
+./parse.pl sequential ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}sequential.dat
+
+./parse.pl cannon\PYGdefaultZus{}omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat
+./parse.pl cannon\PYGdefaultZus{}omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat
+./parse.pl cannon\PYGdefaultZus{}omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat
+./parse.pl cannon\PYGdefaultZus{}omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat
+
+./parse.pl cannon\PYGdefaultZus{}dgemm ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat
+./parse.pl cannon\PYGdefaultZus{}dgemm ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat
+./parse.pl cannon\PYGdefaultZus{}dgemm ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat
+./parse.pl cannon\PYGdefaultZus{}dgemm ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k5 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat
+
+./parse.pl omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 2048\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}omp.dat
+./parse.pl omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 4096\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}omp.dat
+./parse.pl omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 8192\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}omp.dat
+./parse.pl omp ./debug | sort \PYGdefaultZhy{}t\PYGdefault{l+s+s1}{\PYGdefaultZdl{}\PYGdefaultZsq{}\PYGdefaultZbs{}t\PYGdefaultZsq{}} \PYGdefaultZhy{}k6 \PYGdefaultZhy{}n | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}2 == 16384\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/16384\PYGdefaultZus{}omp.dat
+
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}1.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}2.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}4.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}12.dat
+
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}1.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}2.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}4.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}12.dat
+
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}1.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}2.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}4.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}12.dat
+
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}1.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}2.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}4.dat
+cat gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/2048\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}12.dat
+
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}1.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}2.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}4.dat
+cat gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/4096\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}12.dat
+
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==1\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}1.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==2\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}2.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==4\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}4.dat
+cat gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.dat ./debug | awk \PYGdefault{l+s+s1}{\PYGdefaultZsq{}\PYGdefaultZdl{}6==12\PYGdefaultZsq{}} \PYGdefaultZgt{} gnuplot/data/8192\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}12.dat
+
+
+\PYGdefault{n+nb}{cd }gnuplot
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}seq\PYGdefaultZus{}diff\PYGdefaultZus{}n.p
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}diff\PYGdefaultZus{}n.p
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.p
+gnuplot ./speedup\PYGdefaultZus{}mono.p
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.p
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm\PYGdefaultZus{}scal.p
+gnuplot ./speedup\PYGdefaultZus{}cannon\PYGdefaultZus{}omp\PYGdefaultZus{}scal.p
+
+cp cannon\PYGdefaultZus{}dgemm.eps cannon\PYGdefaultZus{}dgemm.tex ../paper/includes/plots/
+cp mono.eps mono.tex ../paper/includes/plots/
+cp cannon\PYGdefaultZus{}omp.eps cannon\PYGdefaultZus{}omp.tex ../paper/includes/plots/
+cp cannon\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}diff\PYGdefaultZus{}n.tex ../paper/includes/plots/
+cp cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.tex ../paper/includes/plots/
+cp scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.tex ../paper/includes/plots/
+cp scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.tex ../paper/includes/plots/
+\end{Verbatim}

@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{g+gp}{rszczers@solaris:\PYGdefaultZti{}/ParallelMultiplication/build\PYGdefaultZdl{}} ./gen \PYGdefaultZhy{}\PYGdefaultZhy{}help
+\PYGdefault{g+go}{Usage: gen [OPTION...] \PYGdefaultZhy{}l NUM}
+
+\PYGdefault{g+go}{  \PYGdefaultZhy{}f, \PYGdefaultZhy{}\PYGdefaultZhy{}float                Generate floating point numbers}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}l, \PYGdefaultZhy{}\PYGdefaultZhy{}length=NUM           Lenght of array to generate}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}m, \PYGdefaultZhy{}\PYGdefaultZhy{}min=NUM              Lower boundary of generated elements}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}M, \PYGdefaultZhy{}\PYGdefaultZhy{}max=NUM              Upper boundary of generated elements}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}p, \PYGdefaultZhy{}\PYGdefaultZhy{}path[=FILE]          Output file}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}v, \PYGdefaultZhy{}\PYGdefaultZhy{}verbose              Verbose mode}
+\PYGdefault{g+go}{  \PYGdefaultZhy{}?, \PYGdefaultZhy{}\PYGdefaultZhy{}help                 Give this help list}
+\PYGdefault{g+go}{      \PYGdefaultZhy{}\PYGdefaultZhy{}usage                Give a short usage message}
+
+\PYGdefault{g+go}{Mandatory or optional arguments to long options are also mandatory or optional}
+\PYGdefault{g+go}{for any corresponding short options.}
+\end{Verbatim}
