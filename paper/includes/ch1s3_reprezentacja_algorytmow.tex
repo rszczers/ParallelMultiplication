@@ -26,11 +26,11 @@ Dla dowolnego planu, odpowiadający mu czas wykonania (złożoność czasowa) al
 
 
 \begin{przyklad}
-Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy standardowy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający obliczeniu DAG dla \(n=4\) przedstawia rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, operacje mogą być zaplanowane poziom po poziomie, używając \(n\) procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
+Niech \(\mathbf{A}\), \(\mathbf{B}\in\mathbb{R}^{n\times n}\). Rozważmy algorytm obliczający iloczyn macierzy \(AB = C\). Każdy element \(C(i, j)\) obliczamy za pomocą wyrażenia \(C(i, j)=\sum_{l=1}^{n}A(i,l)B(l,j)\). Odpowiadający temu obliczeniu DAG dla \(n=4\) przedstawia rys. \ref{fig:standard_parallel}. Mając \(n^3\) procesorów, poszczególne operacje mogą być zaplanowane poziom po poziomie, używając \(n\) procesorów do obliczenia każdego z elementów macierzy wynikowej \(C\). Stąd widać, że możemy zaplanować DAG do obliczenia o złożoności \(O(\log{n})\)
 \begin{figure}[H]
 \centering
 \includegraphics[width=34em]{images/Rys3.eps}
-\caption{Standardowy iloczyn macierzowy}
+\caption{Iloczyn macierzowy, algorytm w postaci grafu.}
 \label{fig:standard_parallel}
 \end{figure}
 

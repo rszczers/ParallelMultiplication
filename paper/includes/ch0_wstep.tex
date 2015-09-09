@@ -1,8 +1,10 @@
-Można wyróżnić trzy zasadnicze powody obecnego zainteresowania obliczeniami równoległymi.
+Golub\cite{Golub} we wstępie do swojej książki poświęconej w całości tylko problemowi działań na macierzach powiada, że mnożenie macierzy, choć łatwe koncepcyjnie, gdy tylko spojrzeć nań z obliczeniowego punktu widzenia, oferuje wielkie bogactwo podejść do problemu i przy tym jest pierwszym problem, który prowadzi do zajmowania się macierzami w ogóle. Problem mnożenia macierzy był podejmowany przez wielu autorów na przestrzeni lat (przykładowo prace \cite{Strassen68}, \cite{Winograd}, \cite{Cannon:1969:CCI:905686}, ale i całkiem nowa praca \cite{DBLP:journals/corr/abs-1202-3173}) i pozostaje polem poszukiwań lepszych algorytmów.
+
+Podejściem na miarę współczesnych obliczeń komputerowych są obliczenia rozproszone, a w szczególności -- równoległe. Powody takiego stanu rzeczy można określić w trzech punktach:
 \begin{enumerate}
-\item{Stały spadek kosztów sprzętu komputerowego,}
-\item{Rozwój VLSI (\emph{Very-large-scale integration}) do poziomu umożliwiającego projektowanie układów scalonych zawierających miliony tranzystorów na pojedyńczym chipie,}
+\item{Stały spadek kosztów sprzętu komputerowego.}
+\item{Rozwój VLSI (\emph{Very-large-scale integration}) do poziomu umożliwiającego projektowanie układów scalonych zawierających miliony tranzystorów na pojedyńczym chipie.}
 \item{Osiągnięcie fizycznych ograniczeń czasu cyklu procesora w architekturze von Neumanna (rys \ref{fig:neumann}).}
 \end{enumerate}
 
-Obliczenia równoległe, w świetle ograniczeń fizycznych procesorów jednordzeniowych, są odpowiedzią na potrzebę wykonywania szybszych obliczeń. Szybsze obliczenia pozwalają na obliczenia w większej skali i otrzymywanie szybszych rozwiązań.
+% Obliczenia równoległe, w świetle ograniczeń fizycznych procesorów jednordzeniowych, są odpowiedzią na potrzebę wykonywania szybszych obliczeń. Szybsze obliczenia pozwalają na obliczenia w większej skali i otrzymywanie szybszych rozwiązań.

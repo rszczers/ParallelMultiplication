@@ -37,7 +37,7 @@ Na potrzeby pracy proces testowania został całkowicie zautomatyzowany ze wzgl�
 
 
 \vspace{5mm}
-Dla obliczeń równoległych istotne są dwie zmienne: \texttt{NPROCS} oraz \texttt{OMP\_THR\-EADS}. Pierwsza z nich określa liczbę procesów do uruchomienia, druga --- liczbę wątków.
+Dla obliczeń równoległych istotne są dwie zmienne: \texttt{NPROCS} oraz \texttt{OMP\_THR\-EADS}. Pierwsza z nich określa liczbę procesów do uruchomienia, druga --- liczbę wątków. Tabela \ref{tab:makefile_vars} zawiera zestawienie najistotniejszych zdefiniownych w pliku \texttt{Makefile} parametrów wywołania instrukcji \texttt{make}.
 
 
 Przy domyślnych ustawieniach po wykonaniu każdego zadania w katalogu \texttt{./debug/} tworzony jest plik \texttt{debug\_X}, gdzie \texttt{X} to data wykonania zadania w czasie uniksowym. Zawiera on dane o czasie wykonania programu, jego części sekwencyjnej, rozmiarze danych, liczbie procesów i wątków. Opcja \texttt{-s} pozwala na zapis danych częściowych każdego z procesów na każdym etapie wykonywania algorytmu. Pliki zapisywane są w czytelnej postawi do katalogu \texttt{./debug/} pod nazwą \texttt{XXXX\_YYYY\_Z}, gdzie \texttt{XXXX} identyfikuje proces z którego zapisano dane, \texttt{YYYY} --- krok algorytmu, \texttt{Z} --- macierz \(A\), \(B\) lub \(C\), której fragment zapisano. Pozwala to łatwo prześledzić wszystkie etapy obliczeń.

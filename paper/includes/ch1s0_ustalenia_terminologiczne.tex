@@ -1,12 +1,3 @@
-\begin{definicja}[Zbiór przechodni]\label{def:transitive_set}
-Zbiór \(A\) nazywamy \textbf{przechodnim}, wtedy i tylko wtedy, gdy
-\(\forall{x}\left(x\in A \land y\in x\implies y\in A\right)\).  
-\end{definicja}
-
-\begin{definicja}[Domknięcie przechodnie zbioru]\label{def:transitive_closure_set}
-Domknięciem przechodnim zbioru \(X\) nazywamy najmniejszy w sensie inkluzji zbiór przechodni, który zawiera \(X\).
-\end{definicja}
-
 \begin{definicja}[Graf skierowany (DG)]\label{def:DG}
 Powiedzmy, że:
 \begin{enumerate}
@@ -22,6 +13,15 @@ Acyklicznym grafem skierowanym nazywamy graf skierowany nie zawierający cykli.
 
 \begin{definicja}[Domknięcie przechodnie grafu]\label{def:domk_przechodnie_grafu}
 Niech \(G=(V,A)\) będzie grafem skierowanym. Graf skierowany \(G^+=(V,A^{+})\) nazywamy \textbf{domknięciem przechodnim} grafu \(G\), gdy \(A^{+}\) jest zbiorem wszystkich takich par \((a,b)\) wierzchołków zbioru \(V\), że w grafie \(G\) istnieje droga z \(a\) do \(b\).
+\end{definicja}
+
+\begin{definicja}[Zbiór przechodni]\label{def:transitive_set}
+Zbiór \(A\) nazywamy \textbf{przechodnim}, wtedy i tylko wtedy, gdy
+\(\forall{x}\left(x\in A \land y\in x\implies y\in A\right)\).  
+\end{definicja}
+
+\begin{definicja}[Domknięcie przechodnie zbioru]\label{def:transitive_closure_set}
+Domknięciem przechodnim zbioru \(X\) nazywamy najmniejszy w sensie inkluzji zbiór przechodni, który zawiera \(X\).
 \end{definicja}
 
 \begin{definicja}[Graf zależności]\label{def:depend_graph}
