@@ -12,7 +12,7 @@ Interesująca z puntku widzenia obliczeń rozproszonych jest implementacja algor
 \label{l:block_size}
 \end{listing}
 
-Na listingu \ref{l:block_size} zaprezentowany jest fragment kodu odpowiedzialny za wyznaczanie rozmiaru bloków macierzy wejściowych do rozesłania do innych węzłów sieci. W linijkach \((365-367)\) określany jest największy z pośród wymiarów macierzy podanych przez użytkownika\footnote{Wykorzystuje się tutaj fakt, że operator przypisania ,,\texttt{=}'' zwraca wartość przypisania.}. W linijkach \((369-374)\) określana jest szerokość bloku macierzy (zmienna \texttt{sz}), liczba elementów w bloku (zmienna \texttt{blockSz}) oraz szerokość całej macierzy po uwzględnieniu skalowania (zmienna \texttt{max}).
+Na listingu \ref{l:block_size} zaprezentowany jest fragment kodu odpowiedzialny za wyznaczanie rozmiaru bloków macierzy wejściowych do rozesłania do innych węzłów sieci. W linijkach \((365-367)\) określany jest największy Spośród wymiarów macierzy podanych przez użytkownika\footnote{Wykorzystuje się tutaj fakt, że operator przypisania ,,\texttt{=}'' zwraca wartość przypisania.}. W linijkach \((369-374)\) określana jest szerokość bloku macierzy (zmienna \texttt{sz}), liczba elementów w bloku (zmienna \texttt{blockSz}) oraz szerokość całej macierzy po uwzględnieniu skalowania (zmienna \texttt{max}).
 
 Nadzorca decyduje o skalowaniu macierzy w zależności od wymiarów torusa\footnote{Szerokośc i wysokość torusa muszą być takie same; w przeciwnym wypadku obliczenie jest przerywane.}, na którym przeprowadzane są obliczenia. Zadanie węzła nadzorującego kończy się na tym etapie zdefiniowaniem typu \texttt{MPI\_SUBMATRIX}, który w dalszej części będzie służył do wysyłania komunikatów w sieci zawierających odpowiednie podmacierze.
 
@@ -59,6 +59,23 @@ Na tym etapie rozpoczynamy właściwą część algorytmu polegającą na rozdys
 
 Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia podmacierzy w sieci takiego jak na rys. \ref{fig:cannon_src2}. Rozpatrzmy kod zamieszczony na listingu \ref{l:start_dist_cannon}. Zawarte w nim instrukcje wykonywane są tylko przez nadzorcę i dotyczą wyłącznie dystrybucji macierzy \(A\).
 
+
+Pomocnicz tablica \texttt{proclA} zdefiniowana w liniach (\(443-453\)) zawiera identyfikatory procesorów do których kolejno będą wysyłane bloki macierzy \(A\). Aby zrozumieć ideę stojącą za tą częścią kodu sprowadźmy dla przykładu problem do obliczeń na torusie \(3\times 3\) i macierzy kwadratowej \(A\) złożonych z dziewięciu bloków \(A_{ij}\) równego wymiaru. Jeśli tablicę \texttt{proclA} zinterpretujemy jako macierz \(3\times 3\) w zapisie wierszowym, wówczas obrazowo przedstawia ją rysunek \ref{fig:proclA}.
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+0 & 1 & 2 \\
+\hline
+5 & 3 & 4 \\
+\hline
+7 & 8 & 6 \\
+\hline
+\end{tabular}
+\caption{Tablica pomocnicza \texttt{proclA}}
+\label{fig:proclA}
+\end{figure}
 % Instrukcje w liniach \(455,\456,\,459,\,477,\,478\) służą pomiarow czasu wykonania wybranych części kodu i nie są istotne dla omówianego zagadnienia.
 
 \begin{listing}[H]
@@ -67,71 +84,37 @@ Operację tę można uprościć przechodząc bezpośrednio do rozmieszczenia pod
 \label{l:start_dist_cannon}
 \end{listing}
 
-Pomocnica tablica \texttt{proclA} zdefiniowana w liniach \(443-453\) zawiera identyfikatory procesorów do których kolejno będą wysyłane bloki macierzy \(A\). Obrazowo dla obliczeń w torusie \(3\times 3\) przedstawia ją rysunek \ref{fig:proclA}
+Matematycznie rzecz ujmująć zdefiniowaliśmy w ten sposób permutację między indeksami tabeli, a zbiorem \(\{0, 1, \dots, 8\}\):
+\begin{equation*}
+f\colon \left\{\begin{aligned}
+& 0\mapsto 0, & \quad 1\mapsto 1, & \quad 2\mapsto 2, \\
+& 3\mapsto 5, & \quad 4\mapsto 3, & \quad 5\mapsto 4, \\
+& 6\mapsto 7, & \quad 7\mapsto 8, & \quad 8\mapsto 6. \\
+\end{aligned}\right.
+\end{equation*}
+inaczej \(f=\bigl(\begin{smallmatrix}
+  0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+  0 & 1 & 2 & 5 & 3 & 4 & 7 & 8 & 6
+\end{smallmatrix}\bigr)\).
 
-\begin{figure}[H]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-0 & 1 & 2 \\
-\hline
-4 & 5 & 3 \\
-\hline
-8 & 6 & 7 \\
-\hline
-\end{tabular}
-\caption{Tablica pomocnicza \texttt{proclA}}
-\label{fig:proclA}
-\end{figure}
+\noindent Aby zrozumieć pętlę \texttt{for} w liniach (\(458-485\)) 
+ponumerujmy podmacierze \(A_{ij}\):
 
-
-% \begin{listing}
-% \begin{minted}[fontsize=\footnotesize,bgcolor=bg,linenos,firstnumber=12,firstline=1,lastline=38]{c}
-%             if (dims[0] != dims[1]) {
-%                 printf("\nProcess mesh is not appropriate. Aborting.\n\n");
-%                 exit(EXIT_FAILURE);
-%             }
-
-%             max = arguments.m;
-%             (max < arguments.k) && (max = arguments.k); 
-%             (max < arguments.n) && (max = arguments.n);
-
-%             int sz = max/dims[0];  // row length per block 
-
-%             if(max > sz * dims[0]) { 
-%                 sz += 1;
-%                 max = sz * dims[0];
-%             }
-
-%             int blockSz = sz * sz;
-
-%             MPI_Type_contiguous(blockSz, MPI_DOUBLE, &MPI_SUBMATRIX);
-%             MPI_Type_commit(&MPI_SUBMATRIX);
+\begin{equation*}
+g\colon \left\{\begin{aligned}
+A_{11}&\mapsto 0, & A_{12}&\mapsto 1, & A_{13}&\mapsto 2, \\
+A_{21}&\mapsto 3, & A_{22}&\mapsto 4, & A_{23}&\mapsto 5, \\
+A_{31}&\mapsto 6, & A_{32}&\mapsto 7, & A_{33}&\mapsto 8. \\
+\end{aligned}\right.
+\end{equation*}
 
 
+Permutacja \(f\) jest nieprzypadkowa, gdyż jeśli rozważymy teraz wartość \(f(g(A_{ij})\), otrzymamy identyfikator procesu, do którego należy wysłać macierz \(A_{ij}\). Innymi słowy odwzorowanie \(f\) jest odpowiedniością między częściami macierzy (wartościami funkcji \(g\)), a identyfikatorami procesów.
 
-%                 bool resize = true;
-%                 if(arguments.m == max &&
-%                     arguments.n == max &&
-%                     arguments.k == max) {
-%                     resize = false;
-%                 }
-% \end{minted}
-% \end{listing}
+Pętla \texttt{for} zawarta w liniach (458-485) iteruje się po zmiennej \texttt{proc}, która odpowiada wyżej zdefiniowanym wartościom funkcji \(g\). Należy rozumieć przez to, że dla \(\mathtt{proc}=i\) przetwarzamy do wysłania blok \(A_{ij}=g^{-1}(i)\).
 
 
+Tablica \texttt{displacements} definiowana w ciele pętli (linie 462-468) zawiera indeksy pierwszych elementów każdego wiersza podmacierzy tablicy \texttt{A}\footnote{Tablica \texttt{A} przechowuje wszystkie elementy macierzy \(A\) w węźle nadzorczym.}, które z kolei służą do przepisywania odpowiednich elementów do bufora \texttt{pA} (linie 471-476). Ostatecznie bufor \texttt{pA} zawierający blok \(g^{-1}(\mathtt{proc})\) jest wysyłany do węzła \(f(g(A_{ij}))\) (procedura \texttt{MPI\_Send}, linia 482). Pętla jest skonstruowana tak, że po jej wykonaniu nadzorca posiada przypadający mu blok macierzy bez zbędnego wysyłania go do siebie (warunek w lini 481). 
 
 
-
-
-% Poniżej omówimy wybrane najistotniejsze fragmenty kodu źródłowego programu \texttt{pmm}, który zawiera implementacje algorytmów których wydajność zaprezentowano w rozdziale \ref{ch:performance} oraz idee, które stały za poszczególnymi rozwiązaniami. 
-
-
-
-
-% \begin{listing}[H]
-% \footnotesize
-% \inputminted{bash}{includes/listings/job.sh}
-% \caption{Plik \texttt{job.sh}}
-% \label{l:torque_jobs}
-% \end{listing}
+Równolegle z przygotowywaniem komunikatów przez nadzorcę, pozostałe procesory przygotowują się do odebrania przeznaczonych im komunikatów. Tym sposobem otrzymujemy rozkład macierzy \(A\) przedstawiony na rysunku \ref{fig:cannon_src2}.
