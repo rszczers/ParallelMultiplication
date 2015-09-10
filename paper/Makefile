@@ -12,5 +12,7 @@ all:
 	$(SOURCE).tex
 	mv $(OUTPUT_DIR)$(SOURCE).pdf ./$(PROJECT).pdf
 	sleep 1
+	make clean
+
 clean:
 	rm -rf $(OUTPUT_DIR)*	

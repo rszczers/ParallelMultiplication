@@ -92,4 +92,12 @@ cp cannon\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}diff\PY
 cp cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.tex ../paper/includes/plots/
 cp scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.tex ../paper/includes/plots/
 cp scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.tex ../paper/includes/plots/
+
+rm cannon\PYGdefaultZus{}dgemm.eps cannon\PYGdefaultZus{}dgemm.tex
+rm mono.eps mono.tex
+rm cannon\PYGdefaultZus{}omp.eps cannon\PYGdefaultZus{}omp.tex
+rm cannon\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}diff\PYGdefaultZus{}n.tex
+rm cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.eps cannon\PYGdefaultZus{}mkl\PYGdefaultZus{}diff\PYGdefaultZus{}n.tex
+rm scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}dgemm.tex
+rm scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.eps scal\PYGdefaultZus{}cannon\PYGdefaultZus{}omp.tex
 \end{Verbatim}
