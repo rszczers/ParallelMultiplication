@@ -91,3 +91,11 @@ cp cannon_diff_n.eps cannon_diff_n.tex ../paper/includes/plots/
 cp cannon_mkl_diff_n.eps cannon_mkl_diff_n.tex ../paper/includes/plots/
 cp scal_cannon_dgemm.eps scal_cannon_dgemm.tex ../paper/includes/plots/
 cp scal_cannon_omp.eps scal_cannon_omp.tex ../paper/includes/plots/
+
+rm cannon_dgemm.eps cannon_dgemm.tex
+rm mono.eps mono.tex
+rm cannon_omp.eps cannon_omp.tex
+rm cannon_diff_n.eps cannon_diff_n.tex
+rm cannon_mkl_diff_n.eps cannon_mkl_diff_n.tex
+rm scal_cannon_dgemm.eps scal_cannon_dgemm.tex
+rm scal_cannon_omp.eps scal_cannon_omp.tex

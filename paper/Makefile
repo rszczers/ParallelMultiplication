@@ -1,7 +1,7 @@
 PROJECT=parallel_multiplication_algorithms
 SOURCE=main
-OUTPUT_DIR=./.temp/
-
+OUTPUT_DIR=./temp/
+export BIBINPUTS=:.
 all:
 	latexmk -pdf \
 	-bibtex \
@@ -12,6 +12,5 @@ all:
 	$(SOURCE).tex
 	mv $(OUTPUT_DIR)$(SOURCE).pdf ./$(PROJECT).pdf
 	sleep 1
-
 clean:
 	rm -rf $(OUTPUT_DIR)*	

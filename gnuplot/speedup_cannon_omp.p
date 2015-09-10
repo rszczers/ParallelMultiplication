@@ -4,7 +4,7 @@ reset
 
 #set terminal wxt size 800,600 dashed enhanced font 'Verdana,10' persist
 
-set terminal epslatex size 15cm,8cm  color colortext header \
+set terminal epslatex size 15cm,9cm  color colortext header \
 "\\newcommand{\\ft}[0]{\\footnotesize}"
 
 set output "cannon_omp.tex"

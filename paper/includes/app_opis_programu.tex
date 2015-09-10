@@ -1,14 +1,14 @@
 \subsection{Wprowadzenie}
-W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzowego. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Użyto interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{--help} i \texttt{--version} w stylu GNU (listing \ref{ls:pmm_help}, listing \ref{ls:gen_help}). Możliwe jest wykonanie:
+W ramach pracy licencjackiej zaimplementowano w języku C prosty system na potrzeby testowania wybranych algorytmów obliczania iloczynu macierzowego. Program wykorzystuje interfejsy programowania równoległego MPI i OpenMP oraz bibliotekę matematyczną Intel MKL. Użyto interfejsu argp do parsingu argumentów wejściowych oraz wyświetlania opcji \texttt{-{}-help} i \texttt{-{}-version} w stylu GNU (listing \ref{ls:pmm_help}, listing \ref{ls:gen_help}). Możliwe jest wykonanie:
 \begin{enumerate}
-\item Naiwnego algorytmu sekwencyjnego (opcja \texttt{--method=SEQUENTIAL}),
-\item Mnożenia z operacją \texttt{parfor} (opcja \texttt{--method=OMP}),
-\item Mnożenia z wykorzystaniem operacji \texttt{cblas\_dgemm} z biblioteki Intel MKL (opcja \texttt{--method=MKL})
-\item Klasycznego algorytmu Cannona (opcja \texttt{--method=CANNON}),
+\item Naiwnego algorytmu sekwencyjnego (opcja \texttt{-{}-method=SEQUENTIAL}),
+\item Mnożenia z operacją \texttt{parfor} (opcja \texttt{-{}-method=OMP}),
+\item Mnożenia z wykorzystaniem operacji \texttt{cblas\_dgemm} z biblioteki Intel MKL (opcja \texttt{-{}-method=MKL})
+\item Klasycznego algorytmu Cannona (opcja \texttt{-{}-method=CANNON}),
 \item Algorytmów hybrydowych:
 \begin{enumerate}
-\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{parfor} \\ (opcja \texttt{--method=CANNON\_OMP}), 
-\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{cblas\_dgemm} z biblioteki Intel MKL, (opcja \texttt{--method=CANNON\_DGEMM}).
+\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{parfor} \\ (opcja \texttt{-{}-method=CANNON\_OMP}), 
+\item Algorytmu Cannona z drobnoziarnistą operacją \texttt{cblas\_dgemm} z biblioteki Intel MKL, (opcja \texttt{-{}-method=CANNON\_DGEMM}).
 \end{enumerate}
 \end{enumerate}
 
@@ -101,6 +101,7 @@ Report bugs to <rafal.szczerski@gmail.com>.
 \end{listing}
 
 \begin{listing}
+\usemintedstyle{bw}
 \begin{minted}[fontsize=\footnotesize]{console}
 rszczers@solaris:~/ParallelMultiplication/build$ ./gen --help
 Usage: gen [OPTION...] -l NUM

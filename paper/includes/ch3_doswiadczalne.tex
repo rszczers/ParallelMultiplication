@@ -1,14 +1,41 @@
-Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu Matematyki UMCS. Każdy węzeł sieci składa się z dwóch procesorów Intel Xeon Processor X5650. W trakcie testów używano tylko jednego procesora przypadającego na węzeł. Wykresy \ref{pl:cannon_seq_diff}, \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}, \ref{pl:cannon_omp}, \ref{pl:mono} prezentują uzyskane przyspieszenia względem naiwnego algorytmu sekwencyjnego o złożoności \(\mathcal{O}(n^3)\) dla \(p=2^k,\,k=2,4,6,8\) procesów.
+Dane pomiarowe uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu Matematyki UMCS. Specyfikacja techniczna węzłów zawarta została w tabeli \ref{tab:specs}. W trakcie testów używano tylko jednego procesora przypadającego na węzeł. Do budowy programu zawierającego implementacje wybranych algorytmów użyto kompilatora \texttt{mpiicc} z bibliotekami \texttt{mkl} i \texttt{openmp}. Wszystkie rozważane w tym rozdziale przyspieszenia są obliczane względem naiwnego algorytmu sekwencyjnego o złożoności \(\mathcal{O}(n^3)\).
 
-\begin{figure}[hb]
+
+Wykresy \ref{pl:cannon_seq_diff}, \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}, \ref{pl:cannon_omp} prezentują przyspieszenia wariantów algorytmu Cannona dla \(p=2^k,\,k=2,4,6,8\) procesów uzyskane przy użyciu 22 węzłów i macierzy wymiarów \((2048\times 2048)\), \((4096\times 4096)\), \((8192\times 8192)\).
+
+
+Wykres \ref{pl:mono} przedstawia przyspieszenia uzyskane w zależności od liczby wątków OpenMP dla jednego procesu MPI wykonanego na 22 fizycznych węzłąch sieci dla procedury \texttt{cblas\_dgemm} z biblioteki MKL oraz dyrektywy \texttt{parallel for} interfejsu OpenMP.
+
+
+
+Wykresy \ref{pl:scal_cannon_dgemm} i \ref{pl:scal_cannon_omp} przedstawiają przyspieszenia uzyskane dla obliczeń w topologi torusa \((2\times 2)\), \((3\times 3)\), \((4\times 4)\), \(\dots\), \((16\times 16)\). Ze względu na specyfikę algorytmu Cannona macierze wejściowe są wstępnie skalowane\footnote{Ich rozmiar jest powiększany do wielokrotności \(\sqrt{p}\) (gdzie \(p\) to liczba procesów) przez uzupełnienie macierzy zerami.} przed rozesłaniem do węzłów sieci. Zmienia to początkowy rozmiar poblemu \(n\) do \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\).
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+Procesor & 2x Intel Xeon X5650 (2,66 GHz, 6 rdzeni, 12 wątków) \\
+\hline
+Pamięć lokalna & 48GB DDR3 \\
+\hline
+System operacyjny & Debian 3.2.39-2 (Linux 3.2.0-4-amd64 x86\_64 kernel)\\
+\hline
+\end{tabular}
+\caption{Specyfikacja techniczna węzłów klastra Solaris}
+\label{tab:specs}
+\end{table}
+
+% \section{Warianty algorytmu Cannona}
+
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_diff_n.tex}
-\caption{Przyspieszenie algorytmu Cannona na systemie równoległym składającym się z 22 fizycznych węzłów sieci. Wykres uwzględnia testy przeprowadzone na trzech zestawach danych różnego rozmiaru.}
+\caption{Przyspieszenie algorytmu Cannona na systemie równoległym składającym się z 22 fizycznych węzłów sieci. Wykres uwzględnia testy przeprowadzone na trzech zestawach danych rozmiaru \((2048\times 2048)\), \((4096\times 4096)\), \((8192\times 8192)\).}
 \label{pl:cannon_seq_diff}
 \end{figure}
 
-\begin{figure}[hb]
+
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_mkl_diff_n.tex}
@@ -16,7 +43,7 @@ Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu M
 \label{pl:cannon_dgemm_diff}
 \end{figure}
 
-\begin{figure}[hb]
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_dgemm.tex}
@@ -24,25 +51,28 @@ Dane uzyskano na klastrze obliczeniowym Solaris dzięki uprzejmości Instytutu M
 \label{pl:compar_dgemm}
 \end{figure}
 
-\begin{figure}[hb]
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{cannon_omp.tex}
-\caption{Porównanie wydajności klasycznego algorytmu Cannona oraz wersji hybrydowej dla różne liczby wątków w systemie równoległym składającym się z 22 fizycznych węzłów.}
+\caption{Porównanie wydajności klasycznego algorytmu Cannona oraz wersji hybrydowej z dyrektywą \texttt{parallel for} dla różnej liczby wątków w systemie równoległym składającym się z 22 fizycznych węzłów.}
 \label{pl:cannon_omp}
 \end{figure}
 
-\begin{figure}[hb]
+
+
+
+% \section{Obliczenia z użyciem interfejsu OpenMP}
+
+\begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{mono.tex}
-\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} do zrównoleglonego operacją \texttt{parfor} algorytmu naiwnego. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
+\caption{Porównanie wydajności procedury \texttt{cblas\_dgemm} biblioteki MKL do mnożenia z pomocą dyrektywy \texttt{parallel for} interfejsu OpenMP. Wyniki uzyskano na systemie równoległym składającym się z 22 fizycznych węzłów.}
 \label{pl:mono}
 \end{figure}
 
-\clearpage
-
-Wykresy \ref{pl:scal_cannon_dgemm} i \ref{pl:scal_cannon_omp} przedstawiają przyspieszenia uzyskane dla obliczeń w topologi torusa \((2\times 2)\), \((3\times 3)\), \((4\times 4)\), \(\dots\), \((16\times 16)\). Ze względu na specyfikę algorytmu Cannona macierze wejściowe są wstępnie skalowane przed rozesłaniem do węzłów sieci. Zmienia to początkowy rozmiar poblemu \(n\) do \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\).
+% \section{Obliczenia ze skalowaniem macierzy}
 
 \begin{figure}[H]
 \centering
@@ -52,12 +82,25 @@ Wykresy \ref{pl:scal_cannon_dgemm} i \ref{pl:scal_cannon_omp} przedstawiają pr
 \label{pl:scal_cannon_dgemm}
 \end{figure}
 
-
 \begin{figure}[H]
 \centering
 \footnotesize
 \subimport{plots/}{scal_cannon_omp.tex}
-\caption{Przyspieszenie hybrydowego algorytmu Cannona z operacją \texttt{parfor} (na wykresie Cannon-OMP) dla macierzy \(4096\times 4096\) wykonany na sysemie równoległym złożonym z 8 węzłów. Rozmiar problemu ze wzlędu na wstępne skalowanie macierzy jest zmienny i wynosi \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\). }
+\caption{Przyspieszenie hybrydowego algorytmu Cannona z wykonaniem mnożenia z dyrektywą \texttt{parallel for} interfejsu OpenMP na poziomie procesu (na wykresie Cannon-OMP) dla macierzy \(4096\times 4096\) wykonany na systemie równoległym złożonym z 8 węzłów. Rozmiar problemu ze wzlędu na wstępne skalowanie macierzy jest zmienny i wynosi \(\left( \floor{ \sqrt{\frac{n}{p}} } \sqrt{p} + \sqrt{n}\mod{\sqrt{p}}\right)^2\). }
 \label{pl:scal_cannon_omp}
 \end{figure}
 
+\subsubsection{Wnioski}
+Przy wykonywaniu obliczenia iloczynu macierzy \((2048\times 2048)\) klasyczną metodą Cannona (rys. \ref{pl:cannon_seq_diff}) z uruchomionymi 64 procesami na 22 węzłach osiągamy optymalne (aczkolwiek stosunkowo niskie) dla tej implementacji przyspieszenie. Wiedząc, że każdy z 22 użytych węzłów dysponuje procesorem sześciordzeniowym widzimy, że dla liczby procesów \(p>132\) obliczenia nakładają się na siebie i nie wykonują równolegle. Stąd obserwujemy znaczny spadek przyspieszenia dla liczby procesów \(p=256\) (rys. \ref{pl:cannon_seq_diff}). Dla macierzy większych wymiarów widzimy, że wykonywanie współbieżne z liczbą procesów \(p>132\), w którym duża część procesów nie jest wykonywana równolegle, ma korzystny wpływ na przyspieszenie.
+
+
+Lepiej pod względem przyspieszenia zachowują się algorytmy przedstawione na wykresach \ref{pl:cannon_dgemm_diff}, \ref{pl:compar_dgemm}. Widzimy, że dla obliczeń macierzy \((8192\times8192)\) najoptymalniejsze jest przeprowadzenie ich w konfiguracji po dwa wątki na cztery procesy. Wyraźnie widoczny jest też spadek przyspieszenia przy przeprowadzaniu obliczeń na zbyt dużej liczbie procesów i wątków.
+
+
+Na wykresach \ref{pl:cannon_omp} widzimy, że dla metody Cannona z obliczeniami z dyrektywą \texttt{parallel for} na poziomie procesu, wydajność obliczeń jest najwyższa przy konfiguracji czterech wątków na cztery procesy. W pozostałych przypadkach (pomijąc te, w których ponosimy koszty nakładania się obliczeń przez uruchomienie zbyt wielkiej liczby procesów lub wątków) algorytm jest nieznacznie szybszy od klasycznej metody Cannona.
+
+
+Z wykresu \ref{pl:mono} widzimy, że dla 22 wątków procedura oparta o dyrektywę \texttt{parallel for} osiąga maksymalne przyspieszenie. Procedura \texttt{cblas\_dgemm} od dziesięciu wątków w górę osiąga stosunkowo stałe przyspieszenie.
+
+
+Najszybszą metodą, zgodnie z oczekiwaniami, okazało się wykonanie obliczeń procedurą \texttt{cblas\_dgemm} z biblioteki Intel MKL przy wykorzystaniu wielowątkowości biblioteki OpenMP. Osiągała ona przyspieszenia dwukrotnie większe niż hybrydowy algorytm Cannona korzystający z tej procedury w obliczeniach na poziomie procesu. Uzyskany słaby wynik metody Cannona należy tłumaczyć tutaj przeznaczeniem tej metody do obliczeń na dużych zbiorach danych (obliczeń typu \emph{big data}).
