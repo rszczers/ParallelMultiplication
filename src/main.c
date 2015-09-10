@@ -26,11 +26,11 @@
 
 const char *argp_program_version = "pmm v0.1";
 const char *argp_program_bug_address = "<rafal.szczerski@gmail.com>";
-static char doc[] = "Parallel matrix multiplication with Intel Math Kernel Library";
+static char doc[] = "Parallel Matrix Multiplication";
 static char args_doc[] = "-A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM";
 
 static struct argp_option options[] = {
-    { "method",     'a', "METHOD", 0, "Algorithm used."},
+    { "method",     'a', "METHOD", 0, "Algorithm used"},
     { "inputA",     'A',   "FILE", 0, "Path to input FILE containing matrix A data"},
     { "inputB",     'B',   "FILE", 0, "Path to input FILE containing matrix B data"},
     { "output",     'o',   "FILE", OPTION_ARG_OPTIONAL, "Path to output FILE containing matrix C=A*B data"},
