@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  10 SEP 2015 01:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.2.15)  10 SEP 2015 02:07
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -955,7 +955,13 @@ Overfull \hbox (60.4754pt too wide) in paragraph at lines 2--35
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- [3] (./includes/ch0_wstep.tex [4
+ [3] (./includes/ch0_wstep.tex
+Overfull \hbox (3.87785pt too wide) in paragraph at lines 15--17
+\T1/cmr/m/n/12 dla ma-cie-rzy g¦-stych. Szcze-gól-na uwa-ga zo-sta-ªa po-ªo-»o-
+na na me-to-d¦ Cannona[[]]
+ []
+
+[4
 
 ]) [5]
 Rozdzia\PlPrIeC {\l } 1.
@@ -1031,13 +1037,8 @@ Package pdftex.def Info: includes/images/flynn-eps-converted-to.pdf used on inp
 ut line 19.
 (pdftex.def)             Requested size: 281.93115pt x 243.07059pt.
  [10 <./includes/images/flynn-eps-converted-to.pdf>]) (./includes/ch1s3_repreze
-ntacja_algorytmow.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--2
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 19--20
+ntacja_algorytmow.tex [11]
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
@@ -1050,17 +1051,17 @@ Package epstopdf Info: Source file: <includes/images/Rys3.eps>
 (epstopdf)                    size: 23253 bytes
 (epstopdf)             Command: <epstopdf --outfile=includes/images/Rys3-eps-co
 nverted-to.pdf includes/images/Rys3.eps>
-(epstopdf)             \includegraphics on input line 32.
+(epstopdf)             \includegraphics on input line 30.
 Package epstopdf Info: Output file is already uptodate.
 <includes/images/Rys3-eps-converted-to.pdf, id=313, 863.225pt x 351.3125pt>
 File: includes/images/Rys3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use includes/images/Rys3-eps-converted-to.pdf>
 Package pdftex.def Info: includes/images/Rys3-eps-converted-to.pdf used on inpu
-t line 32.
+t line 30.
 (pdftex.def)             Requested size: 399.40247pt x 162.54381pt.
 
-Overfull \hbox (1.06387pt too wide) in paragraph at lines 32--33
+Overfull \hbox (1.06387pt too wide) in paragraph at lines 30--31
  [][] 
  []
 
@@ -1663,7 +1664,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  13537 strings out of 493304
  216802 string characters out of 6139871
- 370231 words of memory out of 5000000
+ 370228 words of memory out of 5000000
  16205 multiletter control sequences out of 15000+600000
  28847 words of font info for 79 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1699,7 +1700,7 @@ super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fon
 ts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sftt1200.pfb>
-Output written on .temp//main.pdf (68 pages, 1041383 bytes).
+Output written on .temp//main.pdf (68 pages, 1041592 bytes).
 PDF statistics:
  1145 PDF objects out of 1200 (max. 8388607)
  997 compressed objects within 10 object streams

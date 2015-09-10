@@ -1,8 +1,6 @@
-Wiele obliczeń możemy repezentować za pomocą acyklicznych grafów skierowanych. Każde wejście jest oznaczane przez węzeł bez dochodzących do niego łuków. Operacje oznaczamy przez węzły do których wchodzą łuki z innych węzłów oznaczających argumenty (operandy). Stopień wejściowy dowolnego węzła wynosi co najwyżej 2. Węzeł, którego stopień wyjściowy jest równy 0 oznacza wyjście. Zakładamy, że każdy węzeł przedstawia operację, która wymaga jednej jestostki czasu wykonania.\\
+Wiele obliczeń możemy repezentować za pomocą acyklicznych grafów skierowanych. W takim modelu każde wejście jest oznaczane przez węzeł bez dochodzących do niego łuków. Operacje oznaczane są przez węzły do których wchodzą łuki z innych węzłów oznaczających argumenty (operandy). Stopień wejściowy dowolnego węzła wynosi co najwyżej 2. Węzeł, którego stopień wyjściowy jest równy \(0\) oznacza wyjście. Zakładamy tutaj, że każdy węzeł przedstawia operację, która wymaga jednej jestostki czasu wykonania.
 
-
-
-Za pomocą acyklicznych grafów skierowanych możemy analizować zachowanie równoległych algorytmów przy założeniu, że każdy z procesorów ma dostęp do danych obliczonych przez inny procesor bez dodatkowych narzutów. Implementacja algorytmu polega na \emph{planowaniu} wykonania każdego węzła na wybranym procesorze.
+Za pomocą acyklicznych grafów skierowanych możemy analizować zachowanie równoległych algorytmów przy założeniu, że każdy z procesorów ma dostęp do danych obliczonych przez inny procesor bez dodatkowych narzutów czasowych. Przy takim modelu implementacja algorytmu polega na \emph{planowaniu} wykonania każdego węzła na wybranym procesorze.
 %\begin{figure}[h]
 %\centering
 %\includegraphics[width=34em]{Rys3.eps}

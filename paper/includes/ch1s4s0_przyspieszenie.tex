@@ -22,10 +22,10 @@ Maksymalną wartością przyspieszenia \(S(p,n)\) jest \(p\), ponieważ używaj�
 Istnieją problemy dla których najlepszy znany algorytm sekwencyjny \(R_s\) nie może zostać zrównoleglony. Wówczas równoległe rozwiązanie problemu w postaci pewnego algorytmu \(R\) działa na innej zasadzie. Wówczas pomocne w ocenie korzyści z jest posługiwanie się \emph{przyspieszeniem względnym}.
 \end{uwaga}
 
-\begin{definicja}[Przyspieszenie bezwzględne\cite{Czech}]
+\begin{definicja}[Przyspieszenie względne\cite{Czech}]
 Niech \(P\) będzie pewnym zadaniem obliczeniowym, \(n\) -- rozmiarem danych wejściowych. Wówczas
 \begin{align}\label{def:speedup_rel}
- S_{p}(n)=\frac{T_{1}(n)}{T_{p}(n)(N)}
+ S_{p}(n)=\frac{T_{1}(n)}{T_{p}(n)}
 \end{align}
 gdzie \(T_{1}(n)\) jest pesymistyczną złożonością czasową algorytmu równoległego \(R\) rozwiązującego problem \(P\) na jednym procesorze, \(T_{n}(N)\) jest pesymistyczną złożonością algorytmu \(R\) wykonanego na \(n\) procesorach. Wyrażenie \ref{def:speedup_abs} nazywamy \textbf{przyspieszeniem względnym} algorytmu \(R\).
 \end{definicja}
