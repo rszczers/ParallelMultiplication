@@ -5,9 +5,9 @@ Implementation of the parallel Fox-Cannon's matrix multiplication hybrid algorit
 ##Usage
 <pre>
 Usage: pmm [OPTION...] -A matrixA_path -B matrixB_path -m NUM -k NUM -n NUM
-Parallel matrix multiplication with Intel Math Kernel Library
+Parallel matrix multiplication
 
-  -a, --method=METHOD        Algorithm used.
+  -a, --method=METHOD        Algorithm used
   -A, --inputA=FILE          Path to input FILE containing matrix A data
   -B, --inputB=FILE          Path to input FILE containing matrix B data
   -d, --debug[=DIR]          Path to debug directory
